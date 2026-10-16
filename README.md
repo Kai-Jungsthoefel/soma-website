@@ -15,4 +15,4 @@ Open `http://localhost:3000`. Run `npm run build` to check the production build.
 
 Import this directory as a Vercel project. Vercel detects Next.js automatically; no custom build settings or environment variables are required.
 
-The trailer is served from `public/media/soma-trailer.mp4`. Feature screenshots are from the SOMA repository. The Download page currently links directly to the v0.9.0 pre-release files; update `components/DownloadCards.jsx` and `app/download/page.jsx` when a newer release should be featured.
+The trailer is served from `public/media/soma-trailer.mp4`. Feature screenshots are from the SOMA repository. The Download page defaults to v0.9.0 and lists every asset for the chosen release. It refreshes release data from GitHub through `/api/releases`; `data/releases.json` provides a fallback when the API is unavailable.

@@ -12,13 +12,14 @@ export default function VideoStage({ compact = false }) {
   useEffect(() => {
     const video = ref.current;
     if (!video) return;
+    if (compact || window.matchMedia('(max-width: 760px)').matches) return;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) video.play().catch(() => {});
       else video.pause();
     }, { threshold: .32 });
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [compact]);
   const toggle = () => { const v=ref.current; if(v.paused) v.play(); else v.pause(); };
   const toggleMute = () => { const v=ref.current; v.muted=!v.muted; setMuted(v.muted); };
   const seek = (e) => { const v=ref.current; if(v.duration) v.currentTime = Number(e.target.value)/100*v.duration; };
