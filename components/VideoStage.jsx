@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Maximize2, Pause, Play, Volume2, VolumeX } from 'lucide-react';
 
 export default function VideoStage({ compact = false }) {
@@ -9,25 +9,20 @@ export default function VideoStage({ compact = false }) {
   const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  useEffect(() => {
+  const time = value => `${Math.floor(value / 60).toString().padStart(2, '0')}:${Math.floor(value % 60).toString().padStart(2, '0')}`;
+  const toggle = () => {
     const video = ref.current;
-    if (!video) return;
-    if (compact || window.matchMedia('(max-width: 760px)').matches) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) video.play().catch(() => {});
-      else video.pause();
-    }, { threshold: .32 });
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, [compact]);
-  const toggle = () => { const v=ref.current; if(v.paused) v.play(); else v.pause(); };
-  const toggleMute = () => { const v=ref.current; v.muted=!v.muted; setMuted(v.muted); };
-  const seek = (e) => { const v=ref.current; if(v.duration) v.currentTime = Number(e.target.value)/100*v.duration; };
-  const time = (value) => `${Math.floor(value/60).toString().padStart(2,'0')}:${Math.floor(value%60).toString().padStart(2,'0')}`;
+    if (video.paused) {
+      video.muted = false;
+      setMuted(false);
+      video.play().catch(() => {});
+    } else video.pause();
+  };
+  const toggleMute = () => { const video = ref.current; video.muted = !video.muted; setMuted(video.muted); };
+  const seek = event => { const video = ref.current; if (video.duration) video.currentTime = Number(event.target.value) / 100 * video.duration; };
   return <div className={`video-stage ${compact ? 'compact' : ''}`}>
-    <div className="video-topline"><span><i className="live-dot"/> THE SOMA EXPERIENCE</span><span>01 / INTRODUCTION</span></div>
-    <video ref={ref} src="/media/soma-trailer.mp4" poster="/images/trailer-poster.jpg" playsInline muted loop preload="metadata" onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)} onTimeUpdate={e=>setProgress(e.currentTarget.duration ? e.currentTarget.currentTime/e.currentTarget.duration*100 : 0)} onLoadedMetadata={e=>setDuration(e.currentTarget.duration)} aria-label="SOMA product trailer" />
-    {!playing && <button className="video-center-play" onClick={toggle} aria-label="Play trailer"><Play size={27} fill="currentColor"/></button>}
-    <div className="video-controlbar"><button onClick={toggle} aria-label={playing?'Pause trailer':'Play trailer'}>{playing?<Pause size={18} fill="currentColor"/>:<Play size={18} fill="currentColor"/>}</button><span className="video-time">{time(ref.current?.currentTime||0)} / {time(duration)}</span><input type="range" min="0" max="100" value={progress} onChange={seek} aria-label="Video progress" style={{'--progress':`${progress}%`}}/><button onClick={toggleMute} aria-label={muted?'Unmute trailer':'Mute trailer'}>{muted?<VolumeX size={18}/>:<Volume2 size={18}/>}</button><button onClick={()=>ref.current?.requestFullscreen?.()} aria-label="Fullscreen trailer"><Maximize2 size={17}/></button></div>
+    <video ref={ref} src="/media/soma-trailer.mp4" poster="/images/trailer-cover.jpg" playsInline muted preload="metadata" onPlay={event => { setPlaying(true); setDuration(event.currentTarget.duration || 0); }} onPause={() => setPlaying(false)} onEnded={event => { event.currentTarget.currentTime = 0; setPlaying(false); }} onTimeUpdate={event => { setProgress(event.currentTarget.duration ? event.currentTarget.currentTime / event.currentTarget.duration * 100 : 0); setDuration(event.currentTarget.duration || 0); }} onLoadedMetadata={event => setDuration(event.currentTarget.duration)} onDurationChange={event => setDuration(event.currentTarget.duration || 0)} aria-label="SOMA product trailer"/>
+    {!playing && <button className="video-play-pill" onClick={toggle}><Play size={17} fill="currentColor"/> Play intro</button>}
+    {playing && <div className="video-controls"><button onClick={toggle} aria-label="Pause trailer"><Pause size={18} fill="currentColor"/></button><span>{time(ref.current?.currentTime || 0)} / {time(duration)}</span><input type="range" min="0" max="100" value={progress} onChange={seek} aria-label="Video progress" style={{ '--progress': `${progress}%` }}/><button onClick={toggleMute} aria-label={muted ? 'Unmute trailer' : 'Mute trailer'}>{muted ? <VolumeX size={19}/> : <Volume2 size={19}/>}</button><button onClick={() => ref.current?.requestFullscreen?.()} aria-label="Fullscreen trailer"><Maximize2 size={18}/></button></div>}
   </div>;
 }
