@@ -1,6 +1,8 @@
 import './globals.css';
 import './concept.css';
 import './typography.css';
+import './orbit.css';
+import './hero-grid.css';
 import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {

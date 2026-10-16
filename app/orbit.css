@@ -1,0 +1,31 @@
+.subpage { overflow-x: clip; }
+.page-hero { position: relative; isolation: isolate; }
+.page-hero > :not(.particle-orbit) { position: relative; z-index: 1; }
+
+.particle-orbit {
+  position: absolute;
+  z-index: -1;
+  top: -235px;
+  right: -260px;
+  width: 700px;
+  height: 700px;
+  pointer-events: none;
+  background: radial-gradient(circle, #201c19a8 0%, #19191a94 45%, transparent 72%);
+  mask-image: radial-gradient(circle, #000 75%, transparent 99%);
+}
+.particle-orbit canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: particle-disc-turn 110s linear infinite, particle-disc-breathe 9s ease-in-out infinite;
+}
+@keyframes particle-disc-turn { to { transform: rotate(360deg); } }
+@keyframes particle-disc-breathe { 50% { opacity: .68; } }
+
+@media (max-width: 760px) {
+  .particle-orbit { top: -100px; right: -210px; width: 430px; height: 430px; opacity: .62; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .particle-orbit canvas { animation: none; }
+}

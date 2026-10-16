@@ -1,0 +1,31 @@
+.hero:after,
+.page-hero:before,
+.download-explorer:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 100vw;
+  pointer-events: none;
+  transform: translateX(-50%);
+  background-image:
+    linear-gradient(#ffffff0b 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff0b 1px, transparent 1px);
+  background-size: 110px 110px;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+}
+
+.hero:after { top: 0; height: 100%; z-index: 0; }
+.hero .particle-field { z-index: 1; }
+
+.page-hero:before { top: -74px; height: 590px; z-index: 0; }
+.page-hero .particle-orbit { z-index: 1; }
+.page-hero > :not(.particle-orbit) { z-index: 2; }
+
+.download-explorer { position: relative; isolation: isolate; }
+.download-explorer:before { top: -74px; height: 540px; z-index: 0; }
+.download-explorer > * { position: relative; z-index: 1; }
+
+@media (max-width: 760px) {
+  .page-hero:before, .download-explorer:before { top: -66px; height: 500px; }
+  .hero:after, .page-hero:before, .download-explorer:before { background-size: 84px 84px; }
+}
