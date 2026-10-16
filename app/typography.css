@@ -1,0 +1,55 @@
+/* The supplied SOMA artwork uses a plain, bold sans-serif wordmark and regular supporting text. */
+html, body, button, input, select {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, .brand-word, .hero-identity {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  letter-spacing: -.035em;
+}
+
+p, nav, button, input, select, .pill-button, .quiet-link,
+.concept-flow, .concept-command, .archive-row, .platform-tabs {
+  font-weight: 400;
+}
+
+.hero h1 {
+  font-size: clamp(56px, 4.9vw, 86px);
+  letter-spacing: -.045em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+
+.concept-copy h2 { font-size: clamp(50px, 4.5vw, 68px); letter-spacing: -.04em; }
+.detail-copy h2 { font-size: clamp(42px, 4.2vw, 62px); letter-spacing: -.035em; }
+.agent-section h2 { font-size: clamp(48px, 5vw, 74px); letter-spacing: -.04em; }
+.page-hero h1 { font-size: clamp(52px, 5.5vw, 82px); letter-spacing: -.04em; font-weight: 700; }
+.download-intro h1 { font-size: clamp(56px, 6vw, 90px); letter-spacing: -.04em; font-weight: 700; }
+.platform-feature h2, .archive-head h2,
+.feature-list-row h2, .guide-step h2, .download-note-grid h3 {
+  letter-spacing: -.025em;
+}
+.showcase-copy h2 { font-size: clamp(36px, 3.5vw, 52px); letter-spacing: -.035em; }
+.footer-main h2 { font-size: clamp(54px, 5.5vw, 78px); letter-spacing: -.04em; }
+
+.eyebrow-row, .section-kicker, .detail-index, .download-overline,
+.archive-foot, .film-caption, .section-label, .footer-fine,
+.concept-kicker, .concept-overline, .concept-visual-bar,
+.concept-axis, .concept-coordinate, .concept-command {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: .025em;
+}
+
+@media (max-width: 760px) {
+  .hero h1 { font-size: clamp(43px, 10vw, 60px); white-space: normal; }
+  .concept-copy h2 { font-size: clamp(44px, 10vw, 58px); }
+  .detail-copy h2 { font-size: 42px; }
+  .agent-section h2 { font-size: clamp(44px, 10vw, 60px); }
+  .page-hero h1 { font-size: clamp(48px, 10vw, 70px); }
+  .download-intro h1 { font-size: clamp(49px, 10vw, 70px); }
+  .footer-main h2 { font-size: 56px; }
+}
