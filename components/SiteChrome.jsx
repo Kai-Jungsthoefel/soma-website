@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowDownToLine, ArrowUpRight, Github, Menu, X } from 'lucide-react';
 
 const navigation = [
@@ -13,10 +13,7 @@ const navigation = [
 
 function Logo() {
   return <Link href="/" className="brand" aria-label="SOMA home">
-    <svg className="brand-mark" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-      <path d="M16 2.5 28 9.4v13.2L16 29.5 4 22.6V9.4L16 2.5Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
-      <path d="M4.5 9.7 16 16.3 27.5 9.7M16 16.3v12.6" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
-    </svg>
+    <img className="brand-mark" src="/images/soma-mark.svg" width="32" height="32" alt=""/>
     <span className="brand-word">SOMA</span>
   </Link>;
 }
@@ -25,13 +22,28 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 12);
+    lastY.current = window.scrollY;
+    const update = () => {
+      const y = window.scrollY;
+      setScrolled(y > 12);
+      if (y < 24 || open) {
+        setHidden(false);
+        lastY.current = y;
+        return;
+      }
+      const change = y - lastY.current;
+      if (Math.abs(change) < 8) return;
+      setHidden(change > 0 && y > 120);
+      lastY.current = y;
+    };
     update(); window.addEventListener('scroll', update, { passive: true });
     return () => window.removeEventListener('scroll', update);
-  }, []);
-  useEffect(() => setOpen(false), [pathname]);
-  return <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
+  }, [open, pathname]);
+  useEffect(() => { setOpen(false); setHidden(false); }, [pathname]);
+  return <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${hidden ? 'is-hidden' : ''}`}>
     <div className="nav-shell">
       <div className="nav-brand"><Logo/><span className="brand-divider"/><span className="brand-descriptor">CAD WITH AGENTS</span></div>
       <nav className={open ? 'nav-links open' : 'nav-links'} aria-label="Main navigation">
