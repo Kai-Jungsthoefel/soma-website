@@ -71,17 +71,16 @@ em { font-style: normal; color: var(--tx); }
 .section-head { margin-bottom: 24px; }
 .section-head h2 { font-size: 28px; flex: none; }
 
-/* Was ist SOMA: drei Bausteine plus, gleich das Ergebnis */
-.what { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.15fr); gap: 0; align-items: stretch; }
-.what-item { display: flex; align-items: center; }
-.what-card { flex: 1; align-self: stretch; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--s1); }
+/* Was ist SOMA: erst die Antwort, darunter die drei Bausteine */
+.what-intro { max-width: 52em; margin-bottom: 28px; }
+.what-intro h2 { font-size: 28px; }
+.what-answer { margin-top: 14px; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.25; color: var(--acc-tx); }
+.what-intro p:last-child { margin-top: 12px; color: var(--tx2); font-size: 17px; }
+.what { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.what-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--s1); }
 .what-card svg { color: var(--acc); }
 .what-card h3 { margin-top: 12px; font-size: 17px; }
 .what-card p { margin-top: 8px; color: var(--tx2); font-size: 15px; }
-.what-op { flex: none; width: 36px; display: grid; place-items: center; color: var(--tx3); }
-.what-result { border-color: var(--acc); background: var(--acc-tint); display: flex; flex-direction: column; justify-content: center; }
-.what-result h3 { margin-top: 0; font-size: 19px; }
-.what-result p { color: var(--tx); }
 
 /* Showcase */
 /* Rasterspalten dürfen schmaler werden als ihr Inhalt (waagrechte Reiterleisten auf dem Handy) */
@@ -262,8 +261,6 @@ em { font-style: normal; color: var(--tx); }
   .info-grid, .notes { grid-template-columns: 1fr 1fr; }
   .showcase-body, .features { grid-template-columns: 1fr; }
   .what { grid-template-columns: 1fr; }
-  .what-item { flex-direction: column; }
-  .what-op { height: 34px; }
   .feature-list { flex-direction: row; overflow-x: auto; scrollbar-width: none; }
   .feature-list button { flex: none; border-left: 0; border-bottom: 2px solid transparent; border-radius: 8px 8px 0 0; }
   .feature-list button.active { border-bottom-color: var(--acc); border-radius: 8px 8px 0 0; }
