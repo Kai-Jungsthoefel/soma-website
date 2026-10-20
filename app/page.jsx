@@ -1,30 +1,111 @@
-import Link from 'next/link';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { Header, Footer } from '../components/SiteChrome';
-import ConceptSection from '../components/ConceptSection';
-import ParticleField from '../components/ParticleField';
-import Reveal from '../components/Reveal';
-import VideoStage from '../components/VideoStage';
+import { BookOpen, Boxes, Code2, Cog, FileCode2, FileOutput, Film, Gauge, History, Package, PencilRuler, Ruler, SlidersHorizontal } from 'lucide-react';
+import { Footer, Header, StarsButton } from '../components/SiteChrome';
+import DownloadButton from '../components/DownloadButton';
+import Showcase from '../components/Showcase';
 
-const details = [
-  { number: '01', label: 'Describe', title: 'Start with an idea.', body: 'Tell your coding agent what you need. It writes a parametric CadQuery model that SOMA builds as it changes.', image: '/images/hero-workspace.jpg', alt: 'SOMA showing a parametric rover model and its coding agent' },
-  { number: '02', label: 'Refine', title: 'Make every detail count.', body: 'Inspect the result, measure a feature, and draw directly on the view. Show your agent exactly what to change.', image: '/images/explode.png', alt: 'Exploded assembly in SOMA' },
-  { number: '03', label: 'Make', title: 'Take it into the world.', body: 'Export production files and technical drawings. Your model stays editable as code when a new idea comes along.', image: '/images/drawing.png', alt: 'SOMA technical drawing beside a model' },
+const features = [
+  { icon: Code2, title: 'Models as code', body: 'Python with CadQuery, rebuilt on every change. Reproducible, diffable and editable by hand.' },
+  { icon: Ruler, title: 'Point, measure, mark up', body: 'Click a part, measure exactly or sketch on the view, and send it to the agent.' },
+  { icon: SlidersHorizontal, title: 'Parameters', body: 'Change the values the agent made adjustable without touching the code.' },
+  { icon: History, title: 'History', body: 'Every step on a timeline. Preview old states and restore them.' },
+  { icon: Package, title: 'One file per model', body: 'A .soma file holds code, result and history, like a CAD file.' },
+  { icon: Boxes, title: 'Exploded views', body: 'SOMA works out in which direction each part of an assembly comes off.' },
+  { icon: Film, title: 'Animation', body: 'Your agent describes motion in Python. Play it in the viewer or render it to video.' },
+  { icon: PencilRuler, title: 'Technical drawings', body: 'Views, sections and dimensions measured on the model, as PDF and DXF.' },
+  { icon: Gauge, title: 'Analysis and FEM', body: 'Overhangs, wall thickness and strength with CalculiX, shown on the model.' },
+  { icon: Cog, title: 'Standard parts', body: 'Screws, nuts and washers from dimension tables, placed by the agent.' },
+  { icon: BookOpen, title: 'Skills', body: '3D printing, CNC, laser cutting, sheet metal, tolerances. Edit them or add your own.' },
+  { icon: FileOutput, title: 'Export', body: 'STEP, STL, 3MF, DXF, glTF and more. Plain CadQuery scripts in and out.' },
 ];
 
+const steps = [
+  { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
+  { title: 'Start your agent', body: 'Use the + above the terminal. SOMA lists the CLI agents it found on your computer.' },
+  { title: 'Describe what you need', body: <>For example <em>“A case for a Raspberry Pi 5 with vents in the lid, printed in PETG.”</em> SOMA builds every change.</> },
+  { title: 'Refine and export', body: 'Measure, point at what is wrong, and let the agent fix it. Then export STL, 3MF or STEP.' },
+];
+
+const agents = ['Claude Code', 'Codex CLI', 'OpenCode', 'Gemini CLI'];
+
 export default function Home() {
-  return <><Header/><main>
-    <section className="hero" id="top"><ParticleField/><div className="hero-content">
-      <Reveal><div className="hero-identity"><img className="hero-symbol" src="/images/soma-mark.svg" width="32" height="32" alt=""/> SOMA</div><h1>Imagine it. Make it real.</h1><p>Parametric 3D design with the coding agent you already use.</p><Link href="/download" className="pill-button light">Download SOMA <ArrowDown size={19}/></Link></Reveal>
-    </div></section>
+  return <>
+    <Header/>
+    <main>
+      <section className="hero">
+        <div className="wrap hero-inner">
+          <div className="hero-copy">
+            <p className="kicker">Open-source desktop CAD</p>
+            <h1>Design 3D models with the coding agent you already use.</h1>
+            <p className="lead">Tell your agent what you need. It writes the model as Python code with CadQuery, SOMA builds it and shows the result. Measure it, point at what is wrong, and the agent changes the code.</p>
+            <DownloadButton/>
+            <ul className="hero-facts">
+              <li>Free, GPL-3.0</li>
+              <li>Windows, macOS, Linux</li>
+              <li>Python, CadQuery, Git and CalculiX included</li>
+            </ul>
+          </div>
+          <figure className="hero-shot">
+            <img src="/images/app.png" width="1600" height="921" alt="SOMA with a rover model, its structure tree and the agent's terminal"/>
+          </figure>
+        </div>
+      </section>
 
-    <section className="cinema-section" id="film"><div className="cinema-wrap"><Reveal><VideoStage/></Reveal></div></section>
+      <Showcase/>
 
-    <ConceptSection/>
+      <section className="section" id="features" aria-labelledby="features-title">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 id="features-title">Everything in one window</h2>
+            <p>Viewer, terminal, code and history side by side. SOMA gives the agent a command line tool and the rules of the project; you keep the overview.</p>
+          </div>
+          <div className="feature-grid">
+            {features.map(f => <article className="feature" key={f.title}>
+              <f.icon size={20} strokeWidth={1.6}/>
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </article>)}
+          </div>
+        </div>
+      </section>
 
-    <section className="detail-section section-wrap"><div className="eyebrow-row"><span>FROM THOUGHT TO THING</span><span>01 — 03</span></div>{details.map((item, index) => <Reveal className={`detail-row detail-row-${index + 1}`} key={item.number}><div className="detail-copy"><span className="detail-index">{item.number} / {item.label}</span><h2>{item.title}</h2><p>{item.body}</p>{index === 2 && <Link className="quiet-link" href="/features">Explore the features <ArrowUpRight size={18}/></Link>}</div><div className="detail-image"><img src={item.image} alt={item.alt}/></div></Reveal>)}</section>
+      <section className="section" id="how" aria-labelledby="how-title">
+        <div className="wrap how">
+          <div>
+            <div className="section-head">
+              <h2 id="how-title">How it works</h2>
+            </div>
+            <ol className="steps">
+              {steps.map((s, i) => <li key={s.title}><span className="step-num">{i + 1}</span><div><h3>{s.title}</h3><p>{s.body}</p></div></li>)}
+            </ol>
+          </div>
+          <video className="trailer" src="/media/soma-trailer.mp4" poster="/images/trailer-cover.jpg" controls preload="none" playsInline aria-label="SOMA trailer"/>
+        </div>
+      </section>
 
-    <section className="agent-section section-wrap"><Reveal><div className="eyebrow-row"><span>YOUR TOOLS, YOUR CHOICE</span><span>OPEN BY DESIGN</span></div><h2>Works with your agent.<br/>Fits your workflow.</h2><p>SOMA works with CLI coding agents that can read files and run commands. Your subscription, model, and permission settings stay yours.</p><div className="agent-names"><span>Claude Code</span><span>Codex CLI</span><span>OpenCode</span><span>Gemini CLI</span><span>And more</span></div><Link href="/guide" className="quiet-link">See how SOMA works <ArrowUpRight size={18}/></Link></Reveal></section>
-
-  </main><Footer/></>;
+      <section className="section" aria-labelledby="agents-title">
+        <div className="wrap info-grid">
+          <div className="info">
+            <h2 id="agents-title">Bring your own agent</h2>
+            <p>SOMA is not an agent of its own. Any CLI agent that can read files and run commands works. You install and sign in yourself, so your subscription, model and permission settings stay yours.</p>
+            <ul className="chips">{agents.map(a => <li key={a}>{a}</li>)}<li>and more</li></ul>
+          </div>
+          <div className="info">
+            <h2>Before you start</h2>
+            <ul className="plain">
+              <li>A CLI agent, installed and signed in</li>
+              <li>Windows 10+ (x64), macOS on Apple Silicon, or Linux x64 with glibc 2.31+</li>
+              <li>Over 1 GB of disk space</li>
+              <li>Packages are not signed yet: confirm the warning on first start</li>
+            </ul>
+          </div>
+          <div className="info">
+            <h2>Open source</h2>
+            <p>SOMA is an early prototype, developed in the open. Bug reports, ideas and experiences with different agents are welcome as issues.</p>
+            <StarsButton/>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer/>
+  </>;
 }

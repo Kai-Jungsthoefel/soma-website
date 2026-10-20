@@ -1,11 +1,27 @@
-import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
-import { Header, Footer } from '../../components/SiteChrome';
+import { Footer, Header } from '../../components/SiteChrome';
 import DownloadExplorer from '../../components/DownloadExplorer';
-import Reveal from '../../components/Reveal';
 
-export const metadata = { title: 'Download SOMA — All releases', description: 'Choose any SOMA release and download every available Windows, macOS, and Linux package.' };
+export const metadata = {
+  title: 'Download SOMA',
+  description: 'Download SOMA for Windows, macOS and Linux. All releases and files.',
+};
+
+const notes = [
+  { title: 'Bring your own agent', body: 'Install and sign in to a CLI coding agent such as Claude Code, Codex CLI, OpenCode or Gemini CLI. SOMA does not bring one.' },
+  { title: 'First start', body: 'The packages are not signed yet. On Windows, SmartScreen warns: choose “More info” and “Run anyway”. On macOS, right-click the app and choose Open.' },
+  { title: 'Portable ZIP on Windows', body: 'Tick “Unblock” in the file properties before extracting, and extract to a local folder, not a network drive.' },
+  { title: 'Updates', body: 'There is no automatic update yet. SOMA shows on its start page when a new version is available.' },
+];
 
 export default function Download() {
-  return <><Header/><main className="download-page"><DownloadExplorer/><section className="download-notes section-wrap"><Reveal><div className="eyebrow-row"><span>BEFORE YOU BEGIN</span><span>GETTING STARTED</span></div><div className="download-note-grid"><div><h3>Bring your own agent.</h3><p>Install and sign in to a CLI coding agent. SOMA works with Claude Code, Codex CLI, OpenCode, Gemini CLI, and other compatible tools.</p></div><div><h3>First launch.</h3><p>Packages are currently unsigned. Windows SmartScreen may warn; on macOS, right-click the app and choose Open.</p></div><div><h3>Space and updates.</h3><p>The app uses over 1 GB. Python, CadQuery, Git, and CalculiX are included. Download future updates from the releases page.</p></div></div><Link href="/guide" className="quiet-link">Read the getting started guide <ArrowUpRight size={18}/></Link></Reveal></section></main><Footer/></>;
+  return <>
+    <Header/>
+    <main className="wrap page">
+      <DownloadExplorer/>
+      <section className="notes" aria-label="Notes">
+        {notes.map(n => <div key={n.title}><h3>{n.title}</h3><p>{n.body}</p></div>)}
+      </section>
+    </main>
+    <Footer/>
+  </>;
 }

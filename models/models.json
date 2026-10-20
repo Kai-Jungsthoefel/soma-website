@@ -1,0 +1,18 @@
+[
+ {
+  "id": "cnc-mill",
+  "source": "../examples/CNC-Mill.soma",
+  "feature": "Showcase",
+  "title": "Desktop CNC router",
+  "description": "Frame from 2040 and 2080 aluminium extrusions, MGN12 linear rails and T8 lead screws on all axes, NEMA 23 steppers and a trim router spindle. Work area 300 × 300 × 80 mm."
+ },
+ {
+  "id": "robot-dog",
+  "source": "../examples/Robot Leg.soma",
+  "feature": "Animation",
+  "title": "Quadruped robot",
+  "description": "Four legs with three joints each, driven by brushless motors with a 6:1 planetary gear. The trot gait comes from inverse kinematics in the animation script.",
+  "animation": "trab-gang",
+  "captions": false
+ }
+]

@@ -1,20 +1,40 @@
 # SOMA website
 
-Marketing website for [SOMA](https://github.com/Kai-Jungsthoefel/SOMA), built with Next.js App Router, React, Framer Motion, and CSS. The site includes Home, Features, Guide, and Download pages.
+Website for [SOMA](https://github.com/Kai-Jungsthoefel/SOMA), built with Next.js as a fully static site (`out/`). Based on a template by [OBJIFY-DEV](https://github.com/OBJIFY-DEV/SOMA_Website).
 
-## Local development
+Pages: Home (hero, 3D showcase, features, how it works) and Download (all releases and files).
+
+## Development
 
 ```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
+npm run build      # fetches GitHub data, then writes the static site to out/
 ```
 
-Open `http://localhost:3000`. Run `npm run build` to check the production build.
+Behind a proxy, Node needs `NODE_USE_ENV_PROXY=1`.
 
-## Deploy on Vercel
+## Release data and stars
 
-Import this directory as a Vercel project. Vercel detects Next.js automatically; no custom build settings or environment variables are required.
+`npm run build` first runs `scripts/fetch-github.mjs`, which writes the releases and the star count to `data/github.json`. The page renders with that snapshot and refreshes it in the browser from the GitHub API (once per session). The newest release is the first in the list, including pre-releases; GitHub's `releases/latest` would skip those. Without network the build keeps the existing snapshot. Set `GITHUB_TOKEN` for a higher API rate limit.
 
-Vercel Web Analytics is installed in the root layout with `@vercel/analytics/next`. Enable Web Analytics for the Vercel project, deploy, and visit the site to begin collecting page views. Local development only logs analytics events for debugging.
+## Showcase models
 
-The trailer is served from `public/media/soma-trailer.mp4`. Feature screenshots are from the SOMA repository. The Download page defaults to v0.9.0 and lists every asset for the chosen release. It refreshes release data from GitHub through `/api/releases`; `data/releases.json` provides a fallback when the API is unavailable.
+The models are listed in `models/models.json`. Each entry points to a `.soma` file and names the SOMA feature it shows.
+
+```bash
+npm run models             # all models
+npm run models -- cnc-mill # one model
+```
+
+`scripts/build-models.mjs` extracts the project, runs `soma build` (and `soma anim build` for `animation`), strips the measuring metadata and compresses the GLBs with Meshopt into `public/models/<id>/`. It needs the SOMA development environment (`soma.exe` under `%LOCALAPPDATA%/soma-dev/venv`, or `SOMA_EXE`). The generated files are committed, so building the site does not need SOMA.
+
+Fields in `models.json`: `id`, `source`, `feature` (tab label), `title`, `description`, optional `animation` (animation id from `.soma/anim/index.json`) and `captions: false` to hide the animation's captions.
+
+## Viewer
+
+`components/viewer/scene.js` mirrors the app viewer (Z up, same lights, camera and iso view). three.js is loaded only when the showcase comes near the viewport. Animations are applied per part as rigid poses, like in the app; hidden, ghost and highlight states are supported.
+
+## Assets
+
+Screenshots and the trailer come from the SOMA repository. Fonts: IBM Plex Sans and Mono, SIL Open Font License (`public/fonts/OFL.txt`).

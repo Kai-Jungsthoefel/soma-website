@@ -4,15 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/fetch-github.mjs",
     "build": "next build",
-    "start": "next start"
+    "serve": "npx --yes serve@14.2.4 out",
+    "models": "node scripts/build-models.mjs"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "framer-motion": "^12.0.0",
     "lucide-react": "^0.468.0",
     "next": "^16.4.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@gltf-transform/core": "^4.5.1",
+    "@gltf-transform/extensions": "^4.5.1",
+    "@gltf-transform/functions": "^4.5.1",
+    "meshoptimizer": "^1.3.0"
   }
 }
