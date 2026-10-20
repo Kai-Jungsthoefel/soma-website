@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/fetch-github.mjs",
+    "prebuild": "node scripts/check-legal.mjs && node scripts/fetch-github.mjs",
     "build": "next build",
     "serve": "npx --yes serve@14.2.4 out",
     "models": "node scripts/build-models.mjs",

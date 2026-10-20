@@ -249,6 +249,14 @@ em { font-style: normal; color: var(--tx); }
 .notes h3 { font-size: 16px; }
 .notes p { margin-top: 6px; color: var(--tx2); font-size: 14px; }
 
+/* Impressum und Datenschutz */
+.legal { max-width: 46em; }
+.legal h1 { font-size: 32px; }
+.legal h2 { font-size: 18px; margin-top: 28px; }
+.legal p { margin-top: 10px; color: var(--tx2); }
+.legal .legal-en { margin-top: 8px; color: var(--tx3); font-size: 15px; }
+.legal-date { margin-top: 32px !important; font-size: 14px; color: var(--tx3) !important; }
+
 /* Fußzeile */
 .site-footer { padding: 40px 0 48px; background: var(--s1); }
 .footer-inner { display: flex; justify-content: space-between; gap: 40px; }
