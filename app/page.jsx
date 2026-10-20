@@ -1,22 +1,17 @@
-import { BookOpen, Boxes, Code2, Cog, FileCode2, FileOutput, Film, Gauge, History, Package, PencilRuler, Ruler, SlidersHorizontal } from 'lucide-react';
+import { Code2, FileOutput, History, Ruler } from 'lucide-react';
 import { Footer, Header, StarsButton } from '../components/SiteChrome';
 import DownloadButton from '../components/DownloadButton';
 import Showcase from '../components/Showcase';
 
+// Nur die vier Punkte des Ablaufs; Explosionsansicht, Animation, FEM und Parameter zeigt der Showcase
 const features = [
-  { icon: Code2, title: 'Models as code', body: 'Python with CadQuery, rebuilt on every change. Reproducible, diffable and editable by hand.' },
-  { icon: Ruler, title: 'Point, measure, mark up', body: 'Click a part, measure exactly or sketch on the view, and send it to the agent.' },
-  { icon: SlidersHorizontal, title: 'Parameters', body: 'Change the values the agent made adjustable without touching the code.' },
-  { icon: History, title: 'History', body: 'Every step on a timeline. Preview old states and restore them.' },
-  { icon: Package, title: 'One file per model', body: 'A .soma file holds code, result and history, like a CAD file.' },
-  { icon: Boxes, title: 'Exploded views', body: 'SOMA works out in which direction each part of an assembly comes off.' },
-  { icon: Film, title: 'Animation', body: 'Your agent describes motion in Python. Play it in the viewer or render it to video.' },
-  { icon: PencilRuler, title: 'Technical drawings', body: 'Views, sections and dimensions measured on the model, as PDF and DXF.' },
-  { icon: Gauge, title: 'Analysis and FEM', body: 'Overhangs, wall thickness and strength with CalculiX, shown on the model.' },
-  { icon: Cog, title: 'Standard parts', body: 'Screws, nuts and washers from dimension tables, placed by the agent.' },
-  { icon: BookOpen, title: 'Skills', body: '3D printing, CNC, laser cutting, sheet metal, tolerances. Edit them or add your own.' },
-  { icon: FileOutput, title: 'Export', body: 'STEP, STL, 3MF, DXF, glTF and more. Plain CadQuery scripts in and out.' },
+  { icon: Code2, title: 'Models as code', body: 'Your agent writes Python with CadQuery. SOMA rebuilds the model on every change.' },
+  { icon: Ruler, title: 'Point at what is wrong', body: 'Click a part, measure exactly or sketch on the view, and send it to the agent.' },
+  { icon: History, title: 'Every step kept', body: 'Each change lands on a timeline. Preview old states and go back to any of them.' },
+  { icon: FileOutput, title: 'Ready to make', body: 'Export STEP, STL, 3MF or DXF, and technical drawings as PDF.' },
 ];
+
+const more = ['Parameters', 'Exploded views', 'Animation', 'Analysis and FEM', 'Standard parts', 'Skills for 3D printing, CNC and more', 'Plain CadQuery in and out'];
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -60,11 +55,12 @@ export default function Home() {
           </div>
           <div className="feature-grid">
             {features.map(f => <article className="feature" key={f.title}>
-              <f.icon size={20} strokeWidth={1.6}/>
+              <f.icon size={22} strokeWidth={1.6}/>
               <h3>{f.title}</h3>
               <p>{f.body}</p>
             </article>)}
           </div>
+          <p className="more"><span>Also included:</span> {more.join(' · ')}</p>
         </div>
       </section>
 
