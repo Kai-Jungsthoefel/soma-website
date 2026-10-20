@@ -50,6 +50,7 @@ export function Footer() {
       <div>
         <Logo/>
         <p>Solid Object Modeling with Agents. Free and open source under GPL-3.0.</p>
+        <p className="credit">Thanks to Maiths for helping create this site.</p>
       </div>
       <div className="footer-links">
         <div><h3>Product</h3><Link href="/#models">Models</Link><Link href="/#features">Features</Link><Link href="/download/">Download</Link></div>

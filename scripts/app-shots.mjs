@@ -9,6 +9,7 @@
 //   node scripts/app-shots.mjs                 alle Bilder
 //   node scripts/app-shots.mjs code fem        nur diese
 // SOMA_TEST_PORT ändert den Debug-Port (Standard 9471).
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -24,6 +25,47 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '.
 const EXAMPLES = path.join(ROOT, 'examples');
 const OUT = path.join(ROOT, 'website', 'public', 'images', 'features');
 const W = 1600, H = 921;
+// Blick auf den Pi-5-Deckel von schräg vorn oben, steiler als iso, damit die Schlitze im Deckel offen zu sehen sind
+const VENT_VIEW = [0.7, -1.0, 1.5];
+
+const PY = process.env.SOMA_PYTHON || path.join(process.env.LOCALAPPDATA ?? '', 'soma-dev', 'venv', 'Scripts', 'python.exe');
+
+/**
+ * Ersetzt in einer kopierten .soma-Datei (ZIP) den Namen des Modells (.soma/project.json und .soma/zip-info.json, so
+ * zeigen ihn Kopfzeile und Baum) und Texte in model.py (`replace`: [alt, neu], etwa Namen der Bauteile). Die ZIP wird mit
+ * Python neu geschrieben, alle übrigen Einträge (auch .git/) bleiben unverändert.
+ */
+const RENAME_PY = `
+import json, sys, zipfile, os
+src, spec = sys.argv[1], json.loads(sys.argv[2])
+tmp = src + '.tmp'
+with zipfile.ZipFile(src) as zin, zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED) as zout:
+    for info in zin.infolist():
+        data = zin.read(info.filename)
+        if info.filename in ('.soma/project.json', '.soma/zip-info.json'):
+            j = json.loads(data.decode('utf-8')); j['name'] = spec['name']
+            data = (json.dumps(j, indent=2, ensure_ascii=False) + '\\n').encode('utf-8')
+        elif info.filename == 'model.py':
+            s = data.decode('utf-8')
+            for old, new in spec['replace']:
+                if old not in s: sys.exit('not found in model.py: ' + old)
+                s = s.replace(old, new)
+            data = s.encode('utf-8')
+        zout.writestr(info, data)
+os.replace(tmp, src)
+`;
+function renameInCopy(zip, spec) {
+  const r = spawnSync(PY, ['-I', '-c', RENAME_PY, zip, JSON.stringify(spec)], { encoding: 'utf8' });
+  if (r.status !== 0) throw new Error(`Umbenennen in der Kopie fehlgeschlagen: ${r.stderr || r.stdout || r.error?.message}`);
+}
+// Der Sortimentkasten ist auf Deutsch benannt: für das Bild englische Namen (nur in der Kopie)
+const ORGANIZER_EN = {
+  name: 'Organizer box',
+  replace: [
+    ['add_part("Kasten"', 'add_part("Box"'], ['add_part("Deckel"', 'add_part("Lid"'], ['add_part("Scharnierstift"', 'add_part("Hinge pin"'],
+    ['group="Kasten"', 'group="Box"'], ['group="Fächer"', 'group="Compartments"'], ['group="Deckel"', 'group="Lid"'], ['group="Bewegung"', 'group="Motion"'],
+  ],
+};
 
 const ALL = ['code', 'history', 'markup', 'measure', 'parameters', 'fem'];
 const only = process.argv.slice(2);
@@ -52,33 +94,52 @@ try {
 
   const term = (text) => ev((t) => window.soma.term.write(window.__t.terminals.activeId, t), text);
 
-  /** Öffnet eine Kopie von examples/<file> und wartet auf den Build. Kurzer Prompt ohne Pfad im Terminal. */
+  /**
+   * Öffnet eine Kopie von examples/<file> und wartet auf den Build. Kurzer Prompt ohne Pfad im Terminal.
+   * `rename`: Namen in der Kopie vorher ersetzen (siehe renameInCopy), nie im Original.
+   */
   let current = null;
-  async function openModel(file, prompt) {
+  async function openModel(file, prompt, rename) {
     if (current === file) return;
     const copy = path.join(work, file);
-    if (!fs.existsSync(copy)) fs.copyFileSync(path.join(EXAMPLES, file), copy);
+    if (!fs.existsSync(copy)) {
+      fs.copyFileSync(path.join(EXAMPLES, file), copy);
+      if (rename) renameInCopy(copy, rename);
+    }
     const before = await ev(() => window.__t.project()?.id ?? null);
     await app.answers([copy]);
     await domClick('btn-open');
     await waitFor(`${file} offen`, (b) => !!window.__t.project() && window.__t.project().id !== b, 60000, before);
     await waitFor(`${file} gebaut`, () => window.__t.status().state === 'ok' && window.__t.partCount() > 0, 300000);
+    if (rename) {
+      // Die umbenannte Kopie hat Änderungen gegenüber ihrer Historie: einmal speichern (in die Kopie), damit oben
+      // „Saved“ steht statt „Not saved“. Falls doch nach dem Ziel gefragt wird, ist es die Kopie
+      await app.answers([copy]);
+      await domClick('btn-save');
+      await waitFor('gespeichert', () => { const s = window.__t.saveState(); return !!s && !s.unsaved && s.dirtyFiles === 0; }, 60000)
+        .catch(async () => console.log('  Speichern der Kopie:', JSON.stringify(await ev(() => window.__t.saveState()))));
+      await app.answers([]);
+      await waitFor('neu gebaut', () => window.__t.status().state === 'ok', 120000);
+    }
     const toast = await ev(() => window.__t.toast());
     if (toast.error && !toast.hidden) console.log(`Hinweis beim Öffnen von ${file}: ${toast.text.slice(0, 300)}`);
     await waitFor('Terminal', () => window.__t.terminals.activeId != null, 20000);
     await sleep(2500);
     await term(`function prompt { 'PS ${prompt}> ' }; Clear-Host\r`);
     await sleep(1500);
+    // Spalte des Agenten einklappen: 3D-Ansicht und Panels bekommen den Platz (das Terminal läuft weiter)
+    await ev(() => window.__t.setAgentCollapsed(true));
+    await sleep(500);
     current = file;
   }
   /** Ansicht von schräg vorn, Modell füllt den Viewer. */
   // Einpassen rechnet mit dem senkrechten Bildwinkel: In einem schmalen Viewer (Code daneben) entsprechend weiter weg
-  const iso = async (zoom = 1) => {
+  const iso = async (zoom = 1, dir = [0.8, -1.2, 0.9]) => {
     await sleep(400);
-    await ev((z) => {
+    await ev(([z, d]) => {
       const v = window.__t.viewer, r = document.getElementById('viewer').getBoundingClientRect();
-      v.viewFrom(v.camera.position.clone().set(0.8, -1.2, 0.9), undefined, z * Math.min(1, 1.1 * r.width / r.height));
-    }, zoom);
+      v.viewFrom(v.camera.position.clone().set(...d), undefined, z * Math.min(1, 1.1 * r.width / r.height));
+    }, [zoom, dir]);
     await sleep(600);
   };
   const layout = async ({ side = null, code = false, tree = false } = {}) => {
@@ -161,9 +222,6 @@ try {
       await openModel('Rover.soma', 'rover');
       await layout({ tree: true });
       await iso();
-      // Die Versionen auch im Terminal, wie sie der Agent sieht
-      await term('git log --oneline\r');
-      await sleep(1500);
       await waitFor('Verlauf', () => document.querySelectorAll('#vdots .vdot:not(.live)').length >= 4, 20000);
       // Schritt 2 (Motoren und Räder, noch ohne Elektronik): sichtbar anders als der jetzige Stand
       await ev(() => document.querySelectorAll('#vdots .vdot:not(.live)')[2].click());
@@ -187,17 +245,18 @@ try {
       await layout();
     },
     async markup() {
-      await openModel('Rover.soma', 'rover');
+      await openModel('Pi5Case.soma', 'pi5case');
       await layout();
-      await iso();
-      // Zielpunkt: Mitte der Oberseite des Batteriehalters
-      const target = await ev(() => {
+      await iso(0.9, VENT_VIEW);
+      // Lüftungsschlitze im Deckel (model.py: x 10 … 58, y 9 … 45 in Platinenkoordinaten), Rahmen auf Höhe der Deckeloberseite
+      const box = await ev(() => {
         const v = window.__t.viewer, r = document.getElementById('viewer').getBoundingClientRect();
-        const id = window.__t.parts().find((p) => p.name.startsWith('Battery holder')).id;
-        const f = v.facesOf(id).filter((x) => x.surface === 'PLANE').sort((a, b) => b.center[2] - a.center[2])[0];
-        const p = v.screenOf(id, f.id);
-        return [p.x - r.left, p.y - r.top];
+        const id = window.__t.parts().find((p) => p.name === 'Lid').id;
+        const z = Math.max(...v.facesOf(id).filter((x) => x.surface === 'PLANE').map((f) => f.center[2]));
+        const pts = [[10, 9], [58, 9], [10, 45], [58, 45]].map(([x, y]) => v.screenAt([x, y, z])).map((p) => [p.x - r.left, p.y - r.top]);
+        return { x0: Math.min(...pts.map((p) => p[0])), x1: Math.max(...pts.map((p) => p[0])), y0: Math.min(...pts.map((p) => p[1])), y1: Math.max(...pts.map((p) => p[1])), z };
       });
+      console.log('  Schlitze im Bild:', JSON.stringify(box));
       await domClick('btn-mark');
       await waitFor('Zeichenfläche', () => window.__t.markup().active, 10000);
       const drag = (pts) => ev((pts) => {
@@ -206,12 +265,14 @@ try {
         fire('pointerdown', pts[0]); for (const p of pts.slice(1)) fire('pointermove', p); fire('pointerup', pts[pts.length - 1]);
       }, pts);
       const tool = (n) => ev((n) => document.querySelector(`#mark-tools [data-tool="${n}"]`).click(), n);
-      const [tx, ty] = target;
-      await tool('ellipse'); await drag([[tx - 120, ty - 60], [tx + 120, ty + 60]]);
-      await tool('arrow'); await drag([[tx + 260, ty - 200], [tx + 110, ty - 60]]);
-      await tool('text'); await drag([[tx + 200, ty - 240]]);
+      const pad = 18;
+      const cx = (box.x0 + box.x1) / 2, top = box.y0 - pad, right = box.x1 + pad;
+      await tool('ellipse'); await drag([[box.x0 - pad, box.y0 - pad], [box.x1 + pad, box.y1 + pad]]);
+      // Pfeil von rechts oben auf den Rand der Ellipse, Text darüber
+      await tool('arrow'); await drag([[right + 170, top - 120], [cx + (right - cx) * 0.75, top + 25]]);
+      await tool('text'); await drag([[right + 60, top - 165]]);
       await sleep(200);
-      await ev(() => { const t = document.getElementById('mark-text'); t.value = 'Make this 5 mm wider'; t.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); });
+      await ev(() => { const t = document.getElementById('mark-text'); t.value = 'Make the cooling slots larger'; t.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true })); });
       await ev(() => document.querySelector('#mark-tools [data-tool="select"]').click());
       await sleep(400);
       console.log('  Markierung:', JSON.stringify((await ev(() => window.__t.markup())).shapes));
@@ -220,22 +281,32 @@ try {
       await sleep(400);
     },
     async measure() {
-      await openModel('Rover.soma', 'rover');
+      await openModel('parametrischer sortimentkasten.soma', 'organizer', ORGANIZER_EN);
       await layout();
-      await iso();
+      await iso(1.0, [0.35, -1.0, 1.6]);
       await domClick('btn-measure');
       await waitFor('Messdienst', () => window.__t.measure().active, 10000);
-      // Oberseite der Grundplatte und Oberseite der ESP32-Platine: Abstand der parallelen Ebenen
-      const hits = await probeGrid();
-      const a = await facePoint(hits, 'Base plate', topmost);
-      const b = await facePoint(hits, 'ESP32 dev board', topmost);
-      if (!a || !b) throw new Error(`Keine sichtbare Fläche zum Messen gefunden (${JSON.stringify([a, b])})`);
-      await page.click(a.x, a.y);
-      await waitFor('erste Fläche', () => !!window.__t.measure().result, 120000);
-      await page.click(b.x, b.y);
+      // Lichte Breite eines Fachs: die oberen Kanten der beiden Trennwände links und rechts eines Fachs nahe der Mitte, je die
+      // Kante zum Fach hin (Längskanten entlang Y auf der Höhe der Trennwände, mittlere Zeile). Zwei parallele Kanten ergeben
+      // ihren Abstand.
+      const edges = await ev(() => {
+        const v = window.__t.viewer, id = window.__t.parts().find((p) => p.name === 'Box').id;
+        return v.edgesOf(id).filter((e) => e.curve === 'LINE').map((e) => ({ id: e.id, mid: e.mid, screen: e.screen, length: e.length }));
+      });
+      // Trennwände: innen (nicht auf der Außenwand), ihre Oberkante ist die höchste Kante dort
+      const inner = edges.filter((e) => Math.abs(e.mid[0]) < 90 && Math.abs(e.mid[1]) < 50);
+      const zDiv = Math.max(...inner.map((e) => e.mid[2]));
+      const along = inner.filter((e) => Math.abs(e.mid[2] - zDiv) < 0.05 && Math.abs(e.mid[1]) < 15).sort((a, b) => a.mid[0] - b.mid[0]);
+      console.log('  Kanten:', JSON.stringify(along.map((e) => [e.mid.map((x) => +x.toFixed(2)), +(e.length ?? 0).toFixed(1)])));
+      // Fach in der Mitte: rechte Kante der Trennwand links von x = 0 und linke Kante der Trennwand rechts davon
+      const left = along.filter((e) => e.mid[0] < 0).pop(), right = along.find((e) => e.mid[0] > 0);
+      if (!left || !right) throw new Error('Keine Trennwandkanten gefunden');
+      await page.click(left.screen.x, left.screen.y);
+      await waitFor('erste Kante', () => !!window.__t.measure().result, 120000);
+      await page.click(right.screen.x, right.screen.y);
       await waitFor('Abstand', () => !!window.__t.measure().result?.pair, 60000);
       await sleep(600);
-      console.log('  Messung:', (await ev(() => window.__t.measure().text)).replace(/\s+/g, ' ').slice(0, 160));
+      console.log('  Messung:', (await ev(() => window.__t.measure().text)).replace(/\s+/g, ' ').slice(0, 200));
       await shoot('measure');
       await domClick('btn-measure');
       await sleep(400);

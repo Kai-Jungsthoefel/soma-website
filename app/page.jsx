@@ -2,6 +2,7 @@ import { Footer, Header, StarsButton } from '../components/SiteChrome';
 import DownloadButton from '../components/DownloadButton';
 import Showcase from '../components/Showcase';
 import FeatureTabs from '../components/FeatureTabs';
+import ExplodeDemo from '../components/ExplodeDemo';
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -29,9 +30,7 @@ export default function Home() {
               <li>Python, CadQuery, Git and CalculiX included</li>
             </ul>
           </div>
-          <figure className="hero-shot">
-            <img src="/images/app.png" width="1600" height="921" alt="SOMA with a rover model, its structure tree and the agent's terminal"/>
-          </figure>
+          <video className="hero-video" src="/media/soma-trailer.mp4" poster="/images/trailer-cover.jpg" controls preload="metadata" playsInline aria-label="SOMA trailer"/>
         </div>
       </section>
 
@@ -40,7 +39,7 @@ export default function Home() {
       <section className="section" id="features" aria-labelledby="features-title">
         <div className="wrap">
           <div className="section-head">
-            <h2 id="features-title">Everything you need</h2>
+            <h2 id="features-title">Features</h2>
           </div>
           <FeatureTabs/>
         </div>
@@ -56,7 +55,7 @@ export default function Home() {
               {steps.map((s, i) => <li key={s.title}><span className="step-num">{i + 1}</span><div><h3>{s.title}</h3><p>{s.body}</p></div></li>)}
             </ol>
           </div>
-          <video className="trailer" src="/media/soma-trailer.mp4" poster="/images/trailer-cover.jpg" controls preload="none" playsInline aria-label="SOMA trailer"/>
+          <ExplodeDemo/>
         </div>
       </section>
 

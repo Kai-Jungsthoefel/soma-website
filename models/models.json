@@ -22,7 +22,8 @@
      4,
      5,
      6
-    ]
+    ],
+    "group": "Compartments"
    },
    {
     "name": "ROWS",
@@ -32,18 +33,35 @@
      2,
      3,
      4
-    ]
+    ],
+    "group": "Compartments"
    }
-  ]
+  ],
+  "rename": {
+   "Kasten": "Box",
+   "Deckel": "Lid",
+   "Scharnierstift": "Hinge pin"
+  }
  },
  {
   "id": "robot-dog",
   "source": "../examples/Robot Leg.soma",
   "feature": "Animation",
   "title": "Quadruped robot",
-  "description": "Four legs with three joints each, driven by brushless motors with a 6:1 planetary gear. The trot gait comes from inverse kinematics in the animation script.",
-  "animation": "trab-gang",
-  "captions": false
+  "description": "Four legs with three joints each, driven by brushless motors with a 6:1 planetary gear. The trot comes from inverse kinematics in the animation script; the floor runs underneath.",
+  "animation": "robot-dog---build-and-walk",
+  "range": [
+   39.3333,
+   44.1333
+  ],
+  "carry": {
+   "parts": [
+    "Boden",
+    "Boden Raster"
+   ],
+   "period": 100
+  },
+  "measure": false
  },
  {
   "id": "shelf",
@@ -51,6 +69,82 @@
   "feature": "FEM",
   "title": "Wall shelf",
   "description": "An oak board on two steel brackets with a load of 50 kg spread over the top. CalculiX computes stress and deflection; the colors show where the shelf carries the load.",
-  "analysis": "analyses/regal_flaechenlast.py"
+  "analysis": "analyses/regal_flaechenlast.py",
+  "rename": {
+   "Regalbrett": "Board",
+   "Winkel links": "Left bracket",
+   "Winkel rechts": "Right bracket",
+   "Wand": "Wall"
+  }
+ },
+ {
+  "id": "pi5-case",
+  "source": "../examples/Pi5Case.soma",
+  "showcase": false,
+  "title": "Raspberry Pi 5 case",
+  "description": "Case with a vented lid, heat-set inserts and screws.",
+  "explode": [
+   {
+    "parts": [
+     "Lid"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 70,
+    "at": [
+     0,
+     0.35
+    ]
+   },
+   {
+    "parts": [
+     "Screw"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 18,
+    "at": [
+     0.3,
+     0.6
+    ]
+   },
+   {
+    "parts": [
+     "Screw",
+     "Raspberry Pi 5"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 26,
+    "at": [
+     0.55,
+     0.85
+    ]
+   },
+   {
+    "parts": [
+     "Insert"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 12,
+    "at": [
+     0.8,
+     1
+    ]
+   }
+  ]
  }
 ]

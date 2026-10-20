@@ -35,6 +35,12 @@ Fields in `models.json`:
 - `animation`: animation id from `.soma/anim/index.json`; `captions: false` hides its captions
 - `parameters`: list of `{name, label, values, default}`. `name` is the constant in `model.py` (`COLS = param(...)`). Every combination of the values is built through `parameters.json`, so keep the lists short
 - `analysis`: FEM load case file, for example `analyses/bracket.py`. The result is shown colored by displacement or stress, with an exaggerated deformation
+- `range`: `[t0, t1]` in seconds, plays only this part of the animation as a loop (for example the walk out of a longer film)
+- `carry`: `{parts, period}`, parts that keep running in the loop instead of jumping back (a floor under a walking robot); their pattern repeats every `period` mm
+- `explode`: steps for the Explode tool, each `{parts, dir, dist, at}`. `parts` are names, name prefixes or groups, `at` is the slider range in which the step moves. Steps add up, so screws can take the board with them
+- `rename`: display names to replace, for example German part names
+- `measure: false`: leaves out the face data needed for measuring (smaller file)
+- `showcase: false`: the model is not a tab in the showcase (used elsewhere on the page)
 
 A model can be linked directly as `/#model-<id>`.
 
@@ -51,7 +57,7 @@ It needs a built app in `../app` (`npm run build` there) and opens copies of the
 
 ## Viewer
 
-`components/viewer/scene.js` mirrors the app viewer (Z up, same lights, camera and iso view). three.js is loaded only when the showcase comes near the viewport. Animations are applied per part as rigid poses, like in the app; hidden, ghost and highlight states are supported.
+`components/viewer/scene.js` mirrors the app viewer (Z up, same lights, camera, iso view and view cube) and adds section, measure and explode. `components/viewer/Viewer.jsx` is the interface around it, styled like the app. three.js is loaded only when the showcase comes near the viewport. Animations are applied per part as rigid poses, like in the app; hidden, ghost and highlight states are supported.
 
 ## Assets
 
