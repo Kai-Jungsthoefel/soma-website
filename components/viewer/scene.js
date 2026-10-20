@@ -751,37 +751,50 @@ function prepareResult(gltf) {
   };
 }
 
-// Boden mit stufenlos auslaufenden Enden. Im Modell laufen Platte und Streifen in Stufen zur Hintergrundfarbe aus,
-// jede Stufe ein eigenes Teil. Springen die Streifen in der Schleife zurück, wechseln sie dort die Stufe und flackern.
-// Darum alle Streifen und Platten in der Farbe der Mitte und das Auslaufen im Shader nach der Weltlage: dann ist das
-// Muster überall gleich und der Sprung unsichtbar.
-const FLOOR_BG = new THREE.Color(0x1b1e23);
-function fadeFloor(carried, still, carry) {
-  const extent = parts => parts.reduce((b, p) => b.expandByObject(p.node), new THREE.Box3());
-  const all = extent([...carried, ...still]);
-  const size = all.getSize(new THREE.Vector3());
-  const axis = size.x >= size.y ? 0 : 1;
-  const center = all.getCenter(new THREE.Vector3()).getComponent(axis);
-  const outer = size.getComponent(axis) / 2;
-  // Farben und Mitte ohne Auslauf von den zuerst genannten Teilen (z. B. „Boden Raster“ und „Boden“)
+// Boden, der sich um das Modell weich im Hintergrund auflöst. Im Modell laufen Platte und Streifen in Stufen zur
+// Hintergrundfarbe aus, jede Stufe ein eigenes Teil. Springen die Streifen in der Schleife zurück, wechseln sie dort
+// die Stufe und flackern. Darum alle Streifen und Platten in der Farbe der Mitte und das Auslaufen im Shader über die
+// Deckkraft (der Hintergrund des Viewers ist ein Verlauf, eine feste Farbe ließe ein Rechteck stehen). Die Mitte liegt
+// unter dem Modell, zur Seite blendet der Boden vor seiner Kante aus, nach vorn und hinten weiter draußen.
+function fadeFloor(carried, still, carry, others) {
+  const box = parts => parts.reduce((b, p) => b.expandByObject(p.node), new THREE.Box3());
+  const floor = box([...carried, ...still]);
+  const subject = box(others);
+  const center = (subject.isEmpty() ? floor : subject).getCenter(new THREE.Vector3());
+  const fsize = floor.getSize(new THREE.Vector3());
+  const ssize = subject.isEmpty() ? fsize.clone().multiplyScalar(0.3) : subject.getSize(new THREE.Vector3());
+  // Längsachse des Bodens: dort Platz bis etwa zur doppelten Modellgröße, quer bis knapp vor die Kante
+  const long = fsize.x >= fsize.y ? 0 : 1;
+  const reach = new THREE.Vector2();
+  for (const k of [0, 1]) {
+    const toEdge = Math.min(center.getComponent(k) - floor.min.getComponent(k), floor.max.getComponent(k) - center.getComponent(k));
+    reach.setComponent(k, k === long ? Math.min(toEdge, Math.max(ssize.x, ssize.y) * 1.6) : toEdge * 0.97);
+  }
   const stripes = carried.find(p => p.name === carry.parts[0]) ?? carried[0];
   const plate = still.find(p => p.name === carry.still[0]) ?? still[0];
-  const inner = Math.min(extent([plate]).getSize(new THREE.Vector3()).getComponent(axis) / 2, outer * 0.95);
-  const colorOf = (part, kind) => part.materials.find(m => (kind === 'mesh') === !m.material.isLineBasicMaterial)?.color;
-  for (const [group, ref] of [[carried, stripes], [still, plate]]) {
+  const colorOf = (part, line) => part.materials.find(m => !!m.material.isLineBasicMaterial === line)?.color;
+  // Erst die Platten, dann die Streifen darauf (beide halbdurchsichtig, die Reihenfolge ist fest)
+  for (const [group, ref, order] of [[still, plate, 2], [carried, stripes, 3]]) {
     for (const part of group) {
+      part.node.traverse(o => { if (o.isMesh || o.isLine) o.renderOrder = order; });
       for (const m of part.materials) {
-        const c = colorOf(ref, m.material.isLineBasicMaterial ? 'line' : 'mesh');
+        const c = colorOf(ref, !!m.material.isLineBasicMaterial);
         if (c && m.color) m.color.copy(c);
+        m.transparent = true;
         m.material.onBeforeCompile = shader => {
-          shader.uniforms.uFade = { value: new THREE.Vector3(center, inner, outer) };
-          shader.uniforms.uBg = { value: FLOOR_BG };
+          shader.uniforms.uFadeCenter = { value: new THREE.Vector2(center.x, center.y) };
+          shader.uniforms.uFadeReach = { value: reach };
           shader.vertexShader = shader.vertexShader
-            .replace('void main() {', 'varying float vFadeAxis;\nvoid main() {')
-            .replace('#include <project_vertex>', `#include <project_vertex>\n  vFadeAxis = (modelMatrix * vec4(transformed, 1.0)).${'xyz'[axis]};`);
+            .replace('void main() {', 'varying vec2 vFadeXY;\nvoid main() {')
+            .replace('#include <project_vertex>', '#include <project_vertex>\n  vFadeXY = (modelMatrix * vec4(transformed, 1.0)).xy;');
           shader.fragmentShader = shader.fragmentShader
-            .replace('void main() {', 'varying float vFadeAxis;\nuniform vec3 uFade;\nuniform vec3 uBg;\nvoid main() {')
-            .replace(/}\s*$/, '  gl_FragColor.rgb = mix(gl_FragColor.rgb, uBg, smoothstep(uFade.y, uFade.z, abs(vFadeAxis - uFade.x)));\n}');
+            .replace('void main() {', 'varying vec2 vFadeXY;\nuniform vec2 uFadeCenter;\nuniform vec2 uFadeReach;\nvoid main() {')
+            .replace(/}\s*$/, [
+              '  vec2 fadeD = abs(vFadeXY - uFadeCenter) / uFadeReach;',
+              '  float fadeX = smoothstep(0.55, 1.0, fadeD.x), fadeY = smoothstep(0.35, 1.0, fadeD.y);',
+              '  gl_FragColor.a *= (1.0 - fadeX) * (1.0 - fadeY);',
+              '}',
+            ].join('\n'));
         };
         m.material.needsUpdate = true;
       }
@@ -809,12 +822,12 @@ function createPlayer(model, anim, { controls, camera, carry, hide }) {
   const carried = carry ? [...model.parts.values()].filter(p => named(p, carry.parts)) : [];
   const still = carry ? [...model.parts.values()].filter(p => !carried.includes(p) && named(p, carry.still)) : [];
   const hidden = [...model.parts.values()].filter(p => named(p, hide));
-  // Mitlaufende und stehende Teile deckend zeichnen: halbdurchsichtig wechselt beim Laufen die Zeichenreihenfolge
+  // Boden: volle Deckkraft, ausgeblendet wird im Shader (fadeFloor), die Zeichenreihenfolge ist fest
   for (const p of [...carried, ...still]) {
     p.role = 'floor';
-    for (const m of p.materials) { m.transparent = false; m.opacity = 1; }
+    for (const m of p.materials) m.opacity = 1;
   }
-  if (carried.length && still.length) fadeFloor(carried, still, carry);
+  if (carried.length && still.length) fadeFloor(carried, still, carry, [...model.parts.values()].filter(p => p.role !== 'floor' && p.role !== 'reference' && !hidden.includes(p)));
   const tracks = [];
   for (const track of clip?.tracks ?? []) {
     const { nodeName, propertyName } = PropertyBinding.parseTrackName(track.name);
