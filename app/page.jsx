@@ -1,17 +1,7 @@
-import { Code2, FileOutput, History, Ruler } from 'lucide-react';
 import { Footer, Header, StarsButton } from '../components/SiteChrome';
 import DownloadButton from '../components/DownloadButton';
 import Showcase from '../components/Showcase';
-
-// Nur die vier Punkte des Ablaufs; Explosionsansicht, Animation, FEM und Parameter zeigt der Showcase
-const features = [
-  { icon: Code2, title: 'Models as code', body: 'Your agent writes Python with CadQuery. SOMA rebuilds the model on every change.' },
-  { icon: Ruler, title: 'Point at what is wrong', body: 'Click a part, measure exactly or sketch on the view, and send it to the agent.' },
-  { icon: History, title: 'Every step kept', body: 'Each change lands on a timeline. Preview old states and go back to any of them.' },
-  { icon: FileOutput, title: 'Ready to make', body: 'Export STEP, STL, 3MF or DXF, and technical drawings as PDF.' },
-];
-
-const more = ['Parameters', 'Exploded views', 'Animation', 'Analysis and FEM', 'Standard parts', 'Skills for 3D printing, CNC and more', 'Plain CadQuery in and out'];
+import FeatureTabs from '../components/FeatureTabs';
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -50,17 +40,9 @@ export default function Home() {
       <section className="section" id="features" aria-labelledby="features-title">
         <div className="wrap">
           <div className="section-head">
-            <h2 id="features-title">Everything in one window</h2>
-            <p>Viewer, terminal, code and history side by side. SOMA gives the agent a command line tool and the rules of the project; you keep the overview.</p>
+            <h2 id="features-title">Everything you need</h2>
           </div>
-          <div className="feature-grid">
-            {features.map(f => <article className="feature" key={f.title}>
-              <f.icon size={22} strokeWidth={1.6}/>
-              <h3>{f.title}</h3>
-              <p>{f.body}</p>
-            </article>)}
-          </div>
-          <p className="more"><span>Also included:</span> {more.join(' · ')}</p>
+          <FeatureTabs/>
         </div>
       </section>
 

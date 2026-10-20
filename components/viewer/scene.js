@@ -10,6 +10,8 @@ THREE.Object3D.DEFAULT_UP.set(0, 0, 1);
 const ISO = new THREE.Vector3(0.8, -1.2, 0.9).normalize();
 const FOV = 35;
 const HIGHLIGHT = new THREE.Color(0xf29a38);
+// Farbverlauf für Ergebnisse wie resultColor() mit `ramp` in der App (app/src/renderer/overlay.ts): grau, grün, gelb, rot
+export const RAMP = [[0x9a, 0xa4, 0xae], [0x5c, 0xc9, 0x8b], [0xe8, 0xc5, 0x47], [0xf0, 0x74, 0x70]];
 
 function loader() {
   return new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
@@ -92,36 +94,51 @@ export function createScene(canvas, { onFrame } = {}) {
     controls.update();
   }
 
-  // Bei Animationen auf die bewegten Teile, damit ein langer Boden oder Hintergrund das Modell nicht klein macht
-  const focus = () => player?.moving.length ? player.moving : [model.root];
+  // Bei Animationen auf die bewegten Teile, damit ein langer Boden oder Hintergrund das Modell nicht klein macht.
+  // Bei Ergebnissen auf das Ergebnis ohne Bezugsteile (Wand).
+  const focus = () => player?.moving.length ? player.moving : result ? [result.root] : [model.root];
 
-  async function load(url, animationUrl) {
+  let result = null;
+  let loading = 0;
+
+  // keepView: Ansicht behalten (Wechsel zwischen Parametervarianten desselben Modells)
+  async function load(url, { animation, analysis, keepView } = {}) {
+    const token = ++loading;
+    const [gltf, anim, res] = await Promise.all([url, animation, analysis].map(u => u ? loader().loadAsync(u) : null));
+    if (token !== loading) return null;
     clear();
-    const gltf = await loader().loadAsync(url);
     model = prepareModel(gltf.scene);
     scene.add(model.root);
-    if (animationUrl) {
-      const anim = await loader().loadAsync(animationUrl);
-      player = createPlayer(model, anim, { controls, camera });
+    if (anim) player = createPlayer(model, anim, { controls, camera });
+    if (res) {
+      result = prepareResult(res);
+      scene.add(result.root);
+      // Vom Modell bleiben nur die Bezugsteile (z. B. die Wand) als Umgebung sichtbar
+      for (const part of model.parts.values()) part.pivot.visible = part.role === 'reference';
     }
-    fit(focus());
-    return { parts: model.parts.size, animated: !!player };
+    if (!keepView) fit(focus());
+    return { parts: model.parts.size, animated: !!player, result: result?.legend ?? null };
   }
 
   function clear() {
     player = null;
-    if (!model) return;
-    scene.remove(model.root);
-    model.root.traverse(o => {
-      o.geometry?.dispose();
-      for (const m of [].concat(o.material ?? [])) m.dispose();
-    });
+    for (const root of [model?.root, result?.root]) {
+      if (!root) continue;
+      scene.remove(root);
+      root.traverse(o => {
+        o.geometry?.dispose();
+        for (const m of [].concat(o.material ?? [])) m.dispose();
+      });
+    }
     model = null;
+    result = null;
   }
 
   return {
     load,
     player: () => player,
+    setDeformation: on => result?.deform(on),
+    showResult: kind => result?.show(kind),
     resetView: () => { if (model) fit(focus()); },
     dispose() {
       running = false;
@@ -157,6 +174,96 @@ function prepareModel(root) {
     parts.set(node.userData.soma.name, { pivot, node, materials, role: node.userData.soma.role });
   }
   return { root, parts };
+}
+
+// FEM-Ergebnis (.soma/results/<name>.glb, python/soma/fem.py): je Ecke Vergleichsspannung (_STRESS, MPa) und
+// Verschiebung (_DISP, mm). Eingefärbt wird die Spannung über die ganze Spanne, so sieht man auch bei einem sicheren
+// Teil, wo es die Last trägt. Die Verformung lässt sich überhöht anzeigen.
+function prepareResult(gltf) {
+  const meta = gltf.parser.json.extras?.soma_result ?? {};
+  const root = new THREE.Group();
+  const meshes = [];
+  let maxStress = 0;
+  let maxDisp = 0;
+  gltf.scene.updateMatrixWorld(true);
+  const found = [];
+  // Ohne die Markierungen der Lastfälle: Die Fläche einer Last liegt über dem Bauteil und verdeckt die Farben
+  gltf.scene.traverse(o => { if (o.geometry && !o.userData?.soma?.marker && !/^bc\d+$/.test(o.name)) found.push(o); });
+  for (const o of found) {
+    // Die Ecken sind zusammengefasst (scripts/build-models.mjs); für flache Flächen mit scharfen Kanten wieder trennen
+    if (o.isMesh && o.geometry.index) o.geometry = o.geometry.toNonIndexed();
+    const g = o.geometry;
+    // Quantisierte Positionen in Millimeter zurückrechnen, damit die Verschiebung (_DISP, mm) dazu passt
+    const pos = g.getAttribute('position');
+    const mm = new Float32Array(pos.count * 3);
+    for (let i = 0; i < pos.count; i++) mm.set([pos.getX(i), pos.getY(i), pos.getZ(i)], i * 3);
+    g.setAttribute('position', new THREE.BufferAttribute(mm, 3));
+    g.applyMatrix4(o.matrixWorld);
+    o.position.set(0, 0, 0); o.quaternion.identity(); o.scale.set(1, 1, 1);
+    root.add(o);
+    const stress = g.getAttribute('_stress');
+    const disp = g.getAttribute('_disp');
+    if (stress) for (let i = 0; i < stress.count; i++) maxStress = Math.max(maxStress, stress.getX(i));
+    if (disp) for (let i = 0; i < disp.count; i++) maxDisp = Math.max(maxDisp, Math.hypot(disp.getX(i), disp.getY(i), disp.getZ(i)));
+    meshes.push(o);
+  }
+  const color = new THREE.Color();
+  const ramp = t => {
+    const s = Math.max(0, Math.min(1, t)) * (RAMP.length - 1);
+    const i = Math.min(Math.floor(s), RAMP.length - 2);
+    const f = s - i;
+    const [a, b] = [RAMP[i], RAMP[i + 1]];
+    return color.setRGB(...a.map((v, k) => (v + (b[k] - v) * f) / 255), THREE.SRGBColorSpace);
+  };
+  // Größen zum Einfärben: Verschiebung (Betrag von _DISP) und Vergleichsspannung (_STRESS)
+  const QUANTITIES = {
+    displacement: { title: 'Displacement', unit: 'mm', max: maxDisp, value: (g, i) => { const d = g.getAttribute('_disp'); return Math.hypot(d.getX(i), d.getY(i), d.getZ(i)); } },
+    stress: { title: 'von Mises stress', unit: 'MPa', max: maxStress, value: (g, i) => g.getAttribute('_stress').getX(i) },
+  };
+  for (const o of meshes) {
+    const g = o.geometry;
+    if (o.isMesh && g.getAttribute('_stress')) {
+      g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(g.getAttribute('position').count * 3), 3));
+      g.computeVertexNormals();
+      o.material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.75, metalness: 0, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
+    }
+    if (g.getAttribute('_disp')) g.userData.base = g.getAttribute('position').clone();
+  }
+  function paint(kind) {
+    const q = QUANTITIES[kind];
+    for (const o of meshes) {
+      const g = o.geometry;
+      const colors = g.getAttribute('color');
+      if (!o.isMesh || !colors || !g.getAttribute(kind === 'stress' ? '_stress' : '_disp')) continue;
+      for (let i = 0; i < colors.count; i++) ramp(q.value(g, i) / (q.max || 1)).toArray(colors.array, i * 3);
+      colors.needsUpdate = true;
+    }
+  }
+  const legend = kind => ({ kind, title: QUANTITIES[kind].title, unit: QUANTITIES[kind].unit, min: 0, max: QUANTITIES[kind].max });
+  const first = maxDisp ? 'displacement' : 'stress';
+  paint(first);
+  const size = new THREE.Box3().setFromObject(root).getSize(new THREE.Vector3()).length();
+  const scale = maxDisp ? size * 0.03 / maxDisp : 0;
+  return {
+    root,
+    legend: { ...legend(first), kinds: Object.keys(QUANTITIES).filter(k => QUANTITIES[k].max > 0), deformation: scale ? Math.round(scale) : null },
+    show(kind) { paint(kind); return legend(kind); },
+    deform(on) {
+      for (const o of meshes) {
+        const g = o.geometry;
+        const disp = g.getAttribute('_disp');
+        const base = g.userData.base;
+        if (!disp || !base) continue;
+        const pos = g.getAttribute('position');
+        for (let i = 0; i < pos.count; i++) {
+          const k = on ? scale : 0;
+          pos.setXYZ(i, base.getX(i) + disp.getX(i) * k, base.getY(i) + disp.getY(i) * k, base.getZ(i) + disp.getZ(i) * k);
+        }
+        pos.needsUpdate = true;
+        if (o.isMesh) g.computeVertexNormals();
+      }
+    },
+  };
 }
 
 function inSpans(spans, t) {

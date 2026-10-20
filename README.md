@@ -29,7 +29,25 @@ npm run models -- cnc-mill # one model
 
 `scripts/build-models.mjs` extracts the project, runs `soma build` (and `soma anim build` for `animation`), strips the measuring metadata and compresses the GLBs with Meshopt into `public/models/<id>/`. It needs the SOMA development environment (`soma.exe` under `%LOCALAPPDATA%/soma-dev/venv`, or `SOMA_EXE`). The generated files are committed, so building the site does not need SOMA.
 
-Fields in `models.json`: `id`, `source`, `feature` (tab label), `title`, `description`, optional `animation` (animation id from `.soma/anim/index.json`) and `captions: false` to hide the animation's captions.
+Fields in `models.json`:
+
+- `id`, `source`, `feature` (tab label), `title`, `description`
+- `animation`: animation id from `.soma/anim/index.json`; `captions: false` hides its captions
+- `parameters`: list of `{name, label, values, default}`. `name` is the constant in `model.py` (`COLS = param(...)`). Every combination of the values is built through `parameters.json`, so keep the lists short
+- `analysis`: FEM load case file, for example `analyses/bracket.py`. The result is shown colored by displacement or stress, with an exaggerated deformation
+
+A model can be linked directly as `/#model-<id>`.
+
+## Feature screenshots
+
+The images in `public/images/features/` come from the real app:
+
+```bash
+node scripts/app-shots.mjs              # all
+node scripts/app-shots.mjs code fem     # some
+```
+
+It needs a built app in `../app` (`npm run build` there) and opens copies of the example projects, never the originals.
 
 ## Viewer
 
