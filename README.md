@@ -14,11 +14,11 @@ npm run build      # fetches GitHub data, then writes the static site to out/
 
 Behind a proxy, Node needs `NODE_USE_ENV_PROXY=1`.
 
-## Domain and search engines
+## Hosting
 
-Set the domain when building: `SITE_URL=https://example.org npm run build`. It goes into canonical links, `sitemap.xml`, `robots.txt`, the Open Graph previews and the structured data (schema.org `SoftwareApplication`, `WebSite`, `VideoObject`, in `components/StructuredData.jsx`). Without it these point to localhost and the build prints a warning. Titles, description and keywords are in `lib/site.js`.
+The site runs on GitHub Pages at https://somacad.app. `.github/workflows/pages.yml` builds and publishes it on every push to `main`, once a day (fresh release data and stars) and on demand. `public/CNAME` holds the domain.
 
-After deploying: add the domain to Google Search Console and Bing Webmaster Tools and submit `/sitemap.xml`.
+Domain, titles and keywords are in `lib/site.js` (`SITE_URL` overrides the domain). The domain goes into canonical links, `sitemap.xml`, `robots.txt`, the Open Graph previews and the structured data (schema.org `SoftwareApplication`, `WebSite`, `VideoObject`, in `components/StructuredData.jsx`). Search Console and Bing Webmaster Tools get `/sitemap.xml`.
 
 ## Release data and stars
 
