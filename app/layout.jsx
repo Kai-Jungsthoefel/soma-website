@@ -1,5 +1,5 @@
 import './globals.css';
-import { DESCRIPTION, KEYWORDS, SITE_NAME, SITE_URL, TITLE } from '../lib/site';
+import { ANALYTICS_TOKEN, DESCRIPTION, KEYWORDS, SITE_NAME, SITE_URL, TITLE } from '../lib/site';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -23,5 +23,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="en"><body>
+    {children}
+    {ANALYTICS_TOKEN && <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: ANALYTICS_TOKEN })}/>}
+  </body></html>;
 }
