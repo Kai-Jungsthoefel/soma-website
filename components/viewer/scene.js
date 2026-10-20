@@ -751,6 +751,44 @@ function prepareResult(gltf) {
   };
 }
 
+// Boden mit stufenlos auslaufenden Enden. Im Modell laufen Platte und Streifen in Stufen zur Hintergrundfarbe aus,
+// jede Stufe ein eigenes Teil. Springen die Streifen in der Schleife zurück, wechseln sie dort die Stufe und flackern.
+// Darum alle Streifen und Platten in der Farbe der Mitte und das Auslaufen im Shader nach der Weltlage: dann ist das
+// Muster überall gleich und der Sprung unsichtbar.
+const FLOOR_BG = new THREE.Color(0x1b1e23);
+function fadeFloor(carried, still, carry) {
+  const extent = parts => parts.reduce((b, p) => b.expandByObject(p.node), new THREE.Box3());
+  const all = extent([...carried, ...still]);
+  const size = all.getSize(new THREE.Vector3());
+  const axis = size.x >= size.y ? 0 : 1;
+  const center = all.getCenter(new THREE.Vector3()).getComponent(axis);
+  const outer = size.getComponent(axis) / 2;
+  // Farben und Mitte ohne Auslauf von den zuerst genannten Teilen (z. B. „Boden Raster“ und „Boden“)
+  const stripes = carried.find(p => p.name === carry.parts[0]) ?? carried[0];
+  const plate = still.find(p => p.name === carry.still[0]) ?? still[0];
+  const inner = Math.min(extent([plate]).getSize(new THREE.Vector3()).getComponent(axis) / 2, outer * 0.95);
+  const colorOf = (part, kind) => part.materials.find(m => (kind === 'mesh') === !m.material.isLineBasicMaterial)?.color;
+  for (const [group, ref] of [[carried, stripes], [still, plate]]) {
+    for (const part of group) {
+      for (const m of part.materials) {
+        const c = colorOf(ref, m.material.isLineBasicMaterial ? 'line' : 'mesh');
+        if (c && m.color) m.color.copy(c);
+        m.material.onBeforeCompile = shader => {
+          shader.uniforms.uFade = { value: new THREE.Vector3(center, inner, outer) };
+          shader.uniforms.uBg = { value: FLOOR_BG };
+          shader.vertexShader = shader.vertexShader
+            .replace('void main() {', 'varying float vFadeAxis;\nvoid main() {')
+            .replace('#include <project_vertex>', `#include <project_vertex>\n  vFadeAxis = (modelMatrix * vec4(transformed, 1.0)).${'xyz'[axis]};`);
+          shader.fragmentShader = shader.fragmentShader
+            .replace('void main() {', 'varying float vFadeAxis;\nuniform vec3 uFade;\nuniform vec3 uBg;\nvoid main() {')
+            .replace(/}\s*$/, '  gl_FragColor.rgb = mix(gl_FragColor.rgb, uBg, smoothstep(uFade.y, uFade.z, abs(vFadeAxis - uFade.x)));\n}');
+        };
+        m.material.needsUpdate = true;
+      }
+    }
+  }
+}
+
 function inSpans(spans, t) {
   return spans?.some(([a, b]) => t >= a && t <= b) ?? false;
 }
@@ -776,6 +814,7 @@ function createPlayer(model, anim, { controls, camera, carry, hide }) {
     p.role = 'floor';
     for (const m of p.materials) { m.transparent = false; m.opacity = 1; }
   }
+  if (carried.length && still.length) fadeFloor(carried, still, carry);
   const tracks = [];
   for (const track of clip?.tracks ?? []) {
     const { nodeName, propertyName } = PropertyBinding.parseTrackName(track.name);
