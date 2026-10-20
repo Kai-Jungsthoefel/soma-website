@@ -7,7 +7,8 @@
     "prebuild": "node scripts/fetch-github.mjs",
     "build": "next build",
     "serve": "npx --yes serve@14.2.4 out",
-    "models": "node scripts/build-models.mjs"
+    "models": "node scripts/build-models.mjs",
+    "images": "node scripts/images.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",

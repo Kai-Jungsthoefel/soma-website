@@ -28,7 +28,7 @@ export default function Showcase() {
       </div>
       <div className="showcase-stage">
         <Viewer model={model}/>
-        <p className="showcase-text">{model?.description}</p>
+        {models.map(m => <p className="showcase-text" key={m.id} hidden={m.id !== active}>{m.description}</p>)}
       </div>
     </div>
   </section>;

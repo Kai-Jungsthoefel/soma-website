@@ -1,18 +1,25 @@
 import './globals.css';
-
-const SITE_URL = process.env.SITE_URL || 'http://localhost:3000';
+import { DESCRIPTION, KEYWORDS, SITE_NAME, SITE_URL, TITLE } from '../lib/site';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'SOMA: CAD with the coding agent you already use',
-  description: 'SOMA is a free, open-source desktop app for parametric 3D models. Your coding agent writes CadQuery, SOMA builds it, shows it and keeps every version.',
+  title: { default: TITLE, template: '%s | SOMA' },
+  description: DESCRIPTION,
+  keywords: KEYWORDS,
+  applicationName: SITE_NAME,
+  alternates: { canonical: '/' },
   icons: { icon: '/icon.svg' },
   openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: SITE_NAME,
+    locale: 'en_US',
     title: 'SOMA: Solid Object Modeling with Agents',
-    description: 'Design parametric 3D models with the coding agent you already use.',
-    images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA' }],
+    description: 'Open-source AI CAD: your coding agent writes the model, SOMA builds and shows it.',
+    images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA, Solid Object Modeling with Agents' }],
   },
   twitter: { card: 'summary_large_image', images: ['/images/trailer-cover.jpg'] },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }) {

@@ -14,6 +14,12 @@ npm run build      # fetches GitHub data, then writes the static site to out/
 
 Behind a proxy, Node needs `NODE_USE_ENV_PROXY=1`.
 
+## Domain and search engines
+
+Set the domain when building: `SITE_URL=https://example.org npm run build`. It goes into canonical links, `sitemap.xml`, `robots.txt`, the Open Graph previews and the structured data (schema.org `SoftwareApplication`, `WebSite`, `VideoObject`, in `components/StructuredData.jsx`). Without it these point to localhost and the build prints a warning. Titles, description and keywords are in `lib/site.js`.
+
+After deploying: add the domain to Google Search Console and Bing Webmaster Tools and submit `/sitemap.xml`.
+
 ## Release data and stars
 
 `npm run build` first runs `scripts/fetch-github.mjs`, which writes the releases and the star count to `data/github.json`. The page renders with that snapshot and refreshes it in the browser from the GitHub API (once per session). The newest release is the first in the list, including pre-releases; GitHub's `releases/latest` would skip those. Without network the build keeps the existing snapshot. Set `GITHUB_TOKEN` for a higher API rate limit.
@@ -54,7 +60,7 @@ node scripts/app-shots.mjs              # all
 node scripts/app-shots.mjs code fem     # some
 ```
 
-It needs a built app in `../app` (`npm run build` there) and opens copies of the example projects, never the originals.
+It needs a built app in `../app` (`npm run build` there) and opens copies of the example projects, never the originals. Then run `npm run images`: it writes WebP versions next to the PNG files, and the page uses those (about a quarter of the size).
 
 ## Viewer
 

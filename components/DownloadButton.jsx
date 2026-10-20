@@ -20,7 +20,7 @@ export default function DownloadButton() {
     </a>
     <p className="download-meta">
       {release ? <>{release.tag_name}{file && <> · {sizeOf(file.size)}</>}{release.prerelease && <> · preview</>} · </> : null}
-      <Link href="/download/">Other platforms and versions</Link>
+      <Link href="/download/" prefetch={false}>Other platforms and versions</Link>
     </p>
   </div>;
 }

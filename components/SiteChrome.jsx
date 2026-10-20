@@ -34,11 +34,12 @@ export function Header() {
     <div className="wrap header-inner">
       <Logo/>
       <nav className={open ? 'nav open' : 'nav'} aria-label="Main navigation">
-        {navigation.map(([label, href]) => <Link key={href} href={href} onClick={() => setOpen(false)}>{label}</Link>)}
+        {/* Ohne Vorladen: der statische Export von Next 16 legt die Vorlade-Dateien unter anderem Namen ab (404) */}
+        {navigation.map(([label, href]) => <Link key={href} href={href} prefetch={false} onClick={() => setOpen(false)}>{label}</Link>)}
       </nav>
       <div className="header-actions">
         <StarsButton/>
-        <Link className="button primary small" href="/download/"><Download size={15}/> Download</Link>
+        <Link className="button primary small" href="/download/" prefetch={false}><Download size={15}/> Download</Link>
         <button className="menu-toggle" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X size={20}/> : <Menu size={20}/>}</button>
       </div>
     </div>
@@ -54,7 +55,7 @@ export function Footer() {
         <p className="credit">Thanks to Maiths for helping create this site.</p>
       </div>
       <div className="footer-links">
-        <div><h3>Product</h3><Link href="/#models">Models</Link><Link href="/#features">Features</Link><Link href="/download/">Download</Link></div>
+        <div><h3>Product</h3><Link href="/#models">Models</Link><Link href="/#features">Features</Link><Link href="/download/" prefetch={false}>Download</Link></div>
         <div><h3>Project</h3><a href={REPO_URL}>Source code</a><a href={`${REPO_URL}/releases`}>Releases</a><a href={`${REPO_URL}/blob/main/CHANGELOG.md`}>Changelog</a></div>
         <div><h3>Help</h3><a href={`${REPO_URL}/blob/main/app/resources/skills/soma-app.md`}>User guide</a><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
       </div>

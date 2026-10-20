@@ -2,8 +2,15 @@ import { Footer, Header } from '../../components/SiteChrome';
 import DownloadExplorer from '../../components/DownloadExplorer';
 
 export const metadata = {
-  title: 'Download SOMA',
-  description: 'Download SOMA for Windows, macOS and Linux. All releases and files.',
+  title: 'Download',
+  description: 'Download SOMA, the open-source AI CAD app, for Windows, macOS and Linux. Installer, portable ZIP, AppImage and dmg for every release.',
+  alternates: { canonical: '/download/' },
+  // openGraph ersetzt den Eintrag aus dem Layout ganz, darum mit Bild
+  openGraph: {
+    type: 'website', url: '/download/', siteName: 'SOMA', title: 'Download SOMA',
+    description: 'Open-source AI CAD for Windows, macOS and Linux.',
+    images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA, Solid Object Modeling with Agents' }],
+  },
 };
 
 const notes = [

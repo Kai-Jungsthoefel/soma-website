@@ -1,9 +1,11 @@
+import { preload } from 'react-dom';
 import { Footer, Header, StarsButton } from '../components/SiteChrome';
 import DownloadButton from '../components/DownloadButton';
 import Showcase from '../components/Showcase';
 import FeatureTabs from '../components/FeatureTabs';
 import ExplodeDemo from '../components/ExplodeDemo';
 import WhatIsSoma from '../components/WhatIsSoma';
+import StructuredData from '../components/StructuredData';
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -15,13 +17,15 @@ const steps = [
 const agents = ['Claude Code', 'Codex CLI', 'OpenCode', 'Gemini CLI'];
 
 export default function Home() {
+  // Vorschaubild des Trailers ist das größte Element oben: früh und mit Vorrang laden
+  preload('/images/trailer-cover.jpg', { as: 'image', fetchPriority: 'high' });
   return <>
     <Header/>
     <main>
       <section className="hero">
         <div className="wrap hero-inner">
           <div className="hero-copy">
-            <p className="kicker">Open-source desktop CAD</p>
+            <p className="kicker">Open-source AI CAD</p>
             <h1>Design 3D models with the coding agent you already use.</h1>
             <p className="lead">Tell your agent what you need. It writes the model as Python code with CadQuery, SOMA builds it and shows the result. Measure it, point at what is wrong, and the agent changes the code.</p>
             <DownloadButton/>
@@ -87,5 +91,6 @@ export default function Home() {
       </section>
     </main>
     <Footer/>
+    <StructuredData/>
   </>;
 }
