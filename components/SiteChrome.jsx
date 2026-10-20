@@ -6,6 +6,7 @@ import { Download, Github, Menu, Star, X } from 'lucide-react';
 import { REPO_URL, formatStars, useGitHub } from '../lib/github';
 
 const navigation = [
+  ['What is SOMA?', '/#what'],
   ['Models', '/#models'],
   ['Features', '/#features'],
   ['How it works', '/#how'],

@@ -42,9 +42,9 @@ function combinations(parameters) {
 
 const round = v => Array.isArray(v) ? v.map(x => +x.toFixed(3)) : v;
 
-// Nur die Felder, die der Viewer braucht. Von den Flächen (zum Messen) Art, Inhalt, Mitte, Normale und Achse,
-// ohne Kanten und Punkte.
-// rename: Anzeigenamen der Bauteile ersetzen (deutsche Namen aus den Beispielen), faces: Flächen behalten.
+// Nur die Felder, die der Viewer braucht. Zum Messen von den Flächen Art, Inhalt, Mitte, Normale und Achse, von den
+// Kanten Art und Länge, von den Punkten die Lage.
+// rename: Anzeigenamen der Bauteile ersetzen (deutsche Namen aus den Beispielen), faces: Messdaten behalten.
 function slimExtras(prop, { rename = {}, faces = true } = {}) {
   const soma = prop.getExtras()?.soma;
   if (!soma) return;
@@ -54,6 +54,8 @@ function slimExtras(prop, { rename = {}, faces = true } = {}) {
   if (faces && Array.isArray(soma.faces)) {
     keep.faces = soma.faces.map(f => Object.fromEntries(Object.entries({ id: f.id, surface: f.surface, area: f.area, center: round(f.center), normal: round(f.normal), axis: round(f.axis) })
       .filter(([, v]) => v !== undefined)));
+    keep.edges = (soma.edges ?? []).map(e => ({ id: e.id, curve: e.curve, length: e.length }));
+    keep.vertices = (soma.vertices ?? []).map(v => round(v.p));
   }
   prop.setExtras({ ...prop.getExtras(), soma: keep });
 }
@@ -69,6 +71,19 @@ function tagFaces(doc) {
     const tag = new Uint16Array(prim.getAttribute('POSITION').getCount());
     for (const f of faces) for (let t = f.triStart; t < f.triStart + f.triCount; t++) for (let k = 0; k < 3; k++) tag[index[t * 3 + k]] = f.id;
     prim.setAttribute('_FACE', doc.createAccessor().setType(Accessor.Type.SCALAR).setArray(tag).setBuffer(doc.getRoot().listBuffers()[0]));
+  }
+}
+
+// Kante je Ecke der Kantenlinien als Attribut _EDGE (Segmente segStart bis segStart + segCount, je zwei Ecken)
+function tagEdges(doc) {
+  for (const node of doc.getRoot().listNodes()) {
+    const edges = node.getExtras()?.soma?.edges;
+    const prim = node.getMesh()?.listPrimitives().find(p => p.getMode() === 1);
+    if (!edges || !prim) continue;
+    const index = prim.getIndices()?.getArray();
+    const tag = new Uint16Array(prim.getAttribute('POSITION').getCount());
+    for (const e of edges) for (let g = e.segStart; g < e.segStart + e.segCount; g++) for (let k = 0; k < 2; k++) tag[index ? index[g * 2 + k] : g * 2 + k] = e.id;
+    prim.setAttribute('_EDGE', doc.createAccessor().setType(Accessor.Type.SCALAR).setArray(tag).setBuffer(doc.getRoot().listBuffers()[0]));
   }
 }
 
@@ -116,7 +131,7 @@ function trim(doc, [t0, t1]) {
 
 async function optimize(io, src, dst, { geometry, result, range, rename, faces = true }) {
   const doc = await io.read(src);
-  if (geometry && faces) tagFaces(doc);
+  if (geometry && faces) { tagFaces(doc); tagEdges(doc); }
   if (range) trim(doc, range);
   for (const node of doc.getRoot().listNodes()) slimExtras(node, { rename, faces });
   for (const mesh of doc.getRoot().listMeshes()) slimExtras(mesh, { rename, faces });

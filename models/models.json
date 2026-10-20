@@ -56,12 +56,18 @@
   ],
   "carry": {
    "parts": [
-    "Boden",
     "Boden Raster"
+   ],
+   "still": [
+    "Boden"
    ],
    "period": 100
   },
-  "measure": false
+  "measure": false,
+  "hide": [
+   "Umgebung/Video-Texte",
+   "Umgebung/SOMA Logo"
+  ]
  },
  {
   "id": "shelf",

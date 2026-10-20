@@ -3,6 +3,7 @@ import DownloadButton from '../components/DownloadButton';
 import Showcase from '../components/Showcase';
 import FeatureTabs from '../components/FeatureTabs';
 import ExplodeDemo from '../components/ExplodeDemo';
+import WhatIsSoma from '../components/WhatIsSoma';
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -33,6 +34,8 @@ export default function Home() {
           <video className="hero-video" src="/media/soma-trailer.mp4" poster="/images/trailer-cover.jpg" controls preload="metadata" playsInline aria-label="SOMA trailer"/>
         </div>
       </section>
+
+      <WhatIsSoma/>
 
       <Showcase/>
 

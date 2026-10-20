@@ -71,6 +71,18 @@ em { font-style: normal; color: var(--tx); }
 .section-head { margin-bottom: 24px; }
 .section-head h2 { font-size: 28px; flex: none; }
 
+/* Was ist SOMA: drei Bausteine plus, gleich das Ergebnis */
+.what { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.15fr); gap: 0; align-items: stretch; }
+.what-item { display: flex; align-items: center; }
+.what-card { flex: 1; align-self: stretch; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--s1); }
+.what-card svg { color: var(--acc); }
+.what-card h3 { margin-top: 12px; font-size: 17px; }
+.what-card p { margin-top: 8px; color: var(--tx2); font-size: 15px; }
+.what-op { flex: none; width: 36px; display: grid; place-items: center; color: var(--tx3); }
+.what-result { border-color: var(--acc); background: var(--acc-tint); display: flex; flex-direction: column; justify-content: center; }
+.what-result h3 { margin-top: 0; font-size: 19px; }
+.what-result p { color: var(--tx); }
+
 /* Showcase */
 /* Rasterspalten dürfen schmaler werden als ihr Inhalt (waagrechte Reiterleisten auf dem Handy) */
 .showcase-body > *, .features > *, .how > *, .hero-inner > * { min-width: 0; }
@@ -147,6 +159,7 @@ em { font-style: normal; color: var(--tx); }
 .tc-part { margin-left: auto; color: var(--tx3); max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tc-result { margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--line2); }
 .tc-result div { display: flex; justify-content: space-between; align-items: baseline; }
+.tc-sub { font: 12px var(--mono); color: var(--tx2); }
 .tc-result strong { color: var(--acc-tx); font: 600 15px var(--mono); }
 
 /* Leisten unten in der Mitte: Animation und Ergebnis */
@@ -248,6 +261,9 @@ em { font-style: normal; color: var(--tx); }
   .hero-inner, .how { grid-template-columns: 1fr; gap: 32px; }
   .info-grid, .notes { grid-template-columns: 1fr 1fr; }
   .showcase-body, .features { grid-template-columns: 1fr; }
+  .what { grid-template-columns: 1fr; }
+  .what-item { flex-direction: column; }
+  .what-op { height: 34px; }
   .feature-list { flex-direction: row; overflow-x: auto; scrollbar-width: none; }
   .feature-list button { flex: none; border-left: 0; border-bottom: 2px solid transparent; border-radius: 8px 8px 0 0; }
   .feature-list button.active { border-bottom-color: var(--acc); border-radius: 8px 8px 0 0; }

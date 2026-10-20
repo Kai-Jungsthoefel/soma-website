@@ -2,7 +2,7 @@
 
 Website for [SOMA](https://github.com/Kai-Jungsthoefel/SOMA), built with Next.js as a fully static site (`out/`). Based on a template by [OBJIFY-DEV](https://github.com/OBJIFY-DEV/SOMA_Website).
 
-Pages: Home (hero, 3D showcase, features, how it works) and Download (all releases and files).
+Pages: Home (hero with trailer, what is SOMA, 3D showcase, features, how it works) and Download (all releases and files).
 
 ## Development
 
@@ -36,7 +36,8 @@ Fields in `models.json`:
 - `parameters`: list of `{name, label, values, default}`. `name` is the constant in `model.py` (`COLS = param(...)`). Every combination of the values is built through `parameters.json`, so keep the lists short
 - `analysis`: FEM load case file, for example `analyses/bracket.py`. The result is shown colored by displacement or stress, with an exaggerated deformation
 - `range`: `[t0, t1]` in seconds, plays only this part of the animation as a loop (for example the walk out of a longer film)
-- `carry`: `{parts, period}`, parts that keep running in the loop instead of jumping back (a floor under a walking robot); their pattern repeats every `period` mm
+- `carry`: `{parts, still, period}`. `parts` keep running in the loop instead of jumping back (the stripes of a floor under a walking robot), their pattern repeats every `period` mm. `still` parts stay where they are (the floor plate)
+- `hide`: parts or groups that stay hidden (texts a film brings into view)
 - `explode`: steps for the Explode tool, each `{parts, dir, dist, at}`. `parts` are names, name prefixes or groups, `at` is the slider range in which the step moves. Steps add up, so screws can take the board with them
 - `rename`: display names to replace, for example German part names
 - `measure: false`: leaves out the face data needed for measuring (smaller file)

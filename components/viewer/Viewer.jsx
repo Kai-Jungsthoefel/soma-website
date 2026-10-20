@@ -77,6 +77,7 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
         analysis: model.analysis && `${base}/result.glb`,
         explode: model.explode,
         carry: model.carry,
+        hide: model.hide,
         keepView,
       }).then(result => {
         if (cancelled || !result) return;
@@ -176,13 +177,13 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
       </div>}
       {tool === 'measure' && <div className="tcard float">
         <div className="tc-hd"><Icon name="ruler"/><span>Measure</span><button className="tc-x" onClick={() => setTool(null)} aria-label="Close measure"><Icon name="x" size={14}/></button></div>
-        {!measured?.faces?.length && <p className="tc-note">Click a face for its size, a second one for distance and angle.</p>}
-        {measured?.faces?.map((f, i) => <div className="tc-face" key={i}>
+        {!measured?.picks?.length && <p className="tc-note">Click a point, edge or face for its size, a second one for distance and angle.</p>}
+        {measured?.picks?.map((f, i) => <div className="tc-face" key={i}>
           <span className="tc-n">{i + 1}</span>
-          <span>{f.surface === 'PLANE' ? 'Plane' : f.surface === 'CYLINDER' ? 'Cylinder' : f.surface.toLowerCase()}{f.diameter ? ` · Ø ${num(f.diameter)} mm` : f.area ? ` · ${num(f.area, 1)} mm²` : ''}</span>
+          <span>{f.title} · {f.text}</span>
           <span className="tc-part">{f.part}</span>
         </div>)}
-        {measured?.result && <div className="tc-result">{measured.result.map(([n, v, u]) => <div key={n}><span>{n}</span><strong>{num(v)}{u === '°' ? '°' : ` ${u}`}</strong></div>)}</div>}
+        {measured?.result && <div className="tc-result">{measured.result.map(([n, v, u]) => <div key={n}><span>{n}</span>{v == null ? <span className="tc-sub">{u}</span> : <strong>{num(v)}{u === '°' ? '°' : ` ${u}`}</strong>}</div>)}</div>}
       </div>}
       {tool === 'explode' && <div className="tcard float">
         <div className="tc-hd"><Icon name="explode"/><span>Explode</span><button className="tc-x" onClick={() => setTool(null)} aria-label="Close explode"><Icon name="x" size={14}/></button></div>
