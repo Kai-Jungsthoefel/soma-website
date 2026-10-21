@@ -262,6 +262,8 @@ em { font-style: normal; color: var(--tx); }
 .footer-inner { display: flex; justify-content: space-between; gap: 40px; }
 .footer-inner p { margin-top: 10px; color: var(--tx3); font-size: 14px; max-width: 26em; }
 .footer-inner p.credit { margin-top: 18px; font-size: 13px; }
+.footer-inner .badge { display: inline-block; margin-top: 14px; opacity: .85; }
+.footer-inner .badge:hover { opacity: 1; }
 .footer-links { display: flex; gap: 56px; }
 .footer-links h3 { font-size: 13px; color: var(--tx3); font-weight: 500; margin-bottom: 8px; }
 .footer-links a { display: block; color: var(--tx2); font-size: 14px; padding: 3px 0; }
