@@ -53,6 +53,8 @@ export function Footer() {
         <Logo/>
         <p>Solid Object Modeling with Agents. Free and open source under GPL-3.0.</p>
         <p className="credit">Thanks to Maiths for helping create this site.</p>
+        {/* Bild liegt auf der Seite selbst: keine Anfrage an Dritte (siehe Datenschutzerklärung) */}
+        <a className="badge" href="https://www.opensourcealternatives.to"><img src="/images/badge-osa.svg" alt="As seen on Open Source Alternatives" width="270" height="20"/></a>
       </div>
       <div className="footer-links">
         <div><h3>Product</h3><Link href="/#models">Models</Link><Link href="/#features">Features</Link><Link href="/download/" prefetch={false}>Download</Link></div>
