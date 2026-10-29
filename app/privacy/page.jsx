@@ -18,7 +18,7 @@ export default function Privacy() {
       <p className="legal-en" lang="en">In short: this site sets no cookies and stores nothing in your browser. It is hosted on GitHub Pages, loads the current release data from GitHub, and counts visits with Cloudflare Web Analytics, which works without cookies. The full privacy policy below is in German.</p>
 
       <h2>1. Verantwortlicher</h2>
-      <p>{legal.name}<br/>{legal.street}<br/>{legal.city}<br/>{legal.country}<br/>E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
+      <p>{legal.name}<br/>E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
 
       <h2>2. Überblick</h2>
       <p>Diese Website setzt keine Cookies, speichert keine Informationen im Browser (kein Local Storage, kein Session Storage) und bietet weder Benutzerkonten noch Formulare an. Schriften, Bilder, Videos und 3D-Modelle werden von dieser Website selbst ausgeliefert, nicht von Dritten. Personenbezogene Daten fallen nur in den unten beschriebenen Fällen an.</p>
