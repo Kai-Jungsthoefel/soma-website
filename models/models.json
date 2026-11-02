@@ -84,6 +84,277 @@
   }
  },
  {
+  "id": "chainsaw",
+  "source": "../examples/Chainsaw.soma",
+  "feature": "Assembly",
+  "title": "Chainsaw with two-stroke engine",
+  "description": "A 45 cm³ chainsaw with the whole two-stroke engine modeled inside: crankshaft, connecting rod on needle bearings, piston with rings, a cylinder whose ports follow the port timing, diaphragm carburetor, flywheel ignition and centrifugal clutch. Switch to Engine cut open to look inside.",
+  "measure": false,
+  "hide": [
+   "Video"
+  ],
+  "views": [
+   {
+    "label": "Whole saw"
+   },
+   {
+    "label": "Engine cut open",
+    "hide": [
+     "Gehäuse",
+     "Schneidgarnitur",
+     "Antrieb",
+     "Zylinder Kupplungsseite",
+     "Zylinderfußdichtung Kupplungsseite",
+     "Kurbelgehäuse Kupplungsseite",
+     "Hauptlager 6203 Kupplungsseite",
+     "Wellendichtring Kupplungsseite",
+     "Ansaugstutzen Kupplungsseite",
+     "Vergasergehäuse Kupplungsseite",
+     "Schalldämpfer Kupplungsseite",
+     "Auspuffdichtung Kupplungsseite",
+     "Kraftstoffpumpendeckel",
+     "Schraube Ansaugstutzen 1",
+     "Zylinderschraube 1",
+     "Zylinderschraube 3",
+     "Schraube Schalldämpfer 1"
+    ],
+    "keep": [
+     "Zylinder Kupplungsseite Überströmkanal",
+     "Zylinderfußdichtung Kupplungsseite Überströmkanal",
+     "Kurbelgehäuse Kupplungsseite Überströmkanal"
+    ],
+    "fit": true,
+    "dir": [
+     0.25,
+     -1,
+     0.35
+    ]
+   }
+  ]
+ },
+ {
+  "id": "multisens",
+  "source": "../../HW26MultiSens",
+  "feature": "Enclosure",
+  "title": "Sensor device enclosure",
+  "description": "A 3D printed desk enclosure for a sensor logger with a 2.8\" touch display (ESP32-S3), battery, four GX12 sensor ports and three button plungers. Three parts printable without supports, with a recessed display and a guide that keeps the SD card from falling inside. Started as an existing CadQuery project, opened as a folder in SOMA.",
+  "rename": {
+   "Akku": "Battery",
+   "Optokoppler PC817": "Optocoupler PC817",
+   "Verteilerplatine": "Distribution board",
+   "Stößel BOOT": "Plunger BOOT",
+   "Stößel PWR": "Plunger PWR",
+   "Stößel RESET": "Plunger RESET",
+   "Schraube Cover 1": "Screw 1",
+   "Schraube Cover 2": "Screw 2",
+   "Schraube Cover 3": "Screw 3",
+   "Schraube Cover 4": "Screw 4"
+  },
+  "explode": [
+   {
+    "parts": [
+     "Screw"
+    ],
+    "dir": [
+     0,
+     0,
+     -1
+    ],
+    "dist": 30,
+    "at": [
+     0,
+     0.25
+    ]
+   },
+   {
+    "parts": [
+     "Cover"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 130,
+    "at": [
+     0.15,
+     0.55
+    ]
+   },
+   {
+    "parts": [
+     "Midframe",
+     "Mux HW-617",
+     "Optocoupler PC817",
+     "Distribution board",
+     "ESP32-S3-Touch-LCD-2.8"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 45,
+    "at": [
+     0.45,
+     0.8
+    ]
+   },
+   {
+    "parts": [
+     "ESP32-S3-Touch-LCD-2.8"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 25,
+    "at": [
+     0.7,
+     1
+    ]
+   },
+   {
+    "parts": [
+     "Plunger"
+    ],
+    "dir": [
+     0,
+     -1,
+     0
+    ],
+    "dist": 25,
+    "at": [
+     0.6,
+     0.9
+    ]
+   }
+  ]
+ },
+ {
+  "id": "sideboard",
+  "source": "../examples/cabinet.soma",
+  "feature": "Drawings",
+  "title": "Sideboard with drawings",
+  "description": "A Scandinavian-style sideboard, 1800 × 450 × 800 mm, from 19 mm chipboard with two doors, three drawers on full-extension slides and tapered oak legs. From one prompt the agent also made the manufacturing drawings and a cutting list (in German, as asked).",
+  "drawings": {
+   "Sideboard_Gesamtansicht": "General arrangement",
+   "Sideboard_Korpusteile": "Carcass parts",
+   "Sideboard_Fronten_und_Bein": "Fronts and leg",
+   "Sideboard_Schubkasten": "Drawer",
+   "Sideboard_Zuschnittliste": "Cutting list"
+  },
+  "rename": {
+   "Auszug 1 links": "Slide 1 left",
+   "Auszug 1 rechts": "Slide 1 right",
+   "Auszug 2 links": "Slide 2 left",
+   "Auszug 2 rechts": "Slide 2 right",
+   "Auszug 3 links": "Slide 3 left",
+   "Auszug 3 rechts": "Slide 3 right",
+   "Bein hinten links": "Leg rear left",
+   "Bein hinten rechts": "Leg rear right",
+   "Bein vorn links": "Leg front left",
+   "Bein vorn rechts": "Leg front right",
+   "Einlegeboden links": "Shelf left",
+   "Einlegeboden rechts": "Shelf right",
+   "Knopf Schublade 1": "Knob drawer 1",
+   "Knopf Schublade 2": "Knob drawer 2",
+   "Knopf Schublade 3": "Knob drawer 3",
+   "Knopf Tür links": "Knob door left",
+   "Knopf Tür rechts": "Knob door right",
+   "Mittelwand 1": "Divider 1",
+   "Mittelwand 2": "Divider 2",
+   "Oberboden": "Top",
+   "Rückwand": "Back panel",
+   "SK1 Boden": "Drawer 1 bottom",
+   "SK1 Hinterstück": "Drawer 1 back",
+   "SK1 Seite links": "Drawer 1 side left",
+   "SK1 Seite rechts": "Drawer 1 side right",
+   "SK1 Vorderstück": "Drawer 1 front",
+   "SK2 Boden": "Drawer 2 bottom",
+   "SK2 Hinterstück": "Drawer 2 back",
+   "SK2 Seite links": "Drawer 2 side left",
+   "SK2 Seite rechts": "Drawer 2 side right",
+   "SK2 Vorderstück": "Drawer 2 front",
+   "SK3 Boden": "Drawer 3 bottom",
+   "SK3 Hinterstück": "Drawer 3 back",
+   "SK3 Seite links": "Drawer 3 side left",
+   "SK3 Seite rechts": "Drawer 3 side right",
+   "SK3 Vorderstück": "Drawer 3 front",
+   "Scharnier links oben": "Hinge left top",
+   "Scharnier links unten": "Hinge left bottom",
+   "Scharnier rechts oben": "Hinge right top",
+   "Scharnier rechts unten": "Hinge right bottom",
+   "Schubladenfront 1": "Drawer front 1",
+   "Schubladenfront 2": "Drawer front 2",
+   "Schubladenfront 3": "Drawer front 3",
+   "Seite links": "Side left",
+   "Seite rechts": "Side right",
+   "Tür links": "Door left",
+   "Tür rechts": "Door right",
+   "Unterboden": "Bottom"
+  },
+  "views": [
+   {
+    "label": "Closed"
+   },
+   {
+    "label": "Open",
+    "turns": [
+     {
+      "parts": [
+       "Door left",
+       "Knob door left"
+      ],
+      "axis": [
+       0,
+       0,
+       1
+      ],
+      "origin": [
+       -878,
+       -225,
+       0
+      ],
+      "angle": -100
+     },
+     {
+      "parts": [
+       "Door right",
+       "Knob door right"
+      ],
+      "axis": [
+       0,
+       0,
+       1
+      ],
+      "origin": [
+       878,
+       -225,
+       0
+      ],
+      "angle": 100
+     }
+    ],
+    "moves": [
+     {
+      "parts": [
+       "Schubladen",
+       "Knob drawer"
+      ],
+      "dir": [
+       0,
+       -1,
+       0
+      ],
+      "dist": 320
+     }
+    ]
+   }
+  ]
+ },
+ {
   "id": "pi5-case",
   "source": "../examples/Pi5Case.soma",
   "showcase": false,

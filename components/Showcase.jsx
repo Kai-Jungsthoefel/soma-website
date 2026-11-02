@@ -7,17 +7,23 @@ import Viewer from './viewer/Viewer';
 
 const models = allModels.filter(m => m.showcase !== false);
 
-export default function Showcase() {
+// title: Überschrift des Abschnitts (auf /models/ steht darüber die h1 der Seite)
+export default function Showcase({ title = 'Made with SOMA' }) {
   const [active, setActive] = useState(models[0]?.id);
-  // Direktlink auf ein Modell: /#model-<id>
+  // Direktlink auf ein Modell: /#model-<id>, auch als Link auf derselben Seite (Liste auf /models/)
   useEffect(() => {
-    const id = location.hash.match(/^#model-(.+)$/)?.[1];
-    if (models.some(m => m.id === id)) setActive(id);
+    const pick = () => {
+      const id = location.hash.match(/^#model-(.+)$/)?.[1];
+      if (models.some(m => m.id === id)) setActive(id);
+    };
+    pick();
+    addEventListener('hashchange', pick);
+    return () => removeEventListener('hashchange', pick);
   }, []);
   const model = models.find(m => m.id === active);
   return <section className="showcase section" id="models" aria-labelledby="showcase-title">
     <div className="section-head">
-      <h2 id="showcase-title">Made with SOMA</h2>
+      <h2 id="showcase-title">{title}</h2>
     </div>
     <div className="showcase-body">
       <div className="showcase-tabs" role="tablist" aria-label="Models">

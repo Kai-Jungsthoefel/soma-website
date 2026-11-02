@@ -1,6 +1,7 @@
 'use client';
 
-// 3D-Viewer im Stil der App: Werkzeuge oben (Messen, Schnitt, Explosion), Ansichtswürfel rechts, Parameter links,
+// 3D-Viewer im Stil der App: Werkzeuge oben (Messen, Schnitt, Explosion, Zeichnungen), Ansichtswürfel rechts, Parameter
+// oder Ansichten (models.json `views`) links,
 // Werkzeugkarte unten links, Abspiel- bzw. Ergebnisleiste unten. three.js wird erst nachgeladen, wenn der Viewer in
 // die Nähe des sichtbaren Bereichs kommt.
 import { useEffect, useRef, useState } from 'react';
@@ -31,6 +32,10 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
   const [explode, setExplode] = useState(initialTool === 'explode' ? 0.8 : 0);
   const [deform, setDeform] = useState(0);
   const [chosen, setChosen] = useState({});
+  const [view, setView] = useState(0);
+  const [sheets, setSheets] = useState([]);
+  const [sheet, setSheet] = useState(0);
+  const [zoom, setZoom] = useState(false);
   const values = chosen[model?.id] ?? defaults(model);
   const variant = model?.parameters ? variantFile(values) : null;
 
@@ -61,7 +66,18 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
   }, [near]);
 
   // Anderes Modell: Werkzeuge zurück auf den Anfang
-  useEffect(() => { setTool(initialTool); setDeform(0); setMeasured(null); setExplode(initialTool === 'explode' ? 0.8 : 0); }, [model, initialTool]);
+  useEffect(() => { setTool(initialTool); setDeform(0); setMeasured(null); setExplode(initialTool === 'explode' ? 0.8 : 0); setView(0); setSheet(0); setZoom(false); }, [model, initialTool]);
+
+  // Zeichnungen: Liste von scripts/build-models.mjs, Titel aus models.json (drawings: {Blatt-ID: Titel})
+  useEffect(() => {
+    setSheets([]);
+    if (!model?.drawings) return;
+    let cancelled = false;
+    fetch(`/models/${model.id}/drawings.json`).then(r => (r.ok ? r.json() : [])).then(list => {
+      if (!cancelled) setSheets(list.map(d => ({ ...d, title: model.drawings[d.image.replace(/^drawing-|\.webp$/g, '')] ?? d.title })));
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [model]);
 
   useEffect(() => {
     if (!near || !model) return;
@@ -76,6 +92,7 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
         animation: model.animation && `${base}/animation.glb`,
         analysis: model.analysis && `${base}/result.glb`,
         explode: model.explode,
+        views: model.views,
         carry: model.carry,
         hide: model.hide,
         keepView,
@@ -96,6 +113,7 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
   useEffect(() => { scene.current?.setSection(tool === 'section', cut.axis, cut.value, cut.flip); }, [tool, cut, info]);
   useEffect(() => { scene.current?.setExplode(tool === 'explode' ? explode : 0); }, [tool, explode, info]);
   useEffect(() => { scene.current?.setDeformation(deform); }, [deform, info]);
+  useEffect(() => { scene.current?.setView(view); }, [view, info]);
 
   const bounds = info?.bounds;
   const range = bounds ? [bounds.min.getComponent(cut.axis), bounds.max.getComponent(cut.axis)] : [0, 1];
@@ -118,7 +136,7 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
   return <div className={`viewer ${className}`} ref={wrap}>
     <canvas ref={canvas} aria-label={`3D view of ${model?.title}`} onPointerDown={() => setHint(false)}/>
     <div className="v-labels" ref={overlay}/>
-    {hint && status === 'ready' && !tool && !anim && !info?.result && <div className="viewer-hint">Drag to rotate · right-drag to pan · Ctrl + scroll to zoom</div>}
+    {hint && status === 'ready' && !tool && !anim && !info?.result && !model?.views && <div className="viewer-hint">Drag to rotate · right-drag to pan · Ctrl + scroll to zoom</div>}
     {status === 'loading' && <div className="viewer-status">Loading model…</div>}
     {status === 'error' && <div className="viewer-status">The model could not be loaded.</div>}
     {anim?.caption && model?.captions !== false && <div className="viewer-caption">{anim.caption}</div>}
@@ -127,7 +145,24 @@ export default function Viewer({ model, tool: initialTool = null, className = ''
       <button aria-pressed={tool === 'measure'} disabled={!info?.measurable} onClick={() => toggle('measure')} title="Measure"><Icon name="ruler"/><span className="lbl">Measure</span></button>
       <button aria-pressed={tool === 'section'} onClick={() => toggle('section')} title="Section"><Icon name="section"/><span className="lbl">Section</span></button>
       {model?.explode && <button aria-pressed={tool === 'explode'} onClick={() => toggle('explode')} title="Explode"><Icon name="explode"/><span className="lbl">Explode</span></button>}
+      {sheets.length > 0 && <button aria-pressed={tool === 'drawings'} onClick={() => toggle('drawings')} title="Drawings"><Icon name="drawing"/><span className="lbl">Drawings</span></button>}
     </div>
+
+    {model?.views && <div className="views float" role="group" aria-label="View">
+      <div className="seg">{model.views.map((v, i) => <button key={v.label} aria-pressed={view === i} onClick={() => setView(i)}>{v.label}</button>)}</div>
+    </div>}
+
+    {tool === 'drawings' && sheets[sheet] && <div className="sheets">
+      <div className="sheets-bar">
+        <div className="seg">{sheets.map((s, i) => <button key={s.image} aria-pressed={sheet === i} onClick={() => { setSheet(i); setZoom(false); }}>{s.title}</button>)}</div>
+        <a className="tc-btn" href={`/models/${model.id}/${sheets[sheet].pdf}`} target="_blank" rel="noreferrer">PDF</a>
+        <button className="tc-x" onClick={() => setTool(null)} aria-label="Close drawings"><Icon name="x" size={14}/></button>
+      </div>
+      {/* Klick wechselt zwischen eingepasst und voller Auflösung (dann scrollbar) */}
+      <div className={zoom ? 'sheet zoomed' : 'sheet'} onClick={() => setZoom(z => !z)} title={zoom ? 'Click to fit' : 'Click to zoom in'}>
+        <img src={`/models/${model.id}/${sheets[sheet].image}`} alt={`Drawing: ${sheets[sheet].title}`} width={sheets[sheet].width} height={sheets[sheet].height}/>
+      </div>
+    </div>}
 
     <div className="cube">
       <div className="cube-view" ref={cubeEl} title="Click a face, edge or corner to view from there. Drag to rotate the view."/>

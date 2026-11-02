@@ -14,6 +14,7 @@ const PATHS = {
   play: '<path d="M7 5v14l11-7z"/>',
   pause: '<path d="M8 5v14M16 5v14"/>',
   down: '<path d="m6 9 6 6 6-6"/>',
+  drawing: '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M13 19v-4h8M7 9h6M7 12h4"/>',
 };
 
 export function Icon({ name, size = 16, stroke = 1.8 }) {

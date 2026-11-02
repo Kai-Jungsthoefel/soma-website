@@ -1,16 +1,17 @@
 // Baut die Showcase-Modelle aus models/models.json für den Web-Viewer nach public/models/<id>/.
 //
-// Je Modell: .soma-Datei in einen Temp-Ordner entpacken, mit `soma build` bauen, dann die GLBs verkleinern:
+// Je Modell: .soma-Datei in einen Temp-Ordner entpacken (oder einen Modellordner dorthin kopieren), mit `soma build` bauen, dann die GLBs verkleinern:
 // Flächen-, Kanten- und Punktlisten aus den extras entfernen (braucht nur die App zum Messen), Animationsspuren ohne
 // Bewegung entfernen, Geometrie quantisieren und mit Meshopt komprimieren. Je nach Eintrag in models.json dazu:
 // - animation: `soma anim build`, Ergebnis animation.glb
 // - parameters: jede Kombination der Werte über parameters.json bauen, Ergebnis variant-<NAME>_<Wert>-....glb
 // - analysis: `soma analyze fem <Datei>`, Ergebnis result.glb (nicht quantisiert, die Werte je Ecke bleiben genau)
+// - drawings: `soma drawing build`, je Blatt drawing-<id>.webp (Bild) und .pdf, Liste in drawings.json
 // Aufruf: npm run models [-- <id> ...]. soma.exe aus der Entwicklungsumgebung oder SOMA_EXE.
 // --reuse: den schon gebauten Temp-Ordner nehmen (nicht neu entpacken und bauen), nur neu verkleinern.
 import { spawnSync } from 'node:child_process';
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { copyFile, cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { existsSync, statSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,11 +19,14 @@ import { Accessor, NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS, EXTMeshoptCompression } from '@gltf-transform/extensions';
 import { dedup, meshopt, prune, quantize, reorder, resample, weld } from '@gltf-transform/functions';
 import { MeshoptEncoder } from 'meshoptimizer';
+import sharp from 'sharp';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SOMA = process.env.SOMA_EXE || path.join(process.env.LOCALAPPDATA || '', 'soma-dev', 'venv', 'Scripts', 'soma.exe');
 const PYTHON = path.join(path.dirname(SOMA), process.platform === 'win32' ? 'python.exe' : 'python');
 const WORK = path.join(os.tmpdir(), 'soma-website-models');
+// Beim Kopieren eines Modellordners weglassen: Git, die Umgebung des Projekts, Videos und alte Ergebnisse
+const SKIP = new Set(['.git', 'env', 'video', 'renders', 'output', 'export', 'node_modules']);
 
 function run(exe, args, { capture = false } = {}) {
   console.log(`  ${path.basename(exe)} ${args.join(' ')}`);
@@ -175,7 +179,12 @@ for (const model of models.filter(m => !only.length || only.includes(m.id))) {
   if (fresh) {
     await rm(project, { recursive: true, force: true });
     await mkdir(project, { recursive: true });
-    run(PYTHON, ['-I', '-m', 'zipfile', '-e', source, project]);
+    if (statSync(source).isDirectory()) {
+      // Modellordner (Open folder in der App): kopieren, damit der Build nichts im Ordner des Nutzers ändert
+      await cp(source, project, { recursive: true, filter: src => !SKIP.has(path.basename(src)) });
+    } else {
+      run(PYTHON, ['-I', '-m', 'zipfile', '-e', source, project]);
+    }
     run(SOMA, ['build', '--project', project]);
   }
   const out = path.join(ROOT, 'public', 'models', model.id);
@@ -195,6 +204,21 @@ for (const model of models.filter(m => !only.length || only.includes(m.id))) {
       await optimize(io, path.join(project, '.soma', 'model.glb'), path.join(out, variantFile(values)), shape);
     }
     await rm(path.join(project, 'parameters.json'), { force: true });
+  }
+  if (model.drawings) {
+    // Alle Blätter bauen; das Bild in 150 dpi reicht für den Bildschirm, das PDF ist zum Herunterladen
+    const built = JSON.parse(run(SOMA, ['drawing', 'build', '--dpi', '150', '--project', project, '--json'], { capture: true }).trim().split('\n').pop()).built;
+    const sheets = [];
+    for (const sheet of built) {
+      const file = `drawing-${sheet.id}`;
+      const image = sharp(path.resolve(project, sheet.png));
+      const { width, height } = await image.metadata();
+      await image.webp({ quality: 85 }).toFile(path.join(out, `${file}.webp`));
+      await copyFile(path.resolve(project, sheet.pdf), path.join(out, `${file}.pdf`));
+      sheets.push({ title: model.drawings[sheet.id] ?? sheet.name, image: `${file}.webp`, pdf: `${file}.pdf`, width, height, size: sheet.size });
+      console.log(`  ${file}: ${sheet.size}`);
+    }
+    await writeFile(path.join(out, 'drawings.json'), JSON.stringify(sheets, null, 1) + '\n');
   }
   if (model.animation) {
     if (fresh || !existsSync(path.join(project, '.soma', 'anim', `${model.animation}.glb`))) run(SOMA, ['anim', 'build', '--project', project]);

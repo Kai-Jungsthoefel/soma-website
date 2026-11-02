@@ -1,6 +1,6 @@
 // three.js-Szene für die Modelle der Webseite, nachgebaut nach dem Viewer der App (app/src/renderer/viewer.ts):
-// Z oben, Licht, Kamera, Iso-Ansicht und Ansichtswürfel wie dort, dazu Schnitt, Messen, Explosion, Animation und
-// FEM-Ergebnis. Wird erst geladen, wenn der Viewer ins Bild kommt.
+// Z oben, Licht, Kamera, Iso-Ansicht und Ansichtswürfel wie dort, dazu Schnitt, Messen, Explosion, Ansichten (Teile
+// ausblenden, Türen öffnen), Animation und FEM-Ergebnis. Wird erst geladen, wenn der Viewer ins Bild kommt.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -50,7 +50,7 @@ export function createScene(canvas, { cubeEl, overlayEl, onFrame, onMeasure } = 
   let model = null;
   let player = null;
   let result = null;
-  let exploder = null;
+  let poser = null;
   let loading = 0;
   let tween = null;
 
@@ -101,6 +101,7 @@ export function createScene(canvas, { cubeEl, overlayEl, onFrame, onMeasure } = 
       if (tween.t >= 1) tween = null;
     }
     if (player) player.update(dt);
+    poser?.update(dt);
     controls.update();
     const dist = camera.position.distanceTo(controls.target);
     camera.near = Math.max(dist / 200, 1e-3);
@@ -147,7 +148,7 @@ export function createScene(canvas, { cubeEl, overlayEl, onFrame, onMeasure } = 
   const focus = () => player?.focus.length ? player.focus : result ? [result.root] : [model.root];
 
   // keepView: Ansicht behalten (Wechsel zwischen Parametervarianten desselben Modells)
-  async function load(url, { animation, analysis, explode, carry, hide, keepView } = {}) {
+  async function load(url, { animation, analysis, explode, views, carry, hide, keepView } = {}) {
     const token = ++loading;
     const [gltf, anim, res] = await Promise.all([url, animation, analysis].map(u => u ? loader().loadAsync(u) : null));
     if (token !== loading) return null;
@@ -161,12 +162,13 @@ export function createScene(canvas, { cubeEl, overlayEl, onFrame, onMeasure } = 
       // Vom Modell bleiben nur die Bezugsteile (z. B. die Wand) als Umgebung sichtbar
       for (const part of model.parts.values()) part.pivot.visible = part.role === 'reference';
     }
-    if (explode) exploder = createExploder(model, explode);
+    // Animationen setzen die Pivots selbst, Explosion und Ansichten gibt es nur bei stehenden Modellen
+    if (!anim && (explode || views || hide)) poser = createPoser(model, { explode, views, hide });
     section.attach();
     // Ausschnitt für das ganz auseinandergezogene Modell, damit beim Explodieren nichts aus dem Bild fliegt
-    exploder?.set(1);
+    poser?.setExplode(1);
     if (!keepView) fit(focus());
-    exploder?.set(0);
+    poser?.setExplode(0);
     return {
       parts: model.parts.size,
       animated: !!player,
@@ -180,7 +182,7 @@ export function createScene(canvas, { cubeEl, overlayEl, onFrame, onMeasure } = 
     section.detach();
     measure.reset();
     player = null;
-    exploder = null;
+    poser = null;
     for (const root of [model?.root, result?.root]) {
       if (!root) continue;
       scene.remove(root);
@@ -602,7 +604,14 @@ export function createScene(canvas, { cubeEl, overlayEl, onFrame, onMeasure } = 
     player: () => player,
     setDeformation: k => result?.deform(k),
     showResult: kind => result?.show(kind),
-    setExplode: t => exploder?.set(t),
+    setExplode: t => poser?.setExplode(t),
+    // Ansicht i aus models.json `views`; fit: auf die sichtbaren Teile einpassen, aus der Richtung der Ansicht
+    setView(i) {
+      const view = poser?.setView(i);
+      if (view?.fit) fit(poser.visible(), view.dir ? new THREE.Vector3(...view.dir) : ISO);
+      else if (view && i === 0 && poser.fitted) fit(focus());
+      if (view) poser.fitted = !!view.fit;
+    },
     setSection: (on, axis, value, flip) => section.set(on, axis, value, flip),
     setMeasure: on => measure.set(on),
     fit: () => { if (model) fit(focus(), camera.position.clone().sub(controls.target)); },
@@ -646,21 +655,74 @@ function prepareModel(root) {
   return { root, parts };
 }
 
-// Explosion von Hand (models.json `explode`): Schritte mit Teilen (Name oder Namensanfang), Richtung, Weg und dem
-// Bereich des Reglers, in dem sie sich bewegen. Die Wege der Schritte addieren sich, so nehmen Schrauben die
-// Platine mit, ohne durch sie hindurchzufahren.
-function createExploder(model, steps) {
-  const matches = (part, names) => names.some(n => part.name === n || part.name.startsWith(`${n} `) || part.group === n || part.group.startsWith(`${n}/`));
-  return {
-    set(t) {
-      for (const part of model.parts.values()) part.pivot.position.set(0, 0, 0);
-      for (const step of steps) {
-        const [a, b] = step.at ?? [0, 1];
-        const k = smooth((t - a) / (b - a || 1)) * step.dist;
-        const dir = new THREE.Vector3(...step.dir).normalize();
-        for (const part of model.parts.values()) if (matches(part, step.parts)) part.pivot.position.addScaledVector(dir, k);
+// Lage der Teile bei stehenden Modellen: Ansichten (models.json `views`) und Explosion (`explode`) zusammen.
+// Eine Ansicht blendet Teile aus (`hide`, Ausnahmen in `keep`), dreht sie um eine Achse (`turns`: Türen) oder schiebt sie
+// (`moves`: Schubladen). Der Wechsel läuft weich über eine Gewichtung je Ansicht, die Wege und Winkel skaliert.
+// Explosion: Schritte mit Teilen (Name oder Namensanfang), Richtung, Weg und dem Bereich des Reglers, in dem sie sich
+// bewegen. Die Wege der Schritte addieren sich, so nehmen Schrauben die Platine mit, ohne durch sie hindurchzufahren.
+const matches = (part, names) => (names ?? []).some(n => part.name === n || part.name.startsWith(`${n} `) || part.group === n || part.group.startsWith(`${n}/`));
+
+function createPoser(model, { explode = [], views = [], hide = [] }) {
+  const parts = [...model.parts.values()];
+  const weights = views.map((_, i) => (i === 0 ? 1 : 0));
+  let current = 0;
+  let spread = 0;
+  const q = new THREE.Quaternion();
+  const axis = new THREE.Vector3();
+  const origin = new THREE.Vector3();
+
+  function apply() {
+    for (const part of parts) { part.pivot.position.set(0, 0, 0); part.pivot.quaternion.identity(); }
+    views.forEach((view, i) => {
+      const w = smooth(weights[i]);
+      if (!w) return;
+      for (const turn of view.turns ?? []) {
+        q.setFromAxisAngle(axis.set(...turn.axis).normalize(), THREE.MathUtils.degToRad(turn.angle) * w);
+        origin.set(...turn.origin);
+        for (const part of parts) if (matches(part, turn.parts)) {
+          part.pivot.quaternion.premultiply(q);
+          part.pivot.position.sub(origin).applyQuaternion(q).add(origin);
+        }
       }
+      for (const move of view.moves ?? []) {
+        axis.set(...move.dir).normalize();
+        for (const part of parts) if (matches(part, move.parts)) part.pivot.position.addScaledVector(axis, move.dist * w);
+      }
+    });
+    for (const step of explode) {
+      const [a, b] = step.at ?? [0, 1];
+      const k = smooth((spread - a) / (b - a || 1)) * step.dist;
+      axis.set(...step.dir).normalize();
+      for (const part of parts) if (matches(part, step.parts)) part.pivot.position.addScaledVector(axis, k);
+    }
+    const view = views[current];
+    for (const part of parts) {
+      part.pivot.visible = !matches(part, hide) && !(matches(part, view?.hide) && !(view.keep ?? []).includes(part.name));
+    }
+  }
+  apply();
+
+  return {
+    fitted: false,
+    setExplode(t) { spread = t; apply(); },
+    setView(i) {
+      if (!views[i]) return null;
+      current = i;
+      apply();
+      return views[i];
     },
+    // Gewichte der Ansichten in etwa 0,6 s zum Ziel
+    update(dt) {
+      let changed = false;
+      weights.forEach((w, i) => {
+        const target = i === current ? 1 : 0;
+        if (w === target) return;
+        weights[i] = target > w ? Math.min(1, w + dt / 0.6) : Math.max(0, w - dt / 0.6);
+        changed = true;
+      });
+      if (changed) apply();
+    },
+    visible: () => parts.filter(p => p.pivot.visible).map(p => p.pivot),
   };
 }
 

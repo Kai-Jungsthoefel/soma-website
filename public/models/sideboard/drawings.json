@@ -1,0 +1,42 @@
+[
+ {
+  "title": "General arrangement",
+  "image": "drawing-Sideboard_Gesamtansicht.webp",
+  "pdf": "drawing-Sideboard_Gesamtansicht.pdf",
+  "width": 2480,
+  "height": 1753,
+  "size": "A3"
+ },
+ {
+  "title": "Carcass parts",
+  "image": "drawing-Sideboard_Korpusteile.webp",
+  "pdf": "drawing-Sideboard_Korpusteile.pdf",
+  "width": 2480,
+  "height": 1753,
+  "size": "A3"
+ },
+ {
+  "title": "Fronts and leg",
+  "image": "drawing-Sideboard_Fronten_und_Bein.webp",
+  "pdf": "drawing-Sideboard_Fronten_und_Bein.pdf",
+  "width": 2480,
+  "height": 1753,
+  "size": "A3"
+ },
+ {
+  "title": "Drawer",
+  "image": "drawing-Sideboard_Schubkasten.webp",
+  "pdf": "drawing-Sideboard_Schubkasten.pdf",
+  "width": 2480,
+  "height": 1753,
+  "size": "A3"
+ },
+ {
+  "title": "Cutting list",
+  "image": "drawing-Sideboard_Zuschnittliste.webp",
+  "pdf": "drawing-Sideboard_Zuschnittliste.pdf",
+  "width": 2480,
+  "height": 1753,
+  "size": "A3"
+ }
+]
