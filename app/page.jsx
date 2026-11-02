@@ -6,6 +6,7 @@ import FeatureTabs from '../components/FeatureTabs';
 import ExplodeDemo from '../components/ExplodeDemo';
 import WhatIsSoma from '../components/WhatIsSoma';
 import StructuredData from '../components/StructuredData';
+import Faq from '../components/Faq';
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -89,6 +90,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Faq/>
     </main>
     <Footer/>
     <StructuredData/>

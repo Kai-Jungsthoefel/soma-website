@@ -139,6 +139,19 @@ em { font-style: normal; color: var(--tx); }
 .stepper span { min-width: 26px; text-align: center; font: 13px var(--mono); }
 
 /* Werkzeugkarten unten links */
+.views { position: absolute; top: 12px; left: 12px; z-index: 2; padding: 4px; }
+.views .seg { border: 0; background: none; }
+.sheets { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; background: var(--s1); }
+.sheets-bar { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--line2); }
+.sheets-bar .seg { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.sheets-bar .seg button { flex: none; }
+.sheets-bar .tc-btn { margin-top: 0; color: var(--tx); }
+.sheets-bar .tc-btn:hover { text-decoration: none; }
+/* Eingepasst: das Bild füllt die Fläche mit object-fit, gezoomt in voller Auflösung zum Scrollen */
+.sheet { position: relative; flex: 1; min-height: 0; overflow: hidden; cursor: zoom-in; }
+.sheet img { position: absolute; inset: 12px; width: calc(100% - 24px); height: calc(100% - 24px); max-width: none; object-fit: contain; }
+.sheet.zoomed { overflow: auto; cursor: zoom-out; }
+.sheet.zoomed img { position: static; width: auto; height: auto; margin: 12px; background: #fff; }
 .cards { position: absolute; left: 12px; bottom: 12px; z-index: 2; width: 330px; display: flex; flex-direction: column-reverse; gap: 8px; }
 .tcard { padding: 4px 12px 12px; }
 .tc-hd { display: flex; align-items: center; gap: 8px; height: 38px; font-weight: 600; font-size: 14px; }
@@ -249,6 +262,59 @@ em { font-style: normal; color: var(--tx); }
 .notes h3 { font-size: 16px; }
 .notes p { margin-top: 6px; color: var(--tx2); font-size: 14px; }
 
+/* Häufige Fragen */
+.faq-wrap > * { max-width: 860px; }
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; flex: none; color: var(--acc-tx); font: 400 22px/1 var(--mono); }
+.faq details[open] summary::after { content: '−'; }
+.faq summary h3 { font-size: 17px; font-weight: 500; }
+.faq summary:hover h3 { color: var(--acc-tx); }
+.faq details p { padding: 0 32px 18px 0; color: var(--tx2); }
+
+/* Modelle */
+.page-intro { padding: 48px 0 8px; }
+.page-intro > * { max-width: 52rem; }
+.page-intro h1 { font-size: clamp(30px, 3.2vw, 40px); line-height: 1.15; }
+.page-intro p { margin-top: 14px; color: var(--tx2); font-size: 17px; }
+.model-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.model-card { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--s1); }
+.model-card h3 { margin-top: 4px; font-size: 18px; }
+.model-card p:not(.tab-feature) { margin-top: 8px; color: var(--tx2); font-size: 15px; }
+.model-card > a { display: inline-block; margin-top: 12px; font-size: 15px; }
+.model-card.wide { grid-column: 1 / -1; }
+.drawings { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.drawings a { display: block; color: var(--tx2); font-size: 14px; }
+.drawings a:hover { color: var(--tx); text-decoration: none; }
+.drawings img { aspect-ratio: 297 / 210; width: 100%; object-fit: contain; background: #fff; border: 1px solid var(--line2); border-radius: 6px; }
+.drawings a:hover img { border-color: var(--acc); }
+.drawings span { display: block; margin-top: 6px; }
+
+/* Anleitung */
+.docs { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; align-items: start; }
+.docs-toc { position: sticky; top: calc(var(--header) + 24px); max-height: calc(100vh - var(--header) - 48px); overflow-y: auto; }
+.docs-toc h2 { font-size: 13px; font-weight: 500; color: var(--tx3); margin-bottom: 8px; }
+.docs-toc ol { list-style: none; margin: 0; padding: 0; }
+.docs-toc a { display: block; padding: 4px 0; color: var(--tx2); font-size: 14px; }
+.docs-toc a:hover { color: var(--tx); text-decoration: none; }
+.docs-body { max-width: 50em; }
+.docs-body h1 { font-size: 36px; }
+.docs-body .docs-meta { margin-top: 8px; color: var(--tx3); font-size: 15px; }
+.docs-body h2 { font-size: 24px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+.docs-body h3 { font-size: 18px; margin-top: 28px; }
+.docs-body p, .docs-body li { color: var(--tx2); }
+.docs-body p { margin-top: 12px; }
+.docs-body ol, .docs-body ul { margin: 12px 0 0; padding-left: 22px; display: grid; gap: 6px; }
+.docs-body strong { color: var(--tx); font-weight: 500; }
+.docs-body code { padding: 1px 5px; border-radius: 4px; background: var(--s2); font: 14px var(--mono); color: var(--tx); }
+.docs-body img { margin-top: 18px; border: 1px solid var(--line2); border-radius: var(--radius); }
+.docs-body blockquote { margin: 16px 0 0; padding: 4px 16px; border-left: 2px solid var(--acc); }
+.docs-body table { margin-top: 14px; border-collapse: collapse; font-size: 15px; }
+.docs-body th, .docs-body td { padding: 8px 14px 8px 0; border-top: 1px solid var(--line); text-align: left; color: var(--tx2); }
+.docs-body > p:last-child { margin-top: 48px; }
+
 /* Impressum und Datenschutz */
 .legal { max-width: 46em; }
 .legal h1 { font-size: 32px; }
@@ -273,6 +339,9 @@ em { font-style: normal; color: var(--tx); }
   .info-grid, .notes { grid-template-columns: 1fr 1fr; }
   .showcase-body, .features { grid-template-columns: 1fr; }
   .what { grid-template-columns: 1fr; }
+  .docs { grid-template-columns: 1fr; gap: 24px; }
+  .docs-toc { position: static; max-height: none; }
+  .docs-toc ol { columns: 2; }
   .feature-list { flex-direction: row; overflow-x: auto; scrollbar-width: none; }
   .feature-list button { flex: none; border-left: 0; border-bottom: 2px solid transparent; border-radius: 8px 8px 0 0; }
   .feature-list button.active { border-bottom-color: var(--acc); border-radius: 8px 8px 0 0; }
@@ -287,7 +356,8 @@ em { font-style: normal; color: var(--tx); }
   .menu-toggle { display: grid; }
   .header-actions .stars { display: none; }
   .hero { padding-top: 32px; }
-  .info-grid, .notes { grid-template-columns: 1fr; }
+  .info-grid, .notes, .model-list { grid-template-columns: 1fr; }
+  .docs-toc ol { columns: 1; }
   .download-head { display: block; }
   .select { margin-top: 16px; }
   .files td:nth-child(3) { display: none; }

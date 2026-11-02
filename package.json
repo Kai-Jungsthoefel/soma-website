@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-legal.mjs && node scripts/fetch-github.mjs",
+    "prebuild": "node scripts/check-legal.mjs && node scripts/fetch-github.mjs && node scripts/fetch-guide.mjs",
     "build": "next build",
     "serve": "npx --yes serve@14.2.4 out",
     "models": "node scripts/build-models.mjs",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
+    "marked": "^15.0.12",
     "next": "^16.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

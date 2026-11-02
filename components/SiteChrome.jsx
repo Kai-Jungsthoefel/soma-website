@@ -7,9 +7,10 @@ import { REPO_URL, formatStars, useGitHub } from '../lib/github';
 
 const navigation = [
   ['What is SOMA?', '/#what'],
-  ['Models', '/#models'],
+  ['Models', '/models/'],
   ['Features', '/#features'],
   ['How it works', '/#how'],
+  ['Guide', '/docs/'],
   ['Download', '/download/'],
 ];
 
@@ -57,9 +58,9 @@ export function Footer() {
         <a className="badge" href="https://www.opensourcealternatives.to"><img src="/images/badge-osa.svg" alt="As seen on Open Source Alternatives" width="270" height="20"/></a>
       </div>
       <div className="footer-links">
-        <div><h3>Product</h3><Link href="/#models">Models</Link><Link href="/#features">Features</Link><Link href="/download/" prefetch={false}>Download</Link></div>
+        <div><h3>Product</h3><Link href="/models/" prefetch={false}>Models</Link><Link href="/#features">Features</Link><Link href="/download/" prefetch={false}>Download</Link></div>
         <div><h3>Project</h3><a href={REPO_URL}>Source code</a><a href={`${REPO_URL}/releases`}>Releases</a><a href={`${REPO_URL}/blob/main/CHANGELOG.md`}>Changelog</a></div>
-        <div><h3>Help</h3><a href={`${REPO_URL}/blob/main/app/resources/skills/soma-app.md`}>User guide</a><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
+        <div><h3>Help</h3><Link href="/docs/" prefetch={false}>User guide</Link><Link href="/#faq">Questions</Link><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
         <div><h3>Legal</h3><Link href="/imprint/" prefetch={false}>Imprint</Link><Link href="/privacy/" prefetch={false}>Privacy</Link></div>
       </div>
     </div>
