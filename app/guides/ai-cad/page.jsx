@@ -1,26 +1,21 @@
 import Link from 'next/link';
-import { Footer, Header } from '../../../components/SiteChrome';
-import legal from '../../../data/legal.json';
-import { SITE_URL } from '../../../lib/site';
+import GuidePage, { guideMetadata } from '../../../components/GuidePage';
 
 // Ratgeber „How to use AI for CAD“: für Leute, die SOMA noch nicht kennen und allgemein suchen. Erst ein fairer
 // Überblick über die Wege, dann der Weg mit SOMA Schritt für Schritt. Keine Behauptungen über Produkte anderer, nur über
-// Arten von Werkzeugen. Datum ändern, wenn sich der Inhalt ändert (steht in den strukturierten Daten).
-const PUBLISHED = '2026-11-03';
-const MODIFIED = '2026-11-03';
-const TITLE = 'How to use AI for CAD: a practical guide';
-const DESCRIPTION = 'What AI can and cannot do in CAD today, the four ways to use it, and step by step how to design a part with a coding agent such as Claude Code or Codex: prompts, checking, export to STL and STEP.';
-
-export const metadata = {
+// Arten von Werkzeugen. Datum ändern, wenn sich der Inhalt ändert (steht in den strukturierten Daten und der Sitemap).
+const GUIDE = {
+  path: '/guides/ai-cad/',
   title: 'How to use AI for CAD',
-  description: DESCRIPTION,
-  alternates: { canonical: '/guides/ai-cad/' },
-  openGraph: {
-    type: 'article', url: '/guides/ai-cad/', siteName: 'SOMA', title: TITLE, description: DESCRIPTION,
-    publishedTime: PUBLISHED, modifiedTime: MODIFIED,
-    images: [{ url: '/images/features/markup.png', width: 1600, height: 921, alt: 'Marking up a 3D model for the AI agent in SOMA' }],
-  },
+  heading: 'How to use AI for CAD',
+  description: 'What AI can and cannot do in CAD today, the four ways to use it, and step by step how to design a part with a coding agent such as Claude Code or Codex: prompts, checking, export to STL and STEP.',
+  published: '2026-11-03',
+  modified: '2026-11-03',
+  image: { src: '/images/features/markup.png', width: 1600, height: 921, alt: 'Marking up a 3D model for the AI agent in SOMA' },
+  about: ['Computer-aided design', 'Artificial intelligence', 'CadQuery', '3D printing'],
 };
+
+export const metadata = guideMetadata(GUIDE);
 
 const APPROACHES = [
   {
@@ -69,41 +64,11 @@ const FAQ = [
 ];
 
 export default function AiCadGuide() {
-  const data = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: TITLE,
-      description: DESCRIPTION,
-      url: `${SITE_URL}/guides/ai-cad/`,
-      datePublished: PUBLISHED,
-      dateModified: MODIFIED,
-      image: `${SITE_URL}/images/features/markup.png`,
-      author: { '@type': 'Person', name: legal.name },
-      publisher: { '@type': 'Organization', name: 'SOMA', url: `${SITE_URL}/` },
-      about: ['Computer-aided design', 'Artificial intelligence', 'CadQuery', '3D printing'],
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: FAQ.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-    },
-  ];
-
-  return <>
-    <Header/>
-    <main className="wrap page">
-      <article className="docs-body guide">
-        <p className="kicker">Guide</p>
-        <h1>How to use AI for CAD</h1>
-        <p className="docs-meta">By {legal.name} · {new Date(MODIFIED).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</p>
-
-        <p className="guide-answer">
-          AI can design real, dimensioned CAD parts today: cases, brackets, mounts, furniture, even machines with moving parts.
-          It works best when the AI writes the model as code, sees the result, and you check and correct it in short steps.
-          This guide compares the ways to do that and shows the workflow step by step.
-        </p>
-
+  return <GuidePage {...GUIDE} faq={FAQ} answer={<>
+    AI can design real, dimensioned CAD parts today: cases, brackets, mounts, furniture, even machines with moving parts.
+    It works best when the AI writes the model as code, sees the result, and you check and correct it in short steps.
+    This guide compares the ways to do that and shows the workflow step by step.
+  </>}>
         <nav className="guide-toc" aria-label="On this page">
           <ol>
             <li><a href="#what-works">What AI can and cannot do in CAD</a></li>
@@ -198,6 +163,11 @@ export default function AiCadGuide() {
           <li>Print a small test piece for tight fits before the full part.</li>
         </ul>
 
+        <p>
+          Designing a case for electronics? See <Link href="/guides/ai-3d-printed-enclosure/">how to design a 3D printed enclosure with AI</Link>,
+          with an example prompt and rules of thumb for printing.
+        </p>
+
         <h2 id="limits">Limits</h2>
         <ul>
           <li><strong>Free-form shapes:</strong> code-based CAD is made for mechanical parts. For sculpted shapes, a mesh or surface modeling tool is the better choice.</li>
@@ -205,22 +175,5 @@ export default function AiCadGuide() {
           <li><strong>Responsibility:</strong> for parts where failure is dangerous, the AI&apos;s design is a draft that an engineer checks, like any other draft.</li>
           <li><strong>Cost:</strong> the agent needs a subscription or API credits. Small parts take a few prompts, a complex assembly can take an afternoon.</li>
         </ul>
-
-        <h2 id="questions">Questions</h2>
-        {FAQ.map(f => <section key={f.q}><h3>{f.q}</h3><p>{f.a}</p></section>)}
-
-        <div className="guide-next">
-          <h2>Try it</h2>
-          <p>SOMA is free and open source. Bring the agent you already use.</p>
-          <p className="guide-links">
-            <Link className="button primary" href="/download/" prefetch={false}>Download SOMA</Link>
-            <Link className="button ghost" href="/models/" prefetch={false}>See example models</Link>
-            <Link className="button ghost" href="/docs/" prefetch={false}>Read the user guide</Link>
-          </p>
-        </div>
-      </article>
-    </main>
-    <Footer/>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}/>
-  </>;
+  </GuidePage>;
 }

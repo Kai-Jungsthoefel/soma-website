@@ -60,7 +60,7 @@ export function Footer() {
       <div className="footer-links">
         <div><h3>Product</h3><Link href="/models/" prefetch={false}>Models</Link><Link href="/#features">Features</Link><Link href="/download/" prefetch={false}>Download</Link></div>
         <div><h3>Project</h3><a href={REPO_URL}>Source code</a><a href={`${REPO_URL}/releases`}>Releases</a><a href={`${REPO_URL}/blob/main/CHANGELOG.md`}>Changelog</a></div>
-        <div><h3>Help</h3><Link href="/docs/" prefetch={false}>User guide</Link><Link href="/guides/ai-cad/" prefetch={false}>How to use AI for CAD</Link><Link href="/#faq">Questions</Link><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
+        <div><h3>Help</h3><Link href="/docs/" prefetch={false}>User guide</Link><Link href="/guides/" prefetch={false}>Guides</Link><Link href="/#faq">Questions</Link><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
         <div><h3>Legal</h3><Link href="/imprint/" prefetch={false}>Imprint</Link><Link href="/privacy/" prefetch={false}>Privacy</Link></div>
       </div>
     </div>

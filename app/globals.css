@@ -335,6 +335,12 @@ em { font-style: normal; color: var(--tx); }
 .guide-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px !important; }
 .guide-links .button { text-decoration: none; }
 
+.guides-intro { padding-top: 0; }
+.guides-list { margin-top: 28px; }
+.guides-list h2 { font-size: 20px; }
+.guides-list h2 a { color: var(--tx); }
+.guides-list p { margin-top: 8px; color: var(--tx2); }
+
 /* Impressum und Datenschutz */
 .legal { max-width: 46em; }
 .legal h1 { font-size: 32px; }

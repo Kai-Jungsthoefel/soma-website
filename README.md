@@ -2,7 +2,7 @@
 
 Website for [SOMA](https://github.com/Kai-Jungsthoefel/SOMA), built with Next.js as a fully static site (`out/`). Based on a template by [OBJIFY-DEV](https://github.com/OBJIFY-DEV/SOMA_Website).
 
-Pages: Home (hero with trailer, what is SOMA, 3D showcase, features, how it works, questions), Download (all releases and files), Models (the showcase with a text entry per model), Docs (the app's user guide) and guides under `/guides/` for people who search for the topic, not for SOMA (`/guides/ai-cad/`: how to use AI for CAD; dates in the page, used in the structured data and the sitemap). For AI assistants `/llms.txt` (overview, facts, questions, links) and `/llms-full.txt` (plus features, models and the whole guide), following llmstxt.org.
+Pages: Home (hero with trailer, what is SOMA, 3D showcase, features, how it works, questions), Download (all releases and files), Models (the showcase with a text entry per model), Docs (the app's user guide) and guides under `/guides/` for people who search for the topic, not for SOMA (list in `lib/guides.js`, frame with author, questions and structured data in `components/GuidePage.jsx`; dates in the page and in the list). For AI assistants `/llms.txt` (overview, facts, questions, links) and `/llms-full.txt` (plus features, models and the whole guide), following llmstxt.org.
 
 ## Development
 
