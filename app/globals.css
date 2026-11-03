@@ -273,6 +273,7 @@ em { font-style: normal; color: var(--tx); }
 .faq summary h3 { font-size: 17px; font-weight: 500; }
 .faq summary:hover h3 { color: var(--acc-tx); }
 .faq details p { padding: 0 32px 18px 0; color: var(--tx2); }
+.faq-more { margin-top: 20px; color: var(--tx2); }
 
 /* Modelle */
 .page-intro { padding: 48px 0 8px; }
@@ -314,6 +315,25 @@ em { font-style: normal; color: var(--tx); }
 .docs-body table { margin-top: 14px; border-collapse: collapse; font-size: 15px; }
 .docs-body th, .docs-body td { padding: 8px 14px 8px 0; border-top: 1px solid var(--line); text-align: left; color: var(--tx2); }
 .docs-body > p:last-child { margin-top: 48px; }
+
+/* Ratgeber (/guides/…): Text wie die Anleitung, dazu Vergleichstabelle und Abschluss */
+.guide .kicker { margin-bottom: 10px; }
+.guide .guide-answer { margin-top: 20px; font-size: 19px; line-height: 1.5; color: var(--tx); }
+.guide-toc { margin-top: 28px; padding: 16px 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--s1); }
+.guide-toc ol { margin: 0 !important; gap: 4px !important; }
+.guide-toc a { color: var(--tx2); }
+.guide-table { margin-top: 16px; overflow-x: auto; }
+.guide-table table { margin-top: 0; min-width: 720px; }
+.guide-table th, .guide-table td { vertical-align: top; padding: 10px 14px 10px 0; }
+.guide-table thead th { color: var(--tx3); font-weight: 500; font-size: 13px; }
+.guide-table tbody th { color: var(--tx); font-weight: 500; width: 20%; }
+.guide figure { margin: 24px 0 0; }
+.guide figcaption { margin-top: 8px; color: var(--tx3); font-size: 14px; }
+.guide section h3 { margin-top: 24px; }
+.guide-next { margin-top: 48px; padding: 24px; border: 1px solid var(--line2); border-radius: var(--radius); background: var(--s1); }
+.guide-next h2 { margin-top: 0; padding-top: 0; border-top: 0; }
+.guide-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px !important; }
+.guide-links .button { text-decoration: none; }
 
 /* Impressum und Datenschutz */
 .legal { max-width: 46em; }

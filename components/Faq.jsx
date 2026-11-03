@@ -1,5 +1,6 @@
 // Häufige Fragen auf der Startseite. Aufklappbar mit <details>: ohne JavaScript, und die Antworten stehen trotzdem im
 // HTML (für Suchmaschinen und KI-Crawler). Die erste ist offen, damit man sieht, dass sich die Fragen öffnen lassen.
+import Link from 'next/link';
 import { FAQ } from '../lib/faq';
 
 export default function Faq() {
@@ -14,6 +15,7 @@ export default function Faq() {
           <p>{item.a}</p>
         </details>)}
       </div>
+      <p className="faq-more">New to AI and CAD? Read <Link href="/guides/ai-cad/" prefetch={false}>how to use AI for CAD</Link>, a guide to the different ways and how to get good results.</p>
     </div>
   </section>;
 }
