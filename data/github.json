@@ -1,8 +1,41 @@
 {
  "repo": "Kai-Jungsthoefel/SOMA",
- "stars": 445,
- "fetched_at": "2026-11-02T18:59:41.876Z",
+ "stars": 450,
+ "fetched_at": "2026-11-04T08:37:48.584Z",
  "releases": [
+  {
+   "tag_name": "v0.11.0",
+   "published_at": "2026-11-03T11:21:16Z",
+   "prerelease": true,
+   "html_url": "https://github.com/Kai-Jungsthoefel/SOMA/releases/tag/v0.11.0",
+   "assets": [
+    {
+     "name": "SOMA-0.11.0-linux-x64.tar.gz",
+     "size": 779872699,
+     "browser_download_url": "https://github.com/Kai-Jungsthoefel/SOMA/releases/download/v0.11.0/SOMA-0.11.0-linux-x64.tar.gz"
+    },
+    {
+     "name": "SOMA-0.11.0-linux-x86_64.AppImage",
+     "size": 779582103,
+     "browser_download_url": "https://github.com/Kai-Jungsthoefel/SOMA/releases/download/v0.11.0/SOMA-0.11.0-linux-x86_64.AppImage"
+    },
+    {
+     "name": "SOMA-0.11.0-mac-arm64.dmg",
+     "size": 616870749,
+     "browser_download_url": "https://github.com/Kai-Jungsthoefel/SOMA/releases/download/v0.11.0/SOMA-0.11.0-mac-arm64.dmg"
+    },
+    {
+     "name": "SOMA-0.11.0-win-x64.exe",
+     "size": 641515023,
+     "browser_download_url": "https://github.com/Kai-Jungsthoefel/SOMA/releases/download/v0.11.0/SOMA-0.11.0-win-x64.exe"
+    },
+    {
+     "name": "SOMA-0.11.0-win-x64.zip",
+     "size": 641038261,
+     "browser_download_url": "https://github.com/Kai-Jungsthoefel/SOMA/releases/download/v0.11.0/SOMA-0.11.0-win-x64.zip"
+    }
+   ]
+  },
   {
    "tag_name": "v0.10.2",
    "published_at": "2026-10-24T10:35:07Z",
