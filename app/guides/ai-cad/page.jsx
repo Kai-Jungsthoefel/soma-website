@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import GuidePage, { guideMetadata } from '../../../components/GuidePage';
+import YouTubeVideo from '../../../components/YouTubeVideo';
 
 // Ratgeber „How to use AI for CAD“: für Leute, die SOMA noch nicht kennen und allgemein suchen. Erst ein fairer
 // Überblick über die Wege, dann der Weg mit SOMA Schritt für Schritt. Keine Behauptungen über Produkte anderer, nur über
@@ -10,7 +11,7 @@ const GUIDE = {
   heading: 'How to use AI for CAD',
   description: 'What AI can and cannot do in CAD today, the four ways to use it, and step by step how to design a part with a coding agent such as Claude Code or Codex: prompts, checking, export to STL and STEP.',
   published: '2026-11-03',
-  modified: '2026-11-03',
+  modified: '2026-11-04',
   image: { src: '/images/features/markup.png', width: 1600, height: 921, alt: 'Marking up a 3D model for the AI agent in SOMA' },
   about: ['Computer-aided design', 'Artificial intelligence', 'CadQuery', '3D printing'],
 };
@@ -118,8 +119,10 @@ export default function AiCadGuide() {
         <h2 id="step-by-step">Step by step: a part with a coding agent</h2>
         <p>
           This is the workflow with <Link href="/">SOMA</Link>, a free, open-source CAD workspace built for this. The same
-          ideas apply to any setup where an agent writes CAD code and can run it.
+          ideas apply to any setup where an agent writes CAD code and can run it. The video shows the whole way in nine
+          minutes, with Claude Code.
         </p>
+        <YouTubeVideo/>
         <ol>
           <li><strong>Install the app and an agent.</strong> <Link href="/download/">Download SOMA</Link> for Windows, macOS or Linux. It includes Python, CadQuery and everything needed to build models. You also need a CLI coding agent such as Claude Code, Codex CLI, OpenCode or Gemini CLI, installed and signed in.</li>
           <li><strong>Start a new model and the agent.</strong> Click New model, then the + above the terminal to start your agent in the model&apos;s folder. The agent finds the project rules and knows how to build and check the model.</li>

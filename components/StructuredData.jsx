@@ -5,6 +5,7 @@ import github from '../data/github.json';
 import legal from '../data/legal.json';
 import { FAQ } from '../lib/faq';
 import { DESCRIPTION, SITE_NAME, SITE_URL } from '../lib/site';
+import { TUTORIAL } from './YouTubeVideo';
 
 const REPO = `https://github.com/${github.repo}`;
 
@@ -47,6 +48,17 @@ export default function StructuredData() {
       contentUrl: `${SITE_URL}/media/soma-trailer.mp4`,
       uploadDate: '2026-10-16',
       duration: 'PT51S',
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: TUTORIAL.title,
+      description: 'Full SOMA tutorial: install, set up Claude Code, design a bookshelf from a prompt, change it with a sketch, parameters and an animation, FEM analysis, technical drawing, skills, and a 3D printed phone stand exported as 3MF.',
+      thumbnailUrl: `${SITE_URL}${TUTORIAL.cover}`,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${TUTORIAL.id}`,
+      url: TUTORIAL.url,
+      uploadDate: TUTORIAL.uploadDate,
+      duration: TUTORIAL.duration,
     },
     {
       '@context': 'https://schema.org',

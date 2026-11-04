@@ -67,6 +67,15 @@ em { font-style: normal; color: var(--tx); }
 .hero-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 20px 0 0; margin: 20px 0 0; border-top: 1px solid var(--line); color: var(--tx2); font-size: 14px; }
 .hero-facts li::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); margin-right: 8px; vertical-align: 2px; }
 .hero-video { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line2); border-radius: var(--radius); background: #000; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); }
+/* Video-Tutorial: eigenes Vorschaubild, YouTube erst auf Klick (components/YouTubeVideo.jsx) */
+.tutorial { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 40px; align-items: center; }
+.yt-cover { position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line2); border-radius: var(--radius); overflow: hidden; background: #000; cursor: pointer; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); }
+.yt .yt-cover img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; margin: 0; border: 0; border-radius: 0; }
+.yt-play { position: absolute; left: 68%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--acc); color: var(--bg); box-shadow: 0 8px 30px rgba(0, 0, 0, .5); transition: transform .15s; }
+.yt-cover:hover .yt-play, .yt-cover:focus-visible .yt-play { transform: scale(1.08); }
+.yt-note { margin: 10px 0 0; font-size: 13px; color: var(--tx3); }
+.yt-frame { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line2); border-radius: var(--radius); background: #000; }
+@media (max-width: 860px) { .tutorial { grid-template-columns: 1fr; gap: 20px; } }
 
 /* Abschnitte */
 .section { padding: 64px 0; border-bottom: 1px solid var(--line); }
@@ -328,6 +337,7 @@ em { font-style: normal; color: var(--tx); }
 .guide-table thead th { color: var(--tx3); font-weight: 500; font-size: 13px; }
 .guide-table tbody th { color: var(--tx); font-weight: 500; width: 20%; }
 .guide figure { margin: 24px 0 0; }
+.guide .yt { margin: 20px 0 8px; }
 .guide figcaption { margin-top: 8px; color: var(--tx3); font-size: 14px; }
 .guide section h3 { margin-top: 24px; }
 .guide-next { margin-top: 48px; padding: 24px; border: 1px solid var(--line2); border-radius: var(--radius); background: var(--s1); }

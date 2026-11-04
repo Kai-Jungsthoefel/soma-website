@@ -1,6 +1,7 @@
 import { Footer, Header } from '../../components/SiteChrome';
 import { GUIDE, GUIDE_HTML, SECTIONS } from '../../lib/guide';
 import github from '../../data/github.json';
+import YouTubeVideo from '../../components/YouTubeVideo';
 
 // Nicht aus lib/github.js: das ist ein Client-Modul, seine Konstanten kommen hier nicht als Wert an
 const REPO_URL = `https://github.com/${github.repo}`;
@@ -28,6 +29,8 @@ export default function Docs() {
       <article className="docs-body">
         <h1>User guide</h1>
         <p className="docs-meta">For SOMA {GUIDE.tag}. The same guide is in the app under Help (F1), and your agent knows it too: just ask it how something works.</p>
+        <p>Prefer to watch? The video tutorial shows SOMA in nine minutes, from installing to an exported part.</p>
+        <YouTubeVideo/>
         <div dangerouslySetInnerHTML={{ __html: GUIDE_HTML }}/>
         <p className="docs-meta">Something missing or wrong? <a href={`${REPO_URL}/issues/new/choose`}>Report it on GitHub</a>.</p>
       </article>

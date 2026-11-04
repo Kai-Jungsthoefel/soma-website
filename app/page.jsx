@@ -7,6 +7,7 @@ import ExplodeDemo from '../components/ExplodeDemo';
 import WhatIsSoma from '../components/WhatIsSoma';
 import StructuredData from '../components/StructuredData';
 import Faq from '../components/Faq';
+import YouTubeVideo from '../components/YouTubeVideo';
 
 const steps = [
   { title: 'Start a new model', body: 'Click New model on the start page. It begins with a small example: a box with a lid.' },
@@ -64,6 +65,18 @@ export default function Home() {
             </ol>
           </div>
           <ExplodeDemo/>
+        </div>
+      </section>
+
+      <section className="section" id="tutorial" aria-labelledby="tutorial-title">
+        <div className="wrap tutorial">
+          <div>
+            <div className="section-head">
+              <h2 id="tutorial-title">Video tutorial</h2>
+            </div>
+            <p className="lead">Nine minutes from installing SOMA to an exported part. Claude Code designs a bookshelf from one prompt, then it changes with a sketch, parameters and an animation. A FEM analysis checks how much a shelf holds, the agent makes a workshop drawing, and a phone stand comes out ready to print.</p>
+          </div>
+          <YouTubeVideo/>
         </div>
       </section>
 
