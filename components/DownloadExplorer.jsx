@@ -3,6 +3,7 @@
 // Alle Releases mit ihren Dateien. Vorausgewählt ist immer das neueste Release und die erkannte Plattform.
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, Download } from 'lucide-react';
+import AiNeeded from './AiNeeded';
 import { PLATFORMS, RELEASES_URL, dateOf, detectPlatform, filesFor, kindOf, platformOf, sizeOf, useGitHub } from '../lib/github';
 
 export default function DownloadExplorer() {
@@ -39,6 +40,7 @@ export default function DownloadExplorer() {
         <Download size={18}/> {kindOf(f.name)} <span className="button-note">{sizeOf(f.size)}</span>
       </a>) : <p>No {info.name} package in this release.</p>}
       <p className="download-meta">{info.requirements} · <a href={release.html_url}>Release notes <ArrowUpRight size={13}/></a></p>
+      <AiNeeded/>
     </div>
 
     <h2 className="files-title">All files in {release.tag_name}</h2>

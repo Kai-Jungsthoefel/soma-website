@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { Download, Github, Menu, Star, X } from 'lucide-react';
 import { REPO_URL, formatStars, useGitHub } from '../lib/github';
 
+// Short and for people new to CAD: guides solve a task (with video where there is one), Docs explains the app
 const navigation = [
-  ['What is SOMA?', '/#what'],
-  ['Models', '/models/'],
   ['Features', '/#features'],
-  ['How it works', '/#how'],
-  ['Guide', '/docs/'],
+  ['Guides', '/guides/'],
+  ['Community', '/community/'],
+  ['Docs', '/docs/'],
   ['Download', '/download/'],
 ];
 
@@ -52,15 +52,16 @@ export function Footer() {
     <div className="wrap footer-inner">
       <div>
         <Logo/>
-        <p>Solid Object Modeling with Agents. Free and open source under GPL-3.0.</p>
+        <p>Design real 3D parts by describing them. Free and open source under GPL-3.0.</p>
         <p className="credit">Thanks to Maiths for helping create this site.</p>
         {/* Bild liegt auf der Seite selbst: keine Anfrage an Dritte (siehe Datenschutzerklärung) */}
         <a className="badge" href="https://www.opensourcealternatives.to"><img src="/images/badge-osa.svg" alt="As seen on Open Source Alternatives" width="270" height="20"/></a>
       </div>
       <div className="footer-links">
-        <div><h3>Product</h3><Link href="/models/" prefetch={false}>Models</Link><Link href="/#features">Features</Link><Link href="/download/" prefetch={false}>Download</Link></div>
+        <div><h3>Product</h3><Link href="/#features">Features</Link><Link href="/models/" prefetch={false}>Example models</Link><Link href="/download/" prefetch={false}>Download</Link></div>
+        <div><h3>Learn</h3><Link href="/guides/" prefetch={false}>Guides</Link><Link href="/docs/" prefetch={false}>User guide</Link><Link href="/#faq">Questions</Link></div>
+        <div><h3>Community</h3><Link href="/community/" prefetch={false}>Projects</Link><a href={`${REPO_URL}/discussions`}>Discussions</a><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
         <div><h3>Project</h3><a href={REPO_URL}>Source code</a><a href={`${REPO_URL}/releases`}>Releases</a><a href={`${REPO_URL}/blob/main/CHANGELOG.md`}>Changelog</a></div>
-        <div><h3>Help</h3><Link href="/docs/" prefetch={false}>User guide</Link><Link href="/guides/" prefetch={false}>Guides</Link><Link href="/#faq">Questions</Link><a href={`${REPO_URL}/issues/new/choose`}>Report an issue</a></div>
         <div><h3>Legal</h3><Link href="/imprint/" prefetch={false}>Imprint</Link><Link href="/privacy/" prefetch={false}>Privacy</Link></div>
       </div>
     </div>

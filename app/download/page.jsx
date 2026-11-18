@@ -3,7 +3,7 @@ import DownloadExplorer from '../../components/DownloadExplorer';
 
 export const metadata = {
   title: 'Download',
-  description: 'Download SOMA, the open-source AI CAD app, for Windows, macOS and Linux. Installer, portable ZIP, AppImage and dmg for every release.',
+  description: 'Download SOMA, the free open-source AI CAD app with SOMA AI built in, for Windows, macOS and Linux. Installer, portable ZIP, AppImage and dmg for every release.',
   alternates: { canonical: '/download/' },
   // openGraph ersetzt den Eintrag aus dem Layout ganz, darum mit Bild
   openGraph: {
@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 const notes = [
-  { title: 'Bring your own agent', body: 'Install and sign in to a CLI coding agent such as Claude Code, Codex CLI, OpenCode or Gemini CLI. SOMA does not bring one.' },
+  { title: 'Sign in to SOMA AI', body: 'On first use, sign in with your ChatGPT Plus or Pro plan, or paste an API key from Anthropic, OpenAI, Google Gemini, OpenRouter or OpenCode (Zen or Go). Already use Claude Code, Codex or another CLI agent? It works in SOMA\'s terminal too.' },
   { title: 'First start', body: 'The packages are not signed yet. On Windows, SmartScreen warns: choose “More info” and “Run anyway”. On macOS, right-click the app and choose Open.' },
   { title: 'Portable ZIP on Windows', body: 'Tick “Unblock” in the file properties before extracting, and extract to a local folder, not a network drive.' },
   { title: 'Updates', body: 'There is no automatic update yet. SOMA shows on its start page when a new version is available.' },

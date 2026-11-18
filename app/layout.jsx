@@ -15,7 +15,7 @@ export const metadata = {
     siteName: SITE_NAME,
     locale: 'en_US',
     title: 'SOMA: Solid Object Modeling with Agents',
-    description: 'Open-source AI CAD: your coding agent writes the model, SOMA builds and shows it.',
+    description: 'Free, open-source AI CAD: describe a part, SOMA AI designs it, you see it in 3D and make it.',
     images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA, Solid Object Modeling with Agents' }],
   },
   twitter: { card: 'summary_large_image', images: ['/images/trailer-cover.jpg'] },
