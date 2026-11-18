@@ -1,7 +1,8 @@
 {
  "repo": "Kai-Jungsthoefel/SOMA",
- "stars": 450,
- "fetched_at": "2026-11-04T08:37:48.584Z",
+ "stars": 492,
+ "downloads": 1973,
+ "fetched_at": "2026-11-18T16:39:02.833Z",
  "releases": [
   {
    "tag_name": "v0.11.0",

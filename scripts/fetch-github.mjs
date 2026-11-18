@@ -20,6 +20,10 @@ try {
   const data = {
     repo: REPO,
     stars: repo.stargazers_count,
+    // Downloads of the packages of all releases, for "2,000+ downloads" on the home page. Without the files that
+    // installers and updaters fetch on their own (.blockmap, .yml), so it counts people, not update checks
+    downloads: releases.filter(r => !r.draft).flatMap(r => r.assets)
+      .filter(a => !/\.(blockmap|ya?ml)$/i.test(a.name)).reduce((sum, a) => sum + (a.download_count ?? 0), 0),
     fetched_at: new Date().toISOString(),
     releases: releases.filter(r => !r.draft).map(r => ({
       tag_name: r.tag_name,
@@ -30,7 +34,7 @@ try {
     })),
   };
   await writeFile(OUT, JSON.stringify(data, null, 1) + '\n');
-  console.log(`github.json: ${data.releases[0]?.tag_name ?? 'no release'}, ${data.stars} stars`);
+  console.log(`github.json: ${data.releases[0]?.tag_name ?? 'no release'}, ${data.stars} stars, ${data.downloads} downloads`);
 } catch (error) {
   let old = null;
   try { old = JSON.parse(await readFile(OUT, 'utf8')); } catch {}
