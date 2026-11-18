@@ -1,0 +1,239 @@
+1
+00:00:00,350 --> 00:00:02,613
+A robot arm with every motor in the base.
+
+2
+00:00:02,613 --> 00:00:07,360
+The joints are driven by rods and linkages, and the gripper stays level in every pose.
+
+3
+00:00:08,060 --> 00:00:10,789
+Laying out those linkages by hand is painful:
+
+4
+00:00:10,789 --> 00:00:14,428
+link lengths, dead points, parts that crash into each other.
+
+5
+00:00:15,128 --> 00:00:19,921
+Today I'll show you how to design one by simply describing it, and then watch it move.
+
+6
+00:00:19,921 --> 00:00:21,258
+No CAD knowledge needed.
+
+7
+00:00:22,761 --> 00:00:23,507
+We use SOMA.
+
+8
+00:00:23,507 --> 00:00:27,611
+It's free and open source, and you can download it at somacad.app.
+
+9
+00:00:29,061 --> 00:00:34,781
+We start a new model, and on the right we open Claude Code, our AI agent, right inside the model folder.
+
+10
+00:00:36,546 --> 00:00:39,197
+Then I describe the arm in plain words:
+
+11
+00:00:39,197 --> 00:00:51,636
+a desktop arm like a Dobot or uArm, all motors in the base, NEMA 17 steppers, push rods to the elbow, a parallelogram that keeps the gripper level, and about 250 millimeters of reach.
+
+12
+00:00:52,821 --> 00:00:54,719
+Before it starts, it asks.
+
+13
+00:00:54,719 --> 00:00:55,813
+A torque check:
+
+14
+00:00:55,813 --> 00:01:03,331
+200 grams at 250 millimeters needs about 0.9 newton meters at the shoulder, twice what a NEMA 17 gives.
+
+15
+00:01:03,331 --> 00:01:06,980
+So it suggests a GT2 belt with a 1 to 5 reduction.
+
+16
+00:01:06,980 --> 00:01:08,951
+I take its recommendations.
+
+17
+00:01:10,121 --> 00:01:12,667
+Then it works on its own, for almost an hour:
+
+18
+00:01:12,667 --> 00:01:20,928
+it lays out the push rod and the two parallelograms, picks bearings and screws for every pivot, and checks the arm at eleven poses for collisions.
+
+19
+00:01:20,928 --> 00:01:24,549
+Every time the code changes, SOMA builds the model and shows it.
+
+20
+00:01:25,499 --> 00:01:26,437
+Here's the arm:
+
+21
+00:01:26,437 --> 00:01:26,999
+97 parts.
+
+22
+00:01:26,999 --> 00:01:31,187
+The structure tree groups them into base, hardware, arm and turret.
+
+23
+00:01:31,187 --> 00:01:31,874
+In the arm:
+
+24
+00:01:31,874 --> 00:01:37,562
+upper arm and forearm, the elbow push rod, and two level rods with a triangle at the elbow.
+
+25
+00:01:37,562 --> 00:01:40,000
+That's what keeps the tool mount level.
+
+26
+00:01:40,700 --> 00:01:43,910
+Make the arm and the screws see-through, and you see the drive:
+
+27
+00:01:43,910 --> 00:01:47,070
+the steppers sit low on the turret, and belts turn the joints.
+
+28
+00:01:49,120 --> 00:01:50,756
+But does the linkage actually work?
+
+29
+00:01:50,756 --> 00:01:54,450
+Let's ask for an animation of the full range of motion, with a collision check.
+
+30
+00:01:55,463 --> 00:02:02,713
+It writes the motion as a series of poses, solves the linkage at every step, and lets SOMA check every tenth of a second for parts that touch.
+
+31
+00:02:03,663 --> 00:02:05,957
+The animation is in the Animation tab:
+
+32
+00:02:05,957 --> 00:02:08,433
+pick it, close the panel, and press play.
+
+33
+00:02:09,133 --> 00:02:11,537
+The turret turns 135 degrees each way.
+
+34
+00:02:11,537 --> 00:02:17,422
+Then the shoulder sweeps from minus 15 to 60 degrees, and the elbow from minus 40 to plus 40.
+
+35
+00:02:17,422 --> 00:02:22,863
+The push rod and the level rods follow, and the tool mount stays level the whole time.
+
+36
+00:02:32,430 --> 00:02:35,238
+Finally, it traces the edge of the workspace:
+
+37
+00:02:35,238 --> 00:02:37,360
+every corner of the allowed range.
+
+38
+00:02:39,996 --> 00:02:40,812
+And the report:
+
+39
+00:02:40,812 --> 00:02:43,806
+with a minimum gap of one millimeter, nothing collides.
+
+40
+00:02:43,806 --> 00:02:49,956
+The only contacts are the belts on their pulleys, which is intended, so the angle limits could stay as they were.
+
+41
+00:02:51,796 --> 00:02:53,799
+Now a change, in words again:
+
+42
+00:02:53,799 --> 00:02:58,566
+more reach, 300 millimeters, and a simple gripper with a small servo.
+
+43
+00:03:01,226 --> 00:03:02,397
+Again it asks first:
+
+44
+00:03:02,397 --> 00:03:08,309
+where to measure the 300 millimeters, which servo, what kind of gripper, and how wide it should open.
+
+45
+00:03:08,309 --> 00:03:14,396
+There's no datasheet for the servo, so it asks whether it may use typical dimensions, marked as assumed.
+
+46
+00:03:15,176 --> 00:03:21,148
+Then it stretches the links, builds a gear gripper around an SG90 servo, and runs the collision check again.
+
+47
+00:03:21,148 --> 00:03:25,129
+It even finds two screws that touch the gear teeth, and moves the gears.
+
+48
+00:03:26,976 --> 00:03:27,877
+It also warns me:
+
+49
+00:03:27,877 --> 00:03:32,909
+with some combinations of arm lengths, the jaws could reach below the table at the lowest pose.
+
+50
+00:03:32,909 --> 00:03:35,346
+It notes that, instead of quietly blocking it.
+
+51
+00:03:36,046 --> 00:03:39,489
+Now the arm reaches 300 millimeters, with a gripper at the tip.
+
+52
+00:03:42,576 --> 00:03:45,026
+And the animation still works with the new geometry.
+
+53
+00:03:54,776 --> 00:03:56,561
+The joint angles are parameters too.
+
+54
+00:03:56,561 --> 00:03:58,346
+You find them in the Parameters tab.
+
+55
+00:03:59,046 --> 00:04:01,941
+Shoulder forward, elbow down, turn the base:
+
+56
+00:04:01,941 --> 00:04:06,152
+SOMA rebuilds the arm in that pose, with every rod in its place.
+
+57
+00:04:06,152 --> 00:04:07,336
+No agent, no code.
+
+58
+00:04:08,510 --> 00:04:11,120
+Reset all brings the arm back to its home pose.
+
+59
+00:04:12,170 --> 00:04:16,871
+A complete linkage arm, laid out, checked and animated, just by describing it.
+
+60
+00:04:16,871 --> 00:04:18,860
+Get SOMA for free at somacad.app.

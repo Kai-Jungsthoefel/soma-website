@@ -1,0 +1,259 @@
+1
+00:00:00,550 --> 00:00:02,277
+You found the perfect part online:
+
+2
+00:00:02,277 --> 00:00:04,562
+a phone stand for the wall, free to download.
+
+3
+00:00:04,562 --> 00:00:05,832
+There's just one problem.
+
+4
+00:00:05,832 --> 00:00:07,000
+Your phone doesn't fit.
+
+5
+00:00:07,700 --> 00:00:10,224
+And an STL file can't really be edited.
+
+6
+00:00:10,224 --> 00:00:12,230
+It's just a shell of triangles.
+
+7
+00:00:12,930 --> 00:00:19,207
+Today, an AI agent turns that STL into a real, adjustable model, and then we make it fit.
+
+8
+00:00:19,207 --> 00:00:20,900
+No CAD knowledge needed.
+
+9
+00:00:21,800 --> 00:00:22,569
+We use SOMA.
+
+10
+00:00:22,569 --> 00:00:26,799
+It's free and open source, and you can download it at somacad.app.
+
+11
+00:00:28,149 --> 00:00:29,240
+Here is the part:
+
+12
+00:00:29,240 --> 00:00:33,799
+a wall-mounted phone stand by High Desert Hacker, shared on Printables.
+
+13
+00:00:36,349 --> 00:00:38,786
+The description gives the limit:
+
+14
+00:00:38,786 --> 00:00:43,889
+phones up to 3.25 inches wide and 0.56 inches thick, with the case.
+
+15
+00:00:43,889 --> 00:00:46,479
+That's about 83 by 14 millimeters.
+
+16
+00:00:47,179 --> 00:00:51,638
+My phone, in its rugged case, is 90 millimeters wide and 18 thick.
+
+17
+00:00:51,638 --> 00:00:52,989
+It simply won't fit.
+
+18
+00:00:53,689 --> 00:00:56,612
+The license is Creative Commons Attribution-ShareAlike.
+
+19
+00:00:56,612 --> 00:01:01,819
+So we may change it, as long as we credit the author and share our version under the same license.
+
+20
+00:01:02,519 --> 00:01:04,249
+We download the STL file.
+
+21
+00:01:05,616 --> 00:01:09,739
+In SOMA, we start a new model, click Import, and pick the downloaded file.
+
+22
+00:01:09,739 --> 00:01:13,026
+It goes into the inputs folder, where the agent can use it.
+
+23
+00:01:15,283 --> 00:01:17,893
+Click the STL, and SOMA shows it in the viewer.
+
+24
+00:01:18,593 --> 00:01:22,305
+But switch on the wireframe, and you see what an STL really is:
+
+25
+00:01:22,305 --> 00:01:23,778
+a mesh of flat triangles.
+
+26
+00:01:23,778 --> 00:01:27,843
+There's no width to change and no wall thickness, just corner points.
+
+27
+00:01:29,049 --> 00:01:32,379
+So instead of pushing triangles around, we let the agent rebuild it.
+
+28
+00:01:33,629 --> 00:01:37,679
+On the right, we start Claude Code, our agent, right inside the model folder.
+
+29
+00:01:40,096 --> 00:01:43,022
+Then we simply say what we want, in plain words:
+
+30
+00:01:43,022 --> 00:01:48,386
+rebuild the STL as a parametric model, and keep the original as a see-through reference.
+
+31
+00:01:49,200 --> 00:01:55,741
+The agent reads the mesh with a few lines of Python, measures the plates, ribs and cutouts, and writes them as CadQuery code.
+
+32
+00:01:55,741 --> 00:01:59,090
+Every time the code changes, SOMA builds the model and shows it.
+
+33
+00:01:59,840 --> 00:02:00,977
+Here's the result:
+
+34
+00:02:00,977 --> 00:02:03,250
+a real solid model, built from code.
+
+35
+00:02:03,950 --> 00:02:07,203
+The original STL sits in the same place, see-through.
+
+36
+00:02:07,203 --> 00:02:08,615
+Hide it, show it again:
+
+37
+00:02:08,615 --> 00:02:10,640
+the rebuild matches the download.
+
+38
+00:02:11,890 --> 00:02:14,932
+The agent also turned the important sizes into parameters.
+
+39
+00:02:14,932 --> 00:02:16,820
+You find them in the Parameters tab.
+
+40
+00:02:17,520 --> 00:02:21,181
+Drag a slider, and the model rebuilds within seconds.
+
+41
+00:02:21,181 --> 00:02:24,014
+Here the width, and here the ledge depth:
+
+42
+00:02:24,014 --> 00:02:26,086
+the slot that holds the phone.
+
+43
+00:02:26,086 --> 00:02:27,330
+No agent, no code.
+
+44
+00:02:29,323 --> 00:02:31,693
+Reset all brings back the values from the code.
+
+45
+00:02:32,943 --> 00:02:34,507
+Now let's make it fit my phone.
+
+46
+00:02:34,507 --> 00:02:38,443
+And while we're at it, the screw holes should be countersunk, for wood screws.
+
+47
+00:02:38,443 --> 00:02:39,553
+I just tell the agent.
+
+48
+00:02:40,659 --> 00:02:43,712
+The agent changes the sizes and adds the new features.
+
+49
+00:02:43,712 --> 00:02:46,709
+Then it builds and checks that the phone really fits.
+
+50
+00:02:47,559 --> 00:02:47,830
+Done.
+
+51
+00:02:47,830 --> 00:02:56,009
+The stand is now as wide as my phone, the slot at the bottom is 19 millimeters deep for the thick case, and the screw holes at the top are countersunk.
+
+52
+00:02:56,959 --> 00:02:57,967
+One more idea:
+
+53
+00:02:57,967 --> 00:03:00,848
+a small tray on the side for my earbuds.
+
+54
+00:03:00,848 --> 00:03:04,016
+Instead of describing where, I just draw it.
+
+55
+00:03:04,016 --> 00:03:06,609
+Mark up, a circle, an arrow, a word.
+
+56
+00:03:07,309 --> 00:03:09,519
+Send it to the agent, and add one sentence.
+
+57
+00:03:12,369 --> 00:03:14,419
+And there's the tray, right where I drew it.
+
+58
+00:03:17,569 --> 00:03:21,619
+To compare the two, I ask the agent to put the original next to the new stand.
+
+59
+00:03:24,144 --> 00:03:26,013
+Side by side, the difference is clear:
+
+60
+00:03:26,013 --> 00:03:29,554
+the download on the left, and the stand that fits my phone on the right.
+
+61
+00:03:31,811 --> 00:03:33,011
+Finally, Export.
+
+62
+00:03:33,011 --> 00:03:37,061
+3MF or STL for your slicer, and you're ready to print.
+
+63
+00:03:37,761 --> 00:03:41,811
+If you share your remix, credit the original author and keep the same license.
+
+64
+00:03:42,711 --> 00:03:47,539
+From a download that didn't fit to a part that does, without drawing a single line.
+
+65
+00:03:47,539 --> 00:03:49,459
+Get SOMA for free at somacad.app.

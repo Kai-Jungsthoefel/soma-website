@@ -1,0 +1,171 @@
+{
+  "slug": "ai-furniture-plans",
+  "order": 3,
+  "title": "How to make furniture plans with AI from a sketch",
+  "heading": "How to make furniture plans with AI from a hand sketch",
+  "description": "Turn a photo of your furniture sketch into a 3D model, workshop drawings, a cut list and a shopping list with AI, without CAD skills. Step by step in free SOMA.",
+  "summary": "A hand sketch of a low shelf on casters becomes a wooden panel construction with workshop drawings, a cut list and a shopping list, made by an AI agent in SOMA.",
+  "topic": "furniture",
+  "published": "2026-11-18",
+  "modified": "2026-11-18",
+  "about": [
+    "Furniture design",
+    "Woodworking",
+    "Cut list",
+    "Technical drawing",
+    "Artificial intelligence"
+  ],
+  "video": {
+    "youtubeId": null,
+    "title": "From Hand Sketch to Furniture with AI: No CAD Skills Needed (Free & Open Source)",
+    "duration": "PT3M31S",
+    "uploadDate": null,
+    "cover": "/images/guides/ai-furniture-plans/cover.webp",
+    "chapters": [
+      {
+        "time": "0:00",
+        "label": "What we build today"
+      },
+      {
+        "time": "0:18",
+        "label": "SOMA: free and open source"
+      },
+      {
+        "time": "0:31",
+        "label": "From sketch to 3D"
+      },
+      {
+        "time": "1:39",
+        "label": "Workshop drawings"
+      },
+      {
+        "time": "1:56",
+        "label": "Cut list and shopping list"
+      },
+      {
+        "time": "2:23",
+        "label": "Change the size"
+      },
+      {
+        "time": "2:42",
+        "label": "Add a door with Mark up"
+      },
+      {
+        "time": "3:20",
+        "label": "Where to go next"
+      }
+    ]
+  },
+  "answer": "Take a photo of your sketch, import it into SOMA and ask the AI agent in plain words to turn it into furniture made of wooden boards. The agent builds a 3D model board by board, and on request makes workshop drawings with dimensions and a cut list and shopping list as an Excel file. It works from what your sketch shows and asks when something is unclear, so check the sizes before you cut any wood.",
+  "need": [
+    "SOMA, free for Windows, macOS and Linux.",
+    "A ChatGPT Plus or Pro plan, or an API key from Anthropic, OpenAI, Google Gemini, OpenRouter or OpenCode, to sign in to SOMA AI. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
+    "A photo of your sketch, taken with your phone. Write the main sizes on it, for example width, height and depth in cm.",
+    "A spreadsheet app such as Excel or LibreOffice Calc to open the cut list.",
+    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+  ],
+  "steps": [
+    {
+      "title": "Start a new model and bring in your sketch",
+      "text": [
+        "Click New model on the start page. Open the SOMA AI tab in the agent area on the right; the first time, sign in with your ChatGPT plan or paste an API key.",
+        "Click Import and pick the photo of your sketch. SOMA copies it into the model, where the agent can find it. Click the photo in Files to open it, then click Send to agent."
+      ],
+      "prompt": null,
+      "image": null
+    },
+    {
+      "title": "Describe the furniture in plain words",
+      "text": [
+        "Write what you want, as you would tell a carpenter. No CAD terms needed. Say that you want to build it from wooden boards, and if you may want other sizes later.",
+        "The agent looks at the sketch, plans the boards and builds the model. This takes a few minutes. If something in the sketch is unclear, it asks; in the video it asked about the depth, and the answer was simply its own suggestion.",
+        "In the video the result is a real panel construction with 13 parts: sides, top and bottom, a middle shelf and a divider, a back panel and four casters. Every board is its own part in the structure tree. Click a board in the 3D view to see which one it is."
+      ],
+      "prompt": "This is my sketch of a low shelf on casters for my flat, sizes in cm. Please turn it into real furniture made of wooden boards that I can build in my workshop. I might want it in other sizes later.",
+      "image": {
+        "src": "/images/guides/ai-furniture-plans/shelf-from-sketch.webp",
+        "alt": "The shelf as a 3D model of wooden boards in SOMA, with the left side board clicked and its name shown in a card"
+      }
+    },
+    {
+      "title": "Ask for workshop drawings",
+      "text": [
+        "Ask for drawings in one sentence. The agent lays out the boards with their dimensions on drawing sheets.",
+        "Open Drawings in the sidebar on the left to see all sheets. In the video there are four: the whole shelf, top and bottom, sides and divider, and shelves and back panel, each with a parts list. Print them, export them as PDF, or take them into the workshop on a tablet."
+      ],
+      "prompt": "Make workshop drawings of the shelf with all the dimensions I need to build it.",
+      "image": {
+        "src": "/images/guides/ai-furniture-plans/workshop-drawing.webp",
+        "alt": "Workshop drawing of the shelf in the Drawings tab: front and side view with dimensions, a 3D view and a parts list, and the other sheets on the left"
+      }
+    },
+    {
+      "title": "Get a cut list and a shopping list",
+      "text": [
+        "Ask for an Excel file with every board and a second sheet with everything you need to buy. The file lands in the model's files.",
+        "SOMA does not show spreadsheets itself: right-click the file in Files and choose Open with default app. In the video the cut list has every panel with length, width, thickness, quantity, material and edge banding, and the shopping list has the sheet material, the casters, screws and edge banding.",
+        "To write Excel files the agent may need a small extra package. SOMA AI asks you before it installs anything: click Allow."
+      ],
+      "prompt": "Make me a cut list as an Excel file: every board with its size, thickness, quantity and edge banding. Add a second sheet with a shopping list: sheet material, casters, screws and everything else I need.",
+      "image": {
+        "src": "/images/guides/ai-furniture-plans/cut-list.webp",
+        "alt": "The cut list opened as a spreadsheet: top, bottom, sides, divider, shelf and back panel with sizes in mm, quantity, birch plywood and edge banding"
+      }
+    },
+    {
+      "title": "Change the size without the agent",
+      "text": [
+        "Because you said you might want other sizes, the agent made the main dimensions adjustable. Open Parameters in the sidebar.",
+        "Drag the width, for example from 80 to 120 cm, and the model rebuilds right away. The height and the other values in the list work the same way. The agent decides which values appear there."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/ai-furniture-plans/width-parameter.webp",
+        "alt": "The Parameters panel with the width slider dragged to 1200 mm and the wider shelf in the 3D view"
+      }
+    },
+    {
+      "title": "Draw a change right on the model",
+      "text": [
+        "To add something, show it. Click Mark up above the 3D view and draw on the model: in the video, the outline of a door over the left compartment, a line for the handle, and an arrow with the word door.",
+        "Click Send to agent and add one sentence. The agent builds the door with a handle and two hinges and brings the drawings and the cut list up to date, including the new width. The shopping list then has the hinges too."
+      ],
+      "prompt": "Add a door here, with hinges. Then update the drawings and the cut list.",
+      "image": {
+        "src": "/images/guides/ai-furniture-plans/mark-up-door.webp",
+        "alt": "Mark up on the 3D shelf: an orange outline of a door over the left compartment, a short line for the handle and an arrow from the word door"
+      }
+    }
+  ],
+  "tips": [
+    "Write the important sizes on the sketch and say the unit (cm or mm) in your message. The agent can only use what it can read.",
+    "When the agent asks a question, answer it or let it decide. Its suggestion is usually a sensible default you can change later.",
+    "Say early if you may want other sizes. Then the agent makes them adjustable in Parameters, and you can change them without asking again.",
+    "After every change, ask the agent to update the drawings and the cut list as well, so they match the model.",
+    "Check the important dimensions on the drawings before you cut. Measure with the Measure tool above the 3D view if you are unsure.",
+    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+  ],
+  "faq": [
+    {
+      "q": "Can AI make furniture plans from a sketch?",
+      "a": "Yes. An AI agent can read a photo of a hand sketch with sizes and turn it into a 3D model made of boards, with workshop drawings and dimensions. It works best when the sketch shows the main sizes. It asks when something is unclear, and you should still check the dimensions before you build."
+    },
+    {
+      "q": "Can I get a cut list for my furniture with AI?",
+      "a": "Yes. Once the model is built, you can ask the agent for a cut list as an Excel file: every board with its length, width, thickness, quantity and edge banding. You can also ask for a second sheet with a shopping list of sheet material, hardware and screws."
+    },
+    {
+      "q": "Do I need CAD skills to design furniture this way?",
+      "a": "No. You describe the furniture in plain words, and the agent builds the model. You change sizes with sliders and show changes by drawing on the model. The model is written as code, but you never have to read it."
+    },
+    {
+      "q": "Is SOMA free?",
+      "a": "SOMA is free and open source. The AI agent inside it runs on your own ChatGPT Plus or Pro plan or on an API key from a provider such as Anthropic, OpenAI or Google, which you pay for there."
+    },
+    {
+      "q": "Can I change the size of the furniture later?",
+      "a": "Yes. If you tell the agent that you may want other sizes, it makes the main dimensions adjustable. You then change width, height or depth in the Parameters panel and the model rebuilds at once. Ask the agent to update the drawings and the cut list afterwards."
+    }
+  ],
+  "credits": []
+}

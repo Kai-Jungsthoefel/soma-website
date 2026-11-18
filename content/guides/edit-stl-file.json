@@ -1,0 +1,191 @@
+{
+  "slug": "edit-stl-file",
+  "order": 2,
+  "title": "How to edit an STL file and make it parametric",
+  "heading": "How to edit an STL file with AI and make it parametric",
+  "description": "An STL is only a mesh of triangles. Let an AI agent rebuild a downloaded STL as a parametric model in SOMA, resize it to fit and export it for printing.",
+  "summary": "A downloaded STL that did not fit, rebuilt by an AI agent as a parametric model, resized with sliders and plain words, and exported for the slicer.",
+  "topic": "3d-printing",
+  "published": "2026-11-18",
+  "modified": "2026-11-18",
+  "about": [
+    "STL (file format)",
+    "Parametric design",
+    "3D printing",
+    "Computer-aided design",
+    "Artificial intelligence"
+  ],
+  "video": {
+    "youtubeId": null,
+    "title": "This STL Didn't Fit, So AI Rebuilt It as a Parametric Model (No CAD Skills)",
+    "duration": "PT3M51S",
+    "uploadDate": null,
+    "cover": "/images/guides/edit-stl-file/cover.webp",
+    "chapters": [
+      {
+        "time": "0:00",
+        "label": "Intro"
+      },
+      {
+        "time": "0:27",
+        "label": "Find a part (and why it doesn't fit)"
+      },
+      {
+        "time": "1:04",
+        "label": "Look at the STL in SOMA"
+      },
+      {
+        "time": "1:32",
+        "label": "The agent rebuilds it as a parametric model"
+      },
+      {
+        "time": "2:11",
+        "label": "Parameters: change sizes without code"
+      },
+      {
+        "time": "2:32",
+        "label": "Make it fit my phone"
+      },
+      {
+        "time": "2:56",
+        "label": "Add a tray with Mark up"
+      },
+      {
+        "time": "3:16",
+        "label": "Original and new side by side"
+      },
+      {
+        "time": "3:31",
+        "label": "Export for the slicer, get SOMA"
+      }
+    ]
+  },
+  "answer": "An STL file is only a mesh of flat triangles, so there is no width or wall thickness you could simply change. Instead of pushing triangles around, import the STL into SOMA and ask the AI agent to rebuild it as a parametric model with the original as a see-through reference; then change sizes with sliders or in plain words and export a new STL or 3MF. The rebuild is a new model made by the agent, so compare it with the original and check the measurements that matter before you print.",
+  "need": [
+    "SOMA, free and open source, for Windows, macOS or Linux.",
+    "An agent: SOMA AI, built into SOMA, with a ChatGPT Plus or Pro plan or an API key from Anthropic, OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month. In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way.",
+    "The STL file, and a license that allows changes. The stand in the video is under CC BY-SA 4.0.",
+    "The measurements of what the part must fit, here a phone in a rugged case: 90 mm wide, 170 mm tall and 18 mm thick.",
+    "A 3D printer and its slicer to print the result."
+  ],
+  "steps": [
+    {
+      "title": "Find out why the part does not fit",
+      "text": [
+        "The part in the video is a wall-mounted phone stand from Printables. Its description gives the limit: phones up to 3.25 inches wide and 0.56 inches thick with the case, about 83 by 14 mm. The phone in its rugged case is 90 mm wide and 18 mm thick, so it will not fit.",
+        "Check the license before you change a part. This one is Creative Commons Attribution-ShareAlike: you may change it, as long as you credit the author and share your version under the same license. Then download the STL."
+      ],
+      "prompt": null,
+      "image": null
+    },
+    {
+      "title": "Import the STL and look at it",
+      "text": [
+        "In SOMA, start a new model, click Import at the top and pick the downloaded file. It goes into the inputs folder, where the agent can use it.",
+        "Click the STL in Files, and SOMA shows it in the 3D view. Switch the display to wireframe and you see what an STL really is: a mesh of flat triangles, with no width to change and no wall thickness, just corner points. Back to model returns to your model."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/edit-stl-file/stl-wireframe.webp",
+        "alt": "The downloaded phoneholder.stl shown as a wireframe of triangles, with the banner Viewing inputs/phoneholder.stl, view only, and a Back to model button"
+      }
+    },
+    {
+      "title": "Ask the agent to rebuild it",
+      "text": [
+        "Say what you want in plain words: rebuild the STL as a parametric model, and keep the original as a see-through reference in the same place.",
+        "The agent reads the mesh, measures the plates, ribs and cutouts and writes them as a model. Every time it changes the model, SOMA builds it and shows it. In the video this took about 10 minutes, shown sped up.",
+        "The result is a real solid model. The original STL sits in the same place, see-through: hide it and show it again with the eye in the structure tree to compare."
+      ],
+      "prompt": "The imported phoneholder.stl is a phone stand I downloaded. Rebuild it as a parametric model with the same shape and size, upright as it hangs on the wall. Show the original STL as a see-through reference in the same place.",
+      "image": {
+        "src": "/images/guides/edit-stl-file/rebuilt-parametric-model.webp",
+        "alt": "The rebuilt phone stand as a solid model, with the original STL laid over it see-through in the same place"
+      }
+    },
+    {
+      "title": "Change sizes with Parameters",
+      "text": [
+        "The agent also turns the important sizes into parameters. Open the Parameters tab in the sidebar: for the stand these are the width, height, lean angle, number of openings, bar thickness, ledge depth, hook height and the screw holes.",
+        "Drag a slider, and the model rebuilds within seconds, without the agent. The ledge depth is the slot that holds the phone. Reset all brings back the values from the code."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/edit-stl-file/parameters.webp",
+        "alt": "The Parameters panel of the rebuilt stand, labeled Sizes you can change: width, height, lean angle, openings, bar thickness, ledge depth, hook height, screw hole and hole from side"
+      }
+    },
+    {
+      "title": "Make it fit, in plain words",
+      "text": [
+        "For bigger changes, tell the agent the measurements of what the part must hold, plus anything else you want. It changes the sizes, adds the new features, then builds the model and checks that the phone really fits.",
+        "In the video, the stand is then as wide as the phone, the slot at the bottom is 19 mm deep for the thick case, and the screw holes at the top are countersunk."
+      ],
+      "prompt": "My phone in its rugged case is 90 mm wide, 170 mm tall and 18 mm thick. Make the stand fit it, with a little clearance. And make the two screw holes countersunk for 4 mm wood screws. Keep the original as reference.",
+      "image": null
+    },
+    {
+      "title": "Draw an addition with Mark up",
+      "text": [
+        "Instead of describing where something goes, draw it. Click Mark up above the 3D view, draw a circle, an arrow and a word, then click Send to agent and add one sentence. In the video, the tray for earbuds appears right where it was drawn."
+      ],
+      "prompt": "Add a small tray for my earbuds here, like in my sketch.",
+      "image": {
+        "src": "/images/guides/edit-stl-file/mark-up-tray.webp",
+        "alt": "Mark up on the phone stand: an orange circle next to the side, an arrow and the words tray for earbuds, with the Send to agent button below; Claude Code is open on the right"
+      }
+    },
+    {
+      "title": "Compare it with the original",
+      "text": [
+        "Ask the agent to put the original next to the new stand. Side by side, the difference is clear."
+      ],
+      "prompt": "Move the original reference to the left of the new stand, with a gap, so I can compare them side by side.",
+      "image": {
+        "src": "/images/guides/edit-stl-file/original-and-new.webp",
+        "alt": "The original STL in see-through orange on the left and the new blue stand on the right, wider and with the earbud tray on its side"
+      }
+    },
+    {
+      "title": "Export it for your slicer",
+      "text": [
+        "Click Export at the top and choose 3MF or STL for your slicer, and you are ready to print.",
+        "If you share your remix, credit the original author and keep the same license."
+      ],
+      "prompt": null,
+      "image": null
+    }
+  ],
+  "tips": [
+    "Ask for the original as a see-through reference in the same place. It is the easiest way to check that the rebuild matches the download.",
+    "Give the real measurements of what the part must fit and ask for a little clearance, then print a quick test before a long print.",
+    "Small size changes are quicker with the Parameters tab: no agent, no waiting, and Reset all goes back.",
+    "Every change is saved in the History at the bottom, so you can always look at or restore an earlier version."
+  ],
+  "faq": [
+    {
+      "q": "Can you edit an STL file?",
+      "a": "Only in a limited way. An STL is a mesh of flat triangles, without sizes such as a width or a wall thickness, so you can move triangles but not simply make a part wider. To really change it, rebuild it as a model with real sizes. In SOMA an AI agent does that rebuild for you from the STL."
+    },
+    {
+      "q": "What is the difference between an STL and a parametric model?",
+      "a": "An STL only stores the surface as triangles. A parametric model is built from sizes and rules, such as a width, a slot depth or a number of openings, so changing one value rebuilds the whole part correctly. In SOMA those values show up as sliders in the Parameters tab."
+    },
+    {
+      "q": "Can I convert an STL to STEP?",
+      "a": "Converting the triangles directly gives you a STEP file that is still just a mesh. Once the agent has rebuilt the part as a real solid model in SOMA, Export writes a proper STEP file for other CAD programs, as well as STL and 3MF for printing."
+    },
+    {
+      "q": "Am I allowed to change an STL I downloaded?",
+      "a": "That depends on its license, which you find on the model's page. The stand in the video is under CC BY-SA 4.0: you may change it, but if you share your version you must credit the author, say that you changed it and use the same license."
+    },
+    {
+      "q": "Do I need CAD skills to make an STL fit?",
+      "a": "No. You describe the change in plain words, give the measurements, draw on the model with Mark up or drag a slider. The agent rebuilds the part and SOMA shows the result, which you check against the original."
+    }
+  ],
+  "credits": [
+    "Original model: \"Mobile Phone Stand - Wall or slatwall mount\" by High Desert Hacker, https://www.printables.com/model/1155612-mobile-phone-stand-wall-or-slatwall-mount, licensed under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/).",
+    "The changed model shown in the video is a remix of it; if shared, it is shared under the same license."
+  ]
+}

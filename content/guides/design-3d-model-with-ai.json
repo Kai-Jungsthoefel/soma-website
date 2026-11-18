@@ -1,0 +1,243 @@
+{
+  "slug": "design-3d-model-with-ai",
+  "order": 1,
+  "title": "How to design a 3D model with AI (no CAD skills needed)",
+  "heading": "How to design a 3D model with AI, no CAD skills needed",
+  "description": "Design a real 3D model just by describing it. Step by step with SOMA AI: from one message to a bookshelf you can change, check, draw and export.",
+  "summary": "From installing SOMA to a finished, changeable 3D model, designed by describing it to SOMA AI in plain words.",
+  "topic": "basics",
+  "published": "2026-11-18",
+  "modified": "2026-11-18",
+  "about": [
+    "Computer-aided design",
+    "Artificial intelligence",
+    "3D modeling",
+    "3D printing",
+    "Woodworking"
+  ],
+  "video": {
+    "youtubeId": null,
+    "title": "SOMA AI: Design 3D Parts Just by Describing Them (Free & Open Source CAD Tutorial)",
+    "duration": "PT6M48S",
+    "uploadDate": null,
+    "cover": "/images/guides/design-3d-model-with-ai/cover.webp",
+    "chapters": [
+      {
+        "time": "0:00",
+        "label": "Intro"
+      },
+      {
+        "time": "0:35",
+        "label": "Install"
+      },
+      {
+        "time": "1:07",
+        "label": "A new model and the guided tour"
+      },
+      {
+        "time": "1:59",
+        "label": "Meet SOMA AI"
+      },
+      {
+        "time": "2:35",
+        "label": "Create a model with SOMA AI"
+      },
+      {
+        "time": "3:25",
+        "label": "Mark up a change"
+      },
+      {
+        "time": "3:47",
+        "label": "Parameters"
+      },
+      {
+        "time": "4:07",
+        "label": "Animation"
+      },
+      {
+        "time": "4:29",
+        "label": "Earlier conversations and FEM: how much can a shelf hold?"
+      },
+      {
+        "time": "4:58",
+        "label": "Section and exploded view"
+      },
+      {
+        "time": "5:12",
+        "label": "Technical drawing"
+      },
+      {
+        "time": "5:28",
+        "label": "Skills, a phone stand from a sketch, export"
+      },
+      {
+        "time": "6:16",
+        "label": "Your own agent: Claude Code"
+      },
+      {
+        "time": "6:36",
+        "label": "Where to go next"
+      }
+    ]
+  },
+  "answer": "You can design a 3D model with AI by describing it in plain words: in SOMA, its built-in agent SOMA AI writes the model, builds it and shows it in 3D, and you change it by asking, drawing on it or moving sliders. You do not need CAD skills or code, but you do need a ChatGPT Plus or Pro plan or an API key for the AI. The AI can get details wrong, so check the important measurements before you build or print.",
+  "need": [
+    "SOMA, free and open source, for Windows, macOS or Linux. Everything it needs to build models comes included.",
+    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key, and an API key is billed per use by the provider. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
+    "An idea of what you want, with the main measurements: here a bookshelf 80 cm wide, 180 cm tall and 30 cm deep.",
+    "Optional: a photo of a hand sketch with measurements, and a 3D printer if you want to print a part."
+  ],
+  "steps": [
+    {
+      "title": "Install SOMA and start a new model",
+      "text": [
+        "Download SOMA from somacad.app. The download page picks the right package for your system: an installer or a portable ZIP for Windows, a disk image for macOS and an AppImage for Linux.",
+        "The packages are not signed yet. On Windows, SmartScreen warns once on the first start: click More info, then Run anyway. On macOS, open the app the first time with right-click, Open.",
+        "On the start page, click New model. In the middle is the 3D view, on the right SOMA AI, and on the left the sidebar. If you are new, Start tutorial walks you through the window in twelve steps first."
+      ],
+      "prompt": null,
+      "image": null
+    },
+    {
+      "title": "Sign in to SOMA AI",
+      "text": [
+        "SOMA AI is the first tab on the right. The first time, it asks for a sign-in. Sign in with ChatGPT uses your ChatGPT Plus or Pro plan and opens your browser. Or paste an API key; How do I get a key? opens the page of the provider. The sign-in stays on your computer.",
+        "Before the first message, a short note names the risks: SOMA AI works inside the model's folder and asks before it does anything outside it. Click Got it.",
+        "The model menu under the chat picks the AI model SOMA AI thinks with. The video uses GPT-6.1 Sol."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/design-3d-model-with-ai/sign-in-soma-ai.webp",
+        "alt": "The Set up SOMA AI screen next to the 3D view, with Sign in with ChatGPT highlighted and the API key option below it"
+      }
+    },
+    {
+      "title": "Describe what you want",
+      "text": [
+        "Type what you need in your own words, with the measurements you know, and send it. You can also ask SOMA AI to ask you about anything that is unclear, so it does not have to guess."
+      ],
+      "prompt": "A bookshelf, 80 cm wide, 180 cm tall and 30 cm deep, from 18 mm plywood. Open shelves at the top, two doors at the bottom. Ask me about anything that is unclear before you start.",
+      "image": null
+    },
+    {
+      "title": "Answer its questions",
+      "text": [
+        "Before it starts, SOMA AI asks about the details it cannot guess, all at once. Click an answer or write your own, then click Send answers. Skip lets SOMA AI decide."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/design-3d-model-with-ai/soma-ai-questions.webp",
+        "alt": "SOMA AI has 4 questions: how tall the lower cabinet should be, how many shelf boards above it and what back panel, each with answers to click"
+      }
+    },
+    {
+      "title": "Let it work, then check and save the result",
+      "text": [
+        "SOMA AI now writes the model, builds it and checks the result itself. Every step shows up in plain words. This takes a few minutes; at the end, Worked for says how long it took.",
+        "Read its answer: it says what it made and what is still open. Every board is a part of its own, listed in the structure tree on the left.",
+        "Click Save. SOMA packs the model with its full history into a single .soma file that you can keep and share."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/design-3d-model-with-ai/bookshelf-result.webp",
+        "alt": "The finished bookshelf in the 3D view, next to SOMA AI's steps and its summary: 18 mm plywood panels, two overlay doors, worked for 3 min 27 s"
+      }
+    },
+    {
+      "title": "Show a change with Mark up",
+      "text": [
+        "To change something, you can simply show it. Click Mark up above the 3D view and draw right on the model: outline the spot, add an arrow and a short note.",
+        "Send to agent puts the sketch into the message for SOMA AI. Add one sentence and send it. In the video, the drawer appears right where it was drawn."
+      ],
+      "prompt": "Add a drawer here, like in my sketch.",
+      "image": {
+        "src": "/images/guides/design-3d-model-with-ai/mark-up-change.webp",
+        "alt": "SOMA AI's input with the marked-up picture attached and the sentence: Add a drawer here, like in my sketch"
+      }
+    },
+    {
+      "title": "Adjust sizes with Parameters",
+      "text": [
+        "Values the agent made adjustable show up in the Parameters tab in the sidebar: for the bookshelf the overall width, height and depth, the number of shelf boards and more.",
+        "Drag a slider or type a value, and SOMA rebuilds the model. The AI is not involved, so this uses none of your plan or credit. Reset all brings back the agent's values."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/design-3d-model-with-ai/parameters.webp",
+        "alt": "The Parameters panel of the bookshelf with overall width, height and depth, lower section height, shelf board count and plinth height"
+      }
+    },
+    {
+      "title": "Ask for an animation",
+      "text": [
+        "Animations work the same way: just ask. The animation shows up in the Animation tab with its steps. Press play to run it in the 3D view, or Make video to save it as a video file."
+      ],
+      "prompt": "Make an animation: first both doors swing open, then the drawer slides out.",
+      "image": null
+    },
+    {
+      "title": "Check how much it can hold",
+      "text": [
+        "SOMA AI keeps every conversation of a model; the clock at the top of the chat lists them. For a new question, start a new conversation.",
+        "Ask whether it will hold. SOMA AI sets up a load case and runs a strength analysis (FEM) on your own computer. The result opens in the Analysis tab: the safety factor and the stress, right on the model. Treat it as an estimate and check anything that must carry real weight."
+      ],
+      "prompt": "How much weight can one of the open shelves hold? Check it with a FEM analysis, books spread evenly on the shelf.",
+      "image": null
+    },
+    {
+      "title": "Get a technical drawing",
+      "text": [
+        "Section above the 3D view cuts the model open, Explode takes the assembly apart. For the workshop, ask for a drawing. The Drawings tab shows every sheet next to the model, and Export saves them as PDF or DXF."
+      ],
+      "prompt": "Make a technical drawing of the bookshelf with the main dimensions, for building it in the workshop.",
+      "image": null
+    },
+    {
+      "title": "Turn a sketch into a part for 3D printing",
+      "text": [
+        "Skills are extra knowledge for the agent. In the Skills tab, set 3D printing to Always for the model and enter your material and the build volume of your printer. The video uses PETG.",
+        "Start a new model, add a photo of a hand sketch with measurements with the clip button (Add a picture) and say what it is. SOMA AI reads the sketch and follows the printing rules on its own."
+      ],
+      "prompt": "A phone stand for my desk, like in this sketch. I will print it.",
+      "image": null
+    },
+    {
+      "title": "Export",
+      "text": [
+        "Click Export at the top: 3MF or STL for your slicer, STEP for other CAD programs, and more."
+      ],
+      "prompt": null,
+      "image": null
+    }
+  ],
+  "tips": [
+    "Give the measurements you know and ask SOMA AI to ask about the rest. Answering a few questions up front saves rounds of changes later.",
+    "For the best results the user guide recommends Opus 5.5 (with an API key) or GPT-6 Astra (with ChatGPT), with High effort or more.",
+    "Every change is saved in the History at the bottom. Click a dot to look at an earlier version, Restore brings it back as a new version, nothing is lost.",
+    "If you already use a coding agent such as Claude Code, start it from the + menu above the chat. It works on the same model and history; the video ends with one change made that way.",
+    "Press F1 in SOMA for the user guide, or just ask SOMA AI how something works."
+  ],
+  "faq": [
+    {
+      "q": "Can AI design a 3D model for me?",
+      "a": "Yes. In SOMA you describe the part in plain words or show a sketch, and its built-in agent SOMA AI writes the model, builds it and shows it in 3D. You then change it by asking, drawing on it or moving sliders. Check the important measurements yourself, because the AI can get details wrong."
+    },
+    {
+      "q": "Do I need CAD or programming skills to design a 3D model with AI?",
+      "a": "No. Behind every model in SOMA is code, but you never have to touch it. You talk to SOMA AI in a chat, answer its questions with a click and change sizes in the Parameters tab."
+    },
+    {
+      "q": "Is SOMA free?",
+      "a": "SOMA itself is free and open source. The AI behind SOMA AI runs on your own sign-in: a ChatGPT Plus or Pro plan, or an API key from Anthropic, OpenAI, Google Gemini, OpenRouter or OpenCode, which the provider bills per use."
+    },
+    {
+      "q": "Which AI model works best for 3D design?",
+      "a": "SOMA's user guide recommends Opus 5.5 (Claude, with an API key) or GPT-6 Astra (with ChatGPT), with High effort or more. You pick the model in the model menu under the chat or in Settings, SOMA AI."
+    },
+    {
+      "q": "Can I 3D print the model or open it in other CAD programs?",
+      "a": "Yes. Export writes 3MF or STL for your slicer, STEP for other CAD programs, and DXF or SVG for 2D. Technical drawings export as PDF or DXF."
+    }
+  ],
+  "credits": []
+}

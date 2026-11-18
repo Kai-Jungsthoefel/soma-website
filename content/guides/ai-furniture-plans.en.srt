@@ -1,0 +1,223 @@
+1
+00:00:00,450 --> 00:00:06,980
+Today I'll show you how to design a piece of furniture made to measure for your home, straight from a hand sketch, and without any CAD knowledge.
+
+2
+00:00:07,680 --> 00:00:13,090
+At the end, you'll have a 3D model, workshop drawings with all dimensions, and a cut list for the timber yard.
+
+3
+00:00:13,790 --> 00:00:16,960
+And if you change your mind later, the agent updates everything.
+
+4
+00:00:19,271 --> 00:00:20,527
+We use SOMA for this.
+
+5
+00:00:20,577 --> 00:00:24,681
+It's free and open source, and you can download it at somacad.app.
+
+6
+00:00:25,381 --> 00:00:29,295
+The design work is done by an AI agent, here Claude Code.
+
+7
+00:00:29,345 --> 00:00:31,431
+SOMA shows you what it builds.
+
+8
+00:00:32,581 --> 00:00:33,650
+Click New model.
+
+9
+00:00:35,581 --> 00:00:38,410
+Then start Claude Code with the plus above the terminal.
+
+10
+00:00:39,110 --> 00:00:42,796
+The first time, Claude Code asks if it may work in this folder.
+
+11
+00:00:42,846 --> 00:00:43,320
+Say yes.
+
+12
+00:00:44,714 --> 00:00:47,981
+My sketch is on paper, and a photo from the phone is enough.
+
+13
+00:00:48,031 --> 00:00:50,684
+Click Import, and it goes into the model folder.
+
+14
+00:00:51,384 --> 00:00:52,314
+Click it to open it.
+
+15
+00:00:53,014 --> 00:00:53,680
+Here it is:
+
+16
+00:00:53,730 --> 00:01:00,104
+a low shelf on casters, 80 centimetres wide and 60 high, with a middle shelf and two compartments.
+
+17
+00:01:00,914 --> 00:01:02,244
+Then send it to the agent.
+
+18
+00:01:02,948 --> 00:01:05,642
+Now describe in plain words what you want.
+
+19
+00:01:05,692 --> 00:01:06,998
+No CAD terms needed.
+
+20
+00:01:10,106 --> 00:01:13,425
+If something in the sketch is unclear, the agent asks.
+
+21
+00:01:13,475 --> 00:01:15,596
+Here I simply take its suggestion.
+
+22
+00:01:16,906 --> 00:01:20,288
+The agent looks at the sketch, plans the boards and writes the model.
+
+23
+00:01:20,338 --> 00:01:22,476
+This takes a few minutes, here much faster.
+
+24
+00:01:23,420 --> 00:01:24,413
+And here it is:
+
+25
+00:01:24,463 --> 00:01:26,220
+a real panel construction.
+
+26
+00:01:26,270 --> 00:01:32,109
+Sides, top and bottom, the middle shelf and divider, a back panel, and four casters.
+
+27
+00:01:32,809 --> 00:01:35,681
+Every board is its own part in the structure tree.
+
+28
+00:01:35,731 --> 00:01:39,179
+Click one in the 3D view, and SOMA shows which board it is.
+
+29
+00:01:40,429 --> 00:01:42,288
+For the workshop, I need drawings.
+
+30
+00:01:42,338 --> 00:01:46,719
+I simply ask for them, and the agent lays out every board with its dimensions.
+
+31
+00:01:47,419 --> 00:01:48,989
+They appear in the Drawings tab:
+
+32
+00:01:49,039 --> 00:01:53,949
+the views with all the main dimensions, ready to print, or to take into the workshop on a tablet.
+
+33
+00:01:57,158 --> 00:01:58,313
+Next, the cut list.
+
+34
+00:01:58,363 --> 00:02:04,008
+I ask for an Excel file with every board, its size and edge banding, and a shopping list.
+
+35
+00:02:04,708 --> 00:02:06,721
+The file lands in the model folder.
+
+36
+00:02:06,771 --> 00:02:08,598
+Open it in any spreadsheet app.
+
+37
+00:02:09,348 --> 00:02:15,158
+The cut list has every panel with length, width, thickness and quantity, and which edges get banding.
+
+38
+00:02:15,858 --> 00:02:20,233
+The shopping list has the sheet material, the casters, screws and edge banding.
+
+39
+00:02:20,283 --> 00:02:21,908
+Ready for the hardware store.
+
+40
+00:02:23,715 --> 00:02:25,303
+Now, the shelf should be wider.
+
+41
+00:02:25,353 --> 00:02:27,733
+The agent made the main dimensions adjustable:
+
+42
+00:02:27,783 --> 00:02:29,685
+you find them in the Parameters tab.
+
+43
+00:02:30,449 --> 00:02:35,252
+Drag the width from 80 to 120 centimetres, and the model updates right away.
+
+44
+00:02:35,302 --> 00:02:36,899
+No agent needed for this.
+
+45
+00:02:37,949 --> 00:02:41,359
+The height works the same way, and so does everything else in this list.
+
+46
+00:02:43,615 --> 00:02:44,457
+One more wish:
+
+47
+00:02:44,507 --> 00:02:46,495
+a door for the left compartment.
+
+48
+00:02:46,545 --> 00:02:49,234
+Click Mark up, and draw right on the model:
+
+49
+00:02:49,284 --> 00:02:53,105
+the outline of the door, a handle, and an arrow with a word.
+
+50
+00:02:53,805 --> 00:02:55,855
+Send it to the agent, with one sentence.
+
+51
+00:02:56,555 --> 00:03:03,405
+The agent builds the door with a handle and two hinges, checks that it opens freely, and brings the drawings and the cut list up to date.
+
+52
+00:03:04,556 --> 00:03:07,299
+Here is the door, and the drawings show the new width too.
+
+53
+00:03:16,649 --> 00:03:18,459
+And the shopping list now has the hinges.
+
+54
+00:03:20,916 --> 00:03:21,496
+That's it:
+
+55
+00:03:21,546 --> 00:03:28,116
+from a hand sketch to a 3D model, workshop drawings and a cut list, without drawing a single line in CAD.
+
+56
+00:03:28,166 --> 00:03:30,246
+Get SOMA for free at somacad.app.

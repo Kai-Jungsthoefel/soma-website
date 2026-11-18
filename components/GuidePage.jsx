@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { Footer, Header } from './SiteChrome';
 import legal from '../data/legal.json';
+import AiNeeded from './AiNeeded';
 import { SITE_URL } from '../lib/site';
 
 export function guideMetadata({ path, title, heading, description, published, modified, image }) {
@@ -19,7 +20,7 @@ export function guideMetadata({ path, title, heading, description, published, mo
   };
 }
 
-export default function GuidePage({ path, heading, description, published, modified, image, about, answer, faq, children }) {
+export default function GuidePage({ path, heading, description, published, modified, image, about, answer, faq, children, kicker = 'Guide', extraData = [] }) {
   const data = [
     {
       '@context': 'https://schema.org',
@@ -39,6 +40,7 @@ export default function GuidePage({ path, heading, description, published, modif
       '@type': 'FAQPage',
       mainEntity: faq.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
     },
+    ...extraData,
   ];
   const date = new Date(modified).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
@@ -46,7 +48,7 @@ export default function GuidePage({ path, heading, description, published, modif
     <Header/>
     <main className="wrap page">
       <article className="docs-body guide">
-        <p className="kicker">Guide</p>
+        <p className="kicker">{kicker}</p>
         <h1>{heading}</h1>
         <p className="docs-meta">By {legal.name} · {date}</p>
         <p className="guide-answer">{answer}</p>
@@ -58,11 +60,12 @@ export default function GuidePage({ path, heading, description, published, modif
 
         <div className="guide-next">
           <h2>Try it</h2>
-          <p>SOMA is free and open source. Bring the agent you already use.</p>
+          <p>SOMA is free and open source, and SOMA AI is built in: describe what you need, no CAD or coding skills needed.</p>
+          <AiNeeded compact/>
           <p className="guide-links">
             <Link className="button primary" href="/download/" prefetch={false}>Download SOMA</Link>
-            <Link className="button ghost" href="/models/" prefetch={false}>See example models</Link>
-            <Link className="button ghost" href="/docs/" prefetch={false}>Read the user guide</Link>
+            <Link className="button ghost" href="/guides/" prefetch={false}>More guides</Link>
+            <Link className="button ghost" href="/community/" prefetch={false}>See what people make</Link>
           </p>
         </div>
       </article>

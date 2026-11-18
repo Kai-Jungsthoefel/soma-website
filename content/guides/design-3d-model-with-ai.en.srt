@@ -1,0 +1,451 @@
+1
+00:00:00,450 --> 00:00:05,220
+Describe a part in your own words, and SOMA AI builds it as a real 3D model.
+
+2
+00:00:08,303 --> 00:00:11,393
+No CAD knowledge needed, and you never have to touch the code.
+
+3
+00:00:15,978 --> 00:00:20,586
+SOMA is a free, open-source desktop app for designing 3D parts with AI.
+
+4
+00:00:20,586 --> 00:00:23,312
+Its own agent, SOMA AI, is built right in.
+
+5
+00:00:23,312 --> 00:00:29,868
+You describe what you need, SOMA AI writes the model as code, and SOMA builds it and shows it to you.
+
+6
+00:00:30,568 --> 00:00:36,378
+In this tutorial, we go from installing SOMA to a finished part, and then look at the tools that help you get it right.
+
+7
+00:00:37,078 --> 00:00:38,745
+Get SOMA from somacad.app.
+
+8
+00:00:38,745 --> 00:00:42,462
+The download page picks the right package for your system:
+
+9
+00:00:42,462 --> 00:00:48,488
+an installer or a portable ZIP for Windows, a disk image for macOS, and an AppImage for Linux.
+
+10
+00:00:49,188 --> 00:00:53,158
+Python, CadQuery and everything else SOMA needs comes included.
+
+11
+00:00:55,178 --> 00:00:57,192
+The packages are not signed yet.
+
+12
+00:00:57,192 --> 00:01:00,591
+On Windows, SmartScreen warns once on the first start:
+
+13
+00:01:00,591 --> 00:01:02,668
+click More info, then Run anyway.
+
+14
+00:01:02,668 --> 00:01:06,508
+On macOS, open the app the first time with right-click, Open.
+
+15
+00:01:07,208 --> 00:01:08,417
+This is the start page.
+
+16
+00:01:08,417 --> 00:01:11,098
+Your recent models are listed here, with a preview.
+
+17
+00:01:11,958 --> 00:01:12,677
+New to SOMA?
+
+18
+00:01:12,677 --> 00:01:17,889
+Start tutorial opens an example model and walks you through the window in twelve steps.
+
+19
+00:01:17,889 --> 00:01:18,728
+Let's take it.
+
+20
+00:01:19,428 --> 00:01:22,337
+A loading screen shows each step while the model is set up.
+
+21
+00:01:23,037 --> 00:01:24,666
+The tour begins with the window:
+
+22
+00:01:24,666 --> 00:01:28,687
+the 3D view in the middle, the agent on the right, and the sidebar on the left.
+
+23
+00:01:29,387 --> 00:01:31,920
+Next is SOMA AI, the agent built into SOMA.
+
+24
+00:01:31,920 --> 00:01:36,397
+You tell it what you want in your own words, or show it a photo of a sketch.
+
+25
+00:01:37,097 --> 00:01:40,489
+Already using Claude Code, Codex or another coding agent?
+
+26
+00:01:40,489 --> 00:01:43,227
+The plus menu starts it in a terminal instead.
+
+27
+00:01:43,927 --> 00:01:46,258
+The model itself is code, in model.py.
+
+28
+00:01:46,258 --> 00:01:48,344
+You don't have to read or edit it:
+
+29
+00:01:48,344 --> 00:01:50,920
+telling the agent what you want is enough.
+
+30
+00:01:51,620 --> 00:01:55,597
+The tour goes on with measuring, mark up, parameters, history and export.
+
+31
+00:01:55,597 --> 00:01:57,830
+We skip ahead and see them all in action.
+
+32
+00:01:59,080 --> 00:02:02,468
+SOMA AI is the first tab of the agent area.
+
+33
+00:02:02,468 --> 00:02:05,461
+The first time, it asks for a sign-in:
+
+34
+00:02:05,461 --> 00:02:11,370
+your ChatGPT plan, or an API key from Anthropic, OpenAI, Google and others.
+
+35
+00:02:12,314 --> 00:02:15,539
+Before the first message, a short note names the risks.
+
+36
+00:02:15,539 --> 00:02:20,524
+SOMA AI works inside the model's folder, and asks before it does anything outside it.
+
+37
+00:02:21,224 --> 00:02:24,689
+The model menu picks the AI model it thinks with.
+
+38
+00:02:24,689 --> 00:02:26,740
+The search finds one quickly.
+
+39
+00:02:26,740 --> 00:02:28,154
+We take GPT-6.1 Sol.
+
+40
+00:02:28,904 --> 00:02:34,314
+Settings, SOMA AI shows your sign-ins, the model, and what a conversation has used so far.
+
+41
+00:02:35,564 --> 00:02:37,542
+Now just describe what you need.
+
+42
+00:02:37,542 --> 00:02:38,964
+We ask for a bookshelf:
+
+43
+00:02:38,964 --> 00:02:46,877
+80 centimeters wide, 180 tall and 30 deep, from 18 millimeter plywood, with open shelves at the top and two doors at the bottom.
+
+44
+00:02:49,464 --> 00:02:54,161
+Before it starts, SOMA AI asks about the details it cannot guess, all at once.
+
+45
+00:02:54,161 --> 00:02:57,594
+Click an answer or write your own, then send the answers.
+
+46
+00:02:58,344 --> 00:02:59,935
+Then it gets to work.
+
+47
+00:02:59,935 --> 00:03:02,587
+Every step shows up in plain words:
+
+48
+00:03:02,587 --> 00:03:07,210
+it writes the model, builds it, and checks the result itself.
+
+49
+00:03:07,210 --> 00:03:10,544
+This takes a few minutes, so we speed it up.
+
+50
+00:03:11,294 --> 00:03:12,758
+And here is the bookshelf.
+
+51
+00:03:12,758 --> 00:03:16,304
+Every board is a part of its own, listed in the structure tree.
+
+52
+00:03:17,060 --> 00:03:17,869
+Now we save it.
+
+53
+00:03:17,869 --> 00:03:24,070
+SOMA packs the model folder with its full history into a single .soma file, like a CAD file you can keep and share.
+
+54
+00:03:25,320 --> 00:03:28,174
+To change something, you can simply show it.
+
+55
+00:03:28,174 --> 00:03:30,768
+Open Mark up and draw right on the view:
+
+56
+00:03:30,768 --> 00:03:33,816
+circle the spot, add an arrow and a short note.
+
+57
+00:03:34,516 --> 00:03:38,262
+Send to agent puts the sketch into the message for SOMA AI.
+
+58
+00:03:38,262 --> 00:03:40,166
+Add one sentence, and send it.
+
+59
+00:03:44,153 --> 00:03:46,283
+And there is the drawer, right where we drew it.
+
+60
+00:03:47,220 --> 00:03:50,744
+Values the agent made adjustable show up in the Parameters tab:
+
+61
+00:03:50,744 --> 00:03:54,828
+the outer size, the number of compartments, the board thickness and more.
+
+62
+00:03:55,528 --> 00:03:59,487
+Drag a slider or type a value, and SOMA rebuilds the model.
+
+63
+00:03:59,487 --> 00:04:03,178
+The agent is not involved, and the code stays as it is.
+
+64
+00:04:03,878 --> 00:04:06,168
+Reset all brings back the agent's values.
+
+65
+00:04:06,918 --> 00:04:08,917
+Animations work the same way:
+
+66
+00:04:08,917 --> 00:04:09,538
+just ask.
+
+67
+00:04:09,538 --> 00:04:14,088
+Here, the doors should swing open, and then the drawer slides out.
+
+68
+00:04:16,738 --> 00:04:18,879
+The agent writes the animation in Python.
+
+69
+00:04:18,879 --> 00:04:21,908
+It shows up in the Animation tab, together with its steps.
+
+70
+00:04:22,608 --> 00:04:24,953
+Press play, and it runs right in the viewer.
+
+71
+00:04:24,953 --> 00:04:26,978
+Make video renders it to a video file.
+
+72
+00:04:28,771 --> 00:04:31,175
+SOMA AI keeps every conversation of a model.
+
+73
+00:04:31,175 --> 00:04:34,891
+The clock at the top lists them, so you can pick one up again later.
+
+74
+00:04:37,538 --> 00:04:38,404
+Will it hold?
+
+75
+00:04:38,404 --> 00:04:39,003
+Just ask:
+
+76
+00:04:39,003 --> 00:04:41,268
+how much weight can a shelf carry?
+
+77
+00:04:42,238 --> 00:04:47,024
+SOMA AI sets up a load case and runs a strength analysis with the finite element method.
+
+78
+00:04:47,024 --> 00:04:50,288
+CalculiX comes with SOMA, so this runs on your own computer.
+
+79
+00:04:51,038 --> 00:04:53,031
+The result opens in the Analysis tab:
+
+80
+00:04:53,031 --> 00:04:55,886
+the safety factor and the stress, right on the model.
+
+81
+00:04:57,338 --> 00:04:59,788
+A section cuts the model open, to look inside.
+
+82
+00:05:03,771 --> 00:05:06,276
+The exploded view takes the assembly apart.
+
+83
+00:05:06,276 --> 00:05:09,421
+SOMA works out in which direction each part comes off.
+
+84
+00:05:11,138 --> 00:05:14,228
+For the workshop, ask SOMA AI for a technical drawing.
+
+85
+00:05:16,605 --> 00:05:20,046
+The Drawings tab shows every sheet next to the model.
+
+86
+00:05:20,046 --> 00:05:23,617
+Drag the column wider to read the views and dimensions.
+
+87
+00:05:23,617 --> 00:05:25,695
+Export saves them as PDF or DXF.
+
+88
+00:05:27,005 --> 00:05:29,281
+Skills are the agent's extra knowledge.
+
+89
+00:05:29,281 --> 00:05:33,775
+For a second model, a phone stand for the 3D printer, we open the Skills tab.
+
+90
+00:05:34,475 --> 00:05:36,464
+Each skill has three modes.
+
+91
+00:05:36,464 --> 00:05:36,758
+Off:
+
+92
+00:05:36,758 --> 00:05:38,673
+the agent does not see it.
+
+93
+00:05:38,673 --> 00:05:39,410
+On demand:
+
+94
+00:05:39,410 --> 00:05:42,577
+the agent reads it when the topic comes up.
+
+95
+00:05:42,577 --> 00:05:43,093
+Always:
+
+96
+00:05:43,093 --> 00:05:45,965
+the agent follows it with every change.
+
+97
+00:05:46,665 --> 00:05:51,035
+We set 3D printing to Always for this model, and enter our material and printer.
+
+98
+00:05:52,372 --> 00:05:54,230
+This time we start from a picture:
+
+99
+00:05:54,230 --> 00:05:56,033
+a quick sketch with measurements.
+
+100
+00:05:56,033 --> 00:05:57,782
+The clip adds it to the message.
+
+101
+00:05:59,172 --> 00:06:02,662
+SOMA AI reads the sketch and follows the printing rules on its own.
+
+102
+00:06:03,612 --> 00:06:06,622
+A stand that is easy to print, in the material we chose.
+
+103
+00:06:07,779 --> 00:06:09,069
+Finally, export:
+
+104
+00:06:09,069 --> 00:06:14,309
+3MF or STL for the slicer, STEP for other CAD programs, and more.
+
+105
+00:06:15,559 --> 00:06:19,697
+And if you already use a coding agent, start it from the plus menu.
+
+106
+00:06:19,697 --> 00:06:23,588
+Here, Claude Code runs in a terminal, in the same model folder.
+
+107
+00:06:24,288 --> 00:06:25,358
+One small change:
+
+108
+00:06:25,358 --> 00:06:27,058
+paint the doors dark green.
+
+109
+00:06:30,526 --> 00:06:32,068
+Same model, same history.
+
+110
+00:06:32,068 --> 00:06:33,856
+Use whichever agent you like.
+
+111
+00:06:35,693 --> 00:06:36,465
+That's SOMA.
+
+112
+00:06:36,465 --> 00:06:42,766
+Download it for free from somacad.app, sign in to SOMA AI, and start with the part you need today.
+
+113
+00:06:42,766 --> 00:06:46,303
+Press F1 in the app for the guide, or just ask SOMA AI.

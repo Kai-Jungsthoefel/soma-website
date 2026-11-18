@@ -1,0 +1,199 @@
+{
+  "slug": "case-for-electronics",
+  "order": 5,
+  "title": "How to design a case for your electronics with AI",
+  "heading": "How to design a case for your electronics with AI, around the real board",
+  "description": "Design a 3D printable case around your real circuit board and speaker with AI: import the board's STEP file, describe the case, check the fit, export 3MF.",
+  "summary": "A smart speaker case designed by AI around the real board's STEP file and a speaker datasheet, checked with a section view and exported for printing.",
+  "topic": "electronics",
+  "published": "2026-11-18",
+  "modified": "2026-11-18",
+  "about": [
+    "Electronics enclosure",
+    "Artificial intelligence",
+    "Computer-aided design",
+    "3D printing",
+    "STEP file"
+  ],
+  "video": {
+    "youtubeId": null,
+    "title": "AI Designed a Case for My DIY Smart Speaker (No CAD Skills)",
+    "duration": "PT3M58S",
+    "uploadDate": null,
+    "cover": "/images/guides/case-for-electronics/cover.webp",
+    "chapters": [
+      {
+        "time": "0:00",
+        "label": "Intro"
+      },
+      {
+        "time": "0:27",
+        "label": "The parts: a voice assistant board and a speaker"
+      },
+      {
+        "time": "0:52",
+        "label": "Import the board's STEP file and the speaker datasheet"
+      },
+      {
+        "time": "1:28",
+        "label": "The agent places the board and builds the speaker"
+      },
+      {
+        "time": "1:57",
+        "label": "The agent designs the case"
+      },
+      {
+        "time": "2:35",
+        "label": "Check the fit: section and explode view"
+      },
+      {
+        "time": "3:05",
+        "label": "Add a keyhole with Mark up"
+      },
+      {
+        "time": "3:22",
+        "label": "Change sizes with sliders"
+      },
+      {
+        "time": "3:38",
+        "label": "Export for the slicer"
+      },
+      {
+        "time": "3:49",
+        "label": "Get SOMA"
+      }
+    ]
+  },
+  "answer": "To design a case for your electronics with AI, give the AI the real parts: the 3D file (STEP file) of your circuit board from the manufacturer, or a datasheet with dimensions for parts that have none. In SOMA, the agent places these parts as references and designs the case around them, with openings, screw posts and parameters you can change, then you check the fit in a section view and export 3MF for printing. Measure the important openings and print a test piece, because the AI can still get a detail wrong.",
+  "need": [
+    "SOMA, free and open source, for Windows, macOS or Linux.",
+    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
+    "A STEP file of your circuit board. Many manufacturers offer one on the product page; the video uses the reSpeaker XVF3800 from Seeed Studio's wiki.",
+    "For parts without a 3D file: the datasheet with a dimensioned drawing, as a PDF. The video uses the datasheet of a Visaton FRS 5 X speaker.",
+    "A 3D printer or a printing service for the finished case.",
+    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+  ],
+  "steps": [
+    {
+      "title": "Get the 3D file of your board",
+      "text": [
+        "Look for the 3D file of your board on the manufacturer's page, often under Resources or Downloads. It is usually a STEP file (.step or .stp). In the video it is the reSpeaker XVF3800 with a XIAO ESP32S3 on the back: four microphones, a ring of twelve LEDs and two buttons.",
+        "Check the license on the page before you share a model that contains the file. Seeed puts its wiki content under Creative Commons."
+      ],
+      "prompt": null,
+      "image": null
+    },
+    {
+      "title": "Import the board and the datasheet",
+      "text": [
+        "Start a new model and click Import at the top. Add the board's STEP file and the speaker's datasheet. SOMA puts them into the model's inputs folder, where the agent can use them.",
+        "Click the STEP file in Files to look at it in the 3D view: you can turn the board and see the LEDs, connectors and the small board underneath. Back to model returns to your model.",
+        "Very detailed board files make every build slow. In the video the board file was trimmed beforehand: the board, connectors, buttons, LEDs and microphones stayed, the tiny chips became simple blocks."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/case-for-electronics/board-step-file-in-soma.webp",
+        "alt": "The underside of the reSpeaker board in SOMA's 3D view, with a banner: Viewing inputs/respeaker-xvf3800.step, view only"
+      }
+    },
+    {
+      "title": "Let the agent place the parts",
+      "text": [
+        "First ask SOMA AI only to bring the parts into the model. It reads the STEP file and the PDF, finds the board's mounting holes and the speaker's size, and places both.",
+        "The speaker has no 3D file, so the agent builds a simple version from the datasheet drawing. Both parts are references: shown see-through, used to design around, and never printed."
+      ],
+      "prompt": "respeaker-xvf3800.step is the board of my voice assistant, and the PDF is the datasheet of my speaker. Load the board as a reference, centered, LEDs facing up. Build the speaker from the datasheet as a reference too, below the board, facing forward.",
+      "image": {
+        "src": "/images/guides/case-for-electronics/board-and-speaker-references.webp",
+        "alt": "The structure tree lists References with the reSpeaker XVF3800 (PCB, XIAO ESP32S3, USB-C, audio jack, buttons, LEDs, microphones) and the speaker FRS 5 X, both see-through in the 3D view"
+      }
+    },
+    {
+      "title": "Describe the case",
+      "text": [
+        "Now describe the case the way you would tell a friend: the shape, what must stay reachable, how it is held together and how you will make it. Name the parts that need openings and say which values you want to change later.",
+        "The agent works through it step by step. It writes the model, SOMA builds it after every change, and the agent looks at pictures of its own result to check it. In the video it made the housing, a separate light ring and a base, plus standard screws and heat-set inserts."
+      ],
+      "prompt": "Now design a 3D printable case for my smart speaker around them, a round tower. On top: holes above the four microphones, and a separate light ring above the LED ring that I print in white. In front: a grille for the speaker. Keep the two side buttons pressable and leave openings for the USB-C ports and the audio jack. Screw the board onto posts at its four holes and the speaker onto the front, with standard screws, and close the case with screws from below. It should print without supports. Make the wall thickness, the grille holes and the height parameters.",
+      "image": {
+        "src": "/images/guides/case-for-electronics/finished-smart-speaker-case.webp",
+        "alt": "The finished smart speaker case in SOMA: a round dark tower with a white light ring on top, a speaker grille and two button openings in front"
+      }
+    },
+    {
+      "title": "Check that everything fits",
+      "text": [
+        "Click Section above the 3D view to cut the case open. In the video you see the board hanging from posts under the lid and the speaker right behind its grille.",
+        "Click Explode to pull the parts apart and see how the case goes together: the light ring presses in from the top, the base with the speaker slides in from below and is closed by four screws.",
+        "Use Measure for the openings that matter to you, such as the USB-C port. The values are exact."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/case-for-electronics/section-view-fit-check.webp",
+        "alt": "Section through the case: the board under the lid with the light ring, the speaker behind the grille, and the hollow tower down to the base"
+      }
+    },
+    {
+      "title": "Show a change with Mark up",
+      "text": [
+        "To hang the speaker on the wall, turn the model to the back, click Mark up and draw the keyhole where you want it. Send to agent puts the picture into SOMA AI's input. Add one sentence and send it.",
+        "In the video, the keyhole appears on the back, right where it was drawn."
+      ],
+      "prompt": "Add a keyhole slot here, so I can hang the speaker on a screw in the wall.",
+      "image": {
+        "src": "/images/guides/case-for-electronics/keyhole-markup.webp",
+        "alt": "Mark up on the back of the case: a keyhole shape drawn in orange, with Send to agent at the bottom right"
+      }
+    },
+    {
+      "title": "Change sizes with sliders",
+      "text": [
+        "Because the prompt asked for parameters, the main sizes are in the Parameters tab on the left: in the video the height, the wall thickness, the grille holes and the keyhole.",
+        "Drag a slider and SOMA rebuilds the model, without the AI and without code. Reset all brings back the agent's values."
+      ],
+      "prompt": null,
+      "image": null
+    },
+    {
+      "title": "Export for your slicer",
+      "text": [
+        "Click Export and choose 3MF with all parts. You get one file per printed part, ready for the slicer. The board and the speaker are references and stay out, and so do the standard screws."
+      ],
+      "prompt": null,
+      "image": null
+    }
+  ],
+  "tips": [
+    "Place the parts first, then design the case. When the board and speaker sit where you want them, the agent has a fixed frame to design around.",
+    "The real file beats your description. In the video the prompt asked for posts at four holes; the agent noticed that the board has only three mounting holes and used all three.",
+    "Mention everything you need to reach from outside: buttons, ports, LEDs, microphones, cables. What you do not mention may end up closed.",
+    "For general printing rules for cases (wall thickness, clearances, screws, lids), see the guide How to design a 3D printed enclosure with AI.",
+    "For the best results the user guide recommends Opus 5.5 (with an API key) or GPT-6 Astra (with ChatGPT), with High effort or more."
+  ],
+  "faq": [
+    {
+      "q": "Where do I find a 3D model of my circuit board?",
+      "a": "Look on the manufacturer's product page or wiki, often under Resources, Downloads or CAD files. Many makers of development boards publish a STEP file for exactly this use, designing a case around the board. If you designed the board yourself, your PCB design program can usually export a STEP file."
+    },
+    {
+      "q": "What if a part has no 3D file?",
+      "a": "Use its datasheet. A dimensioned drawing in the datasheet is enough for the AI to build a simple stand-in with the right outer size, mounting holes and cutout. In the video the speaker was built this way from its datasheet. Check those dimensions against the real part before you print."
+    },
+    {
+      "q": "Will the circuit board end up in my print files?",
+      "a": "No. In SOMA the board and other imported parts are references: they are shown see-through so the case can be designed around them, but exporting all parts leaves them out. Only the printed parts of the case become files."
+    },
+    {
+      "q": "How do I know the board fits before I print?",
+      "a": "Cut the model open with a section view and look at the board on its posts, the connectors in their openings and the gaps around them. Measure the openings that matter. For a large case, print a small test piece first, for example the part with the ports."
+    },
+    {
+      "q": "Can I change the case later without the AI?",
+      "a": "Yes, for the values the agent turned into parameters, such as wall thickness, height or grille holes. You change them with sliders in the Parameters tab and the model rebuilds. For anything else, describe the change or draw it on the model and send it to the agent."
+    }
+  ],
+  "credits": [
+    "Board 3D file: \"ReSpeaker XVF3800 3D File\" by Seeed Studio, https://wiki.seeedstudio.com/respeaker_xvf3800_introduction/ (Seeed wiki content under CC BY-SA 4.0, https://wiki.seeedstudio.com/License/). Trimmed for the video (small components replaced by blocks of their size).",
+    "Speaker dimensions: datasheet \"FRS 5 X - 8 Ohm\" by VISATON GmbH (https://www.farnell.com/datasheets/2330028.pdf). Product names belong to their owners, no endorsement."
+  ]
+}

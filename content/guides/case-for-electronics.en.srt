@@ -1,0 +1,247 @@
+1
+00:00:00,450 --> 00:00:02,235
+I want my own smart speaker:
+
+2
+00:00:02,235 --> 00:00:04,530
+a voice assistant that runs at home.
+
+3
+00:00:04,530 --> 00:00:06,506
+The electronics are on my desk.
+
+4
+00:00:06,506 --> 00:00:08,100
+What's missing is a case.
+
+5
+00:00:08,800 --> 00:00:17,117
+Today I'll show you how an AI agent designs that case around the real board and speaker, with mic holes, a light ring and a grille, ready to print.
+
+6
+00:00:17,117 --> 00:00:18,475
+No CAD knowledge needed.
+
+7
+00:00:21,751 --> 00:00:22,473
+We use SOMA.
+
+8
+00:00:22,473 --> 00:00:26,441
+It's free and open source, and you can download it at somacad.app.
+
+9
+00:00:28,091 --> 00:00:32,862
+The heart of it is the reSpeaker XVF3800 from Seeed Studio:
+
+10
+00:00:32,862 --> 00:00:40,301
+four microphones, a ring of twelve LEDs, two buttons, and a small XIAO ESP32-S3 on the back.
+
+11
+00:00:41,258 --> 00:00:45,365
+Seeed publishes a 3D file of the board on its wiki, under Creative Commons.
+
+12
+00:00:45,365 --> 00:00:49,308
+They even have a flat case for it, but I want one with a speaker inside.
+
+13
+00:00:50,058 --> 00:00:51,628
+So we download the 3D file.
+
+14
+00:00:53,278 --> 00:00:56,856
+In SOMA, we start a new model and import two files:
+
+15
+00:00:56,856 --> 00:01:02,048
+the board's STEP file, and the datasheet of my speaker, a Visaton FRS 5 X.
+
+16
+00:01:03,211 --> 00:01:06,005
+Click the STEP file, and SOMA shows the board:
+
+17
+00:01:06,005 --> 00:01:09,650
+the LED ring on top, the XIAO and the connectors underneath.
+
+18
+00:01:10,350 --> 00:01:13,319
+I trimmed Seeed's file a little beforehand:
+
+19
+00:01:13,319 --> 00:01:20,707
+the board, connectors, buttons, LEDs and microphones stay as they are, the tiny chips became simple blocks.
+
+20
+00:01:20,707 --> 00:01:22,640
+That keeps every build fast.
+
+21
+00:01:23,411 --> 00:01:25,265
+For the speaker there's no 3D file.
+
+22
+00:01:25,265 --> 00:01:27,701
+But the datasheet has every dimension we need.
+
+23
+00:01:29,545 --> 00:01:34,065
+On the right, we start Claude Code, our agent, right inside the model folder.
+
+24
+00:01:36,011 --> 00:01:40,246
+First, I ask it to bring in the board, and to build the speaker from its datasheet.
+
+25
+00:01:41,713 --> 00:01:48,083
+The agent reads the STEP file and the PDF, finds the board's mounting holes and the speaker's size, and places both parts.
+
+26
+00:01:49,035 --> 00:01:49,812
+Here they are.
+
+27
+00:01:49,812 --> 00:01:53,533
+The structure tree lists the board with its parts, and the speaker.
+
+28
+00:01:53,533 --> 00:01:54,644
+Both are references:
+
+29
+00:01:54,644 --> 00:01:56,365
+see-through, and never printed.
+
+30
+00:01:58,102 --> 00:01:58,877
+Now the case.
+
+31
+00:01:58,877 --> 00:02:01,260
+I describe it the way I'd tell a friend:
+
+32
+00:02:01,260 --> 00:02:10,792
+holes above the microphones, a light ring above the LEDs, a grille for the speaker, buttons and ports reachable, screws that match the board, and easy to print.
+
+33
+00:02:11,492 --> 00:02:13,528
+The agent works through it step by step.
+
+34
+00:02:13,528 --> 00:02:19,942
+It writes the model as code, SOMA builds it after every change, and the agent looks at pictures of its own result to check it.
+
+35
+00:02:20,890 --> 00:02:22,345
+And here's my smart speaker.
+
+36
+00:02:23,045 --> 00:02:25,336
+The structure tree shows what it made:
+
+37
+00:02:25,336 --> 00:02:30,399
+the housing, the light ring and the base, plus standard screws and heat-set inserts.
+
+38
+00:02:30,399 --> 00:02:33,895
+The board and the speaker are still inside, as references.
+
+39
+00:02:36,490 --> 00:02:37,334
+Does it all fit?
+
+40
+00:02:37,334 --> 00:02:39,232
+The section tool cuts the case open.
+
+41
+00:02:39,232 --> 00:02:43,820
+The board hangs from posts under the lid, and the speaker sits right behind its grille.
+
+42
+00:02:44,790 --> 00:02:45,592
+A nice detail:
+
+43
+00:02:45,592 --> 00:02:50,922
+the agent noticed that the board has only three mounting holes, not four, and used all three.
+
+44
+00:02:50,922 --> 00:02:54,360
+The side buttons press through flexible tongues in the wall.
+
+45
+00:02:55,257 --> 00:02:57,744
+The explode view shows how it goes together:
+
+46
+00:02:57,744 --> 00:03:04,187
+the light ring presses in from the top, and the base with the speaker slides in from below, closed by four screws.
+
+47
+00:03:06,090 --> 00:03:07,958
+I'd like to hang it on the wall.
+
+48
+00:03:07,958 --> 00:03:12,220
+So I turn it around, click Mark up, and draw where the keyhole should go.
+
+49
+00:03:13,023 --> 00:03:15,153
+Send it to the agent, with one sentence.
+
+50
+00:03:19,738 --> 00:03:22,028
+And there's the keyhole on the back, right where I drew it.
+
+51
+00:03:22,778 --> 00:03:25,619
+The agent also turned the main sizes into parameters.
+
+52
+00:03:25,619 --> 00:03:27,548
+You find them in the Parameters tab.
+
+53
+00:03:28,248 --> 00:03:30,678
+A thicker wall, bigger grille holes:
+
+54
+00:03:30,678 --> 00:03:33,243
+drag a slider, and the model rebuilds.
+
+55
+00:03:33,243 --> 00:03:34,458
+No agent, no code.
+
+56
+00:03:35,158 --> 00:03:37,608
+Reset all brings back the values from the code.
+
+57
+00:03:39,258 --> 00:03:40,494
+Finally, Export.
+
+58
+00:03:40,494 --> 00:03:41,808
+All parts as 3MF:
+
+59
+00:03:41,808 --> 00:03:45,517
+one file per printed part, ready for the slicer.
+
+60
+00:03:45,517 --> 00:03:49,148
+The board, the speaker and the screws stay out.
+
+61
+00:03:50,292 --> 00:03:55,200
+From a board on my desk to a case that's ready to print, without drawing a single line.
+
+62
+00:03:55,200 --> 00:03:57,062
+Get SOMA for free at somacad.app.
