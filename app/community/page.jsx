@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Footer, Header } from '../../components/SiteChrome';
 import community from '../../content/community.json';
-import { REPO_URL } from '../../lib/github';
+import legal from '../../data/legal.json';
+import github from '../../data/github.json';
 
 // What people made with SOMA (content/community.json). Only with permission or an open license, see
 // scripts/check-community.mjs. Quotes word for word, each project links to where its maker posted it.
@@ -12,11 +13,12 @@ export const metadata = {
   openGraph: {
     type: 'website', url: '/community/', siteName: 'SOMA', title: 'What people design with SOMA',
     description: 'Projects from the SOMA community, designed with AI.',
-    images: [{ url: '/images/community/kathryn/stern-quarter-high.webp', width: 1600, height: 1000, alt: 'The skipjack Kathryn, modeled with SOMA' }],
+    images: [{ url: '/images/community/kathryn/stern-quarter-high.png', width: 1600, height: 1000, alt: 'The skipjack Kathryn, modeled with SOMA' }],
   },
 };
 
-const SHOW_AND_TELL = `${REPO_URL}/discussions/2`;
+// Not REPO_URL from lib/github.js: that is a client module, its constants don't arrive here as values
+const SHOW_AND_TELL = `https://github.com/${github.repo}/discussions/2`;
 
 export default function Community() {
   const projects = community.projects;
@@ -41,10 +43,15 @@ export default function Community() {
             <div className="project-text">
               <p className="tab-feature">{p.topic}</p>
               <h2>{p.title}</h2>
-              <p className="project-maker">by <a href={p.maker.url} rel="nofollow noreferrer">{p.maker.name}</a></p>
+              <p className="project-maker">by {p.maker.url ? <a href={p.maker.url} rel="nofollow noreferrer">{p.maker.name}</a> : p.maker.name}</p>
               <p>{p.summary}</p>
-              {p.quote && <blockquote className="project-quote"><p>“{p.quote}”</p></blockquote>}
-              <p className="project-source"><a href={p.source.url} rel="nofollow noreferrer">{p.source.label}</a>{p.license && <> · {p.license}</>}</p>
+              {p.quote && <blockquote className="project-quote"><p>“{p.quote}”</p>{p.quote_note && <footer>{p.quote_note}</footer>}</blockquote>}
+              {(p.source || p.more || p.license) && <p className="project-source">
+                {[p.source && <a key="s" href={p.source.url} rel="nofollow noreferrer">{p.source.label}</a>,
+                  p.more && <a key="m" href={p.more.url} rel="noreferrer">{p.more.label}</a>,
+                  p.license].filter(Boolean).map((x, i) => <span key={i}>{i > 0 && ' · '}{x}</span>)}
+              </p>}
+              {p.image_credit && <p className="project-credit">{p.image_credit}</p>}
             </div>
           </article>)}
         </div>
@@ -55,7 +62,11 @@ export default function Community() {
           <div className="info">
             <h2 id="share-title">Show your project</h2>
             <p>Made something with SOMA? Post a picture and a few lines in the Show and tell discussion on GitHub. With your permission it can appear here.</p>
-            <a className="button primary" href={SHOW_AND_TELL}>Share your project</a>
+            <p>Want your project featured on this page? Send an email to <a href={`mailto:${legal.email}`}>{legal.email}</a> with a few pictures, a short description and a link to where you posted it.</p>
+            <p className="guide-links">
+              <a className="button primary" href={SHOW_AND_TELL}>Share your project</a>
+              <a className="button ghost" href={`mailto:${legal.email}?subject=${encodeURIComponent('Feature my SOMA project')}`}>Email us</a>
+            </p>
           </div>
           <div className="info">
             <h2>Our example models</h2>

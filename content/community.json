@@ -4,15 +4,30 @@
     {
       "id": "kathryn",
       "title": "Kathryn, a 1901 skipjack sailboat",
-      "maker": { "name": "joshua-guthrie", "url": "https://github.com/joshua-guthrie" },
-      "source": { "label": "GitHub repository", "url": "https://github.com/joshua-guthrie/SV-Kathryn" },
+      "maker": {
+        "name": "joshua-guthrie",
+        "url": "https://github.com/joshua-guthrie"
+      },
+      "source": {
+        "label": "GitHub repository",
+        "url": "https://github.com/joshua-guthrie/SV-Kathryn"
+      },
       "topic": "Ships and history",
       "summary": "A historic Chesapeake Bay skipjack, modeled from historic vessel drawings and archival photographs. Hull, deck, spars, rigging and interior are separate timbers in groups, and the scale is a parameter: full size or 1:32.",
       "quote": null,
       "images": [
-        { "src": "/images/community/kathryn/stern-quarter-high.webp", "alt": "The skipjack Kathryn from above, with sails, rigging and the aft deck" },
-        { "src": "/images/community/kathryn/port-side.webp", "alt": "Kathryn seen from the port side" },
-        { "src": "/images/community/kathryn/interior-cutaway.webp", "alt": "Cutaway of Kathryn's hull showing the interior" }
+        {
+          "src": "/images/community/kathryn/stern-quarter-high.webp",
+          "alt": "The skipjack Kathryn from above, with sails, rigging and the aft deck"
+        },
+        {
+          "src": "/images/community/kathryn/port-side.webp",
+          "alt": "Kathryn seen from the port side"
+        },
+        {
+          "src": "/images/community/kathryn/interior-cutaway.webp",
+          "alt": "Cutaway of Kathryn's hull showing the interior"
+        }
       ],
       "permission": "license",
       "license": "GPL-3.0",
@@ -21,15 +36,30 @@
     {
       "id": "bench-seat",
       "title": "Sheet metal bench seat with storage",
-      "maker": { "name": "lobonz", "url": "https://github.com/lobonz" },
-      "source": { "label": "GitHub discussion", "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2" },
+      "maker": {
+        "name": "lobonz",
+        "url": "https://github.com/lobonz"
+      },
+      "source": {
+        "label": "GitHub discussion",
+        "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2"
+      },
       "topic": "Sheet metal",
       "summary": "A bench that screws to a wall, with storage under the seat, made for a friend from a hand sketch. Then a cushion, a drawing, DXF flat patterns for the laser and an exploded animation, and renders in Blender.",
       "quote": "It pretty much nailed it in one go - even picking up discrepancy in the drawing depths.",
       "images": [
-        { "src": "/images/community/bench-seat/render-1.webp", "alt": "Rendering of the sheet metal bench with a blue cushion" },
-        { "src": "/images/community/bench-seat/sketch-and-model.webp", "alt": "The hand sketches the bench was designed from, with dimensions" },
-        { "src": "/images/community/bench-seat/model.webp", "alt": "The bench model in SOMA" }
+        {
+          "src": "/images/community/bench-seat/render-1.webp",
+          "alt": "Rendering of the sheet metal bench with a blue cushion"
+        },
+        {
+          "src": "/images/community/bench-seat/sketch-and-model.webp",
+          "alt": "The hand sketches the bench was designed from, with dimensions"
+        },
+        {
+          "src": "/images/community/bench-seat/model.webp",
+          "alt": "The bench model in SOMA"
+        }
       ],
       "permission": "given",
       "permission_note": "\"You are welcome to use that example too.\" (lobonz in discussion #2, 2026-11-16)"
@@ -37,69 +67,158 @@
     {
       "id": "floor-brake",
       "title": "Servo-driven floor brake",
-      "maker": { "name": "lobonz", "url": "https://github.com/lobonz" },
-      "source": { "label": "GitHub discussion", "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2" },
+      "maker": {
+        "name": "lobonz",
+        "url": "https://github.com/lobonz"
+      },
+      "source": {
+        "label": "GitHub discussion",
+        "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2"
+      },
       "topic": "Mechanisms",
       "summary": "A floor brake driven by a servo, designed from a photo of a foot-operated brake, a drawing of the servo and a description. An industrial designer with over 25 years of CAD used the geometry as the head start for a 3D printed version.",
       "quote": "I did not realize how new the software was and amazed with results.",
       "images": [
-        { "src": "/images/community/floor-brake/model.webp", "alt": "Floor brake with servo, linkage and foot pad in SOMA" },
-        { "src": "/images/community/floor-brake/soma-vs-final.webp", "alt": "The model from SOMA next to the version reworked for 3D printing" }
+        {
+          "src": "/images/community/floor-brake/model.webp",
+          "alt": "Floor brake with servo, linkage and foot pad in SOMA"
+        },
+        {
+          "src": "/images/community/floor-brake/soma-vs-final.webp",
+          "alt": "The model from SOMA next to the version reworked for 3D printing"
+        }
       ],
-      "permission": "asked"
+      "permission": "given",
+      "permission_note": "OK to show it confirmed by the maintainer on 2026-11-22 (lobonz)."
     },
     {
       "id": "slot-machine",
       "title": "Slot machine coin bank",
-      "maker": { "name": "LRondMcBong", "url": "https://github.com/LRondMcBong" },
-      "source": { "label": "GitHub discussion", "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2" },
+      "maker": {
+        "name": "LRondMcBong",
+        "url": "https://github.com/LRondMcBong"
+      },
+      "source": {
+        "label": "GitHub discussion",
+        "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2"
+      },
       "topic": "3D printing",
       "summary": "A small coin and note bank in the shape of a slot machine: coins roll down two rails, the lever drives a gear train, and a flap takes notes in. All animated to show how it works.",
       "quote": "Oh boy was I amazed! Did everything from design, drawings, animations to a full product video with Blender.",
       "images": [
-        { "src": "/images/community/slot-machine/closed.webp", "alt": "Red slot machine coin bank with lever and gear wheel" },
-        { "src": "/images/community/slot-machine/mechanism.webp", "alt": "See-through view of the slot machine's lever and gear mechanism" }
+        {
+          "src": "/images/community/slot-machine/closed.webp",
+          "alt": "Red slot machine coin bank with lever and gear wheel"
+        },
+        {
+          "src": "/images/community/slot-machine/mechanism.webp",
+          "alt": "See-through view of the slot machine's lever and gear mechanism"
+        }
       ],
-      "permission": "asked"
+      "permission": "given",
+      "permission_note": "\"Hey, sure, feel free :)\" (LRondMcBong in discussion #2, 2026-11-19)"
     },
     {
       "id": "watch",
       "title": "Wristwatch",
-      "maker": { "name": "OBJIFY-DEV", "url": "https://github.com/OBJIFY-DEV" },
-      "source": { "label": "GitHub discussion", "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2" },
+      "maker": {
+        "name": "OBJIFY-DEV",
+        "url": "https://github.com/OBJIFY-DEV"
+      },
+      "source": {
+        "label": "GitHub discussion",
+        "url": "https://github.com/Kai-Jungsthoefel/SOMA/discussions/2"
+      },
       "topic": "Product design",
       "summary": "A wristwatch with a screwed bezel, three sub-dials and a strap.",
       "quote": null,
       "images": [
-        { "src": "/images/community/watch/watch.webp", "alt": "Black wristwatch with a starry dial and three sub-dials" }
+        {
+          "src": "/images/community/watch/watch.webp",
+          "alt": "Black wristwatch with a starry dial and three sub-dials"
+        }
       ],
-      "permission": "asked"
+      "permission": "given",
+      "permission_note": "OK to show it confirmed by the maintainer on 2026-11-22 (OBJIFY-DEV)."
     },
     {
       "id": "antenna-array",
       "title": "Circular antenna array",
-      "maker": { "name": "u/LaterBrain", "url": "https://www.reddit.com/user/LaterBrain/" },
-      "source": { "label": "Reddit, r/arduino", "url": "https://www.reddit.com/r/arduino/comments/1x6hjvq/all_i_needed_was_an_enclosure_for_my_esp32/pgvx06p/" },
+      "maker": {
+        "name": "u/LaterBrain",
+        "url": "https://www.reddit.com/user/LaterBrain/"
+      },
+      "source": {
+        "label": "Reddit, r/arduino",
+        "url": "https://www.reddit.com/r/arduino/comments/1x6hjvq/all_i_needed_was_an_enclosure_for_my_esp32/pgvx06p/"
+      },
       "topic": "Electronics",
       "summary": "A uniform circular antenna array, for finding out which direction a signal comes from: a hub, five arms and printed holders for the antennas.",
       "quote": "I learned CAD (Fusion 360, FreeCAD and Dassault Systems CATIA) myself to do such things in maybe 2-3 hours, but Claude with SOMA just pulled it off in like 5minutes",
       "images": [
-        { "src": "/images/community/antenna-array/3.webp", "alt": "Antenna array with a central hub, five arms and antenna holders" }
+        {
+          "src": "/images/community/antenna-array/3.webp",
+          "alt": "Antenna array with a central hub, five arms and antenna holders"
+        }
       ],
-      "permission": "asked"
+      "permission": "given",
+      "permission_note": "OK from u/LaterBrain on Reddit, 2026-11-18."
     },
     {
       "id": "drone-adapter",
-      "title": "Tripod adapter for a drone remote",
-      "maker": { "name": "u/Advanced-Gap7271", "url": "https://www.reddit.com/user/Advanced-Gap7271/" },
-      "source": { "label": "Reddit, r/ClaudeCode", "url": "https://www.reddit.com/r/ClaudeCode/comments/1x6bdwa/made_an_app_where_an_ai_agent_does_the_cad_for_me/19rklxn0wd1ts/" },
+      "title": "Tripod adapter for the DJI RC Plus 2",
+      "maker": {
+        "name": "u/Advanced-Gap7271",
+        "url": "https://www.reddit.com/user/Advanced-Gap7271/"
+      },
+      "source": {
+        "label": "Reddit, r/ClaudeCode",
+        "url": "https://www.reddit.com/r/ClaudeCode/comments/1x6bdwa/made_an_app_where_an_ai_agent_does_the_cad_for_me/19rklxn0wd1ts/"
+      },
       "topic": "3D printing",
-      "summary": "A first draft of a 3D printable adapter that mounts a drone remote controller on a tripod, designed around a 3D scan of the controller.",
+      "summary": "A 3D printed adapter that holds the DJI RC Plus 2 drone controller on a tripod during mapping flights, designed around a 3D scan of the controller and refined from a first draft to the printed part. It is free to download as 3MF and STEP under CC BY 4.0.",
       "quote": "Opus 5.5 understood my intent and with some help figured out how to design around the 3d model.",
       "images": [
-        { "src": "/images/community/drone-adapter/crop.webp", "alt": "Adapter in orange designed around a see-through scan of the remote controller" }
+        {
+          "src": "/images/community/drone-adapter/mounted-front-left.webp",
+          "alt": "The printed adapter holding a DJI RC Plus 2 controller on a tripod"
+        },
+        {
+          "src": "/images/community/drone-adapter/model-in-soma.webp",
+          "alt": "The adapter in orange and a sun shade, designed around a see-through scan of the controller in SOMA"
+        },
+        {
+          "src": "/images/community/drone-adapter/adapter-on-head.webp",
+          "alt": "The printed adapter alone, clamped on a tripod head"
+        }
       ],
-      "permission": "asked"
+      "permission": "given",
+      "more": {
+        "label": "Free 3MF and STEP by Alos Engineering",
+        "url": "https://alos.no/en/resources/dji-rc-plus-2-tripod-adapter/"
+      },
+      "license": "CC BY 4.0",
+      "image_credit": "Photos: Alos Engineering, CC BY 4.0.",
+      "permission_note": "OK from u/Advanced-Gap7271 on Reddit, 2026-11-18. Photos and files published by Alos Engineering under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), credit to Alos."
+    },
+    {
+      "id": "scara-arm",
+      "title": "Two-joint arm with control box",
+      "maker": {
+        "name": "Bjarne"
+      },
+      "source": null,
+      "topic": "Machines",
+      "summary": "A horizontal arm with two joints driven by belts and motors, a vertical axis with a tool holder at the end, and a control box with a display and buttons.",
+      "quote": null,
+      "images": [
+        {
+          "src": "/images/community/scara-arm/arm.webp",
+          "alt": "Horizontal two-joint arm with belt drives, a tool holder at the end and a control box with display"
+        }
+      ],
+      "permission": "given",
+      "permission_note": "Shared by a friend of the maintainer in a private chat (2026-10-17), OK to show it confirmed by the maintainer on 2026-11-18. Shown with first name only."
     }
   ]
 }
