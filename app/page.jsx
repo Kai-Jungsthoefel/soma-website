@@ -15,6 +15,9 @@ import github from '../data/github.json';
 import community from '../content/community.json';
 import { GUIDES } from '../lib/guides';
 
+// The canonical lives here and not in the layout, so the 404 page does not point at the home page
+export const metadata = { alternates: { canonical: '/' } };
+
 // The home page is written for people who have never used CAD or an AI agent (website overhaul for 1.0): SOMA AI
 // first, an own agent further down for those who have one.
 
@@ -33,10 +36,11 @@ function roundedDown(n) {
 }
 
 export default function Home() {
-  // Vorschaubild des Trailers ist das größte Element oben: früh und mit Vorrang laden
-  preload('/images/trailer-cover.jpg', { as: 'image', fetchPriority: 'high' });
+  // The showcase video's cover is the largest element at the top: load it early and with priority
+  preload('/images/showcase-cover.jpg', { as: 'image', fetchPriority: 'high' });
   const start = GUIDES.find(g => g.topic === 'basics' && g.cover);
-  const makes = GUIDES.filter(g => g.cover && g.topic !== 'basics').slice(0, 6);
+  // All project guides: the home page is the strongest page, every guide should get a link from it
+  const makes = GUIDES.filter(g => g.cover && g.topic !== 'basics');
   const voices = community.projects.filter(p => p.quote).slice(0, 3);
   const projects = community.projects.slice(0, 4);
   const proof = [
@@ -63,7 +67,24 @@ export default function Home() {
               <li>Your models belong to you</li>
             </ul>
           </div>
-          <video className="hero-video" src="/media/soma-trailer.mp4" poster="/images/trailer-cover.jpg" controls preload="metadata" playsInline aria-label="SOMA trailer"/>
+          <div className="hero-media">
+            <video className="hero-video" src="/media/soma-showcase.mp4" poster="/images/showcase-cover.jpg" controls preload="none" playsInline aria-label="SOMA showcase: what you can make with SOMA AI">
+              <track kind="captions" src="/media/soma-showcase.en.vtt" srcLang="en" label="English"/>
+            </video>
+            <details className="video-credits">
+              <summary>Credits and licenses</summary>
+              <p>All app footage is real SOMA. SOMA AI (GPT-6.1 Sol) did the modeling; waits are cut and its work is shown sped up, marked in the video.</p>
+              <ul>
+                <li>Sailboat: the skipjack <a href="https://github.com/joshua-guthrie/SV-Kathryn" rel="nofollow noreferrer">Kathryn</a> by joshua-guthrie, made in SOMA, GPL-3.0, shown unchanged.</li>
+                <li>Desk organizer: remix of <a href="https://www.printables.com/model/1911251-desk-organizer" rel="nofollow noreferrer">Desk Organizer</a> by GummieGecko8477, CC BY-SA 4.0.</li>
+                <li>Photos of the flat: museum flat of the GGH in the Blaue Heimat estate, Heidelberg, by Nemracc, <a href="https://commons.wikimedia.org/wiki/Category:Museumswohnung_der_GGH" rel="nofollow noreferrer">Wikimedia Commons</a>, CC BY-SA 4.0. The floor plan is our own sketch.</li>
+                <li>Board in the speaker case: <a href="https://wiki.seeedstudio.com/respeaker_xvf3800_introduction/" rel="nofollow noreferrer">ReSpeaker XVF3800 3D file</a> by Seeed Studio, CC BY-SA 4.0, trimmed.</li>
+                <li>NEMA 17 stepper and V-slot 20x20 extrusion by Charles Fox, micro switch ESS05 by Almisuifre, from the <a href="https://github.com/FreeCAD/FreeCAD-library" rel="nofollow noreferrer">FreeCAD Parts Library</a>, CC BY 3.0.</li>
+                <li>Voice: Kyutai Pocket TTS (AI voice). Music: Inspirational Technology by AtlasAudio (Pixabay Content License).</li>
+                <li>Product names belong to their owners, no endorsement.</li>
+              </ul>
+            </details>
+          </div>
         </div>
       </section>
 
@@ -94,7 +115,7 @@ export default function Home() {
             <Link href="/guides/" prefetch={false}>All guides <ArrowRight size={15}/></Link>
           </div>
           <p className="section-lead">Furniture, cases, brackets, machines. Each guide shows one project from start to finish, with a video and the words to type.</p>
-          <GuideCards guides={makes}/>
+          <GuideCards guides={makes} wide/>
         </div>
       </section>}
 
@@ -149,7 +170,7 @@ export default function Home() {
         <div className="wrap info-grid">
           <div className="info">
             <h2 id="cost-title">What does it cost?</h2>
-            <p>SOMA is free, there is no SOMA subscription. SOMA AI thinks with an AI model from a provider, and that needs a plan or key of your own: your ChatGPT Plus or Pro subscription, or an API key from Anthropic, OpenAI, Google and others, paid per use. The cheapest way to start is <a href={OPENCODE_GO.url}>OpenCode Go</a> for about {OPENCODE_GO.price}. For the best results we recommend Opus 5.5 or GPT-6 Astra.</p>
+            <p>SOMA is free, there is no SOMA subscription. SOMA AI thinks with an AI model from a provider, and that needs a plan or key of your own: your ChatGPT Plus or Pro subscription, or an API key from Anthropic, OpenAI, Google and others, paid per use. The cheapest way to start is <a href={OPENCODE_GO.url}>OpenCode Go</a> for about {OPENCODE_GO.price}. For the best results we recommend Opus 5.5 or GPT-6.2 Astra.</p>
           </div>
           <div className="info">
             <h2>Already use an AI agent?</h2>

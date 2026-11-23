@@ -1,13 +1,12 @@
 import './globals.css';
-import { ANALYTICS_TOKEN, DESCRIPTION, KEYWORDS, SITE_NAME, SITE_URL, TITLE } from '../lib/site';
+import { ANALYTICS_TOKEN, KEYWORDS, META_DESCRIPTION, SITE_NAME, SITE_URL, TITLE } from '../lib/site';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: TITLE, template: '%s | SOMA' },
-  description: DESCRIPTION,
+  description: META_DESCRIPTION,
   keywords: KEYWORDS,
   applicationName: SITE_NAME,
-  alternates: { canonical: '/' },
   icons: { icon: '/icon.svg' },
   openGraph: {
     type: 'website',
@@ -16,9 +15,10 @@ export const metadata = {
     locale: 'en_US',
     title: 'SOMA: Solid Object Modeling with Agents',
     description: 'Free, open-source AI CAD: describe a part, SOMA AI designs it, you see it in 3D and make it.',
-    images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA, Solid Object Modeling with Agents' }],
+    images: [{ url: '/images/showcase-cover.jpg', width: 1280, height: 720, alt: 'SOMA, Solid Object Modeling with Agents' }],
   },
-  twitter: { card: 'summary_large_image', images: ['/images/trailer-cover.jpg'] },
+  // No image here: X then takes each page's own og:image
+  twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
 };
 

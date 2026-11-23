@@ -2,7 +2,7 @@
 
 Website for [SOMA](https://github.com/Kai-Jungsthoefel/SOMA), built with Next.js as a fully static site (`out/`). Based on a template by [OBJIFY-DEV](https://github.com/OBJIFY-DEV/SOMA_Website).
 
-Pages: Home (hero with trailer, what is SOMA, 3D showcase, features, how it works, questions), Download (all releases and files), Models (the showcase with a text entry per model), Docs (the app's user guide) and guides under `/guides/` for people who search for the topic, not for SOMA (list in `lib/guides.js`, frame with author, questions and structured data in `components/GuidePage.jsx`; dates in the page and in the list). For AI assistants `/llms.txt` (overview, facts, questions, links) and `/llms-full.txt` (plus features, models and the whole guide), following llmstxt.org.
+Pages: Home (hero with the showcase video and its credits, what is SOMA, 3D showcase, features, how it works, questions), Download (all releases and files), Models (the showcase with a text entry per model), Docs (the app's user guide) and guides under `/guides/` for people who search for the topic, not for SOMA (list in `lib/guides.js`, frame with author, questions and structured data in `components/GuidePage.jsx`; dates in the page and in the list). For AI assistants `/llms.txt` (overview, facts, questions, links) and `/llms-full.txt` (plus features, models and the whole guide), following llmstxt.org.
 
 ## Development
 
@@ -78,4 +78,4 @@ It needs a built app in `../app` (`npm run build` there) and opens copies of the
 
 ## Assets
 
-Screenshots and the trailer come from the SOMA repository. Fonts: IBM Plex Sans and Mono, SIL Open Font License (`public/fonts/OFL.txt`).
+Screenshots come from the SOMA repository. The showcase video on the home page (`public/media/soma-showcase.mp4`, captions `.en.vtt`, cover `images/showcase-cover.jpg`) is the final `video/showcase/SOMA-Showcase.mp4` of the SOMA repository, re-encoded for the web (H.264 CRF 26, at most 2.5 Mbit/s); its credits are under the video. Fonts: IBM Plex Sans and Mono, SIL Open Font License (`public/fonts/OFL.txt`).

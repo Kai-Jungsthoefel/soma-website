@@ -66,7 +66,14 @@ em { font-style: normal; color: var(--tx); }
 .download-meta { margin-top: 10px; color: var(--tx3); font-size: 14px; }
 .hero-facts { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; padding: 20px 0 0; margin: 20px 0 0; border-top: 1px solid var(--line); color: var(--tx2); font-size: 14px; }
 .hero-facts li::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); margin-right: 8px; vertical-align: 2px; }
-.hero-video { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line2); border-radius: var(--radius); background: #000; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); }
+.hero-media { min-width: 0; }
+.video-credits { margin-top: 10px; color: var(--tx3); font-size: 13px; }
+.video-credits summary { cursor: pointer; width: fit-content; }
+.video-credits summary:hover { color: var(--tx2); }
+.video-credits p, .video-credits ul { margin-top: 8px; }
+.video-credits ul { padding-left: 18px; }
+.video-credits a { color: var(--tx2); }
+.hero-video { display: block; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line2); border-radius: var(--radius); background: #000; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); }
 /* Video-Tutorial: eigenes Vorschaubild, YouTube erst auf Klick (components/YouTubeVideo.jsx) */
 .tutorial { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 40px; align-items: center; }
 .yt-cover { position: relative; display: block; width: 100%; padding: 0; border: 1px solid var(--line2); border-radius: var(--radius); overflow: hidden; background: #000; cursor: pointer; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); }
@@ -244,6 +251,7 @@ em { font-style: normal; color: var(--tx); }
 .info h2 { font-size: 20px; margin-bottom: 10px; }
 .info p, .info li { color: var(--tx2); font-size: 15px; }
 .info .button { margin-top: 16px; }
+.info p + p { margin-top: 10px; }
 .chips { list-style: none; padding: 0; margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .chips li { padding: 4px 10px; border: 1px solid var(--line2); border-radius: 999px; font-size: 13px; color: var(--tx); }
 .chips li:last-child { color: var(--tx3); border-style: dashed; }
@@ -416,6 +424,9 @@ em { font-style: normal; color: var(--tx); }
 
 /* Guides as cards with the cover of their video */
 .guide-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.guide-cards-wide { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.guide-cards-wide .guide-card-text { padding: 14px 16px 16px; }
+.guide-cards-wide .guide-card-text strong { font-size: 15px; }
 .guide-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--radius); background: var(--s1); overflow: hidden; color: var(--tx); transition: border-color .15s, transform .15s; }
 .guide-card:hover { text-decoration: none; border-color: var(--tx3); transform: translateY(-2px); }
 .guide-card-cover { position: relative; display: block; aspect-ratio: 16 / 9; background: #000; }
@@ -503,3 +514,5 @@ em { font-style: normal; color: var(--tx); }
 .ai-needed strong { color: var(--tx); font-weight: 500; }
 .page > .ai-needed { max-width: none; margin: 32px 0 0; }
 .guide-next .ai-needed { max-width: none; margin-top: 14px; }
+.project-credit { margin-top: 4px !important; color: var(--tx3) !important; font-size: 13px; }
+.project-quote footer { margin-top: 4px; color: var(--tx3); font-size: 13px; }

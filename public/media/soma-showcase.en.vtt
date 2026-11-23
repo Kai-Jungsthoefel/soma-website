@@ -1,0 +1,166 @@
+WEBVTT
+
+00:00.450 --> 00:04.660
+Today I'll show you how to design real things, just by describing them, with SOMA AI.
+
+00:05.460 --> 00:07.520
+A hand sketch becomes furniture.
+
+00:07.520 --> 00:09.515
+A floor plan becomes your flat.
+
+00:09.515 --> 00:11.510
+And a robot arm learns to move.
+
+00:14.550 --> 00:19.223
+SOMA is a free, open source CAD program with its own AI agent built in.
+
+00:19.223 --> 00:21.000
+Download it at somacad.app.
+
+00:22.050 --> 00:23.470
+SOMA itself is free.
+
+00:23.470 --> 00:25.954
+For SOMA AI, you bring your own AI:
+
+00:25.954 --> 00:28.580
+a ChatGPT subscription or an API key.
+
+00:31.850 --> 00:34.530
+You describe what you want, in plain words:
+
+00:34.530 --> 00:37.959
+a bookshelf, open at the top, with doors at the bottom.
+
+00:39.293 --> 00:42.037
+If anything is unclear, SOMA AI asks first.
+
+00:42.037 --> 00:43.823
+You just click your answers.
+
+00:45.296 --> 00:48.386
+Then it gets to work, and tells you in plain words what it's doing.
+
+00:51.421 --> 00:54.111
+A few minutes later, there's your bookshelf in 3D.
+
+00:57.504 --> 01:02.034
+Give it a floor plan and a few photos, and it builds your flat, furnished room by room.
+
+01:09.158 --> 01:12.408
+Ask for workshop drawings, with every dimension and a cutting list.
+
+01:16.366 --> 01:17.373
+Need it wider?
+
+01:17.373 --> 01:18.380
+Drag a slider.
+
+01:18.380 --> 01:21.616
+SOMA AI makes the important sizes adjustable.
+
+01:23.223 --> 01:24.858
+Hard to put into words?
+
+01:24.858 --> 01:29.193
+Draw on the model, send it to SOMA AI, and there's your door.
+
+01:34.544 --> 01:37.061
+Will a shelf hold twenty kilos of books?
+
+01:37.061 --> 01:39.074
+A strength simulation tells you.
+
+01:40.711 --> 01:43.121
+Found an STL that doesn't quite fit?
+
+01:43.121 --> 01:47.205
+SOMA AI rebuilds it as an adjustable model, and makes it fit:
+
+01:47.205 --> 01:50.017
+here, a desk organizer for business cards.
+
+01:50.872 --> 01:56.202
+And when you're happy, export it for your 3D printer, or as a STEP file for any other CAD program.
+
+01:57.272 --> 01:58.590
+Sheet metal works too:
+
+01:58.590 --> 02:02.366
+a bracket that holds a stepper motor on an aluminium extrusion.
+
+02:02.366 --> 02:05.962
+SOMA AI unfolds it into a flat pattern for the laser cutter.
+
+02:09.716 --> 02:14.246
+Or a folding steel trestle for the workshop, from steel tube you can cut and weld yourself.
+
+02:15.916 --> 02:20.286
+SOMA AI animated how it folds flat, and checked every step for collisions.
+
+02:25.724 --> 02:27.624
+It doesn't stop at simple parts.
+
+02:27.624 --> 02:32.494
+SOMA AI designed this robot arm, with three stepper motors and a parallel gripper.
+
+02:36.036 --> 02:40.006
+It animated the full range of motion, and checked that no part hits another.
+
+02:43.897 --> 02:46.874
+Every step SOMA AI takes is saved in the history.
+
+02:46.874 --> 02:49.547
+So you can try anything, and always go back.
+
+02:50.797 --> 02:56.972
+Built-in skills teach it how to design for 3D printing, CNC milling, sheet metal or the laser cutter.
+
+02:57.897 --> 03:00.421
+Already use an agent of your own?
+
+03:00.421 --> 03:05.547
+Claude Code, Codex, Gemini CLI, OpenCode and more work in SOMA too.
+
+03:06.347 --> 03:08.528
+It starts in a terminal, right next to your model.
+
+03:10.197 --> 03:12.973
+With more time and planning, you can go much further.
+
+03:12.973 --> 03:14.807
+All of these were designed in SOMA.
+
+03:17.041 --> 03:21.091
+A robot dog, with twelve actuators, each with its own planetary gearbox.
+
+03:22.041 --> 03:24.054
+Over two hundred and sixty parts.
+
+03:24.054 --> 03:26.251
+Every gear and every screw is there.
+
+03:27.108 --> 03:27.994
+And it walks.
+
+03:31.308 --> 03:35.598
+A chainsaw, with its two-stroke engine fully modeled, and animated in a cutaway.
+
+03:44.408 --> 03:50.041
+A desktop CNC mill, with linear rails and lead screws on all three axes, milling a pattern.
+
+03:52.808 --> 03:57.578
+A community member modeled the Kathryn, a Chesapeake Bay skipjack built in 1901.
+
+03:59.808 --> 04:04.658
+And a smart speaker, with a fabric cover, several circuit boards and an LED ring.
+
+04:07.458 --> 04:08.622
+Here it is, built.
+
+04:14.558 --> 04:16.714
+SOMA is free and open source.
+
+04:16.714 --> 04:20.208
+Download it at somacad.app, and start building.

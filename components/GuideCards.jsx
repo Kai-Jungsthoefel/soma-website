@@ -2,8 +2,9 @@
 import Link from 'next/link';
 import { Play } from 'lucide-react';
 
-export default function GuideCards({ guides }) {
-  return <div className="guide-cards">
+// wide: four in a row (home page, eight guides in two full rows)
+export default function GuideCards({ guides, wide = false }) {
+  return <div className={wide ? 'guide-cards guide-cards-wide' : 'guide-cards'}>
     {guides.map(g => <Link key={g.path} href={g.path} prefetch={false} className="guide-card">
       {g.cover && <span className="guide-card-cover">
         <img src={g.cover} alt="" width="1280" height="720" loading="lazy"/>
