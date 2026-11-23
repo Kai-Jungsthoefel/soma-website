@@ -1,0 +1,287 @@
+1
+00:00:00,550 --> 00:00:04,079
+Today I'll show you how SOMA AI helps you plan a vegetable garden:
+
+2
+00:00:04,079 --> 00:00:09,800
+from a few layout ideas to raised beds you can really build, with drawings, a cut list and a shopping list.
+
+3
+00:00:13,150 --> 00:00:13,908
+We use SOMA.
+
+4
+00:00:13,908 --> 00:00:18,080
+It's free and open source, and you can download it at somacad.app.
+
+5
+00:00:19,030 --> 00:00:20,553
+SOMA itself is free.
+
+6
+00:00:20,553 --> 00:00:23,142
+For SOMA AI you bring your own AI:
+
+7
+00:00:23,142 --> 00:00:25,960
+a ChatGPT subscription or an API key.
+
+8
+00:00:27,750 --> 00:00:31,495
+We start with a new model, saved as Garden plot.
+
+9
+00:00:31,495 --> 00:00:34,304
+In the SOMA AI tab I pick the model:
+
+10
+00:00:34,304 --> 00:00:35,240
+GPT-6.1 Sol.
+
+11
+00:00:42,750 --> 00:00:46,160
+I want a few concepts to compare, so I turn the effort up to High.
+
+12
+00:00:50,450 --> 00:00:53,035
+Then I describe my garden in plain words:
+
+13
+00:00:53,035 --> 00:00:58,269
+a free area of six by four metres for vegetables, with the water tap in one corner.
+
+14
+00:00:58,269 --> 00:01:04,260
+I ask for a few layout ideas with raised beds, paths and maybe a compost spot, so I can choose.
+
+15
+00:01:07,517 --> 00:01:10,440
+SOMA AI first reads its notes on how to work in SOMA.
+
+16
+00:01:10,440 --> 00:01:15,237
+Then it builds three layouts side by side, and looks at its own pictures to check them.
+
+17
+00:01:15,237 --> 00:01:17,167
+After about six minutes it is done.
+
+18
+00:01:18,117 --> 00:01:26,733
+Here are the three concepts for the six by four metre plot, each with raised beds, paths, a compost spot and the tap in the front left corner.
+
+19
+00:01:26,733 --> 00:01:31,527
+A has four beds, B three long rows, and C is a U shape around a wide courtyard.
+
+20
+00:01:33,917 --> 00:01:37,804
+The beds are 45 centimetres high, and the compost spot is 80 by 80.
+
+21
+00:01:37,804 --> 00:01:41,807
+It also says honestly that sun and shade still need checking on site.
+
+22
+00:01:46,050 --> 00:01:48,746
+Then it asks which layout I want to develop.
+
+23
+00:01:48,746 --> 00:01:49,297
+I take B:
+
+24
+00:01:49,297 --> 00:01:54,260
+three identical long beds with straight paths, good for rows and simple watering.
+
+25
+00:01:55,317 --> 00:01:56,913
+Now it shows B on its own:
+
+26
+00:01:56,913 --> 00:02:02,499
+three beds of one by two and a half metres, 45 centimetres high, with 70 centimetre aisles.
+
+27
+00:02:02,499 --> 00:02:06,305
+The compost sits at the back right, the tap at the front left.
+
+28
+00:02:07,950 --> 00:02:10,672
+The other concepts stay in the model under Show layout.
+
+29
+00:02:10,672 --> 00:02:14,880
+And it reminds me to check that the tap corner and the entrance match my real garden.
+
+30
+00:02:16,617 --> 00:02:18,071
+Now the beds themselves.
+
+31
+00:02:18,071 --> 00:02:22,554
+I ask SOMA AI to work out one of them in detail, so I can really build it:
+
+32
+00:02:22,554 --> 00:02:26,189
+boards, posts, standard screws, and a liner if it needs one.
+
+33
+00:02:26,189 --> 00:02:30,187
+Plus a cut list, a shopping list and assembly steps with drawings.
+
+34
+00:02:36,050 --> 00:02:40,479
+SOMA AI reads up on joints, strength and drawings, then asks two questions:
+
+35
+00:02:40,479 --> 00:02:43,314
+which timber to use, and what the bed stands on.
+
+36
+00:02:43,314 --> 00:02:47,211
+I let it pick new timber to buy, and my beds stand on garden soil.
+
+37
+00:02:49,317 --> 00:02:51,622
+Then SOMA AI works for about 38 minutes.
+
+38
+00:02:51,622 --> 00:02:59,287
+It models every board and post, writes the build guide, makes the drawings, and looks at each sheet to check that it is easy to read.
+
+39
+00:03:00,237 --> 00:03:01,433
+Here is the bed:
+
+40
+00:03:01,433 --> 00:03:09,729
+two and a half metres by one, 45 centimetres high, three courses of 45 by 150 millimetre boards on eight posts.
+
+41
+00:03:09,729 --> 00:03:13,167
+327 parts, down to every bolt, washer and nut.
+
+42
+00:03:14,184 --> 00:03:18,874
+Instead of screws driven into end grain, it chose stainless M8 through-bolts.
+
+43
+00:03:20,017 --> 00:03:23,726
+Two M10 tie rods with steel plates stop the long sides from spreading.
+
+44
+00:03:23,726 --> 00:03:28,707
+And a loose liner keeps the soil off the timber, with the bottom left open to the garden soil.
+
+45
+00:03:32,651 --> 00:03:34,996
+For building, it made eleven drawing sheets.
+
+46
+00:03:34,996 --> 00:03:36,541
+They are in the Drawings tab.
+
+47
+00:03:42,518 --> 00:03:44,366
+An overview with the main dimensions,
+
+48
+00:03:51,118 --> 00:03:53,168
+a drilling drawing for every board and post,
+
+49
+00:03:59,718 --> 00:04:02,088
+the assembly in four illustrated steps,
+
+50
+00:04:05,718 --> 00:04:08,345
+and the cut list with the shopping list:
+
+51
+00:04:08,345 --> 00:04:15,176
+eight boards of three metres, one four metre post, the bolts, nuts and washers, the liner, and the soil.
+
+52
+00:04:15,176 --> 00:04:18,328
+That is for one bed, times three for the garden.
+
+53
+00:04:20,384 --> 00:04:21,245
+And it is honest:
+
+54
+00:04:21,245 --> 00:04:27,221
+check the real timber sizes and the long bolts before buying, and dry-assemble the first bed before cutting all three.
+
+55
+00:04:27,221 --> 00:04:29,298
+Its strength checks are only preliminary.
+
+56
+00:04:31,051 --> 00:04:32,270
+Last, the whole plot.
+
+57
+00:04:32,270 --> 00:04:42,084
+I ask SOMA AI to put all three beds into the garden, and to make a layout drawing with the beds, the paths, the compost spot and the water tap, with the main dimensions.
+
+58
+00:04:47,318 --> 00:04:50,210
+This time SOMA AI works for about 14 minutes.
+
+59
+00:04:50,210 --> 00:04:55,288
+It places the detailed beds, draws the plan, and checks it in its own pictures.
+
+60
+00:04:56,238 --> 00:05:04,208
+Now all three detailed beds stand in the six by four metre plot, with the paths, the compost spot at the back, and the tap at the front left.
+
+61
+00:05:05,251 --> 00:05:08,181
+The layout drawing is the new first sheet of the drawing pack.
+
+62
+00:05:09,131 --> 00:05:12,050
+It shows the whole plot with the main dimensions:
+
+63
+00:05:12,050 --> 00:05:21,581
+six by four metres, the three beds with their 70 centimetre aisles, 60 centimetre paths at the front and left, 90 at the back, and the compost spot of 80 by 80.
+
+64
+00:05:22,531 --> 00:05:26,450
+A note says the tap position is assumed and should be confirmed on site.
+
+65
+00:05:26,450 --> 00:05:30,261
+And it even marks where the tie rods make the aisle a little narrower.
+
+66
+00:05:31,211 --> 00:05:32,345
+That is the garden:
+
+67
+00:05:32,345 --> 00:05:38,136
+three concepts, a buildable raised bed with its drawings and lists, and a plan of the whole plot.
+
+68
+00:05:38,136 --> 00:05:39,390
+No CAD skills needed:
+
+69
+00:05:39,390 --> 00:05:41,181
+you just describe your garden.
+
+70
+00:05:42,131 --> 00:05:45,769
+From an empty patch of garden to a plan you can build.
+
+71
+00:05:45,769 --> 00:05:47,722
+SOMA is free and open source:
+
+72
+00:05:47,722 --> 00:05:49,541
+download it at somacad.app.

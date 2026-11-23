@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import GuidePage, { guideMetadata } from '../../../components/GuidePage';
 
-// Ratgeber „3D-gedrucktes Gehäuse mit KI“: was man vorher braucht, Ablauf, Beispiel-Prompt, Richtwerte für FDM, Prüfen
-// vor dem Druck, Beispiel Sensorgehäuse (Bilder aus dem Viewer der Seite). Richtwerte sind Startwerte, kein Versprechen.
-// Datum ändern, wenn sich der Inhalt ändert (steht in den strukturierten Daten und der Sitemap).
+// Guide "3D printed enclosure with AI": what to prepare, the steps with SOMA AI (a coding agent as the alternative),
+// an example prompt, FDM guide values, checks before printing, the sensor enclosure example (images from the viewer
+// of the site). Guide values are starting points, not a promise. Change the date when the content changes (it is in
+// the structured data and the sitemap).
 const GUIDE = {
   path: '/guides/ai-3d-printed-enclosure/',
   title: 'Design a 3D printed enclosure with AI',
   heading: 'How to design a 3D printed enclosure with AI',
-  description: 'Step by step: let an AI agent design a 3D printed case for your electronics. What to prepare, an example prompt, printing rules for walls, overhangs, clearances and screws, and what to check before printing.',
+  description: 'Let AI design a 3D printed case around your circuit board: what to prepare, an example prompt, rules for walls, overhangs, clearances and screws, and checks.',
   published: '2026-11-03',
-  modified: '2026-11-03',
+  modified: '2026-11-23',
   image: { src: '/images/guides/enclosure-explode.webp', width: 660, height: 650, alt: 'Exploded view of a 3D printed sensor enclosure designed with AI' },
   about: ['3D printing', 'Electronics enclosure', 'Computer-aided design', 'Artificial intelligence'],
 };
@@ -42,15 +43,15 @@ const RULES = [
 const FAQ = [
   {
     q: 'Can AI design a case for my circuit board?',
-    a: 'Yes. Give the agent the board size, hole pattern and the positions of the connectors, ideally as a STEP file of the board. It models the case around the board, with standoffs, cutouts and a lid. Check the connector cutouts and the fit before you print.',
+    a: 'Yes. Give the AI the board size, hole pattern and the positions of the connectors, ideally as a STEP file of the board. An AI agent such as SOMA AI places the board as a reference and models the case around it, with standoffs, cutouts and a lid. Check the connector cutouts and the fit before you print.',
   },
   {
     q: 'How do I get the connector positions right?',
-    a: 'The best source is a STEP model of the board from the manufacturer, imported as a reference part. Without one, measure the board with calipers and give the agent the positions from one corner. Cut the model open at each connector to see if the opening lines up.',
+    a: 'The best source is a STEP model of the board from the manufacturer, imported as a reference part. For parts without one, a datasheet with a dimensioned drawing is enough for a simple stand-in. Without either, measure the board with calipers and give the positions from one corner. Cut the model open at each connector to see if the opening lines up.',
   },
   {
     q: 'Which filament is best for electronics enclosures?',
-    a: 'PLA is easy to print but gets soft above about 55 °C, which a closed case in the sun or next to warm electronics can reach. PETG or ASA hold up to more heat. Tell the agent the material: it affects wall thickness, clearances and how screws hold.',
+    a: 'PLA is easy to print but gets soft above about 55 °C, which a closed case in the sun or next to warm electronics can reach. PETG or ASA hold up to more heat. Tell the AI the material, or set it in the 3D printing skill: it affects wall thickness, clearances and how screws hold.',
   },
   {
     q: 'Can AI design snap-fit lids?',
@@ -58,7 +59,11 @@ const FAQ = [
   },
   {
     q: 'Should I export STL or 3MF?',
-    a: 'Both work in common slicers. 3MF keeps units and several parts in one file, STL is supported everywhere. Export each printed part as its own file so you can orient and slice them separately.',
+    a: 'Both work in common slicers. 3MF keeps units and several parts in one file, STL is supported everywhere. Export each printed part as its own file so you can orient and slice them separately. In SOMA, exporting all parts gives one file per printed part and leaves the board and other reference parts out.',
+  },
+  {
+    q: 'What do I need to do this with SOMA?',
+    a: 'SOMA itself is free and open source and runs on Windows, macOS and Linux. SOMA AI, the agent built into it, needs your own ChatGPT Plus or Pro plan or an API key from Anthropic, OpenAI, Google Gemini, OpenRouter or OpenCode. If you already use Claude Code, Codex CLI, OpenCode or Gemini CLI, you can run it in SOMA instead.',
   },
 ];
 
@@ -82,8 +87,8 @@ export default function EnclosureGuide() {
 
     <h2 id="prepare">What to prepare</h2>
     <ul>
-      <li><strong>The board.</strong> Outline, thickness, mounting holes and their spacing. A STEP model from the manufacturer is best: the agent can place the case around the real geometry, including connectors and tall parts.</li>
-      <li><strong>Everything else inside.</strong> Battery, display, buttons, sockets, cables. Size and where they go.</li>
+      <li><strong>The board.</strong> Outline, thickness, mounting holes and their spacing. A STEP model from the manufacturer is best, often on the product page under Resources or Downloads: the AI can place the case around the real geometry, including connectors and tall parts.</li>
+      <li><strong>Everything else inside.</strong> Battery, display, buttons, sockets, speaker, cables. Size and where they go. For a part without a 3D file, its datasheet with a dimensioned drawing.</li>
       <li><strong>What must be reachable.</strong> USB ports, SD card, buttons, LEDs, cable glands, and from which side.</li>
       <li><strong>How it closes.</strong> Screws from below, heat-set inserts, a sliding lid or snap fits.</li>
       <li><strong>Printer and material.</strong> Nozzle size, PLA, PETG or ASA, and how much clearance your printer needs for parts that fit into each other.</li>
@@ -91,18 +96,31 @@ export default function EnclosureGuide() {
 
     <h2 id="step-by-step">Step by step</h2>
     <p>
-      The steps use <Link href="/">SOMA</Link> with a coding agent such as Claude Code or Codex. The general approach
-      is in <Link href="/guides/ai-cad/">how to use AI for CAD</Link>.
+      The steps use <Link href="/">SOMA</Link> and its built-in agent SOMA AI. The guide{' '}
+      <Link href="/guides/case-for-electronics/">how to design a case for your electronics</Link> shows the same way in a
+      video, with a smart speaker around a real board&apos;s STEP file. The general approach is
+      in <Link href="/guides/ai-cad/">how to use AI for CAD</Link>.
     </p>
     <ol>
-      <li><strong>Start a new model and your agent.</strong> If you have STEP files of the board or other parts, add them with Import. The agent finds them in the model folder.</li>
-      <li><strong>Describe the enclosure</strong> with the dimensions from your preparation, see the example below. Ask the agent to place the board and other parts as reference parts: they are shown in the model but not exported for printing.</li>
-      <li><strong>Check the first version from all sides.</strong> Is every connector reachable? Does the lid cover what it should? Point at problems by clicking a part or drawing on the view.</li>
+      <li><strong>Start a new model and import the parts.</strong> Click Import at the top and add the STEP file of the board and, for parts without one, their datasheet. They go into the model&apos;s inputs folder, where SOMA AI can use them. Click a STEP file in Files to look at it in the 3D view.</li>
+      <li><strong>Set the 3D printing skill to your printer.</strong> Open Skills in the sidebar, click 3D printing, set it to Always for this model and enter your material, nozzle and build volume (see the rules below).</li>
+      <li><strong>Let SOMA AI place the parts.</strong> Open the SOMA AI tab; the first time it asks for a sign-in with your ChatGPT plan or an API key. Ask it first only to bring the board and the other parts into the model as reference parts: they are shown see-through to design around, and never exported for printing.</li>
+      <li><strong>Describe the enclosure</strong> with the dimensions from your preparation, see the example below, and let it ask about anything that is unclear. Click your answers and send them. SOMA AI then builds the case step by step and checks pictures of its own result.</li>
+      <li><strong>Check the first version from all sides.</strong> Is every connector reachable? Does the lid cover what it should? Point at problems by clicking a part, or click Mark up, draw on the view and send it to SOMA AI.</li>
       <li><strong>Cut it open.</strong> A section through each connector shows whether the opening lines up and whether the board sits on its standoffs.</li>
       <li><strong>Explode it.</strong> Pulling the parts apart shows the assembly order: can you put the board in, then the lid, then the screws?</li>
-      <li><strong>Check for printing.</strong> The agent analyzes overhangs and wall thickness with the values of the 3D printing skill, SOMA shows problem areas in color. Fix them before slicing.</li>
-      <li><strong>Export each printed part</strong> as 3MF or STL. Print a test piece of the tightest area first, for example just the wall with the connectors.</li>
+      <li><strong>Check for printing.</strong> Ask SOMA AI to check overhangs and wall thickness. It uses the values of the 3D printing skill, and the Analysis tab shows the problem areas in color. Fix them before slicing.</li>
+      <li><strong>Fine-tune with sliders.</strong> Sizes you asked for as parameters, such as wall thickness or clearance, are in the Parameters tab. Drag a slider and the model rebuilds, without the AI.</li>
+      <li><strong>Export each printed part</strong> as 3MF or STL: Export, All parts, then the format. The board and other reference parts stay out. Print a test piece of the tightest area first, for example just the wall with the connectors.</li>
     </ol>
+    <figure>
+      <img src="/images/guides/case-for-electronics/section-view-fit-check.webp" alt="Section through a round smart speaker case: the board under the top with the light ring, the speaker behind the grille, and the Section panel at the bottom left" width="1280" height="720" loading="lazy"/>
+      <figcaption>A section view of the smart speaker case from the video guide: the board sits right under the top, the speaker right behind its grille.</figcaption>
+    </figure>
+    <p>
+      Already use a coding agent such as Claude Code, Codex CLI, OpenCode or Gemini CLI? Click the + above the chat and
+      start it in a terminal next to SOMA AI. The steps stay the same, it works on the same model and the same history.
+    </p>
 
     <h2 id="prompt">An example prompt</h2>
     <blockquote>
@@ -111,19 +129,22 @@ export default function EnclosureGuide() {
         2 mm walls, 0.4 mm clearance around the board. The board sits on four standoffs for M2.5 screws in its
         58 × 49 mm hole pattern. Openings for all ports on the board edges and for the microSD card. Vents in the lid
         above the cooler. The lid is held by four M3 screws into heat-set inserts in the base. Use the board&apos;s STEP
-        file in inputs as a reference part. Make wall thickness, clearance and lid height parameters.
+        file in inputs as a reference part. Make wall thickness, clearance and lid height parameters. Ask me about
+        anything that is unclear before you start.
       </p>
     </blockquote>
     <p>
-      Every sentence answers a question the agent would otherwise have to guess. Requirements that should stay, such
-      as the material or the screw type, go into the model&apos;s notes file, which the agent reads every time.
+      Every sentence answers a question the AI would otherwise have to guess, and the last one lets it ask instead of
+      guess. Requirements that should stay, such as the material or the screw type, go into the model&apos;s notes file,
+      which the agent reads first. A photo of a hand sketch with measurements helps too: add it to the chat with the clip
+      button.
     </p>
 
     <h2 id="rules">Rules of thumb for FDM printing</h2>
     <p>
       You do not have to type these into every prompt. SOMA gives the agent <strong>skills</strong>: sets of
-      instructions for a topic, such as 3D printing, CNC or tolerances, which the agent reads when the topic comes up.
-      The 3D printing skill brings these default settings:
+      instructions for a topic, such as 3D printing, CNC or tolerances. Each skill is Off, On demand (the agent reads it
+      when the topic comes up) or Always. The 3D printing skill brings these default settings:
     </p>
     <div className="guide-table">
       <table>
@@ -134,7 +155,7 @@ export default function EnclosureGuide() {
     <p>There are three ways to adapt them to your printer:</p>
     <ul>
       <li><strong>In the Skills panel</strong> in the sidebar: click 3D printing and change material, nozzle, build volume, overhang, bridge, wall or clearance. The values are saved with the model.</li>
-      <li><strong>In the chat:</strong> &ldquo;my printer handles 55° overhangs&rdquo; or &ldquo;use 0.2 mm clearance&rdquo;. What you tell the agent, or write in the model&apos;s notes file, takes precedence over the settings. The example prompt above does that with 2 mm walls and 0.4 mm clearance.</li>
+      <li><strong>In the chat:</strong> &ldquo;my printer handles 55° overhangs&rdquo; or &ldquo;use 0.2 mm clearance&rdquo;. What you tell SOMA AI, or write in the model&apos;s notes file, takes precedence over the settings. The example prompt above does that with 2 mm walls and 0.4 mm clearance.</li>
       <li><strong>In the skill itself:</strong> under Settings, Skills you can edit the text of a built-in skill or write your own, for example with the hole sizes of the heat-set inserts you buy.</li>
     </ul>
     <p>Beyond the settings, the skill tells the agent rules like these:</p>
@@ -175,6 +196,8 @@ export default function EnclosureGuide() {
     </figure>
     <p>
       You can turn it, cut it open and explode it yourself on the <Link href="/models/#model-multisens">models page</Link>.
+      For a second example with a video, from the board&apos;s STEP file to 3MF files, see the{' '}
+      <Link href="/guides/case-for-electronics/">smart speaker case</Link>.
     </p>
   </GuidePage>;
 }

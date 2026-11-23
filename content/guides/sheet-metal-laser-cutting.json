@@ -4,10 +4,10 @@
   "title": "How to design sheet metal parts for laser cutting",
   "heading": "How to design sheet metal parts for laser cutting, with AI and a DXF flat pattern",
   "description": "Design a bent sheet metal part with AI and get the flat pattern as a DXF for a laser cutting service, with bend lines and a bend table. Step by step in SOMA.",
-  "summary": "A bent sheet metal motor bracket designed by AI around real STEP files, unfolded into a DXF for the laser with bend lines and a drawing with a bend table.",
+  "summary": "A bent sheet metal motor bracket designed by SOMA AI around real STEP files, unfolded into a DXF for the laser with bend lines and a drawing with a bend table.",
   "topic": "sheet-metal",
   "published": "2026-11-18",
-  "modified": "2026-11-18",
+  "modified": "2026-11-23",
   "about": [
     "Sheet metal",
     "Laser cutting",
@@ -18,8 +18,8 @@
   ],
   "video": {
     "youtubeId": null,
-    "title": "AI Designed My Sheet Metal Stepper Bracket, DXF for the Laser Included (No CAD Skills)",
-    "duration": "PT3M46S",
+    "title": "Sheet Metal Bracket with AI: from STEP Files to a DXF for the Laser (SOMA AI)",
+    "duration": "PT5M44S",
     "uploadDate": null,
     "cover": "/images/guides/sheet-metal-laser-cutting/cover.webp",
     "chapters": [
@@ -28,116 +28,132 @@
         "label": "Intro"
       },
       {
-        "time": "0:26",
+        "time": "0:35",
         "label": "The real parts: STEP files of the motor and the extrusion"
       },
       {
-        "time": "0:53",
+        "time": "1:05",
         "label": "How it is made: the sheet metal skill"
       },
       {
-        "time": "1:15",
-        "label": "Design the bracket in plain words"
+        "time": "1:32",
+        "label": "Design the bracket with SOMA AI"
       },
       {
-        "time": "2:14",
+        "time": "3:15",
         "label": "Flat pattern: DXF with bend lines, drawing with bend table"
       },
       {
-        "time": "2:46",
-        "label": "Change it: a tab with Mark up, a thicker sheet"
+        "time": "4:02",
+        "label": "Change it: a limit switch with Mark up, a thicker sheet"
       },
       {
-        "time": "3:36",
+        "time": "5:30",
         "label": "Get SOMA"
       }
     ]
   },
-  "answer": "To design a sheet metal part for laser cutting, you need the bent part and its flat pattern: the unfolded outline as a DXF file at 1:1, with the bend lines kept apart from the lines to cut. In SOMA you set your material, thickness and bend radius once, describe the part to the AI agent in plain words, and it builds the bent part and writes the DXF and a drawing with a bend table. Check the flat size and the bend details with your laser cutting service before you order, because bend allowances depend on their machines and material.",
+  "answer": "To design a sheet metal part for laser cutting, you need the bent part and its flat pattern: the unfolded outline as a DXF file at 1:1, with the bend lines kept apart from the lines to cut. In SOMA you set your material, thickness and bend radius once in the sheet metal skill, describe the part to SOMA AI in plain words, and it builds the bent part and writes the DXF and a drawing with a bend table. Check the flat size and the bend allowance with your laser cutting service before you order, because they depend on their machines and material.",
   "need": [
     "SOMA, free and open source, for Windows, macOS or Linux.",
-    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
-    "Your material, sheet thickness and inner bend radius. Ask your laser cutting service which ones they offer; the video uses 2 mm steel with a 2 mm inner bend radius.",
-    "STEP files of the parts your sheet metal part has to fit, if you have them. The video uses a NEMA 17 stepper motor and a piece of 2020 V-slot extrusion from the FreeCAD Parts Library.",
-    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key, and an API key is billed per use by the provider. The cheapest way to start is an OpenCode Go subscription for about $10 a month. The video uses GPT-6.1 Sol with a ChatGPT sign-in.",
+    "Your material, sheet thickness and inner bend radius. Ask your laser cutting service which ones they offer; the video uses 2 mm steel (DC01) with a 2 mm inner bend radius.",
+    "STEP files of the parts your sheet metal part has to fit, if you have them. The video uses a NEMA 17 stepper motor, a 100 mm piece of 2020 V-slot extrusion and a micro switch, all from the FreeCAD Parts Library."
   ],
   "steps": [
     {
       "title": "Import the parts it has to fit",
       "text": [
-        "Start a new model and click Import at the top. Add the STEP files of the parts your bracket has to hold. SOMA puts them into the model's inputs folder, where the agent can use them.",
-        "Click a STEP file in Files to look at it in the 3D view. In the video it is the real motor: flange, shaft and connector, ten parts in all. Back to model returns to your model."
+        "Start a new model and click Import at the top. Add the STEP files of the parts your bracket has to fit. In the video they are a NEMA 17 stepper motor and a 100 mm piece of 2020 V-slot extrusion.",
+        "The files go into the model's inputs folder, where SOMA AI can use them. Click one in Files and it shows up in the 3D view, here the motor with its 10 parts. Back to model returns to your model."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/sheet-metal-laser-cutting/motor-step-file.webp",
-        "alt": "A NEMA 17 stepper motor from a STEP file in SOMA's 3D view, labeled The real motor, 10 parts, with the banner Viewing inputs/NEMA_17_with_connector.step"
+        "alt": "A NEMA 17 stepper motor from a STEP file in SOMA's 3D view, with the banner Viewing inputs/NEMA_17_with_connector.step, STEP file, 10 parts, and a Back to model button"
       }
     },
     {
-      "title": "Set up the sheet metal skill",
+      "title": "Set the sheet metal skill to your material",
       "text": [
-        "Skills tell the agent how your parts are made. Open Skills in the sidebar. Under Manufacturing there is Sheet metal, and also Laser cutting and Plasma cutting.",
-        "Click Sheet metal, set it to Always for this model and enter your material, sheet thickness and inner bend radius. The video uses steel (DC01), 2 mm thick, with a 2 mm inner bend radius and a K-factor of 0.4.",
-        "The agent then follows the skill's rules: distances from holes to bends, bend reliefs, and the flat pattern with the right K-factor."
+        "Skills tell SOMA AI how your parts are made. Open Skills in the sidebar. Under Manufacturing there is Sheet metal, and also Laser cutting and Plasma cutting.",
+        "Click Sheet metal, set it to Always for this model and enter your values. The video uses steel (DC01), 2 mm thick, with a 2 mm inner bend radius and a K-factor of 0.4.",
+        "SOMA AI then follows the skill's rules: distances from holes to bends, bend reliefs, and the flat pattern with the right K-factor."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/sheet-metal-laser-cutting/sheet-metal-skill-settings.webp",
-        "alt": "The Sheet metal skill card set to Always, with material Steel (DC01), sheet thickness 2 mm, inner bend radius 2 mm and K-factor 0.4"
+        "alt": "The Sheet metal skill card set to Always for this model, with material Steel (DC01), sheet thickness 2 mm, inner bend radius 2 mm and K-factor 0.4"
       }
     },
     {
-      "title": "Describe the part in plain words",
+      "title": "Describe the part to SOMA AI",
       "text": [
-        "Say what the part has to do, which parts it holds, how it is fastened and what you want to change later. If you do not want to answer questions, ask the agent to choose sensible values and tell you what it chose.",
-        "The agent measures the motor and the extrusion in the STEP files, picks the screws and builds the bracket. In the video it is a C-shaped channel: the plate holds the motor with the pilot hole and slots on the 31 mm hole pattern for the belt tension, and two flanges wrap around the extrusion and make it stiff.",
-        "The structure tree lists the bracket and the screws, with the motor and the extrusion as references. Explode and Section above the 3D view show how it goes together and how the bends look."
+        "Click the SOMA AI tab and pick a model; the video uses GPT-6.1 Sol. Then say in plain words what the part has to do: which parts it holds, how it is fastened and what you want to change later.",
+        "If you ask it to, SOMA AI asks what is still open before it starts. In the video it asks two questions: where the motor should sit (beyond the end of the extrusion is recommended), and whether to start with 2 mm mild steel and 8 mm of belt-tension travel. Click your answers and send them."
       ],
-      "prompt": "In inputs are a NEMA 17 stepper motor and a 100 mm piece of 2020 V-slot extrusion. Design a bracket from bent sheet metal that holds the motor at one end of the extrusion, with the shaft pointing sideways, so a GT2 belt can run along the extrusion. Make the motor holes slots, so I can tension the belt. Fix it to the extrusion with M5 screws and T-nuts, add the screws, and show the motor and the extrusion in place, the extrusion lying horizontally. I want to change the sheet thickness later. Don't ask me, choose sensible values and tell me what you chose.",
+      "prompt": "In inputs/ are a NEMA 17 stepper motor and a 100 mm piece of 2020 V-slot extrusion. Design a bracket bent from sheet metal that holds the motor at one end of the extrusion, with the shaft pointing sideways, so a GT2 belt can run along the extrusion. A C-shaped channel: a plate against the side of the extrusion that carries the motor, with a flange bent back along its top and bottom edge. Make the motor holes slots, so I can tension the belt. Fix it to the extrusion with M5 screws and T-nuts, add the screws, and show the motor and the extrusion in place, the extrusion lying horizontally. I want to change the sheet thickness later. Ask me about anything that is unclear before you start.",
+      "image": {
+        "src": "/images/guides/sheet-metal-laser-cutting/soma-ai-questions.webp",
+        "alt": "SOMA AI has 2 questions: where the motor should sit relative to the end of the extrusion, with Beyond the end (recommended), and whether to use 2 mm mild steel and 8 mm of belt-tension travel"
+      }
+    },
+    {
+      "title": "Check the bent bracket",
+      "text": [
+        "SOMA AI measures the motor and the extrusion in the STEP files, picks the screws and builds the bracket. SOMA shows every step right away.",
+        "In the video it is a C-shaped channel: a plate that carries the motor, with a flange bent back along the top and the bottom. The motor sits in slots, so it can slide to tension the belt. Two M5 screws with washers and T-nuts hold it on the extrusion, and four M3 screws with washers hold the motor.",
+        "The structure tree lists the bracket and the screws, with the motor and the extrusion as references. Explode and Section above the 3D view change nothing: Explode pulls the bracket and its screws apart, and a section shows the two bends with their radius and the screws in the T-nuts."
+      ],
+      "prompt": null,
       "image": {
         "src": "/images/guides/sheet-metal-laser-cutting/bent-bracket-on-extrusion.webp",
-        "alt": "Close-up of the bent sheet metal bracket: the motor plate with slotted screw holes and the shaft, a bent flange over the V-slot extrusion with M5 screws"
+        "alt": "The blue C-shaped sheet metal bracket on the V-slot extrusion with two M5 screws, the stepper motor at its end, and SOMA AI's summary: 2 mm steel, two rearward bends, 16 mm return flanges, 8 mm belt-tension travel"
       }
     },
     {
       "title": "Ask for the flat pattern as a DXF",
       "text": [
         "A laser cuts a flat sheet, so the service needs the part unfolded: the flat pattern. It comes as a DXF file, a common 2D drawing format that laser cutting services accept.",
-        "Ask for the outline and holes to cut, and for the bend lines on their own layer, so they are marked but not cut. The agent unfolds the bracket; each bend adds a little length, worked out from the radius, the thickness and the K-factor.",
-        "Click the DXF in Files and SOMA opens it in its DXF view: the outline and holes to cut, and the bend lines on their own layer, which you can turn off and on."
+        "Ask for the outline and holes to cut, and for the bend lines on their own layer, so they are marked but not cut. SOMA AI unfolds the bracket; each bend adds a little length, worked out from the radius, the thickness and the K-factor.",
+        "Click the DXF in Files and SOMA opens it right there, at 1:1 in mm: the outline and holes to cut, and the bend lines on their own layer, which you can turn off and on under Layers."
       ],
       "prompt": "Now the flat pattern for the laser cutting service: a DXF file with the outline and the holes to cut, and the bend lines on their own layer. Update it every time the model is built. Show the flat blank next to the bracket too. And make a drawing of the flat pattern with a bend table.",
       "image": {
         "src": "/images/guides/sheet-metal-laser-cutting/dxf-flat-pattern.webp",
-        "alt": "The DXF view in SOMA: the flat blank with the motor pilot hole, four slots and two holes, and two red bend lines across it"
+        "alt": "SOMA's DXF view labeled Flat pattern, 1:1 in mm: the flat blank with the motor opening, four slots and two holes, and two red bend lines across it"
       }
     },
     {
       "title": "Check the drawing with the bend table",
       "text": [
-        "Open Drawings in the sidebar. The drawing shows the flat blank with its size and a table with every bend: its direction, angle, inner radius, K-factor and bend allowance.",
-        "Send the drawing along with the DXF, so the service knows how to bend the part. Export at the top of Drawings saves the sheets as PDF or DXF."
+        "Open Drawings in the sidebar. The drawing shows the flat blank with its size, a table with every bend (its position, angle, inner radius and bend allowance) and the coordinates of every hole and slot.",
+        "In the video the blank is 124 x 102.8 mm with two 90 degree bends. SOMA AI also notes to tell the service not to cut the BEND layer, and to confirm the bend allowance against their tooling. Send the drawing along with the DXF."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/sheet-metal-laser-cutting/drawing-bend-table.webp",
-        "alt": "The drawing Motor bracket flat pattern: the dimensioned flat blank and a bend table with direction, angle, inner radius, K-factor and bend allowance for two bends"
+        "alt": "The drawing Bracket flat pattern: the dimensioned flat blank, 124 by 102.8 mm, a bend table for bends B1 and B2 at 90 degrees with inside radius 2.00, a table of cut feature coordinates, and laser cutting notes"
       }
     },
     {
-      "title": "Add a detail with Mark up",
+      "title": "Add a limit switch with Mark up",
       "text": [
-        "Click Mark up, draw the new feature where you want it, write what it is, then Send to agent and add one sentence. In the video a small tab for a limit switch appears with its own bend and holes for the switch, and the flat pattern grows with it."
+        "Import the STEP file of the extra part, here a micro switch from the FreeCAD Parts Library. Then click Mark up and draw where it goes: a circle where the tab should be, an arrow and a short note.",
+        "Click Send to agent and add one sentence. In the video SOMA AI bends up a tab from the top flange at the end of the bracket and mounts the switch on it with two M2 screws, washers and nuts, its lever facing the carriage. The flat pattern grows with it: the tab, a third bend line and a bend relief notch."
       ],
-      "prompt": "Add a small tab here for a limit switch, a standard micro switch with two M2 holes 9.5 mm apart, bent like the rest.",
-      "image": null
+      "prompt": "Add a tab here for a limit switch and mount the micro switch from inputs/ on it. The carriage runs along the extrusion toward the motor: the tab should stand out from the bracket toward it, with the switch lever facing the carriage, so the carriage presses it at the end of travel. Bent like the rest, and in the flat pattern too.",
+      "image": {
+        "src": "/images/guides/sheet-metal-laser-cutting/markup-limit-switch.webp",
+        "alt": "Mark up over the 3D view: an orange circle on the end of the bracket's top flange, an arrow and the note tab + limit switch, with the flat blank beside it and the Send to agent button highlighted"
+      }
     },
     {
       "title": "Change the thickness and send the DXF",
       "text": [
-        "Because the prompt asked for it, the sheet thickness is in the Parameters tab. Change it, for example from 2 to 3 mm, and SOMA rebuilds the bracket. The flat pattern gets the new bend allowance, and the DXF is updated with it.",
-        "Open the DXF again to check it, then upload it to a laser cutting service, bend the flanges and bolt the motor on."
+        "SOMA AI also made the main sizes adjustable. Open the Parameters tab: in the video it has the sheet thickness (1.5 to 3 mm), the belt tension travel and the return flange depth.",
+        "Change the sheet from 2 to 3 mm and SOMA rebuilds the bracket. The flat pattern gets the new bend allowance, and the DXF is updated with it. Open the DXF again to check it.",
+        "Then upload it to a laser cutting service, bend the flanges and bolt the motor on."
       ],
       "prompt": null,
       "image": null
@@ -145,10 +161,11 @@
   ],
   "tips": [
     "Ask your laser cutting service for their materials, thicknesses and bend radii first, and enter those in the sheet metal skill. The flat pattern is only right for the values it was calculated with.",
-    "Ask for the bend lines on their own layer. Then the laser cuts only the outline and holes, and the bend lines still show where to bend.",
-    "Ask for the DXF to be updated on every build. Then a change in the Parameters tab or by the agent never leaves you with an old flat pattern.",
-    "If you cut your own parts on a plasma table, there is a Plasma cutting skill as well.",
-    "For the best results the user guide recommends Opus 5.5 (with an API key) or GPT-6 Astra (with ChatGPT), with High effort or more."
+    "Ask for the bend lines on their own layer, and tell the service not to cut it. Then the laser cuts only the outline and holes, and the bend lines still show where to bend.",
+    "Ask for the DXF to be updated every time the model is built. Then a change in the Parameters tab or by SOMA AI never leaves you with an old flat pattern.",
+    "Ask SOMA AI to ask about anything unclear before it starts. It collects its questions at once, and you click your answers.",
+    "SOMA AI's work takes a while: in the video it is shown sped up. You can watch every step in the 3D view while it works.",
+    "If you cut your own parts on a plasma table, there is a Plasma cutting skill as well."
   ],
   "faq": [
     {
@@ -165,14 +182,18 @@
     },
     {
       "q": "Can I design sheet metal parts without CAD skills?",
-      "a": "Yes. In SOMA you describe the part in plain words and its AI agent builds the bent part, the flat pattern as a DXF and a drawing with a bend table. You set the material, thickness and bend radius once, and change sizes later with sliders. Check the flat size and the bends with your service before ordering."
+      "a": "Yes. In SOMA you describe the part in plain words and SOMA AI, its built-in agent, builds the bent part, the flat pattern as a DXF and a drawing with a bend table. You set the material, thickness and bend radius once, and change sizes later in the Parameters tab. Check the flat size and the bends with your service before ordering."
     },
     {
       "q": "What happens to the flat pattern when I change the sheet thickness?",
-      "a": "A different thickness changes the bend allowance, so the flat pattern changes too. In SOMA the agent can keep the DXF up to date on every build, so after you change the thickness in the Parameters tab, the flat pattern and the DXF follow."
+      "a": "A different thickness changes the bend allowance, so the flat pattern changes too. In SOMA, SOMA AI can keep the DXF up to date on every build, so after you change the thickness in the Parameters tab, the flat pattern and the DXF follow."
     }
   ],
   "credits": [
-    "NEMA 17 stepper motor and V-slot 20x20 extrusion STEP models by Charles Fox, FreeCAD Parts Library (https://github.com/FreeCAD/FreeCAD-library), licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/). The extrusion file was changed: FreeCAD's construction geometry and duplicate bodies removed, the shape is unchanged. The V-slot profile is an OpenBuilds design."
+    "NEMA 17 stepper motor and V-slot 20x20 extrusion STEP models by Charles Fox, FreeCAD Parts Library (https://github.com/FreeCAD/FreeCAD-library), licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/). The extrusion file was changed: FreeCAD's construction geometry and duplicate bodies removed, the shape is unchanged. The V-slot profile is an OpenBuilds design.",
+    "Micro switch ESS05 STEP model by Almisuifre, FreeCAD Parts Library, CC BY 3.0, unchanged.",
+    "Voice: Kyutai Pocket TTS.",
+    "Music: \"Inspirational Technology\" by AtlasAudio (Pixabay).",
+    "Sounds: Kenney Interface Sounds (CC0)."
   ]
 }

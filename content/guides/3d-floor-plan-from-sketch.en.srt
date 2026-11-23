@@ -1,199 +1,243 @@
 1
-00:00:00,750 --> 00:00:05,000
-Today we turn a simple floor plan and a few photos into a 3D model of a flat.
+00:00:00,550 --> 00:00:06,920
+Today I'll show you how to turn a hand sketch of a floor plan and a few photos into a furnished 3D flat, with SOMA AI.
 
 2
-00:00:05,050 --> 00:00:09,740
-Then we furnish it, and try out new ideas, like a round dining table in the kitchen.
+00:00:07,870 --> 00:00:11,523
+And then we try out ideas, like a round table in the kitchen.
 
 3
-00:00:10,440 --> 00:00:11,766
+00:00:11,523 --> 00:00:12,960
 No CAD knowledge needed.
 
 4
-00:00:11,816 --> 00:00:15,370
-You just say what you want, and an AI agent does the modeling.
+00:00:14,950 --> 00:00:15,721
+We use SOMA.
 
 5
-00:00:18,450 --> 00:00:23,840
-We use SOMA, a free and open-source app where an AI coding agent builds 3D models for you.
+00:00:15,721 --> 00:00:19,960
+It's free and open source, and you can download it at somacad.app.
 
 6
-00:00:23,890 --> 00:00:25,220
-Get it at somacad.app.
+00:00:20,910 --> 00:00:22,275
+SOMA itself is free.
 
 7
-00:00:27,170 --> 00:00:28,900
-We start with a new, empty model.
+00:00:22,275 --> 00:00:24,663
+For SOMA AI, you bring your own AI:
 
 8
-00:00:30,137 --> 00:00:31,828
-Import brings in our material:
+00:00:24,663 --> 00:00:27,188
+a ChatGPT subscription or an API key.
 
 9
-00:00:31,878 --> 00:00:35,194
-a sketch of the floor plan, and a few photos of each room.
+00:00:29,550 --> 00:00:32,550
+I start with a new model, Flat, and import my material:
 
 10
-00:00:35,244 --> 00:00:39,307
-SOMA copies them into the model folder, where the agent can find them.
+00:00:32,550 --> 00:00:35,713
+a sketch of the floor plan, and a few photos of each room.
 
 11
-00:00:40,007 --> 00:00:41,030
-The sketch is simple:
+00:00:35,713 --> 00:00:37,840
+SOMA copies them into the model folder.
 
 12
-00:00:41,080 --> 00:00:43,944
-the rooms, the doors and windows, and a few measurements.
+00:00:40,983 --> 00:00:42,056
+The sketch is simple:
 
 13
-00:00:43,994 --> 00:00:47,009
-Just like you would draw your own flat with a tape measure.
+00:00:42,056 --> 00:00:44,970
+the rooms, the doors and windows, and a few measurements.
 
 14
-00:00:48,237 --> 00:00:52,464
-The photos show a historic flat in Heidelberg that is now a small museum.
+00:00:44,970 --> 00:00:47,985
+Just like you would draw your own flat with a tape measure.
 
 15
-00:00:52,514 --> 00:00:54,447
-We drew the sketch to match them.
+00:00:51,717 --> 00:00:55,994
+The photos show a historic flat in Heidelberg that is now a small museum.
 
 16
-00:00:56,770 --> 00:00:58,334
-Next, we start the agent.
+00:00:55,994 --> 00:00:57,927
+We drew the sketch to match them.
 
 17
-00:00:58,384 --> 00:01:01,950
-Click the plus above the terminal, and pick Claude Code.
+00:01:03,683 --> 00:01:05,433
+Everything is ready.
 
 18
-00:01:02,000 --> 00:01:04,260
-Other command line agents work too.
+00:01:05,433 --> 00:01:08,494
+Now we build the flat with SOMA AI.
 
 19
-00:01:06,010 --> 00:01:07,429
-First, the flat itself.
+00:01:08,494 --> 00:01:11,643
+I click its tab, and pick the model:
 
 20
-00:01:07,479 --> 00:01:10,112
-We just tell the agent which file to read:
+00:01:11,643 --> 00:01:12,693
+GPT-6.1 Sol.
 
 21
-00:01:10,162 --> 00:01:13,740
-floor, walls, doors and windows, as drawn in the sketch.
+00:01:16,550 --> 00:01:23,507
+I add the sketch as a picture, and ask for the floor, the walls, the door openings and the windows, as drawn.
 
 22
-00:01:15,127 --> 00:01:19,467
-The agent reads the sketch, writes the model as code, builds it, and checks the result.
+00:01:23,507 --> 00:01:24,209
+No ceiling.
 
 23
-00:01:19,517 --> 00:01:21,737
-This takes a few minutes, so we speed it up.
+00:01:24,209 --> 00:01:27,400
+And it should ask me first if anything is unclear.
 
 24
-00:01:22,804 --> 00:01:24,288
-And here is our flat in 3D:
+00:01:32,983 --> 00:01:35,401
+Before it starts, it asks two questions:
 
 25
-00:01:24,338 --> 00:01:27,406
-every wall, door and window where the sketch has them.
+00:01:35,401 --> 00:01:41,384
+keep the overall size of eight by seven meters, and use window widths it estimated from the sketch.
 
 26
-00:01:29,771 --> 00:01:30,620
-Now we furnish it.
+00:01:41,384 --> 00:01:43,016
+I take its recommendations.
 
 27
-00:01:30,670 --> 00:01:36,061
-The agent should look at the photos, and add simple models of the furniture it sees, each in the right room.
+00:01:43,966 --> 00:01:45,094
+Then it gets to work:
 
 28
-00:01:37,454 --> 00:01:42,224
-It goes through the photos room by room, and builds every piece from simple boxes and cylinders.
+00:01:45,094 --> 00:01:50,896
+it lays out the walls as drawn, builds the flat, and looks at a picture of the result to check its own work.
 
 29
-00:01:42,924 --> 00:01:48,254
-When it is done, it tells you what it had to guess, like the size of the sofa, so you know what to check.
+00:01:51,846 --> 00:01:52,878
+Here's the flat:
 
 30
-00:01:49,310 --> 00:01:50,699
-And there it is, furnished.
+00:01:52,878 --> 00:02:00,040
+eight by seven meters inside, walls 2.6 meters high, six door openings, and four windows with frames and glass.
 
 31
-00:01:50,749 --> 00:01:55,440
-Every piece of furniture is a part of its own, sorted into groups in the structure tree.
+00:02:00,040 --> 00:02:01,976
+No ceiling, so we can look in.
 
 32
-00:01:56,643 --> 00:02:01,322
-To look at it like a floor plan, view it from the top, and cut the walls with a section.
+00:02:04,733 --> 00:02:06,634
+Every room sits where the sketch has it:
 
 33
-00:02:01,372 --> 00:02:03,253
-Now you can see every room at once.
+00:02:06,634 --> 00:02:10,863
+the bedroom and the bath at the back, the living room and the kitchen on the street side.
 
 34
-00:02:03,953 --> 00:02:12,151
-From the photos, it picked up the red sofa and the sewing table, the old stove and the kitchen cabinet, the two beds with the wardrobe, and the bathtub.
+00:02:15,133 --> 00:02:16,235
+Now the furniture.
 
 35
-00:02:13,901 --> 00:02:14,941
-Now the fun part:
+00:02:16,235 --> 00:02:23,823
+I add the photos of all the rooms to the chat, and ask SOMA AI to model the furniture it sees, each piece in the right room.
 
 36
-00:02:14,991 --> 00:02:16,031
-trying out ideas.
+00:02:31,066 --> 00:02:35,982
+It looks at every photo, works out which room it shows, and builds each piece from simple shapes.
 
 37
-00:02:16,081 --> 00:02:19,430
-How would the kitchen look with a round dining table?
+00:02:35,982 --> 00:02:40,796
+Then it checks the layout in a picture, and moves the wardrobe a little where it was too tight.
 
 38
-00:02:19,480 --> 00:02:23,391
-Click the table, send it to the agent, and say what you want.
+00:02:41,746 --> 00:02:43,248
+And there it is, furnished.
 
 39
-00:02:24,091 --> 00:02:27,181
-The agent replaces the table, and moves the chairs around it.
+00:02:43,248 --> 00:02:47,476
+Every piece is a part of its own, and the structure tree sorts them by room.
 
 40
-00:02:27,881 --> 00:02:30,039
-Only the table and the chairs change.
+00:02:50,280 --> 00:02:53,185
+To see it like a floor plan, I use the viewing tools.
 
 41
-00:02:30,089 --> 00:02:32,237
-The rest of the flat stays as it is.
+00:02:53,185 --> 00:02:55,432
+They only change the view, not the model:
 
 42
-00:02:33,087 --> 00:02:37,297
-And here is the kitchen with a round table, one meter across, and four chairs around it.
+00:02:55,432 --> 00:02:59,597
+the view from the top, and a section that cuts the walls at about one meter.
 
 43
-00:02:39,754 --> 00:02:44,288
-We asked for an adjustable size, so the diameter shows up in the Parameters tab.
+00:03:02,780 --> 00:03:04,527
+Now you see every room at once:
 
 44
-00:02:44,338 --> 00:02:47,383
-Drag the slider, and SOMA rebuilds the flat by itself.
+00:03:04,527 --> 00:03:12,757
+the red sofa and the sewing table in the living room, the beds and the cot in the bedroom, the old kitchen range and the dresser, and the bathtub.
 
 45
-00:02:47,433 --> 00:02:49,324
-The agent is not needed for this.
+00:03:14,913 --> 00:03:15,963
+Now the fun part:
 
 46
-00:02:50,024 --> 00:02:52,620
-Every change is saved as a version on the timeline.
+00:03:15,963 --> 00:03:17,014
+trying out ideas.
 
 47
-00:02:52,670 --> 00:02:55,834
-So you can try as many ideas as you like, and always go back.
+00:03:17,014 --> 00:03:20,288
+How would the kitchen look with a round dining table?
 
 48
-00:02:57,184 --> 00:02:57,698
-That's it:
+00:03:20,288 --> 00:03:22,883
+I click the table, and send it to SOMA AI.
 
 49
-00:02:57,748 --> 00:03:01,872
-from a sketch and a few photos to a furnished flat in 3D, without any CAD.
+00:03:26,280 --> 00:03:27,732
+Then I say what I want:
 
 50
-00:03:01,922 --> 00:03:07,394
-Get SOMA for free at somacad.app, bring the agent you already use, and try it with your own flat.
+00:03:27,732 --> 00:03:33,353
+a round table, one meter across, with four chairs around it, and the diameter adjustable.
+
+51
+00:03:35,980 --> 00:03:42,487
+SOMA AI swaps the table for a round one, puts four chairs around it, and checks that even the largest size still fits.
+
+52
+00:03:42,487 --> 00:03:45,630
+For that, it moves the set a little away from the window.
+
+53
+00:03:46,580 --> 00:03:50,654
+Here's the kitchen with a round table, one meter across, and four chairs facing it.
+
+54
+00:03:50,654 --> 00:03:52,470
+The rest of the flat stays as it was.
+
+55
+00:03:55,313 --> 00:03:59,645
+The diameter is now a parameter, from 80 centimeters to 1.2 meters.
+
+56
+00:03:59,645 --> 00:04:04,883
+Drag the slider, and SOMA rebuilds the flat by itself, and the chairs move along.
+
+57
+00:04:09,880 --> 00:04:12,880
+Every step of SOMA AI is saved in the history at the bottom.
+
+58
+00:04:12,880 --> 00:04:15,930
+So you can try as many ideas as you like, and always go back.
+
+59
+00:04:17,580 --> 00:04:18,174
+That's it:
+
+60
+00:04:18,174 --> 00:04:22,868
+from a hand sketch and a few photos to a furnished flat in 3D, without any CAD.
+
+61
+00:04:22,868 --> 00:04:26,670
+Get SOMA for free at somacad.app, and try it with your own flat.

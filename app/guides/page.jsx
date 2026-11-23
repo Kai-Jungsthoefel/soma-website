@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Footer, Header } from '../../components/SiteChrome';
 import GuideCards from '../../components/GuideCards';
 import { GUIDES, TOPICS } from '../../lib/guides';
+import { SITE_URL } from '../../lib/site';
 
 // Übersicht der Ratgeber: grouped by what people want to make, guides with a video show its cover
 export const metadata = {
@@ -12,6 +13,18 @@ export const metadata = {
 
 export default function Guides() {
   const groups = TOPICS.map(([id, label]) => [id, label, GUIDES.filter(g => g.topic === id)]).filter(([, , list]) => list.length);
+  // The overview as a list of its guides for search engines, in the order shown
+  const list = groups.flatMap(([, , l]) => l);
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Guides: design 3D parts with AI, step by step',
+    url: `${SITE_URL}/guides/`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: list.map((g, i) => ({ '@type': 'ListItem', position: i + 1, name: g.title, url: `${SITE_URL}${g.path}` })),
+    },
+  };
   return <>
     <Header/>
     <main className="wrap page">
@@ -27,5 +40,6 @@ export default function Guides() {
       <p className="guides-more">Looking for how a button in SOMA works? The <Link href="/docs/" prefetch={false}>user guide</Link> explains the app step by step.</p>
     </main>
     <Footer/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }}/>
   </>;
 }

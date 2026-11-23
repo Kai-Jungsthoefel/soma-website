@@ -3,23 +3,25 @@
   "order": 7,
   "title": "How to design a robot arm with linkages",
   "heading": "How to design a robot arm with linkages, by describing it to AI",
-  "description": "Design a desktop robot arm with all motors in the base, push rods and parallelograms: AI lays it out, animates its range of motion and checks for collisions.",
-  "summary": "A Dobot-style robot arm with push rods and parallelograms, laid out by AI from one description, animated with a collision check and extended with a gripper.",
+  "description": "Design a desktop robot arm with all motors in the base, belts, push rods and parallelograms: AI lays it out, animates it, checks collisions and adds a gripper.",
+  "summary": "A Dobot-style robot arm with three real NEMA 17 steppers in the base, laid out by SOMA AI from one description, animated with a collision check and given a parallel gripper.",
   "topic": "robotics",
   "published": "2026-11-18",
-  "modified": "2026-11-18",
+  "modified": "2026-11-23",
   "about": [
     "Robot arm",
     "Linkage",
     "Parallelogram linkage",
+    "Stepper motor",
+    "Rack and pinion",
     "Artificial intelligence",
     "Computer-aided design",
     "3D printing"
   ],
   "video": {
     "youtubeId": null,
-    "title": "I Described a Linkage Robot Arm and an AI Designed It (All Motors in the Base)",
-    "duration": "PT4M20S",
+    "title": "How to Design a Robot Arm Without Any CAD Skills",
+    "duration": "PT9M12S",
     "uploadDate": null,
     "cover": "/images/guides/robot-arm-linkages/cover.webp",
     "chapters": [
@@ -28,123 +30,160 @@
         "label": "Intro"
       },
       {
-        "time": "0:28",
+        "time": "0:39",
         "label": "Describe the arm in plain words"
       },
       {
-        "time": "1:47",
+        "time": "2:47",
         "label": "Range of motion and collision check"
       },
       {
-        "time": "2:50",
-        "label": "More reach, and a gripper"
+        "time": "3:58",
+        "label": "More reach, and a parallel gripper"
       },
       {
-        "time": "3:52",
+        "time": "5:46",
         "label": "Pose it with sliders"
       },
       {
-        "time": "4:11",
+        "time": "6:30",
+        "label": "The gripper from scratch"
+      },
+      {
+        "time": "8:32",
+        "label": "What more is possible"
+      },
+      {
+        "time": "8:59",
         "label": "Get SOMA"
       }
     ]
   },
-  "answer": "A robot arm with linkages keeps its motors in the base and drives the joints through push rods, while parallelograms keep the gripper level in every pose. Instead of working out link lengths and collisions by hand, you can describe the arm to an AI agent in SOMA: it lays out the linkage, picks bearings and screws, animates the full range of motion and checks every pose for parts that touch. The result is a first layout, not a tested robot: check torques, belt tension and fits before you build one.",
+  "answer": "A robot arm with linkages keeps its motors in the base and drives the joints through belts and push rods, while parallelograms keep the tool mount level in every pose. Instead of working out link lengths, dead points and collisions by hand, you can describe the arm to SOMA AI, the agent built into SOMA: it lays out the linkage around your real motor, animates the full range of motion, checks every pose for parts that touch and narrows the joint limits where needed. The result is a first layout, not a tested robot: check torques, fits and loads before you build one.",
   "need": [
     "SOMA, free and open source, for Windows, macOS or Linux.",
     "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
-    "Your main numbers: the reach, the payload, the motors you want to use, and how the parts will be made. The video uses about 250 mm reach, 200 g payload, NEMA 17 steppers and 3D printed links.",
-    "Time: a full arm is a big job. In the video the agent worked on its own for almost an hour.",
-    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+    "A STEP file of your motor, if you want the real one in the model. The video uses a NEMA 17 stepper from the FreeCAD Parts Library.",
+    "Your main numbers: the reach, the payload and how the parts will be made. The video uses about 250 mm reach, later 300 mm, a 200 g payload and 3D printed links.",
+    "Time: a full arm is a big job. In the video SOMA AI worked on its own for about an hour on each of the bigger steps."
   ],
   "steps": [
     {
+      "title": "Import the motor as a STEP file",
+      "text": [
+        "Start a new model. The video names it Robot arm.",
+        "The arm should get real motors, so first import a NEMA 17 stepper as a STEP file. It lands in the inputs folder. Click it in the file browser to see it in the viewer; Back to model returns to your model."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/robot-arm-linkages/nema17-step-file.webp",
+        "alt": "SOMA's viewer showing the imported NEMA 17 stepper motor with its connector, and the note Viewing inputs/NEMA_17_with_connector.step, view only, with a Back to model button"
+      }
+    },
+    {
       "title": "Describe the arm in plain words",
       "text": [
-        "Start a new model and describe the arm in SOMA AI's chat: what kind of arm it is, where the motors sit, how the joints are driven, the reach and payload, how the parts are made, and which values you want to change later.",
-        "Naming a known design such as a Dobot or uArm helps the agent understand the layout you mean."
+        "Open the SOMA AI tab, pick the model and the effort. The video uses GPT-6.1 Sol with High effort, so it thinks longer before it acts.",
+        "Then describe the arm: what kind of arm it is, where the motors sit and which file to use for them, how the joints are driven, the reach and payload, how the parts are made, and which values you want to change later. Naming a known design such as a Dobot or uArm helps SOMA AI understand the layout you mean. End with a request to ask about anything that is unclear."
       ],
-      "prompt": "Design a desktop robot arm like a Dobot or uArm. All motors sit in the base: one NEMA 17 stepper turns the base, two more drive the shoulder and, through push rods, the elbow. A parallelogram keeps the gripper mount level in every pose. Reach about 250 mm, payload 200 g, 3D printed links, ball bearings and standard screws at the pivots. Make the base, shoulder and elbow angles parameters.",
+      "prompt": "Design a desktop robot arm like a Dobot or uArm. All motors sit in the base: one stepper turns the base, two more drive the shoulder and, through push rods, the elbow. Use the NEMA 17 from inputs/NEMA_17_with_connector.step for all three motors. A parallelogram keeps the gripper mount level in every pose. Reach about 250 mm, payload 200 g, 3D printed links, ball bearings and standard screws at the pivots. Make the base, shoulder and elbow angles parameters, and group the parts clearly in the structure tree. Ask me about anything that is unclear before you start.",
       "image": null
     },
     {
       "title": "Answer its questions",
       "text": [
-        "Before it starts, the agent asks about what it cannot decide alone. In the video it ran a torque check first: 200 g at 250 mm needs about 0.9 Nm at the shoulder, twice what a NEMA 17 gives, so it suggested a GT2 belt with a 1:5 reduction. It also asked about the motor length and the end of the arm.",
-        "In SOMA AI, all questions come at once: click an answer or write your own, then Send answers. In the video all of the agent's recommendations were taken."
+        "SOMA AI asks its questions all at once, each with a recommended answer. In the video there were two: what the level wrist should carry, and how the two arm motors pass on their motion.",
+        "The video takes the recommendations: a mounting plate for your own gripper for now, and timing belts to gear down the two arm motors. Click an answer or write your own, then Send answers."
       ],
       "prompt": null,
-      "image": null
+      "image": {
+        "src": "/images/guides/robot-arm-linkages/two-questions.webp",
+        "alt": "SOMA AI has 2 questions: what the level wrist should carry, with Mounting plate only selected, and how the two arm motors transmit their motion, with Timing-belt reduction selected, above a Send answers button"
+      }
     },
     {
       "title": "Let it lay out the linkage",
       "text": [
-        "Then the agent works on its own: it lays out the push rod and the two parallelograms, picks bearings and screws for every pivot, and checks the arm at several poses for collisions. Every time it changes the model, SOMA builds it and shows it.",
-        "In the video the arm has 97 parts. The structure tree groups them into base, hardware, arm and turret. In the arm group are the upper arm and forearm, the elbow push rod, and two level rods with a triangle at the elbow: that is what keeps the tool mount level.",
-        "Make the arm and the screws see-through with the half circle next to their names, and you see the drive: the steppers sit low on the turret, and belts turn the joints."
+        "Then SOMA AI works on its own, in the video for almost an hour. It lays out the links, the push rods and the belts, places the three motors, replaces screws that were too long, and checks the arm in ten poses for parts that touch. Every time it changes the model, SOMA builds it and shows it.",
+        "In the video the arm has 238 parts. The structure tree groups them from the fixed base and the rotating base up to the shoulder, the elbow drive, the leveling links and the wrist. Its summary lists 125 mm upper and forearm links, paired elbow push rods and two parallelograms that keep the mounting plate level."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/robot-arm-linkages/arm-structure-tree.webp",
-        "alt": "The structure tree with Base, Hardware, Arm and Turret, the Arm group opened: upper arm, shoulder pulley, elbow driver, elbow push rod, forearm, level rods, elbow triangle and tool mount"
+        "alt": "The robot arm with 238 parts next to its structure tree: Fixed base, Rotating base, Shoulder, Remote elbow, Leveling, Forearm, Level wrist and Pivot spacers, and SOMA AI's summary on the right"
       }
     },
     {
-      "title": "Look at the drive inside",
+      "title": "Look at the motors inside",
       "text": [
-        "With the arm see-through, check that what you asked for is really there: all motors in the base, belts to the joints, rods to the elbow and the tool mount. This is also a good moment to ask the agent about anything you do not understand."
+        "Make the two base groups see-through with the half circle next to their names, and the motors show: three copies of the imported NEMA 17.",
+        "In the video one sits under the turntable and turns the whole arm with a belt. The other two ride on the turntable, back to back, and drive the shoulder and the elbow through timing belts. From the side you see the linkage: paired push rods drive the elbow from the base."
       ],
       "prompt": null,
       "image": {
-        "src": "/images/guides/robot-arm-linkages/see-through-drive.webp",
-        "alt": "The robot arm with its links see-through in orange: the stepper motors and belt pulleys on the turret are visible behind them"
+        "src": "/images/guides/robot-arm-linkages/see-through-base-motors.webp",
+        "alt": "Close-up of the see-through base: a NEMA 17 stepper under the turntable, another stepper above it and a large belt pulley at the shoulder"
       }
     },
     {
       "title": "Animate the range of motion with a collision check",
       "text": [
-        "Does the linkage actually work? Ask for an animation of the full range of motion, with a collision check. The agent writes the motion as a series of poses, solves the linkage at every step, and lets SOMA check every tenth of a second for parts that touch.",
-        "Open the Animation tab, pick the animation and press play. In the video the turret turns 135 degrees each way, the shoulder sweeps from -15 to 60 degrees and the elbow from -40 to 40, while the tool mount stays level. Then it traces the edge of the workspace.",
-        "Read the agent's report. In the video nothing collided with a minimum gap of 1 mm; the only contacts were the belts on their pulleys, which is intended, so the angle limits could stay."
+        "Does the linkage actually work? Ask for an animation of the full range of motion, with a collision check. SOMA AI writes the motion and checks every pose with the whole assembly, motors and screws included.",
+        "In the video that found contacts its first check had missed: the elbow axle touched the leveling links at steep angles, and screw heads hit the drive. So it moved the screws and narrowed the shoulder and elbow travel: shoulder 25 to 55 degrees, elbow 35 to 80 degrees. The base still turns ±150 degrees.",
+        "Open the Animation tab, pick the animation and press play. The push rods and the parallelograms follow, and the mounting plate stays level the whole time. The report: no collisions at 441 positions."
       ],
       "prompt": "Make an animation of the full range of motion: the base turns, then shoulder and elbow sweep to their limits while the gripper mount stays level. Check that no link hits another part, and limit the angles if needed.",
       "image": {
         "src": "/images/guides/robot-arm-linkages/range-of-motion-animation.webp",
-        "alt": "A frame of the animation: the arm reaching forward, with the caption Shoulder from -15° to 60°, the tool mount stays level"
+        "alt": "A frame of the animation: the arm with orange links and a level mounting plate, captioned Elbow sweep: 35 to 80 degrees, driven by the paired push rods"
       }
     },
     {
-      "title": "Change it in words: more reach and a gripper",
+      "title": "Change it in words: more reach and a parallel gripper",
       "text": [
-        "Changes work the same way. Ask for more reach and a gripper. In the video the agent asked first where to measure the reach, which servo, what kind of gripper and how wide it should open; there was no datasheet for the servo, so it asked whether it may use typical dimensions, marked as assumed.",
-        "It then stretched the links, built a gear gripper around an SG90 micro servo and ran the collision check again. It found two screws that touched the gear teeth and moved the gears. It also warned that with some combinations of arm lengths the jaws could reach below the table at the lowest pose, and noted that instead of quietly blocking it.",
-        "The animation still works with the new geometry."
+        "Changes work the same way. Ask for more reach and a gripper whose jaws both move and stay parallel.",
+        "SOMA AI asked three questions first: where to measure the reach, which servo, and how wide the jaws should open. The video picks the reach to the center of the grip, a generic 9 gram servo for now, and 30 mm.",
+        "Then it worked for almost an hour: it lengthened the arm, built the gripper, extended the animation and checked everything again. The micro servo sits under the wrist plate and turns a small gear; two racks mesh with it from opposite sides, and each carries one jaw, so both jaws move the same distance in opposite directions. The collision check passed again, and so did the 14 builds at the ends of every parameter range."
       ],
-      "prompt": "I need more reach: make it 300 mm, and add a simple gripper with a micro servo. Keep the animation working.",
+      "prompt": "I need more reach: make it 300 mm, and add a simple gripper with a micro servo. Both jaws should move and stay parallel to each other while they open and close. Keep the animation working, and show the gripper opening and closing in it. Ask me about anything that is unclear before you start.",
       "image": {
-        "src": "/images/guides/robot-arm-linkages/arm-with-gripper.webp",
-        "alt": "The longer robot arm in SOMA with orange links, a blue micro servo and a gear gripper at the tip"
+        "src": "/images/guides/robot-arm-linkages/rack-and-pinion-gripper.webp",
+        "alt": "Close-up from above of the first gripper: an orange gear between two orange racks, each joined to a jaw, and SOMA AI's summary of the 0 to 30 mm parallel gripper on the right"
       }
     },
     {
       "title": "Pose it with sliders",
       "text": [
-        "Because the prompt asked for it, the joint angles are in the Parameters tab: base angle, shoulder angle and elbow angle, and in the video also the gripper opening and the arm lengths.",
-        "Drag a slider and SOMA rebuilds the arm in that pose, with every rod in its place, without the AI and without code. Reset all brings the arm back to its home pose."
+        "Because the prompt asked for it, the joint angles are parameters, and so are the reach and the jaw opening. You find them in the Parameters tab.",
+        "Drag a slider and SOMA rebuilds the arm in that pose, without the AI and without code: the push rods and the parallelograms follow, and the gripper stays level. Reset all brings the arm back to its home pose."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/robot-arm-linkages/joint-angle-sliders.webp",
-        "alt": "The Parameters panel with the elbow angle set to -30 degrees and the shoulder angle changed, next to the arm with its gripper in the new pose"
+        "alt": "The Parameters panel with Base angle, Shoulder elevation (shortened in the list), Elbow bend, Reach to grip center and Jaw opening; Shoulder elevation is set to 35 degrees and the Elbow bend slider is dragged to 45 degrees, 2 changed, next to the arm in that pose"
+      }
+    },
+    {
+      "title": "Redo the gripper from scratch",
+      "text": [
+        "Look closely at what you got. In the video the first gripper opened and closed, but it was not usable: the jaws barely reached past the wrist, and every gripping force went through thin rods into the racks and the gear.",
+        "So start a new conversation and ask for a new gripper from scratch, with the jaws in their own guide that takes the forces. SOMA AI asked one thing first: the guide can take the bending and lifting loads, but something still has to hold the grip closed. The video picks the servo.",
+        "After 1 h 10 min of work there is a guide housing in which each jaw carriage runs on two T-shaped shoes, held in by a bolted lid. The fingers reach 48 mm beyond the housing, 40 mm further forward than before, and both jaws still move parallel, 0 to 30 mm. The racks are bolted on separately and, as chosen, still carry the closing force. To keep 300 mm of reach to the grip center, SOMA AI made the upper arm and the forearm shorter on its own."
+      ],
+      "prompt": "The gripper isn't usable yet. Please redo the complete gripper from scratch, don't keep the old geometry. The jaws should run in their own guide (a slide or rail housing) that takes all the gripping forces, so the racks and the gear only make the movement and never carry load. Also make the jaws reach further forward, so it can actually pick something up. Both jaws should still move parallel, driven by the servo.",
+      "image": {
+        "src": "/images/guides/robot-arm-linkages/gripper-guide-housing.webp",
+        "alt": "The arm with the new gripper: long orange fingers on a blue guide housing at the end of the linkage, and SOMA AI's summary after 1 h 10 min: independent captive slides, longer fingers 48 mm beyond the housing, parallel servo motion"
       }
     }
   ],
   "tips": [
-    "Give the payload and the reach. With those numbers the agent can check whether the motors are strong enough, as in the video, where it added a belt reduction.",
+    "Import the real parts you want to use, like the motor, as STEP files first. Then the design is built around their true size.",
     "Ask for the joint angles as parameters from the start. Then you can pose the arm with sliders and the animation can use the same angles.",
-    "Ask for a collision check with every animation, and read the report. It says which parts touch and whether that is intended.",
-    "When a part has no datasheet, let the agent use typical dimensions marked as assumed, and replace them with real ones before you build.",
-    "For the best results the user guide recommends Opus 5.5 (with an API key) or GPT-6 Astra (with ChatGPT), with High effort or more."
+    "Ask for a collision check of the whole assembly with every animation, and read the report. In the video it found contacts a simpler check had missed.",
+    "Look at the result with a critical eye. A gripper that opens and closes is not yet one that can hold something; say what is wrong and ask for a new one.",
+    "A new part adds weight. In the video the new gripper has about 136 g of printed parts, so little of the 200 g payload is left for the object. Test the real servo and the grip before you build.",
+    "For the best results the user guide recommends Opus 5.5 (with an API key) or GPT-6.2 Astra (with ChatGPT), with High effort or more."
   ],
   "faq": [
     {
@@ -157,16 +196,19 @@
     },
     {
       "q": "Can AI check a robot arm for collisions?",
-      "a": "Yes, in SOMA. The agent animates the arm through its full range of motion, and SOMA checks every tenth of a second for parts that touch. The agent then reports which parts touch, whether that is intended, and limits the angles if needed."
+      "a": "Yes, in SOMA. SOMA AI animates the arm through its full range of motion and checks the poses with the whole assembly, motors, bearings and screws included. In the video it checked 441 positions, found contacts, moved screws and narrowed the joint limits until nothing touched."
     },
     {
-      "q": "Which motors does a 3D printed desktop robot arm need?",
-      "a": "It depends on reach and payload. In the video, 200 g at 250 mm needed about 0.9 Nm at the shoulder, about twice what a NEMA 17 stepper gives directly, so the agent added a GT2 belt with a 1:5 reduction. Let the agent run such a torque check for your own numbers and check it yourself."
+      "q": "How does a parallel gripper with one servo work?",
+      "a": "The servo turns a small gear. Two racks mesh with it from opposite sides, and each rack carries one jaw, so both jaws move the same distance in opposite directions and stay parallel. In the final version of the video the jaws run in a guide housing that takes the bending, lifting and twisting loads."
     },
     {
       "q": "Is an AI-designed robot arm ready to build?",
-      "a": "Treat it as a first layout. The geometry is exact and checked for collisions, but it is not a tested robot. Check the torques, the belt tension and the fits, and replace assumed dimensions with real ones from your datasheets before you print and assemble the parts."
+      "a": "Treat it as a first layout. The geometry is exact and checked for collisions, but it is not a tested robot. In the video the servo is a placeholder; check the torques, the fits and the loads, and test the real servo and the grip before you print and assemble the parts."
     }
   ],
-  "credits": []
+  "credits": [
+    "NEMA 17 stepper motor STEP model (\"NEMA_17_with_connector\") by Charles Fox, FreeCAD Parts Library, licensed under CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/), used unchanged.",
+    "Voice: Kyutai Pocket TTS. Music: \"Inspirational Technology\" by AtlasAudio (Pixabay). Sounds: Kenney Interface Sounds (CC0)."
+  ]
 }

@@ -1,0 +1,359 @@
+1
+00:00:00,550 --> 00:00:05,234
+Today I'll show you how SOMA AI designs a folding steel trestle you can really build:
+
+2
+00:00:05,234 --> 00:00:08,760
+with a folding check, a strength analysis and workshop drawings.
+
+3
+00:00:13,750 --> 00:00:14,521
+We use SOMA.
+
+4
+00:00:14,521 --> 00:00:18,760
+It's free and open source, and you can download it at somacad.app.
+
+5
+00:00:19,710 --> 00:00:21,198
+SOMA itself is free.
+
+6
+00:00:21,198 --> 00:00:23,727
+For SOMA AI you bring your own AI:
+
+7
+00:00:23,727 --> 00:00:26,480
+a ChatGPT subscription or an API key.
+
+8
+00:00:27,450 --> 00:00:31,303
+We start with a new model, saved as Folding trestle.
+
+9
+00:00:31,303 --> 00:00:33,971
+In the SOMA AI tab I pick the model:
+
+10
+00:00:33,971 --> 00:00:34,860
+GPT-6.1 Sol.
+
+11
+00:00:42,450 --> 00:00:45,380
+For a bigger design like this, I turn the effort up to High.
+
+12
+00:00:49,550 --> 00:00:51,978
+Then I describe what I need, in plain words:
+
+13
+00:00:51,978 --> 00:00:57,164
+a strong trestle that folds flat for the wall, made from steel tube I can cut and weld myself.
+
+14
+00:00:57,164 --> 00:01:00,640
+And I ask SOMA AI to plan it with me before it builds anything.
+
+15
+00:01:06,183 --> 00:01:08,435
+SOMA AI asks four questions at once:
+
+16
+00:01:08,435 --> 00:01:13,189
+the working size, the load, my tools and steel, and how thin it should fold.
+
+17
+00:01:13,189 --> 00:01:17,193
+I click my answers, and for the steel I type what I really have.
+
+18
+00:01:31,216 --> 00:01:32,941
+The answer is a clear brief:
+
+19
+00:01:32,941 --> 00:01:39,223
+800 millimetres high, 900 long, 300 kilos for the pair, and at most 100 millimetres thick when folded.
+
+20
+00:01:39,223 --> 00:01:47,661
+It plans with my tube sizes, with positive locks and stops, and on its own it suggests a replaceable timber cap to protect the saw blade.
+
+21
+00:01:49,416 --> 00:01:51,806
+Now SOMA AI builds the complete model:
+
+22
+00:01:51,806 --> 00:01:57,342
+the top beam with its timber cap, both leg frames, hinges, spreaders, feet and end caps.
+
+23
+00:01:57,342 --> 00:02:03,066
+It has to fold and lock without tools, with standard parts, powder-coated in signal yellow.
+
+24
+00:02:08,316 --> 00:02:15,086
+SOMA AI reads its skills, writes the model, builds it eight times, and looks at its own pictures of the result along the way.
+
+25
+00:02:19,616 --> 00:02:22,560
+After half an hour the trestle is complete:
+
+26
+00:02:22,560 --> 00:02:31,459
+130 parts, 800 millimetres high, with twin steel top rails, two braced leg frames, all in signal yellow, and a natural timber cap.
+
+27
+00:02:33,116 --> 00:02:40,286
+The legs hang on sleeved hinges under the top, with washers and lock nuts, so tightening a bolt never clamps the hinge solid.
+
+28
+00:02:41,449 --> 00:02:45,216
+Each side has a swing-up spreader that locks with a push-button pin.
+
+29
+00:02:45,216 --> 00:02:47,099
+Opening and folding need no tools.
+
+30
+00:02:48,249 --> 00:02:51,777
+The feet are welded plates with non-marking rubber soles.
+
+31
+00:02:51,777 --> 00:02:55,739
+Folded, it is 96 millimetres thin, and it weighs about 18 kilos.
+
+32
+00:03:00,383 --> 00:03:01,412
+Next, the folding.
+
+33
+00:03:01,412 --> 00:03:09,073
+I ask for the whole sequence as an animation, from folded flat to open and locked, and back, with a collision check in every position.
+
+34
+00:03:14,316 --> 00:03:19,166
+SOMA AI plans every step of the motion, writes the animation and checks it frame by frame.
+
+35
+00:03:21,616 --> 00:03:25,089
+After 43 minutes the animation is in the Animation tab:
+
+36
+00:03:25,089 --> 00:03:27,741
+33 seconds, with a caption for every step.
+
+37
+00:03:33,216 --> 00:03:36,034
+It starts folded flat, as it hangs on the wall.
+
+38
+00:03:36,034 --> 00:03:41,249
+Swing the carrying latch clear, open the legs, and lock both spreaders with their pins.
+
+39
+00:03:41,249 --> 00:03:44,786
+Then the same way back, until the frames lie flat together.
+
+40
+00:03:59,916 --> 00:04:03,025
+It checked all 991 frames with the exact shapes:
+
+41
+00:04:03,025 --> 00:04:04,320
+no unwanted overlap.
+
+42
+00:04:04,320 --> 00:04:09,760
+The smallest gap between the two leg frames is 1.45 millimetres, at the folded feet.
+
+43
+00:04:09,760 --> 00:04:13,646
+On the way it also corrected the holes for the locking pins.
+
+44
+00:04:15,383 --> 00:04:16,762
+Now the important part:
+
+45
+00:04:16,762 --> 00:04:17,541
+will it hold?
+
+46
+00:04:17,541 --> 00:04:25,396
+I ask for SOMA's strength analysis with 150 kilos on one trestle, also near one end and with someone leaning sideways on the board.
+
+47
+00:04:25,396 --> 00:04:29,113
+If the safety factor is below 2, it should improve the design.
+
+48
+00:04:36,650 --> 00:04:38,682
+First it asks one question:
+
+49
+00:04:38,682 --> 00:04:41,691
+how hard does someone lean on the board?
+
+50
+00:04:41,691 --> 00:04:45,980
+I pick a firm lean, 300 newtons, about 30 kilos sideways.
+
+51
+00:04:46,930 --> 00:04:52,334
+SOMA AI sets up the load cases and lets the feet lift or slide, instead of pinning them to the floor.
+
+52
+00:04:52,334 --> 00:04:57,845
+The hinges with their small details are hard to mesh, so it simplifies them and runs study after study.
+
+53
+00:04:58,795 --> 00:05:01,467
+After five and a half hours, its answer.
+
+54
+00:05:01,467 --> 00:05:04,340
+The weak spot it found is not in the steel:
+
+55
+00:05:04,340 --> 00:05:09,083
+with the lean, the trestle could tip too easily, a margin of only 1.75.
+
+56
+00:05:09,083 --> 00:05:12,690
+So it widened the legs and moved them nearer the ends.
+
+57
+00:05:12,690 --> 00:05:16,765
+Now the margin is 2.12, and it still folds to 98 millimetres.
+
+58
+00:05:17,715 --> 00:05:20,256
+In the Analysis tab are all its studies.
+
+59
+00:05:20,256 --> 00:05:22,225
+Here is the case I asked about:
+
+60
+00:05:22,225 --> 00:05:25,845
+150 kilos near the end, plus the lean, on the welded top.
+
+61
+00:05:28,417 --> 00:05:32,770
+The lowest safety factor in this study is 2.5, above the required 2.
+
+62
+00:05:32,770 --> 00:05:34,691
+Red would mark steel below it:
+
+63
+00:05:34,691 --> 00:05:35,587
+there is none.
+
+64
+00:05:36,537 --> 00:05:40,001
+The weakest area is where the top rail joins the hinge saddle.
+
+65
+00:05:40,001 --> 00:05:41,397
+And SOMA AI stays honest:
+
+66
+00:05:41,397 --> 00:05:45,587
+that peak changes with the mesh, so it does not call the trestle confirmed.
+
+67
+00:05:45,587 --> 00:05:48,827
+Check the welds and do a proof test before you rely on it.
+
+68
+00:05:50,277 --> 00:05:52,058
+Later I open the model again.
+
+69
+00:05:52,058 --> 00:05:58,567
+Under Earlier conversations the trestle conversation is still there, and SOMA AI goes on where it stopped.
+
+70
+00:06:01,010 --> 00:06:02,537
+Now the workshop package:
+
+71
+00:06:02,537 --> 00:06:09,620
+drawings of the welded frames with all lengths, angles, holes and weld symbols, plus a cut list and a shopping list.
+
+72
+00:06:12,877 --> 00:06:19,167
+SOMA AI lays out the sheets, looks at its own drawings as pictures and fixes what it finds, like a reversed angle label.
+
+73
+00:06:20,177 --> 00:06:22,627
+After 57 minutes the package is ready:
+
+74
+00:06:22,627 --> 00:06:24,561
+35 sheets in the Drawings tab.
+
+75
+00:06:24,561 --> 00:06:26,947
+I make the column wider to read them.
+
+76
+00:06:28,110 --> 00:06:33,447
+Each welded frame has its own sheet with lengths, holes and proposed weld symbols:
+
+77
+00:06:33,447 --> 00:06:36,505
+two millimetre fillet welds, numbered W1 to W5.
+
+78
+00:06:37,743 --> 00:06:40,063
+Every tube has a cut and drill drawing.
+
+79
+00:06:40,063 --> 00:06:43,633
+The legs are cut at 24 degrees, with every hole dimensioned.
+
+80
+00:06:44,877 --> 00:06:50,285
+The cut list gives every tube and sleeve with its length and mitre angle, for one trestle and for the pair.
+
+81
+00:06:51,543 --> 00:06:52,921
+And the shopping lists:
+
+82
+00:06:52,921 --> 00:06:57,113
+steel, timber and rubber, then the bolts, pins and other bought parts.
+
+83
+00:07:02,877 --> 00:07:04,472
+SOMA AI stays honest here too:
+
+84
+00:07:04,472 --> 00:07:09,788
+the package is marked review only, because the sleeve welds and the full load rating are still open.
+
+85
+00:07:09,788 --> 00:07:12,127
+The last check before the first cut is mine.
+
+86
+00:07:13,077 --> 00:07:13,762
+Here it is:
+
+87
+00:07:13,762 --> 00:07:20,241
+a folding steel trestle, planned, built, checked and drawn by SOMA AI, in about eight hours of its work.
+
+88
+00:07:21,777 --> 00:07:24,651
+From an idea to a design you can build.
+
+89
+00:07:24,651 --> 00:07:26,788
+SOMA is free and open source:
+
+90
+00:07:26,788 --> 00:07:28,778
+download it at somacad.app.

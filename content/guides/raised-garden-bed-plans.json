@@ -1,0 +1,185 @@
+{
+  "slug": "raised-garden-bed-plans",
+  "order": 9,
+  "title": "Raised garden bed plans and garden layout with AI",
+  "heading": "Raised garden bed plans and a vegetable garden layout, made with AI",
+  "description": "Plan a vegetable garden with AI: three layouts in 3D, then a raised bed you can build, with drawings, a cut list, a shopping list and a plan of the plot.",
+  "summary": "A 6 by 4 m vegetable garden planned with AI: three layout concepts, a buildable raised bed with 11 drawing sheets, cut list and shopping list, and a layout plan of the plot.",
+  "topic": "garden",
+  "published": "2026-11-22",
+  "modified": "2026-11-23",
+  "about": [
+    "Raised bed gardening",
+    "Vegetable garden",
+    "Garden design",
+    "Woodworking",
+    "Technical drawing",
+    "Artificial intelligence",
+    "Computer-aided design"
+  ],
+  "video": {
+    "youtubeId": null,
+    "title": "From an Empty Patch of Garden to a Build Plan: Raised Beds Designed with AI | SOMA",
+    "duration": "PT5M55S",
+    "uploadDate": null,
+    "cover": "/images/guides/raised-garden-bed-plans/cover.webp",
+    "chapters": [
+      {
+        "time": "0:00",
+        "label": "Intro"
+      },
+      {
+        "time": "0:27",
+        "label": "The concepts"
+      },
+      {
+        "time": "2:16",
+        "label": "The raised bed"
+      },
+      {
+        "time": "4:30",
+        "label": "The plot drawing"
+      },
+      {
+        "time": "5:30",
+        "label": "The result"
+      }
+    ]
+  },
+  "answer": "Describe your garden in plain words to SOMA AI, the agent built into SOMA: the size of the area, where the water tap is, and what you want in it. It builds a few layout concepts side by side in 3D, works out the raised bed you pick down to every board, post and bolt, and makes drawing sheets with a cut list, a shopping list and assembly steps, plus a layout plan of the whole plot. It is a plan made by an AI: check the real timber sizes, the bolts and the tap position before you buy and build.",
+  "need": [
+    "SOMA, free and open source, for Windows, macOS or Linux.",
+    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
+    "The size of your free area and where the water tap is. The video uses a 6 by 4 m area with the tap in one corner.",
+    "Time: in the video SOMA AI worked about 6 minutes on the concepts, 38 minutes on the raised bed with its drawings and 14 minutes on the plot drawing. No CAD skills needed."
+  ],
+  "steps": [
+    {
+      "title": "Describe your garden",
+      "text": [
+        "Start a new model, open the SOMA AI tab and pick a model. The video uses GPT-6.1 Sol with the effort turned up to High, because it should think through a few concepts to compare.",
+        "Then describe your garden in plain words: the size of the area, what you want to grow, where the water tap is, and what should be in it. Ask for a few layout ideas, so you can choose."
+      ],
+      "prompt": "I have a free area of 6 by 4 metres in my garden and want to use it for growing vegetables. The water tap is in one corner. Please suggest a few concepts for the layout: raised beds, paths, maybe a compost spot. Show them to me so I can choose.",
+      "image": null
+    },
+    {
+      "title": "Compare the layout concepts",
+      "text": [
+        "SOMA AI first reads its notes on how to work in SOMA, then builds the concepts side by side in one model and looks at its own pictures to check them. In the video it took about six minutes.",
+        "It made three concepts for the 6 by 4 m plot, each with raised beds, paths, a compost spot and the tap in the front left corner: A has four beds, B three long rows, and C is a U shape around a wide courtyard. The beds are 45 cm high and the compost spot is 80 by 80 cm. It also said that sun and shade still need checking on site."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/three-layout-concepts.webp",
+        "alt": "Three garden layout concepts side by side in SOMA: four beds, three long rows and a U shape, each with a compost box; the chat lists A, B and C and asks which layout to develop"
+      }
+    },
+    {
+      "title": "Pick one layout",
+      "text": [
+        "SOMA AI then asks which layout you want to develop. Click an answer, or write your own. In the video B was picked: three identical long beds with straight paths, good for rows and simple watering.",
+        "It then shows B on its own: three beds of 1 by 2.5 m, 45 cm high, with 70 cm aisles, the compost at the back right and the tap at the front left. The other concepts stay in the model under the parameter Show layout. Check that the tap corner and the entrance match your real garden."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/layout-b-long-rows.webp",
+        "alt": "Layout B on its own: three long raised beds with plants, a compost box at the back right and a blue tap at the front left, labelled B Long rows; the chat sums up the beds, aisles and compost"
+      }
+    },
+    {
+      "title": "Ask for one bed in detail",
+      "text": [
+        "Now ask SOMA AI to work out one bed so you can really build it, with a cut list, a shopping list and assembly steps with drawings.",
+        "It reads up on joints, strength and drawings, then asks two questions: which timber to use, and what the bed stands on. In the video it was told to pick new timber to buy, and that the beds stand on garden soil."
+      ],
+      "prompt": "Great, B it is. Now please work out one of the raised beds in detail, so that I can really build it: boards and posts, standard screws, and a liner if you think it needs one. I also need a cut list, a shopping list and the assembly steps with drawings.",
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/timber-and-base-questions.webp",
+        "alt": "SOMA AI's two questions in the chat: what timber to design around, with Specify new timber highlighted, and what the bed will stand on, garden soil or paving; layout B in the viewer"
+      }
+    },
+    {
+      "title": "Check the raised bed",
+      "text": [
+        "SOMA AI then works on its own. In the video it took about 38 minutes: it modelled every board and post, wrote a build guide, made the drawings and looked at each sheet to check that it is easy to read.",
+        "The bed is 2.5 m by 1 m and 45 cm high: three courses of 45 by 150 mm boards on eight posts, 327 parts down to every bolt, washer and nut. The prompt asked for standard screws, but instead of screws driven into end grain it chose stainless M8 through-bolts. Two M10 tie rods with steel plates stop the long sides from spreading, and a loose liner keeps the soil off the timber, with the bottom left open to the garden soil."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/raised-bed-detail.webp",
+        "alt": "The detailed raised bed in SOMA: three courses of boards on posts, bolts along the sides, two tie rods across and a see-through liner; the chat lists the build documents and the main construction"
+      }
+    },
+    {
+      "title": "Read the drawings, cut list and shopping list",
+      "text": [
+        "For building, SOMA AI made eleven drawing sheets. Open them in the Drawings tab: an overview with the main dimensions, a drilling drawing for every board and post, the assembly in four illustrated steps, and the cut list with the shopping list.",
+        "The shopping list in the video: eight boards of three metres, one four metre post, the bolts, nuts and washers, the liner, and the soil. That is for one bed, times three for the garden. Its cutting plan turns the 3 m stock into the six 2.5 m long boards and six 910 mm end boards, and the 4 m post into the eight 450 mm posts.",
+        "Read SOMA AI's notes before you buy. In the video it said to check the real timber sizes and the long bolts before buying, and to dry-assemble the first bed before cutting all three. Its strength checks are only preliminary."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/cut-list-and-shopping.webp",
+        "alt": "Sheet 10 Cut list and shopping in the Drawings tab: a table of boards, posts, plates, rods and liner with quantities and sizes, and a buy list below it for one bed"
+      }
+    },
+    {
+      "title": "Place the beds in the plot",
+      "text": [
+        "Last, ask SOMA AI to put all the beds into the garden and to draw a layout plan with the main dimensions. In the video it worked about 14 minutes, with no questions: it placed the three detailed beds, drew the plan and checked it in its own pictures."
+      ],
+      "prompt": "Perfect. Now please put all three beds into the garden plot and make a layout drawing of the whole plot: the beds, the paths, the compost spot and the water tap, with the main dimensions.",
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/beds-in-plot.webp",
+        "alt": "The 6 by 4 m plot in SOMA with three detailed raised beds, the compost box at the back and the blue tap at the front left; the chat lists the beds, aisles, paths and compost spot"
+      }
+    },
+    {
+      "title": "Check the layout drawing",
+      "text": [
+        "The layout drawing is the new first sheet of the drawing pack. It shows the whole plot with the main dimensions: 6 by 4 m, the three beds with their 70 cm aisles, 60 cm paths at the front and left, 90 cm at the back, and the compost spot of 80 by 80 cm.",
+        "A note says the tap position is assumed and should be confirmed on site. It even marks where the tie rods make the aisle a little narrower."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/raised-garden-bed-plans/garden-layout-drawing.webp",
+        "alt": "Sheet 00 Garden layout in the Drawings tab: three beds with dimensions, rear path, compost, service path, front access and the water tap, with notes below; the plot in 3D on the right"
+      }
+    }
+  ],
+  "tips": [
+    "Ask for a few concepts first and pick one. Seeing them side by side in 3D makes the choice easier.",
+    "Say where the water tap is. In the video SOMA AI assumed the front left corner and marked it on the drawing to confirm on site.",
+    "Answer SOMA AI's questions about timber and ground. They change the design most: the board sizes, and whether the bed needs an open bottom.",
+    "Read its notes before you buy: check the real timber sizes and the bolts, and dry-assemble the first bed before you cut all of them.",
+    "The video uses GPT-6.1 Sol with High effort."
+  ],
+  "faq": [
+    {
+      "q": "Can AI plan a vegetable garden layout?",
+      "a": "Yes. In SOMA you describe the area, the water tap and what you want in plain words, and SOMA AI builds several layout concepts in 3D, with beds, paths and a compost spot. You pick one, and it draws a layout plan with the main dimensions. Check sun, shade and the real positions on site."
+    },
+    {
+      "q": "How big should a raised garden bed be?",
+      "a": "In the video SOMA AI made the beds 2.5 m long, 1 m wide and 45 cm high, with 70 cm aisles between them. You can ask for other sizes to fit your plot and your timber."
+    },
+    {
+      "q": "How do you join the boards of a wooden raised bed?",
+      "a": "The bed in the video uses stainless M8 through-bolts through boards and posts instead of screws driven into end grain. Two M10 tie rods with steel plates stop the long sides from spreading under the weight of the soil."
+    },
+    {
+      "q": "Can AI make a cut list and shopping list for a raised bed?",
+      "a": "Yes. In the video SOMA AI made 11 drawing sheets for one bed, among them drilling drawings for every board and post, four illustrated assembly steps, and a cut list with a shopping list: eight 3 m boards, one 4 m post, bolts, nuts and washers, the liner and the soil per bed."
+    },
+    {
+      "q": "Is an AI garden plan ready to build?",
+      "a": "Treat it as a plan to check. In the video SOMA AI itself said to confirm the real timber sizes and the long bolts before buying, to dry-assemble the first bed before cutting all three, and to confirm the tap position on site. Its strength checks are only preliminary."
+    }
+  ],
+  "credits": [
+    "Voice: Kyutai Pocket TTS.",
+    "Music: \"Inspirational Technology\" by AtlasAudio (Pixabay).",
+    "Sounds: Kenney Interface Sounds (CC0)."
+  ]
+}

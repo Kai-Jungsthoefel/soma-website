@@ -1,259 +1,335 @@
 1
-00:00:00,550 --> 00:00:02,277
-You found the perfect part online:
+00:00:00,550 --> 00:00:03,435
+You found a nice desk organizer online, free to download.
 
 2
-00:00:02,277 --> 00:00:04,562
-a phone stand for the wall, free to download.
+00:00:03,435 --> 00:00:07,080
+But business cards don't fit in its drawers, and you'd like a third one.
 
 3
-00:00:04,562 --> 00:00:05,832
-There's just one problem.
+00:00:08,030 --> 00:00:15,374
+Today I'll show you how to turn that 3D print file into a real, adjustable model with SOMA AI, and then change it the way you need.
 
 4
-00:00:05,832 --> 00:00:07,000
-Your phone doesn't fit.
-
-5
-00:00:07,700 --> 00:00:10,224
-And an STL file can't really be edited.
-
-6
-00:00:10,224 --> 00:00:12,230
-It's just a shell of triangles.
-
-7
-00:00:12,930 --> 00:00:19,207
-Today, an AI agent turns that STL into a real, adjustable model, and then we make it fit.
-
-8
-00:00:19,207 --> 00:00:20,900
+00:00:15,374 --> 00:00:16,720
 No CAD knowledge needed.
 
-9
-00:00:21,800 --> 00:00:22,569
+5
+00:00:25,373 --> 00:00:26,142
 We use SOMA.
 
-10
-00:00:22,569 --> 00:00:26,799
+6
+00:00:26,142 --> 00:00:30,372
 It's free and open source, and you can download it at somacad.app.
 
-11
-00:00:28,149 --> 00:00:29,240
+7
+00:00:31,322 --> 00:00:32,794
+SOMA itself is free.
+
+8
+00:00:32,794 --> 00:00:35,369
+For SOMA AI, you bring your own AI:
+
+9
+00:00:35,369 --> 00:00:38,092
+a ChatGPT subscription or an API key.
+
+10
+00:00:39,973 --> 00:00:41,073
 Here is the part:
 
+11
+00:00:41,073 --> 00:00:44,569
+a desk organizer by GummieGecko, shared on Printables.
+
 12
-00:00:29,240 --> 00:00:33,799
-a wall-mounted phone stand by High Desert Hacker, shared on Printables.
+00:00:47,206 --> 00:00:50,174
+Two drawers in front, a deep cup for pens at the back.
 
 13
-00:00:36,349 --> 00:00:38,786
-The description gives the limit:
+00:00:50,174 --> 00:00:54,296
+I'd like to keep business cards in the drawers, and I need one more drawer.
 
 14
-00:00:38,786 --> 00:00:43,889
-phones up to 3.25 inches wide and 0.56 inches thick, with the case.
-
-15
-00:00:43,889 --> 00:00:46,479
-That's about 83 by 14 millimeters.
-
-16
-00:00:47,179 --> 00:00:51,638
-My phone, in its rugged case, is 90 millimeters wide and 18 thick.
-
-17
-00:00:51,638 --> 00:00:52,989
-It simply won't fit.
-
-18
-00:00:53,689 --> 00:00:56,612
+00:00:55,840 --> 00:00:58,791
 The license is Creative Commons Attribution-ShareAlike.
 
-19
-00:00:56,612 --> 00:01:01,819
+15
+00:00:58,791 --> 00:01:04,050
 So we may change it, as long as we credit the author and share our version under the same license.
 
+16
+00:01:05,000 --> 00:01:07,013
+There's one file to download:
+
+17
+00:01:07,013 --> 00:01:09,096
+a 3MF, the format slicers use.
+
+18
+00:01:09,096 --> 00:01:10,970
+An STL works just the same.
+
+19
+00:01:12,840 --> 00:01:18,571
+In SOMA, I start a new model called Desk organizer, click Import, and pick the downloaded file.
+
 20
-00:01:02,519 --> 00:01:04,249
-We download the STL file.
+00:01:18,571 --> 00:01:22,010
+It goes into the inputs folder, where SOMA AI can use it.
 
 21
-00:01:05,616 --> 00:01:09,739
-In SOMA, we start a new model, click Import, and pick the downloaded file.
+00:01:25,173 --> 00:01:27,629
+Click the file, and SOMA shows it in the viewer:
 
 22
-00:01:09,739 --> 00:01:13,026
-It goes into the inputs folder, where the agent can use it.
+00:01:27,629 --> 00:01:30,903
+the body and the two drawers, laid out the way they are printed.
 
 23
-00:01:15,283 --> 00:01:17,893
-Click the STL, and SOMA shows it in the viewer.
+00:01:32,040 --> 00:01:35,462
+Switch on the wireframe, and you see what this file really is:
 
 24
-00:01:18,593 --> 00:01:22,305
-But switch on the wireframe, and you see what an STL really is:
-
-25
-00:01:22,305 --> 00:01:23,778
+00:01:35,462 --> 00:01:36,842
 a mesh of flat triangles.
 
-26
-00:01:23,778 --> 00:01:27,843
+25
+00:01:36,842 --> 00:01:40,650
 There's no width to change and no wall thickness, just corner points.
 
+26
+00:01:44,540 --> 00:01:46,575
+And the drawers are small:
+
 27
-00:01:29,049 --> 00:01:32,379
-So instead of pushing triangles around, we let the agent rebuild it.
+00:01:46,575 --> 00:01:49,550
+inside, they are 58 by 57 millimeters.
 
 28
-00:01:33,629 --> 00:01:37,679
-On the right, we start Claude Code, our agent, right inside the model folder.
+00:01:49,550 --> 00:01:53,230
+A business card is 85 by 55, so it won't go in.
 
 29
-00:01:40,096 --> 00:01:43,022
-Then we simply say what we want, in plain words:
+00:01:54,373 --> 00:01:57,863
+So instead of pushing triangles around, we let SOMA AI rebuild it.
 
 30
-00:01:43,022 --> 00:01:48,386
-rebuild the STL as a parametric model, and keep the original as a see-through reference.
+00:01:59,907 --> 00:02:01,511
+I click the SOMA AI tab.
 
 31
-00:01:49,200 --> 00:01:55,741
-The agent reads the mesh with a few lines of Python, measures the plates, ribs and cutouts, and writes them as CadQuery code.
+00:02:01,511 --> 00:02:03,717
+Here I just describe what I want.
 
 32
-00:01:55,741 --> 00:01:59,090
-Every time the code changes, SOMA builds the model and shows it.
+00:02:10,507 --> 00:02:16,717
+Then I pick the model, GPT-6.1 Sol, and set the effort to High, so it thinks things through.
 
 33
-00:01:59,840 --> 00:02:00,977
-Here's the result:
+00:02:20,040 --> 00:02:22,654
+Then I simply say what I want, in plain words:
 
 34
-00:02:00,977 --> 00:02:03,250
-a real solid model, built from code.
+00:02:22,654 --> 00:02:29,530
+rebuild the organizer as a parametric model, with the drawers in place, and keep the original as a see-through reference.
 
 35
-00:02:03,950 --> 00:02:07,203
-The original STL sits in the same place, see-through.
+00:02:32,773 --> 00:02:37,993
+SOMA AI opens the file, finds the three parts, and measures the walls, the slots and the drawers.
 
 36
-00:02:07,203 --> 00:02:08,615
-Hide it, show it again:
+00:02:37,993 --> 00:02:42,406
+Then it builds them as a real model, and checks that the drawers slide out freely.
 
 37
-00:02:08,615 --> 00:02:10,640
-the rebuild matches the download.
+00:02:43,356 --> 00:02:43,701
+Done:
 
 38
-00:02:11,890 --> 00:02:14,932
-The agent also turned the important sizes into parameters.
+00:02:43,701 --> 00:02:49,361
+the body and the two drawers, at the original size of 65 by 125 by 95 millimeters.
 
 39
-00:02:14,932 --> 00:02:16,820
-You find them in the Parameters tab.
+00:02:49,361 --> 00:02:54,606
+The structure tree lists the new parts, and the original ones as references.
 
 40
-00:02:17,520 --> 00:02:21,181
-Drag a slider, and the model rebuilds within seconds.
+00:02:55,556 --> 00:02:58,267
+The original sits in the same place, see-through.
 
 41
-00:02:21,181 --> 00:02:24,014
-Here the width, and here the ledge depth:
+00:02:58,267 --> 00:02:59,540
+Hide it, show it again:
 
 42
-00:02:24,014 --> 00:02:26,086
-the slot that holds the phone.
+00:02:59,540 --> 00:03:01,366
+the rebuild matches the download.
 
 43
-00:02:26,086 --> 00:02:27,330
-No agent, no code.
+00:03:06,840 --> 00:03:10,170
+In the Parameters tab are the sizes SOMA AI made adjustable.
 
 44
-00:02:29,323 --> 00:02:31,693
-Reset all brings back the values from the code.
+00:03:13,306 --> 00:03:16,709
+Drag a slider, and the model rebuilds within seconds.
 
 45
-00:02:32,943 --> 00:02:34,507
-Now let's make it fit my phone.
+00:03:16,709 --> 00:03:19,470
+Here the width, and here the drawer height.
 
 46
-00:02:34,507 --> 00:02:38,443
-And while we're at it, the screw holes should be countersunk, for wood screws.
+00:03:19,470 --> 00:03:22,295
+The drawers and their slots change together.
 
 47
-00:02:38,443 --> 00:02:39,553
-I just tell the agent.
+00:03:27,740 --> 00:03:29,550
+Reset all brings the sizes back.
 
 48
-00:02:40,659 --> 00:02:43,712
-The agent changes the sizes and adds the new features.
+00:03:34,673 --> 00:03:39,132
+Now the drawers should take business cards, 85 by 55 millimeters.
 
 49
-00:02:43,712 --> 00:02:46,709
-Then it builds and checks that the phone really fits.
+00:03:39,132 --> 00:03:43,043
+I tell SOMA AI, and ask it to show a card in each drawer.
 
 50
-00:02:47,559 --> 00:02:47,830
-Done.
+00:03:47,706 --> 00:03:52,505
+SOMA AI works out how big the drawers have to be inside, and makes the body just wide enough.
 
 51
-00:02:47,830 --> 00:02:56,009
-The stand is now as wide as my phone, the slot at the bottom is 19 millimeters deep for the thick case, and the screw holes at the top are countersunk.
+00:03:52,505 --> 00:03:55,756
+Then it builds it, and checks that the drawers still slide out.
 
 52
-00:02:56,959 --> 00:02:57,967
-One more idea:
+00:03:56,706 --> 00:03:59,493
+The organizer is now 96 millimeters wide.
 
 53
-00:02:57,967 --> 00:03:00,848
-a small tray on the side for my earbuds.
+00:03:59,493 --> 00:04:02,485
+Each drawer has 89 by 59 millimeters inside:
 
 54
-00:03:00,848 --> 00:03:04,016
-Instead of describing where, I just draw it.
+00:04:02,485 --> 00:04:05,068
+two millimeters of room around a card.
 
 55
-00:03:04,016 --> 00:03:06,609
-Mark up, a circle, an arrow, a word.
+00:04:05,068 --> 00:04:06,836
+The height stays the same.
 
 56
-00:03:07,309 --> 00:03:09,519
-Send it to the agent, and add one sentence.
+00:04:08,772 --> 00:04:10,998
+To look inside, I use the Section tool.
 
 57
-00:03:12,369 --> 00:03:14,419
-And there's the tray, right where I drew it.
+00:04:10,998 --> 00:04:14,422
+It only cuts open the view, the model itself doesn't change.
 
 58
-00:03:17,569 --> 00:03:21,619
-To compare the two, I ask the agent to put the original next to the new stand.
+00:04:17,606 --> 00:04:20,891
+There's the green card, lying flat in the upper drawer.
 
 59
-00:03:24,144 --> 00:03:26,013
-Side by side, the difference is clear:
+00:04:20,891 --> 00:04:23,042
+The amber outline is the old drawer:
 
 60
-00:03:26,013 --> 00:03:29,554
-the download on the left, and the stand that fits my phone on the right.
+00:04:23,042 --> 00:04:24,296
+far too small for it.
 
 61
-00:03:31,811 --> 00:03:33,011
-Finally, Export.
+00:04:31,006 --> 00:04:32,207
+Next, a third drawer.
 
 62
-00:03:33,011 --> 00:03:37,061
-3MF or STL for your slicer, and you're ready to print.
+00:04:32,207 --> 00:04:35,294
+Instead of describing where, I sketch it with Mark up:
 
 63
-00:03:37,761 --> 00:03:41,811
-If you share your remix, credit the original author and keep the same license.
+00:04:35,294 --> 00:04:38,096
+under the other two, and all the way to the back.
 
 64
-00:03:42,711 --> 00:03:47,539
-From a download that didn't fit to a part that does, without drawing a single line.
+00:04:39,046 --> 00:04:43,176
+A rectangle under the drawers, an arrow from the front to the back, and a few words.
 
 65
-00:03:47,539 --> 00:03:49,459
+00:04:50,072 --> 00:04:52,683
+Send it to SOMA AI, and add one sentence:
+
+66
+00:04:52,683 --> 00:04:55,040
+the pen cup should stay just as deep.
+
+67
+00:04:59,273 --> 00:05:03,000
+SOMA AI adds a drawer underneath, as deep as the whole organizer.
+
+68
+00:05:03,000 --> 00:05:07,243
+It lifts the pen cup with everything above, so the cup stays just as deep.
+
+69
+00:05:08,193 --> 00:05:09,756
+Now there are three drawers.
+
+70
+00:05:09,756 --> 00:05:14,723
+The organizer is 25 millimeters taller, and the cards still fit in the two upper drawers.
+
+71
+00:05:15,673 --> 00:05:17,699
+A cut through the side shows it best:
+
+72
+00:05:17,699 --> 00:05:21,147
+the new drawer runs all the way to the back, under the pen cup.
+
+73
+00:05:21,147 --> 00:05:23,392
+And the cup is still 90 millimeters deep.
+
+74
+00:05:32,273 --> 00:05:36,563
+To compare the two, I ask SOMA AI to put the original next to the new organizer.
+
+75
+00:05:42,373 --> 00:05:45,622
+It moves the original over, with a gap and the fronts lined up.
+
+76
+00:05:46,572 --> 00:05:47,320
+Side by side:
+
+77
+00:05:47,320 --> 00:05:50,483
+the download on the left, and our version on the right.
+
+78
+00:05:50,483 --> 00:05:56,062
+Wider, a bit taller, with room for business cards, and a third drawer that goes all the way back.
+
+79
+00:05:57,305 --> 00:05:58,523
+Finally, Export.
+
+80
+00:05:58,523 --> 00:06:00,578
+3MF or STL for your slicer:
+
+81
+00:06:00,578 --> 00:06:04,155
+the body and all three drawers, ready to print.
+
+82
+00:06:05,838 --> 00:06:09,888
+If you share your remix, credit the original author and keep the same license.
+
+83
+00:06:11,938 --> 00:06:18,143
+From a download that didn't fit my needs to a model I can change in plain words, without drawing a single line.
+
+84
+00:06:18,143 --> 00:06:19,988
 Get SOMA for free at somacad.app.

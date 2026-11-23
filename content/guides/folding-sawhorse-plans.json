@@ -1,0 +1,189 @@
+{
+  "slug": "folding-sawhorse-plans",
+  "order": 8,
+  "title": "Folding steel sawhorse plans: design one with AI",
+  "heading": "Folding steel sawhorse plans: design a welded trestle with AI, with a strength check and workshop drawings",
+  "description": "Design a folding steel sawhorse with AI: welded frames, a folding check, a strength analysis and workshop drawings with weld symbols and a cut list. In SOMA.",
+  "summary": "A welded folding steel trestle planned, built, animated, strength-checked and drawn by SOMA AI, with 35 workshop sheets, a cut list and shopping lists.",
+  "topic": "metalwork",
+  "published": "2026-11-22",
+  "modified": "2026-11-23",
+  "about": [
+    "Sawhorse",
+    "Metalworking",
+    "Welding",
+    "Finite element analysis",
+    "Technical drawing",
+    "Artificial intelligence",
+    "Computer-aided design"
+  ],
+  "video": {
+    "youtubeId": null,
+    "title": "SOMA AI designs a folding steel trestle you can really build",
+    "duration": "PT7M30S",
+    "uploadDate": null,
+    "cover": "/images/guides/folding-sawhorse-plans/cover.webp",
+    "chapters": [
+      {
+        "time": "0:00",
+        "label": "Intro"
+      },
+      {
+        "time": "0:26",
+        "label": "The plan"
+      },
+      {
+        "time": "1:48",
+        "label": "The build"
+      },
+      {
+        "time": "2:59",
+        "label": "Folding"
+      },
+      {
+        "time": "4:14",
+        "label": "Will it hold?"
+      },
+      {
+        "time": "5:49",
+        "label": "The workshop package"
+      }
+    ]
+  },
+  "answer": "To get plans for a folding steel sawhorse, describe it to the AI agent in SOMA in plain words: the size, the load, the steel tube you have and how flat it must fold. SOMA AI plans it with you, builds the welded model, checks the folding for collisions, runs a strength analysis and makes workshop drawings with weld symbols, a cut list and shopping lists. Treat the result as a design study: the drawings in the video are marked review only, so have the welds and the load capacity checked and do a proof test before you rely on it.",
+  "need": [
+    "SOMA, free and open source, for Windows, macOS or Linux.",
+    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
+    "Your main numbers: working height and length, the load, how thin it should fold, and the steel and tools you have. The video uses 800 mm high, 900 mm long, 300 kg for a pair, at most 100 mm folded, 30x30x2 and 40x20x2 tube and a MIG welder.",
+    "Time. A design this big is long work for the AI: in the video SOMA AI worked about 7 h 55 min in all, most of it on the strength check. The video shows that sped up.",
+    "Someone who can check welded steel structures, before you build and load it. The design is an AI design study, not a rated product."
+  ],
+  "steps": [
+    {
+      "title": "Ask SOMA AI to plan it with you",
+      "text": [
+        "Start a new model and save it, in the video as Folding trestle. In the SOMA AI tab pick the model and the effort under the chat. The video uses GPT-6.1 Sol and turns the effort up to High for a bigger design like this.",
+        "Then describe what you need in plain words, and ask SOMA AI to plan it with you before it builds anything. In the video it asks four questions at once: the working size, the load, the tools and steel, and how thin it should fold. Each question has answers to click, or a field for your own words."
+      ],
+      "prompt": "I want to build a folding steel trestle (sawhorse) for my workshop. Two of them should carry a door or a big board for sawing and assembly work. It has to be strong, fold flat so I can hang it on the wall, and be made from steel tube that I can cut and weld myself. I want a really usable, finished design, not a rough sketch. Before you build anything, plan it with me and ask me what you need to know.",
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/plan-questions.webp",
+        "alt": "SOMA AI's card with 4 questions next to the empty start model: working size with 750 x 800, 800 x 900 and 900 x 1000 mm, and load with 150, 300 and 500 kg per pair"
+      }
+    },
+    {
+      "title": "Answer with what you really have",
+      "text": [
+        "Click the answers that fit. For the steel and tools, type what you really have, so the design uses tube you can buy and cuts you can make.",
+        "The answer is a clear brief: 800 mm high including the timber cap, 900 mm long, 300 kg for the pair, at most 100 mm thick when folded, made with MIG welding, mitre cuts and drilled holes. It plans with your tube sizes, with positive locks and stops. In the video it also suggests a replaceable timber cap on its own, to protect the saw blade."
+      ],
+      "prompt": "I can get 30x30x2 square tube, 40x20x2 rectangular tube, flat bar and angle. I have a MIG welder, a metal chop saw that does mitres, a drill press and an angle grinder.",
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/plan-brief.webp",
+        "alt": "The brief in SOMA AI's chat as a table: working height 800 mm, top length 900 mm, load 300 kg across the pair, folded thickness 100 mm maximum, fabrication with MIG welding, mitre cuts and drilled holes"
+      }
+    },
+    {
+      "title": "Let it build the complete model",
+      "text": [
+        "Ask for the whole trestle: the top beam with the timber cap, both leg frames, hinges, spreaders, feet and end caps. Say that it must fold and lock without tools, with standard parts and the finish you want.",
+        "SOMA AI reads its skills, writes the model, builds it and looks at its own pictures of the result along the way. In the video it took 30 min 24 s and built it eight times. The result has 130 parts: twin steel top rails with a timber cap, two braced leg frames on sleeved hinges with washers and lock nuts, so tightening a bolt never clamps the hinge solid, a swing-up spreader on each side that locks with a push-button pin, and welded foot plates with non-marking rubber soles. Folded it is 96 mm thin, and it weighs about 18 kg."
+      ],
+      "prompt": "Sounds good, please build it now as a complete model in the open position: the top beam with the timber cap, both leg frames, the hinges, the spreaders, feet that don't scratch the floor or slip, end caps on the open tube ends and the latch for carrying. It should fold and lock in a few seconds without tools. Use standard profiles and standard bolts, nuts and washers, all steel powder-coated in signal yellow and the timber cap in natural wood. Make it look like a finished product I could weld up.",
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/finished-trestle.webp",
+        "alt": "The finished trestle in signal yellow with a wooden top cap, 130 parts, next to SOMA AI's summary: 800 mm high, 900 mm top, folded thickness 96.1 mm, estimated weight 18 kg each"
+      }
+    },
+    {
+      "title": "Check the folding with an animation",
+      "text": [
+        "Ask for the whole folding sequence as an animation, with a collision check in every position. SOMA AI plans every step of the motion, writes the animation and checks it frame by frame.",
+        "In the video it took 42 min 44 s. The animation in the Animation tab is 33 seconds long, with a caption for every step: swing the carrying latch clear, open the legs, lock both spreaders with their pins, then the same way back. All 991 frames were checked with the exact shapes, with no unwanted overlap. The smallest gap between the two leg frames is 1.45 mm, at the folded feet. On the way it also corrected the holes for the locking pins."
+      ],
+      "prompt": "Now show me the whole folding sequence as an animation, from folded flat to open and locked, and back. Check every position for collisions and tell me the smallest gap between moving parts. If anything touches, fix it.",
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/folding-animation.webp",
+        "alt": "The trestle half folded in the animation with the caption Swing the carrying tongue clear, and SOMA AI's clearance table: 1.45 mm between the leg frames at the folded feet"
+      }
+    },
+    {
+      "title": "Ask: will it hold?",
+      "text": [
+        "Ask for SOMA's strength analysis with the load you need, also near one end and with someone leaning on the board, and say what to do if the safety factor is too low. In the video SOMA AI asks one question first, how hard someone leans; the answer is a firm lean, 300 N, about 30 kg sideways.",
+        "It sets up the load cases and lets the feet lift or slide instead of pinning them to the floor. The hinges are hard to mesh, so it simplifies them and runs study after study: 5 h 41 min in the video. The weak spot it found is not in the steel: with the lean, the trestle could tip too easily, a margin of only 1.75. It widened the legs and moved them nearer the ends, to a margin of 2.12, and it still folds to 98 mm.",
+        "All studies are in the Analysis tab. For 150 kg near the end plus the lean, on the welded top, the lowest safety factor is 2.51, above the required 2. In its summary SOMA AI reports, for the welded top assembly alone, 2.33 under a central load and 3.18 for the worst end-load and sideways case. The weakest area is where the top rail joins the hinge saddle. SOMA AI stays honest: that peak changes with the mesh, so it does not call the trestle confirmed, and it asks for weld checks and a proof test."
+      ],
+      "prompt": "Now the important part: check with SOMA's strength analysis that one trestle really holds 150 kg on top, also when the load sits near one end and someone leans sideways on the board. Tell me the safety factor and where it is weakest. If the safety factor is below 2, improve the design and run the analysis again.",
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/strength-analysis.webp",
+        "alt": "The Analysis tab with the study 150 kg near end plus 300 N rearward lean: lowest safety factor 2.51, required 2, on the welded top spine, next to SOMA AI's note that it cannot yet confirm the whole trestle"
+      }
+    },
+    {
+      "title": "Get the workshop drawings",
+      "text": [
+        "A long job can go over several sessions. Open the model again and the conversation is still under Earlier conversations; SOMA AI goes on where it stopped.",
+        "Ask for the drawings of the welded frames with all lengths, angles, holes and weld symbols, plus a cut list and a shopping list. SOMA AI lays out the sheets, looks at its own drawings as pictures and fixes what it finds, in the video a reversed angle label. After 56 min 45 s there are 35 sheets in the Drawings tab. Drag the column wider to read them.",
+        "Each welded frame has its own sheet with lengths, holes and proposed weld symbols: 2 mm fillet welds, numbered W1 to W5. Every tube has a cut and drill drawing; the legs are cut at 24 degrees, with every hole dimensioned."
+      ],
+      "prompt": "Now I want to build it. Please make the workshop drawings: an overview with the main dimensions open and folded, a drawing of each welded frame with all lengths, angles, holes and weld symbols, and the small parts. Also give me a cut list with the length and mitre angle of every tube and a shopping list for steel, bolts and the rest.",
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/welded-frame-drawing.webp",
+        "alt": "The Drawings tab with 35 sheets, page 3: G03 FRONT welded frame with dimensions and weld symbols W1 to W5, marked REVIEW ONLY and HOLD"
+      }
+    },
+    {
+      "title": "Use the cut list and check before the first cut",
+      "text": [
+        "The cut list gives every tube and sleeve with its length and mitre angle, for one trestle and for the pair. The shopping lists cover steel, timber and rubber, then the bolts, pins and other bought parts.",
+        "The package in the video is marked review only, because the sleeve welds and the full load rating are still open. The last check before the first cut is yours: have the welds and the load capacity checked, and do a proof test before you rely on it."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/folding-sawhorse-plans/cut-list.webp",
+        "alt": "Sheet C01 Tube and sleeve cutting list with stock, cut length and mitre angle for every tube and sleeve, next to SOMA AI's note that the package is a REVIEW / HOLD package, not fabrication approval"
+      }
+    }
+  ],
+  "tips": [
+    "Ask SOMA AI to plan with you before it builds. Answering its questions with your real tube sizes and tools gives a design you can actually make.",
+    "Ask for tool-free folding and positive locks in the build prompt, if that is what you want. Say it once, clearly.",
+    "Ask for an animation with a collision check before the strength check. It finds clashes in the folding that a still model hides.",
+    "In the strength prompt, say what to do when the safety factor is too low. In the video SOMA AI then improved the design and checked again on its own.",
+    "Read SOMA AI's notes on the limits of its analysis. In the video it says the peak at the hinges changes with the mesh and does not call the trestle confirmed.",
+    "Big jobs take hours. You can close SOMA and open the model again later: the conversation is under Earlier conversations.",
+    "The video uses GPT-6.1 Sol with High effort."
+  ],
+  "faq": [
+    {
+      "q": "Can AI design a sawhorse I can weld myself?",
+      "a": "Yes, as a design study. In SOMA you describe the trestle in plain words, and SOMA AI plans it with your tube sizes and tools, builds the model, checks the folding and the strength, and makes drawings with weld symbols, a cut list and shopping lists. Have the welds and the load capacity checked by someone qualified and do a proof test before you rely on it."
+    },
+    {
+      "q": "How strong is the folding steel trestle in the video?",
+      "a": "It was designed for 300 kg on a pair and checked with 150 kg on one trestle, also near one end with a 300 N sideways lean. For the welded top alone, SOMA AI reports a safety factor of 2.33 under a central load and 3.18 for the worst end-load and sideways case, and the study shown in the Analysis tab (150 kg near one end plus the lean) reads 2.51. The tipping margin was raised from 1.75 to 2.12 by widening the legs. SOMA AI did not call the whole trestle confirmed, because the peak at the hinges changes with the mesh. It is not a rated product."
+    },
+    {
+      "q": "What steel tube is used for the folding trestle?",
+      "a": "The design uses what the user has: 30x30x2 mm square tube and 40x20x2 mm rectangular tube, with flat bar and angle, made with a MIG welder, a mitre chop saw, a drill press and an angle grinder. The drawings list every tube with its length and mitre angle."
+    },
+    {
+      "q": "What is in the workshop drawings?",
+      "a": "In the video there are 35 sheets: overviews open and folded, a sheet for each welded frame with lengths, holes and proposed weld symbols, a cut and drill drawing for every tube, the small parts, a cut list with lengths and mitre angles, and shopping lists for steel, timber, rubber, bolts, pins and other bought parts. All sheets are marked review only."
+    },
+    {
+      "q": "How does SOMA check that the trestle folds without collisions?",
+      "a": "SOMA AI writes the folding sequence as an animation, and SOMA checks every frame with the exact shapes. In the video all 991 frames of the 33 second animation were checked, with no unwanted overlap, and the smallest gap between the leg frames is 1.45 mm."
+    },
+    {
+      "q": "How long does it take?",
+      "a": "In the video SOMA AI worked about 7 h 55 min in all: 4 min on the plan, 30 min on the build, 43 min on the folding animation, 5 h 41 min on the strength check and 57 min on the drawings. You do not have to watch; you can close SOMA and go on later."
+    }
+  ],
+  "credits": [
+    "Voice: Kyutai Pocket TTS.",
+    "Music: \"Inspirational Technology\" by AtlasAudio (Pixabay).",
+    "Sounds: Kenney Interface Sounds (CC0)."
+  ]
+}

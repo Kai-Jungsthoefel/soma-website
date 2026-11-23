@@ -1,239 +1,467 @@
 1
-00:00:00,350 --> 00:00:02,613
-A robot arm with every motor in the base.
+00:00:00,550 --> 00:00:03,199
+A robot arm with every motor in its base.
 
 2
-00:00:02,613 --> 00:00:07,360
-The joints are driven by rods and linkages, and the gripper stays level in every pose.
+00:00:03,199 --> 00:00:09,400
+Belts, push rods and parallelograms drive the joints, and the gripper stays level in every pose.
 
 3
-00:00:08,060 --> 00:00:10,789
+00:00:10,350 --> 00:00:13,079
 Laying out those linkages by hand is painful:
 
 4
-00:00:10,789 --> 00:00:14,428
+00:00:13,079 --> 00:00:16,718
 link lengths, dead points, parts that crash into each other.
 
 5
-00:00:15,128 --> 00:00:19,921
-Today I'll show you how to design one by simply describing it, and then watch it move.
+00:00:17,668 --> 00:00:23,503
+Today I'll show you how to design one with SOMA AI by simply describing it, and then watch it move.
 
 6
-00:00:19,921 --> 00:00:21,258
+00:00:23,503 --> 00:00:24,918
 No CAD knowledge needed.
 
 7
-00:00:22,761 --> 00:00:23,507
+00:00:25,868 --> 00:00:26,614
 We use SOMA.
 
 8
-00:00:23,507 --> 00:00:27,611
+00:00:26,614 --> 00:00:30,718
 It's free and open source, and you can download it at somacad.app.
 
 9
-00:00:29,061 --> 00:00:34,781
-We start a new model, and on the right we open Claude Code, our AI agent, right inside the model folder.
+00:00:31,668 --> 00:00:33,209
+SOMA itself is free.
 
 10
-00:00:36,546 --> 00:00:39,197
-Then I describe the arm in plain words:
+00:00:33,209 --> 00:00:35,907
+For SOMA AI, you bring your own AI:
 
 11
-00:00:39,197 --> 00:00:51,636
-a desktop arm like a Dobot or uArm, all motors in the base, NEMA 17 steppers, push rods to the elbow, a parallelogram that keeps the gripper level, and about 250 millimeters of reach.
+00:00:35,907 --> 00:00:38,758
+a ChatGPT subscription or an API key.
 
 12
-00:00:52,821 --> 00:00:54,719
-Before it starts, it asks.
+00:00:40,208 --> 00:00:42,615
+We start with a new model, Robot arm.
 
 13
-00:00:54,719 --> 00:00:55,813
-A torque check:
+00:00:42,615 --> 00:00:48,146
+The arm should get real NEMA 17 steppers, so first I import a NEMA 17 as a STEP file.
 
 14
-00:00:55,813 --> 00:01:03,331
-200 grams at 250 millimeters needs about 0.9 newton meters at the shoulder, twice what a NEMA 17 gives.
+00:00:48,146 --> 00:00:50,098
+It lands in the inputs folder.
 
 15
-00:01:03,331 --> 00:01:06,980
-So it suggests a GT2 belt with a 1 to 5 reduction.
+00:00:53,041 --> 00:00:55,908
+You can view a STEP file by clicking it in the file browser:
 
 16
-00:01:06,980 --> 00:01:08,951
-I take its recommendations.
+00:00:55,908 --> 00:00:57,150
+it shows up in the viewer.
 
 17
-00:01:10,121 --> 00:01:12,667
-Then it works on its own, for almost an hour:
+00:01:00,108 --> 00:01:02,045
+Everything is prepared.
 
 18
-00:01:12,667 --> 00:01:20,928
-it lays out the push rod and the two parallelograms, picks bearings and screws for every pivot, and checks the arm at eleven poses for collisions.
+00:01:02,045 --> 00:01:04,992
+Now we design the arm with SOMA AI:
 
 19
-00:01:20,928 --> 00:01:24,549
-Every time the code changes, SOMA builds the model and shows it.
+00:01:04,992 --> 00:01:09,118
+I click its tab, and pick the model, GPT-6.1 Sol.
 
 20
-00:01:25,499 --> 00:01:26,437
-Here's the arm:
+00:01:13,108 --> 00:01:16,284
+For a design like this, I set the effort to High:
 
 21
-00:01:26,437 --> 00:01:26,999
-97 parts.
+00:01:16,284 --> 00:01:18,358
+it thinks longer before it acts.
 
 22
-00:01:26,999 --> 00:01:31,187
-The structure tree groups them into base, hardware, arm and turret.
+00:01:20,808 --> 00:01:23,160
+Then I describe the arm in plain words:
 
 23
-00:01:31,187 --> 00:01:31,874
-In the arm:
+00:01:23,160 --> 00:01:35,282
+a desktop arm like a Dobot or uArm, all motors in the base, the imported NEMA 17 for all three, push rods to the elbow, a parallelogram that keeps the gripper level, and about 250 millimeters of reach.
 
 24
-00:01:31,874 --> 00:01:37,562
-upper arm and forearm, the elbow push rod, and two level rods with a triangle at the elbow.
+00:01:35,282 --> 00:01:38,298
+And it should ask me first if anything is unclear.
 
 25
-00:01:37,562 --> 00:01:40,000
-That's what keeps the tool mount level.
+00:01:42,141 --> 00:01:42,837
+And it does:
 
 26
-00:01:40,700 --> 00:01:43,910
-Make the arm and the screws see-through, and you see the drive:
+00:01:42,837 --> 00:01:45,967
+two questions at once, each with a recommended answer.
 
 27
-00:01:43,910 --> 00:01:47,070
-the steppers sit low on the turret, and belts turn the joints.
+00:01:45,967 --> 00:01:46,662
+I take them:
 
 28
-00:01:49,120 --> 00:01:50,756
-But does the linkage actually work?
+00:01:46,662 --> 00:01:52,111
+a mounting plate for my own gripper for now, and timing belts to gear down the two arm motors.
 
 29
-00:01:50,756 --> 00:01:54,450
-Let's ask for an animation of the full range of motion, with a collision check.
+00:01:54,208 --> 00:01:56,897
+Then it works on its own, for almost an hour.
 
 30
-00:01:55,463 --> 00:02:02,713
-It writes the motion as a series of poses, solves the linkage at every step, and lets SOMA check every tenth of a second for parts that touch.
+00:01:56,897 --> 00:02:06,818
+It lays out the links, the push rods and the belts, places the three motors, replaces screws that were too long, and checks the arm in ten poses for parts that touch.
 
 31
-00:02:03,663 --> 00:02:05,957
-The animation is in the Animation tab:
+00:02:07,768 --> 00:02:08,617
+Here's the arm:
 
 32
-00:02:05,957 --> 00:02:08,433
-pick it, close the panel, and press play.
+00:02:08,617 --> 00:02:09,184
+238 parts.
 
 33
-00:02:09,133 --> 00:02:11,537
-The turret turns 135 degrees each way.
+00:02:09,184 --> 00:02:17,338
+The structure tree groups them, from the fixed base and the rotating base up to the shoulder, the elbow drive, the leveling links and the wrist.
 
 34
-00:02:11,537 --> 00:02:17,422
-Then the shoulder sweeps from minus 15 to 60 degrees, and the elbow from minus 40 to plus 40.
+00:02:18,288 --> 00:02:21,542
+Make the two base groups see-through, and the motors show:
 
 35
-00:02:17,422 --> 00:02:22,863
-The push rod and the level rods follow, and the tool mount stays level the whole time.
+00:02:21,542 --> 00:02:23,618
+three copies of the imported NEMA 17.
 
 36
-00:02:32,430 --> 00:02:35,238
-Finally, it traces the edge of the workspace:
+00:02:24,968 --> 00:02:28,424
+One sits under the turntable and turns the whole arm with a belt.
 
 37
-00:02:35,238 --> 00:02:37,360
-every corner of the allowed range.
+00:02:28,424 --> 00:02:34,538
+The other two ride on the turntable, back to back, and drive the shoulder and the elbow, also through timing belts.
 
 38
-00:02:39,996 --> 00:02:40,812
-And the report:
+00:02:36,101 --> 00:02:38,042
+From the side, you see the linkage:
 
 39
-00:02:40,812 --> 00:02:43,806
-with a minimum gap of one millimeter, nothing collides.
+00:02:38,042 --> 00:02:43,642
+paired push rods drive the elbow from the base, and two parallelograms keep the mounting plate level.
 
 40
-00:02:43,806 --> 00:02:49,956
-The only contacts are the belts on their pulleys, which is intended, so the angle limits could stay as they were.
+00:02:48,601 --> 00:02:50,237
+But does the linkage actually work?
 
 41
-00:02:51,796 --> 00:02:53,799
-Now a change, in words again:
+00:02:50,237 --> 00:02:53,931
+Let's ask for an animation of the full range of motion, with a collision check.
 
 42
-00:02:53,799 --> 00:02:58,566
-more reach, 300 millimeters, and a simple gripper with a small servo.
+00:03:00,301 --> 00:03:06,251
+SOMA AI writes the motion and checks every pose with the whole assembly, motors and screws included.
 
 43
-00:03:01,226 --> 00:03:02,397
-Again it asks first:
+00:03:06,251 --> 00:03:08,809
+That finds contacts its first check missed:
 
 44
-00:03:02,397 --> 00:03:08,309
-where to measure the 300 millimeters, which servo, what kind of gripper, and how wide it should open.
+00:03:08,809 --> 00:03:14,104
+the elbow axle touches the leveling links at steep angles, and screw heads hit the drive.
 
 45
-00:03:08,309 --> 00:03:14,396
-There's no datasheet for the servo, so it asks whether it may use typical dimensions, marked as assumed.
+00:03:14,104 --> 00:03:18,031
+So it moves the screws, and narrows the shoulder and elbow travel.
 
 46
-00:03:15,176 --> 00:03:21,148
-Then it stretches the links, builds a gear gripper around an SG90 servo, and runs the collision check again.
+00:03:18,981 --> 00:03:21,496
+The animation is in the Animation tab:
 
 47
-00:03:21,148 --> 00:03:25,129
-It even finds two screws that touch the gear teeth, and moves the gears.
+00:03:21,496 --> 00:03:23,084
+pick it, and press play.
 
 48
-00:03:26,976 --> 00:03:27,877
-It also warns me:
+00:03:23,084 --> 00:03:24,871
+Here it runs twice as fast.
 
 49
-00:03:27,877 --> 00:03:32,909
-with some combinations of arm lengths, the jaws could reach below the table at the lowest pose.
+00:03:27,748 --> 00:03:30,055
+The base turns 150 degrees each way.
 
 50
-00:03:32,909 --> 00:03:35,346
-It notes that, instead of quietly blocking it.
+00:03:30,055 --> 00:03:35,310
+Then the shoulder sweeps from 25 to 55 degrees, and the elbow bends from 35 to 80.
 
 51
-00:03:36,046 --> 00:03:39,489
-Now the arm reaches 300 millimeters, with a gripper at the tip.
+00:03:35,310 --> 00:03:41,398
+The push rods and the parallelograms follow, and the mounting plate stays level the whole time.
 
 52
-00:03:42,576 --> 00:03:45,026
-And the animation still works with the new geometry.
+00:03:50,648 --> 00:03:51,567
+And the report:
 
 53
-00:03:54,776 --> 00:03:56,561
-The joint angles are parameters too.
+00:03:51,567 --> 00:03:57,818
+no collisions at 441 positions, checked with the whole assembly, motors, bearings and screws included.
 
 54
-00:03:56,561 --> 00:03:58,346
-You find them in the Parameters tab.
+00:03:59,581 --> 00:04:01,436
+Now a change, in words again:
 
 55
-00:03:59,046 --> 00:04:01,941
-Shoulder forward, elbow down, turn the base:
+00:04:01,436 --> 00:04:05,851
+more reach, 300 millimeters, and a simple gripper with a small servo.
 
 56
-00:04:01,941 --> 00:04:06,152
-SOMA rebuilds the arm in that pose, with every rod in its place.
+00:04:05,851 --> 00:04:09,370
+Both jaws should move, and stay parallel to each other.
 
 57
-00:04:06,152 --> 00:04:07,336
-No agent, no code.
+00:04:15,214 --> 00:04:16,440
+Again it asks first:
 
 58
-00:04:08,510 --> 00:04:11,120
-Reset all brings the arm back to its home pose.
+00:04:16,440 --> 00:04:21,039
+where to measure the reach, which servo, and how wide the jaws should open.
 
 59
-00:04:12,170 --> 00:04:16,871
-A complete linkage arm, laid out, checked and animated, just by describing it.
+00:04:21,039 --> 00:04:26,864
+I pick the reach to the center of the grip, a generic 9-gram servo for now, and 30 millimeters.
 
 60
-00:04:16,871 --> 00:04:18,860
+00:04:28,981 --> 00:04:30,866
+Then it works for almost an hour:
+
+61
+00:04:30,866 --> 00:04:40,231
+it lengthens the arm, so that the center of the grip reaches 300 millimeters, builds the gripper, extends the animation, and checks everything again for collisions.
+
+62
+00:04:41,181 --> 00:04:42,166
+Here's the gripper.
+
+63
+00:04:42,166 --> 00:04:45,951
+The micro servo sits under the wrist plate and turns a small gear on top.
+
+64
+00:04:46,901 --> 00:04:49,978
+Two racks mesh with that gear from opposite sides.
+
+65
+00:04:49,978 --> 00:04:57,178
+Each rack carries one jaw, so both jaws move the same distance in opposite directions, and they always stay parallel.
+
+66
+00:05:00,748 --> 00:05:04,004
+SOMA AI also made a separate animation of the gripper:
+
+67
+00:05:04,004 --> 00:05:06,718
+it opens to 30 millimeters, and closes again.
+
+68
+00:05:12,448 --> 00:05:15,346
+And the arm's animation still works with the longer arm.
+
+69
+00:05:15,346 --> 00:05:20,418
+The collision check passes again, and the 14 builds at the ends of every parameter range pass too.
+
+70
+00:05:23,848 --> 00:05:24,889
+First the base turns.
+
+71
+00:05:24,889 --> 00:05:30,538
+Then the shoulder and the elbow sweep to their limits, and then both move together, while the gripper stays level.
+
+72
+00:05:39,448 --> 00:05:41,533
+Near the end, the camera moves in:
+
+73
+00:05:41,533 --> 00:05:45,457
+the servo turns the gear, and both jaws open and close together.
+
+74
+00:05:46,907 --> 00:05:50,439
+The joint angles are parameters, and so are the reach and the jaw opening.
+
+75
+00:05:50,439 --> 00:05:52,157
+You find them in the Parameters tab.
+
+76
+00:05:55,507 --> 00:05:57,449
+Shoulder down to 35 degrees:
+
+77
+00:05:57,449 --> 00:05:59,876
+SOMA rebuilds the arm in that pose.
+
+78
+00:06:02,541 --> 00:06:03,911
+Elbow to 45 degrees:
+
+79
+00:06:03,911 --> 00:06:08,911
+the push rods and the parallelograms follow, and the gripper stays level.
+
+80
+00:06:10,074 --> 00:06:12,124
+The base turns by 45 degrees.
+
+81
+00:06:17,107 --> 00:06:19,157
+And the jaws open to 30 millimeters.
+
+82
+00:06:24,141 --> 00:06:26,671
+Reset all brings the arm back to its home pose.
+
+83
+00:06:30,774 --> 00:06:32,544
+Now look closer at the gripper.
+
+84
+00:06:32,544 --> 00:06:35,114
+It opens and closes, but it isn't usable yet:
+
+85
+00:06:35,114 --> 00:06:41,624
+the jaws barely reach past the wrist, and every gripping force goes through thin rods into the racks and the gear.
+
+86
+00:06:46,974 --> 00:06:52,304
+So I start a new conversation with SOMA AI, again with GPT-6.1 Sol and High effort.
+
+87
+00:06:54,874 --> 00:06:56,936
+So I ask for a new gripper from scratch:
+
+88
+00:06:56,936 --> 00:07:04,204
+the jaws run in their own guide that takes all the forces, the gear and the racks only make the movement, and the jaws reach further forward.
+
+89
+00:07:10,841 --> 00:07:12,450
+SOMA AI asks one thing first:
+
+90
+00:07:12,450 --> 00:07:17,944
+the guides can take the bending and lifting loads, but something still has to hold the grip closed.
+
+91
+00:07:17,944 --> 00:07:21,051
+The servo should do that, so I pick the servo-held grip.
+
+92
+00:07:22,001 --> 00:07:23,854
+An hour and ten minutes of work.
+
+93
+00:07:23,854 --> 00:07:27,153
+SOMA AI throws the old gripper away and builds a new one:
+
+94
+00:07:27,153 --> 00:07:30,974
+a guide housing, two jaw carriages, separate racks and a new gear.
+
+95
+00:07:30,974 --> 00:07:33,811
+Then it checks the motion of the whole arm again.
+
+96
+00:07:34,761 --> 00:07:36,291
+Here is the new gripper.
+
+97
+00:07:36,291 --> 00:07:38,586
+The jaws now run in a guide housing:
+
+98
+00:07:38,586 --> 00:07:42,794
+each jaw carriage has two T-shaped shoes, held in by a bolted lid.
+
+99
+00:07:42,794 --> 00:07:46,491
+The housing takes the bending, lifting and twisting loads.
+
+100
+00:07:47,441 --> 00:07:54,291
+The fingers reach 48 millimeters beyond the housing, 40 millimeters further forward than before, with flat parallel faces at the tips.
+
+101
+00:07:55,241 --> 00:07:59,229
+With the housing made see-through, you can see the gear and the two racks:
+
+102
+00:07:59,229 --> 00:08:00,522
+they only move the jaws.
+
+103
+00:08:00,522 --> 00:08:05,210
+The racks are bolted on separately, and as I chose, they still carry the closing force.
+
+104
+00:08:06,160 --> 00:08:08,086
+One thing it decided on its own:
+
+105
+00:08:08,086 --> 00:08:14,285
+to keep the reach at 300 millimeters to the grip center, it made the upper arm and the forearm shorter.
+
+106
+00:08:14,285 --> 00:08:15,970
+The arm is now more compact.
+
+107
+00:08:17,328 --> 00:08:20,737
+And both jaws still move parallel, driven by the servo.
+
+108
+00:08:21,687 --> 00:08:23,378
+The new gripper is heavier:
+
+109
+00:08:23,378 --> 00:08:29,016
+about 136 grams of printed parts, so little of the 200 gram target is left for the object.
+
+110
+00:08:29,016 --> 00:08:31,897
+The real servo and the grip still need a test.
+
+111
+00:08:32,847 --> 00:08:35,152
+This was a simple example, made in a short time.
+
+112
+00:08:35,152 --> 00:08:38,177
+With more work and planning, you can build something like this:
+
+113
+00:08:39,127 --> 00:08:43,657
+a robot dog, designed earlier in SOMA together with an agent, over several sessions.
+
+114
+00:08:46,780 --> 00:08:51,790
+Each leg has three joints, and each one has its own motor with a 6:1 planetary gearbox.
+
+115
+00:08:52,740 --> 00:08:58,230
+The motor turns the sun gear, the planets roll inside the fixed ring gear, and the carrier turns the leg.
+
+116
+00:08:59,180 --> 00:09:03,191
+Describe it, check it, change it, all in plain words.
+
+117
+00:09:03,191 --> 00:09:05,689
 Get SOMA for free at somacad.app.

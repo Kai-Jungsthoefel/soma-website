@@ -4,10 +4,10 @@
   "title": "How to make a 3D floor plan from a sketch and photos",
   "heading": "How to make a furnished 3D floor plan from a sketch and room photos",
   "description": "Turn a hand-drawn floor plan and photos of your rooms into a furnished 3D flat with AI and try new furniture ideas. No CAD skills needed. Step by step in SOMA.",
-  "summary": "A floor plan sketch and photos of each room become a furnished 3D model of a flat, built by an AI agent in SOMA, with a round dining table tried out on the side.",
+  "summary": "A floor plan sketch and photos of each room become a furnished 3D model of a flat, built by SOMA AI, with a round dining table tried out in the kitchen.",
   "topic": "interior",
   "published": "2026-11-18",
-  "modified": "2026-11-18",
+  "modified": "2026-11-23",
   "about": [
     "Floor plan",
     "Interior design",
@@ -17,8 +17,8 @@
   ],
   "video": {
     "youtubeId": null,
-    "title": "From Floor Plan to Furnished 3D Flat with AI (No CAD Skills Needed) | SOMA",
-    "duration": "PT3M9S",
+    "title": "From Floor Plan to Furnished 3D Flat with SOMA AI (No CAD Skills Needed)",
+    "duration": "PT4M33S",
     "uploadDate": null,
     "cover": "/images/guides/3d-floor-plan-from-sketch/cover.webp",
     "chapters": [
@@ -27,119 +27,141 @@
         "label": "What we build today"
       },
       {
-        "time": "0:26",
+        "time": "0:29",
         "label": "Floor plan sketch and photos"
       },
       {
-        "time": "1:04",
-        "label": "Build the flat"
+        "time": "1:03",
+        "label": "Build the flat with SOMA AI"
       },
       {
-        "time": "1:28",
+        "time": "2:14",
         "label": "Furnish it from the photos"
       },
       {
-        "time": "2:12",
+        "time": "3:14",
         "label": "A round table in the kitchen"
       },
       {
-        "time": "2:39",
+        "time": "3:55",
         "label": "Adjust the table size"
       },
       {
-        "time": "2:56",
+        "time": "4:17",
         "label": "Where to go next"
       }
     ]
   },
-  "answer": "Draw your floor plan with the main measurements, take a few photos of each room, and import both into SOMA. Then ask the AI agent to build the walls, doors and windows from the sketch, and to add the furniture it sees in the photos in the right rooms. The furniture is made of simple shapes and the agent tells you which sizes it had to guess, so the result is good for planning and trying ideas, not a replacement for an exact survey.",
+  "answer": "Draw your floor plan with the main measurements, take a few photos of each room, and import both into SOMA. Then add the sketch to SOMA AI's chat and ask for the walls, doors and windows, and in a second message add the photos and ask for the furniture it sees, each piece in the right room. The furniture is made of simple shapes and its sizes are estimated from the photos, so the result is good for planning and trying ideas, not a replacement for an exact survey.",
   "need": [
-    "SOMA, free for Windows, macOS and Linux.",
-    "A ChatGPT Plus or Pro plan, or an API key from Anthropic, OpenAI, Google Gemini, OpenRouter or OpenCode, to sign in to SOMA AI. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
-    "A sketch of your floor plan as a photo or image: the rooms, doors and windows, and a few measurements taken with a tape measure.",
-    "A few photos of each room, named so you can tell them apart (for example kitchen-1.jpg, living-1.jpg).",
-    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+    "SOMA, free and open source, for Windows, macOS or Linux.",
+    "A sign-in for SOMA AI: a ChatGPT Plus or Pro plan, or an API key from Anthropic (Claude), OpenAI, Google Gemini, OpenRouter or OpenCode. SOMA is free, the AI runs on your plan or key. The cheapest way to start is an OpenCode Go subscription for about $10 a month.",
+    "A sketch of your floor plan as a photo or image: the rooms, the doors and windows, and a few measurements taken with a tape measure.",
+    "A few photos of each room, named so you can tell them apart (for example kitchen-1.jpg, living-1.jpg)."
   ],
   "steps": [
     {
       "title": "Bring in your sketch and photos",
       "text": [
-        "Click New model on the start page. Open the SOMA AI tab in the agent area on the right; the first time, sign in with your ChatGPT plan or paste an API key.",
-        "Click Import and pick the floor plan sketch and the room photos. SOMA copies them into the folder inputs of the model, where the agent can find them. Click a file in Files to look at it.",
-        "The sketch can be simple: the rooms, the doors and windows, and a few measurements, just as you would draw your own flat with a tape measure."
+        "Start a new model and give it a name, in the video Flat. Click Import and pick the floor plan sketch and the room photos. SOMA copies them into the folder inputs of the model. Click a file in Files to look at it.",
+        "The sketch can be simple: the rooms, the doors and windows, and a few measurements, just as you would draw your own flat with a tape measure. In the video the photos show a historic flat in Heidelberg that is now a small museum, and the sketch was drawn to match them."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/3d-floor-plan-from-sketch/floor-plan-sketch.webp",
-        "alt": "The hand-drawn floor plan opened in SOMA, with bedroom, hall, bath, living room and kitchen with dining area and their measurements, and the imported photos listed in Files"
+        "alt": "The hand-drawn floor plan opened in SOMA, with bedroom, hall, bath, pantry, living room and kitchen with dining area, their measurements and 8.00 m by 7.00 m inside, and the sketch and eleven room photos listed under inputs in Files"
       }
     },
     {
-      "title": "Let the agent build the walls",
+      "title": "Ask SOMA AI for the walls",
       "text": [
-        "First the empty flat. Tell the agent which file to read and what to build. Use the name of your own sketch file.",
-        "The agent reads the sketch, builds the model and checks the result. This takes a few minutes. You get every wall, door opening and window where the sketch has them."
+        "Open the SOMA AI tab on the right and pick a model. The video uses GPT-6.1 Sol.",
+        "Add the sketch to the chat as a picture with the paperclip button, and ask for the empty flat first. Asking it to check with you first is worth it: the sketch leaves room for guesses."
       ],
-      "prompt": "Build my flat in 3D from the sketch inputs/floor-plan.png: floor, walls, door openings and windows, as drawn. No ceiling.",
+      "prompt": "Build my flat in 3D from this floor plan sketch: floor, walls, door openings and windows, as drawn. No ceiling. Ask me about anything that is unclear before you start.",
+      "image": {
+        "src": "/images/guides/3d-floor-plan-from-sketch/walls-prompt.webp",
+        "alt": "SOMA AI's chat with floor-plan.png attached and the prompt typed, GPT-6.1 Sol picked, next to the starting box of a new model"
+      }
+    },
+    {
+      "title": "Answer its questions",
+      "text": [
+        "Before it starts, SOMA AI asks what the sketch leaves open. In the video it asked two questions: the room sizes add up to 8 by 7 m without the 12 cm partitions, so should it keep the overall size or the exact room sizes? And the window widths are not written on the sketch, so may it use widths it estimated from the drawing?",
+        "Click an answer for each question, or write your own. In the video its recommendations were taken: keep the overall 8 by 7 m, and use the estimated window widths."
+      ],
+      "prompt": null,
+      "image": {
+        "src": "/images/guides/3d-floor-plan-from-sketch/questions.webp",
+        "alt": "SOMA AI's questions in the chat: Overall 8 × 7 m or Exact room sizes, and Use these estimates, Openings only or I'll give measurements for the window widths"
+      }
+    },
+    {
+      "title": "Look at the empty flat",
+      "text": [
+        "Then SOMA AI works on its own: it lays out the walls as drawn, builds the flat and looks at a picture of the result to check its own work. In the video this took 3.5 minutes.",
+        "The result: 8 by 7 m inside, walls 2.6 m high, six door openings, and four windows with frames and glass. There is no ceiling, so you can look in. Check that every room sits where your sketch has it."
+      ],
+      "prompt": null,
       "image": {
         "src": "/images/guides/3d-floor-plan-from-sketch/walls-in-3d.webp",
-        "alt": "The empty flat in 3D: floor, outer and inner walls with door openings and windows, without a ceiling"
+        "alt": "The empty flat in 3D without a ceiling: floor, outer and inner walls with door openings and framed windows, and SOMA AI's summary in the chat"
       }
     },
     {
       "title": "Furnish it from the photos",
       "text": [
-        "Now ask the agent to look at the photos and add the furniture it sees. It goes through them room by room and builds every piece from simple boxes and cylinders.",
-        "When it is done, it tells you what it had to guess, like the size of the sofa, so you know what to check. Every piece is its own part, sorted by room in the structure tree.",
-        "To see it like a floor plan, click Top on the view cube and use Section along Z to cut the walls. In the video the agent picked up the red sofa and the sewing table, the old stove and the kitchen cabinet, the two beds with the wardrobe, and the bathtub."
+        "Now add the photos of all the rooms to the chat and ask for the furniture. SOMA AI looks at every photo, works out which room it shows, and builds each piece from simple shapes. Then it checks the layout in a picture; in the video it moved the wardrobe a little where it was too tight. This took about 8 minutes.",
+        "Every piece is a part of its own, and the structure tree sorts them by room under Furniture.",
+        "To see it like a floor plan, turn the view to the top and click Section to cut the walls at about 1 m along Z. These tools only change the view, not the model. In the video you see the red sofa and the sewing table in the living room, the beds and the cot in the bedroom, the old kitchen range and the dresser, and the bathtub."
       ],
-      "prompt": "Now furnish it. The photos in inputs/ show each room. Add simple models of the furniture you see, in the right rooms.",
+      "prompt": "Now furnish it. These photos show each room (they are also in inputs/, named by room). Add simple models of the furniture you see, in the right rooms, and group the parts by room.",
       "image": {
         "src": "/images/guides/3d-floor-plan-from-sketch/furnished-top-view.webp",
-        "alt": "The furnished flat from above with the walls cut by a section: beds, wardrobe, bathtub, red sofa, tables, chairs and kitchen furniture in their rooms"
+        "alt": "The furnished flat from the top with a section at Z 1000 mm: beds, cot, wardrobe, bathtub, red sofa, tables, chairs and the kitchen range, and SOMA AI's list of furniture by room in the chat"
       }
     },
     {
       "title": "Try an idea: a round table",
       "text": [
         "Click the piece you want to change in the 3D view, here the kitchen table. Click Send to agent in the card that appears, and say what you want.",
-        "The agent replaces the table and moves the chairs around it. Only the table and the chairs change, the rest of the flat stays as it is."
+        "SOMA AI swaps the table for a round one, puts four chairs around it, and checks that even the largest size still fits. In the video it moved the set 25 cm away from the window for that. The rest of the flat stays as it was."
       ],
       "prompt": "Make this a round table, 1 m across, with four chairs around it. Make the diameter adjustable.",
       "image": {
         "src": "/images/guides/3d-floor-plan-from-sketch/select-kitchen-table.webp",
-        "alt": "Top view of the flat with the kitchen table clicked and highlighted in orange, and its card with the Send to agent button"
+        "alt": "Top view of the flat with the kitchen table highlighted in orange, its card Kitchen and dining - Dining table - Cloth with the Send to agent button, and the prompt typed in the chat with the selection attached"
       }
     },
     {
       "title": "Change the size with a slider",
       "text": [
-        "Because you asked for an adjustable size, the table diameter shows up in Parameters in the sidebar. Drag the slider and SOMA rebuilds the flat by itself, no agent needed. For a whole flat each rebuild takes a few seconds.",
-        "Every change is saved as a version on the History timeline at the bottom, so you can try as many ideas as you like and always go back."
+        "Because you asked for an adjustable size, the dining table diameter shows up in Parameters, from 800 to 1200 mm. Drag the slider and SOMA rebuilds the flat by itself, without the AI, and the chairs move along.",
+        "Every step of SOMA AI is saved in the History at the bottom, so you can try as many ideas as you like and always go back."
       ],
       "prompt": null,
       "image": {
         "src": "/images/guides/3d-floor-plan-from-sketch/round-table-parameter.webp",
-        "alt": "The kitchen with a round table and four chairs, and the kitchen table diameter slider in the Parameters panel set to 1300 mm"
+        "alt": "The Parameters panel with the dining table diameter set to 900 mm, next to the flat with the round kitchen table and four chairs"
       }
     }
   ],
   "tips": [
     "Build the empty flat first and furnish it in a second message. Smaller steps are easier to check and to correct.",
+    "Ask SOMA AI to ask you about anything that is unclear before it starts. A sketch always leaves something open, like window widths without numbers.",
     "Measure the main walls with a tape measure and write the numbers on the sketch. The more measurements, the closer the model.",
-    "Name the photos by room, for example kitchen-1.jpg, so the agent knows where each piece belongs.",
-    "Read what the agent says it had to guess, and correct the sizes that matter to you, for example: Make the sofa 2.2 m long.",
-    "When you ask for a change, say what should be adjustable. Then you can try sizes with a slider instead of asking again.",
-    "In the video the agent is Claude Code; SOMA AI, built into SOMA, works the same way."
+    "Name the photos by room, for example kitchen-1.jpg, so the furniture ends up in the right room.",
+    "Sizes and positions of the furniture are estimated from the photos. Check the pieces that matter to you and correct them, for example: Make the sofa 2.2 m long.",
+    "When you ask for a change, say what should be adjustable. Then you can try sizes with a slider instead of asking again."
   ],
   "faq": [
     {
       "q": "Can AI turn a floor plan sketch into a 3D model?",
-      "a": "Yes. An AI agent can read a photo or image of a hand-drawn floor plan and build the floor, walls, door openings and windows in 3D. It follows the measurements written on the sketch, so the result is as accurate as your sketch."
+      "a": "Yes. SOMA AI can read a photo or image of a hand-drawn floor plan and build the floor, walls, door openings and windows in 3D. It follows the measurements written on the sketch and asks about what is missing, so the result is as accurate as your sketch."
     },
     {
       "q": "Can AI furnish a room from photos?",
-      "a": "Yes, roughly. The agent looks at photos of each room and adds simple models of the furniture it sees, such as a sofa, beds, a wardrobe or a table, in the right rooms. The pieces are made of simple shapes, and the agent says which sizes it had to guess."
+      "a": "Yes, roughly. SOMA AI looks at photos of each room and adds simple models of the furniture it sees, such as a sofa, beds, a wardrobe or a table, in the right rooms. The pieces are made of simple shapes, and their sizes and positions are estimated from the photos."
     },
     {
       "q": "Do I need CAD or 3D skills to make a 3D floor plan this way?",
@@ -151,11 +173,14 @@
     },
     {
       "q": "Is it free to make a 3D floor plan with SOMA?",
-      "a": "SOMA itself is free and open source. The AI agent runs on your own ChatGPT Plus or Pro plan or on an API key from a provider such as Anthropic, OpenAI or Google, which you pay for there."
+      "a": "SOMA itself is free and open source. SOMA AI runs on your own ChatGPT Plus or Pro plan or on an API key from a provider such as Anthropic, OpenAI or Google, which you pay for there."
     }
   ],
   "credits": [
-    "Photos in the video: museum flat of the GGH in the \"Blaue Heimat\" estate, Heidelberg-Handschuhsheim, by Nemracc, Wikimedia Commons, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Used: Wohnzimmer 01, 02, 03; Küche und Esszimmer 01, 03, 04; Schlafzimmer 02, 03, 05; Badezimmer 01, 02 (downscaled, renamed).",
-    "Floor plan: our own hand sketch, drawn to match the photos; not the original plan of the building, measurements approximate."
+    "Photos in the video: museum flat of the GGH in the \"Blaue Heimat\" estate, Heidelberg-Handschuhsheim, by Nemracc, Wikimedia Commons, CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Used: Wohnzimmer 01, 02, 03; Küche und Esszimmer 01, 03, 04; Schlafzimmer 02, 03, 05; Badezimmer 01, 02 (downscaled, renamed). All photos: https://commons.wikimedia.org/wiki/Category:Museumswohnung_der_GGH",
+    "Floor plan: our own hand sketch, drawn to match the photos; not the original plan of the building, measurements approximate.",
+    "Voice: Kyutai Pocket TTS.",
+    "Music: \"Inspirational Technology\" by AtlasAudio (Pixabay).",
+    "Sounds: Kenney Interface Sounds (CC0)."
   ]
 }

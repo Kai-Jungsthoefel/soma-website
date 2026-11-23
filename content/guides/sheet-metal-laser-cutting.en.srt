@@ -1,231 +1,271 @@
 1
-00:00:00,450 --> 00:00:04,539
+00:00:00,550 --> 00:00:04,639
 I need a bracket that holds a stepper motor on an aluminium extrusion.
 
 2
-00:00:04,539 --> 00:00:07,460
+00:00:04,639 --> 00:00:07,560
 Bent from sheet metal, and cut by a laser service.
 
 3
-00:00:08,160 --> 00:00:11,774
+00:00:08,510 --> 00:00:12,000
 Today I'll show you how to design it without any CAD knowledge.
 
 4
-00:00:11,774 --> 00:00:17,970
-An AI agent builds the bracket around the real motor and extrusion, and unfolds it into a DXF for the laser.
+00:00:12,000 --> 00:00:17,760
+SOMA AI builds the bracket around the real motor and extrusion, and unfolds it into a DXF for the laser.
 
 5
-00:00:20,651 --> 00:00:21,409
+00:00:20,750 --> 00:00:21,508
 We use SOMA.
 
 6
-00:00:21,409 --> 00:00:25,581
+00:00:21,508 --> 00:00:25,680
 It's free and open source, and you can download it at somacad.app.
 
 7
-00:00:27,231 --> 00:00:30,281
-I start a new model and import two STEP files:
+00:00:26,630 --> 00:00:28,154
+SOMA itself is free.
 
 8
-00:00:30,281 --> 00:00:34,789
-a NEMA 17 stepper motor and a 100 mm piece of 2020 V-slot extrusion.
+00:00:28,154 --> 00:00:30,821
+For SOMA AI, you bring your own AI:
 
 9
-00:00:34,789 --> 00:00:39,761
-Both come from the FreeCAD parts library, under a Creative Commons license.
+00:00:30,821 --> 00:00:33,640
+a ChatGPT subscription or an API key.
 
 10
-00:00:40,698 --> 00:00:44,017
-Click a STEP file, and SOMA shows it in the viewer.
+00:00:35,350 --> 00:00:38,400
+I start a new model and import two STEP files:
 
 11
-00:00:44,017 --> 00:00:45,514
-This is the real motor:
+00:00:38,400 --> 00:00:42,908
+a NEMA 17 stepper motor and a 100 mm piece of 2020 V-slot extrusion.
 
 12
-00:00:45,514 --> 00:00:48,508
-flange, shaft and connector, ten parts in all.
+00:00:42,908 --> 00:00:47,880
+Both come from the FreeCAD parts library, under a Creative Commons license.
 
 13
-00:00:49,208 --> 00:00:52,458
-The files sit in the inputs folder, where the agent can use them.
+00:00:50,817 --> 00:00:53,961
+You can view the STEP files by clicking them in the file browser.
 
 14
-00:00:54,108 --> 00:00:56,621
-Skills tell the agent how your parts are made.
+00:00:53,961 --> 00:00:55,267
+They show up in the viewer.
 
 15
-00:00:56,621 --> 00:01:00,718
-There's one for sheet metal, and also for laser cutting and plasma cutting.
+00:00:57,783 --> 00:01:01,193
+The files sit in the inputs folder, where SOMA AI can use them.
 
 16
-00:01:01,418 --> 00:01:04,091
-I set the sheet metal skill to my material:
+00:01:05,517 --> 00:01:07,931
+Skills tell SOMA AI how your parts are made.
 
 17
-00:01:04,091 --> 00:01:06,702
-2 mm steel, with a 2 mm inner bend radius.
+00:01:07,931 --> 00:01:12,047
+There's one for sheet metal, and also for laser cutting and plasma cutting.
 
 18
-00:01:06,702 --> 00:01:08,753
-The agent then follows its rules:
+00:01:15,484 --> 00:01:18,250
+I set the sheet metal skill to my material:
 
 19
-00:01:08,753 --> 00:01:14,348
-distances from holes to bends, bend reliefs, and the flat pattern with the right K-factor.
+00:01:18,250 --> 00:01:20,951
+2 mm steel, with a 2 mm inner bend radius.
 
 20
-00:01:16,408 --> 00:01:17,301
-Now the agent.
+00:01:20,951 --> 00:01:22,945
+SOMA AI then follows its rules:
 
 21
-00:01:17,301 --> 00:01:20,938
-Click the plus above the terminal, and start Claude Code.
+00:01:22,945 --> 00:01:28,734
+distances from holes to bends, bend reliefs, and the flat pattern with the right K-factor.
 
 22
-00:01:23,375 --> 00:01:25,709
-I describe what I need in plain words:
+00:01:33,050 --> 00:01:35,171
+Everything is prepared.
 
 23
-00:01:25,709 --> 00:01:33,265
-the motor at the end of the extrusion, the shaft sideways for a belt, slots to tension the belt, and M5 screws with T-nuts.
+00:01:35,171 --> 00:01:38,674
+Now we build the bracket with SOMA AI.
 
 24
-00:01:34,583 --> 00:01:40,220
-The agent measures the motor and the extrusion in the STEP files, picks the screws, and builds the bracket.
+00:01:38,674 --> 00:01:41,994
+I click its tab, and pick the model:
 
 25
-00:01:40,220 --> 00:01:43,433
-Every time it changes the model, SOMA builds it and shows it.
+00:01:41,994 --> 00:01:43,100
+GPT-6.1 Sol.
 
 26
-00:01:44,376 --> 00:01:44,976
-Here it is.
+00:01:50,817 --> 00:01:53,151
+I describe what I need in plain words:
 
 27
-00:01:44,976 --> 00:01:50,426
-The structure tree lists the bracket and the screws, with the motor and the extrusion as references.
+00:01:53,151 --> 00:02:00,707
+the motor at the end of the extrusion, the shaft sideways for a belt, slots to tension the belt, and M5 screws with T-nuts.
 
 28
-00:01:51,743 --> 00:01:53,176
-It's a C-shaped channel.
+00:02:04,950 --> 00:02:08,064
+Before it starts, SOMA AI asks what is still open.
 
 29
-00:01:53,176 --> 00:01:54,729
-The plate holds the motor:
+00:02:08,064 --> 00:02:10,120
+I click my answers and send them.
 
 30
-00:01:54,729 --> 00:01:59,089
-the pilot hole, and the 31 mm hole pattern as slots for the belt tension.
+00:02:13,317 --> 00:02:19,442
+Then it measures the motor and the extrusion in the STEP files, picks the screws, and builds the bracket.
 
 31
-00:01:59,089 --> 00:02:02,433
-Two flanges wrap around the extrusion and make it stiff.
+00:02:19,442 --> 00:02:21,367
+SOMA shows every step right away.
 
 32
-00:02:03,183 --> 00:02:06,593
-Explode pulls the parts apart, so you can see how everything goes together.
+00:02:22,317 --> 00:02:22,917
+Here it is.
 
 33
-00:02:08,216 --> 00:02:09,895
-A section cuts through the middle:
+00:02:22,917 --> 00:02:28,367
+The structure tree lists the bracket and the screws, with the motor and the extrusion as references.
 
 34
-00:02:09,895 --> 00:02:13,946
-the two bends with their radius, and the screws going into the T-nuts in the slot.
+00:02:29,717 --> 00:02:30,989
+It's a C-shaped channel:
 
 35
-00:02:15,596 --> 00:02:17,706
-Now the file for the laser service.
+00:02:30,989 --> 00:02:35,494
+a plate that carries the motor, with a flange bent back along the top and the bottom.
 
 36
-00:02:17,706 --> 00:02:24,278
-I ask for the flat pattern as a DXF, with the bend lines on their own layer, and a drawing with a bend table.
+00:02:35,494 --> 00:02:38,727
+The motor sits in slots, so it can slide to tension the belt.
 
 37
-00:02:24,978 --> 00:02:26,617
-The agent unfolds the bracket.
+00:02:40,484 --> 00:02:42,724
+From behind, you see how the motor is held:
 
 38
-00:02:26,617 --> 00:02:31,588
-Each bend adds a little length, worked out from the radius, the thickness and the K-factor.
+00:02:42,724 --> 00:02:46,997
+four screws with washers in the slots, and the shaft comes through for the pulley.
 
 39
-00:02:32,538 --> 00:02:35,197
-Click the DXF, and SOMA opens it right here:
+00:02:51,150 --> 00:02:54,723
+To look at the model, SOMA has viewing tools that change nothing.
 
 40
-00:02:35,197 --> 00:02:39,306
-the outline and holes to cut, and the bend lines on their own layer.
+00:02:54,723 --> 00:02:59,120
+Explode pulls the bracket and its screws apart, so you see how they go together.
 
 41
-00:02:40,006 --> 00:02:40,954
-And the drawing:
+00:03:05,417 --> 00:03:07,358
+And a section cuts through the middle:
 
 42
-00:02:40,954 --> 00:02:46,344
-the flat blank with its size, and a table with every bend, its direction, angle and radius.
+00:03:07,358 --> 00:03:11,547
+the two bends with their radius, and the screws going into the T-nuts in the slot.
 
 43
-00:02:47,994 --> 00:02:48,908
-One more thing:
+00:03:15,400 --> 00:03:17,510
+Now the file for the laser service.
 
 44
-00:02:48,908 --> 00:02:50,798
-a small tab for a limit switch.
+00:03:17,510 --> 00:03:24,082
+I ask for the flat pattern as a DXF, with the bend lines on their own layer, and a drawing with a bend table.
 
 45
-00:02:50,798 --> 00:02:55,004
-With Mark up, I simply draw it where I want it, and write what it is.
+00:03:29,633 --> 00:03:31,339
+SOMA AI unfolds the bracket.
 
 46
-00:02:56,494 --> 00:02:58,784
-Send it to the agent, and add one sentence.
+00:03:31,339 --> 00:03:36,883
+Each bend adds a little length, worked out from the radius, the thickness and the K-factor.
 
 47
-00:03:02,969 --> 00:03:05,931
-There's the tab, with its own bend and holes for the switch.
+00:03:38,833 --> 00:03:41,492
+Click the DXF, and SOMA opens it right here:
 
 48
-00:03:05,931 --> 00:03:07,659
-And the flat pattern grows with it.
+00:03:41,492 --> 00:03:45,601
+the outline and holes to cut, and the bend lines on their own layer.
 
 49
-00:03:08,409 --> 00:03:11,397
-The agent also made the main sizes adjustable.
+00:03:52,367 --> 00:03:53,315
+And the drawing:
 
 50
-00:03:11,397 --> 00:03:15,099
-In the Parameters tab, I change the sheet from 2 to 3 mm.
+00:03:53,315 --> 00:03:58,705
+the flat blank with its size, and a table with every bend, its direction, angle and radius.
 
 51
-00:03:15,799 --> 00:03:18,890
-The rebuild takes a moment, the motor model is quite detailed.
+00:04:04,066 --> 00:04:04,930
+One more thing:
 
 52
-00:03:18,890 --> 00:03:22,729
-Then the bracket is thicker, and the flat pattern has the new bend allowance.
+00:04:04,930 --> 00:04:07,753
+a limit switch, so the carriage stops at the end.
 
 53
-00:03:23,429 --> 00:03:26,001
-Open the DXF again, and it's up to date.
+00:04:07,753 --> 00:04:11,556
+I import a real micro switch, also from the FreeCAD parts library.
 
 54
-00:03:26,001 --> 00:03:27,159
-Ready to send off.
+00:04:16,366 --> 00:04:20,096
+With Mark up, I simply draw where I want it, and write what it is.
 
 55
-00:03:27,876 --> 00:03:31,934
-Upload it to a laser cutting service, bend the flanges, and bolt the motor on.
+00:04:21,366 --> 00:04:24,456
+A circle where the tab should go, an arrow, and a short note.
 
 56
-00:03:31,934 --> 00:03:35,992
-And if you cut your own parts on a plasma table, there's a skill for that too.
+00:04:32,033 --> 00:04:34,643
+Send it to SOMA AI, and add one sentence.
 
 57
-00:03:37,442 --> 00:03:42,458
-From two STEP files to a flat pattern for the laser, without drawing a single line.
+00:04:35,666 --> 00:04:39,607
+The switch lever should face the carriage, so the carriage presses it at the end of travel.
 
 58
-00:03:42,458 --> 00:03:44,452
+00:04:47,199 --> 00:04:53,284
+There's the tab, bent up from the top flange, with the micro switch screwed on and its lever facing the carriage.
+
+59
+00:04:53,284 --> 00:04:55,169
+And the flat pattern grows with it.
+
+60
+00:04:58,733 --> 00:05:01,543
+SOMA AI also made the main sizes adjustable.
+
+61
+00:05:01,543 --> 00:05:05,183
+In the Parameters tab, I change the sheet from 2 to 3 mm.
+
+62
+00:05:06,933 --> 00:05:11,383
+A moment later the bracket is thicker, and the flat pattern has the new bend allowance.
+
+63
+00:05:13,133 --> 00:05:15,705
+Open the DXF again, and it's up to date.
+
+64
+00:05:15,705 --> 00:05:16,863
+Ready to send off.
+
+65
+00:05:20,266 --> 00:05:24,324
+Upload it to a laser cutting service, bend the flanges, and bolt the motor on.
+
+66
+00:05:24,324 --> 00:05:28,382
+And if you cut your own parts on a plasma table, there's a skill for that too.
+
+67
+00:05:30,133 --> 00:05:35,149
+From two STEP files to a flat pattern for the laser, without drawing a single line.
+
+68
+00:05:35,149 --> 00:05:37,143
 Get SOMA for free at somacad.app.
