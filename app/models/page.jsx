@@ -8,12 +8,12 @@ import allModels from '../../models/models.json';
 // Direktlink in den Viewer. Eine eigene Adresse für Suchen wie „soma models“ und „AI CAD examples“.
 export const metadata = {
   title: 'Example models made with AI agents',
-  description: 'CAD models designed with SOMA and a coding agent: a desktop CNC router, a parametric organizer box, a walking quadruped robot, a wall shelf with FEM analysis, a chainsaw with its two-stroke engine, a sideboard with manufacturing drawings and a 3D printed enclosure. Explore them in 3D.',
+  description: 'CAD models designed with SOMA and AI: a desktop CNC router, a walking robot, a chainsaw engine, a sideboard with drawings and more. Explore them in 3D.',
   alternates: { canonical: '/models/' },
   openGraph: {
     type: 'website', url: '/models/', siteName: 'SOMA', title: 'Example models made with SOMA',
     description: 'CAD models designed by coding agents in CadQuery, explorable in 3D.',
-    images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA, Solid Object Modeling with Agents' }],
+    images: [{ url: '/images/showcase-cover.jpg', width: 1280, height: 720, alt: 'SOMA, Solid Object Modeling with Agents' }],
   },
 };
 

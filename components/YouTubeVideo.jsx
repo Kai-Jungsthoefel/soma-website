@@ -3,15 +3,13 @@ import { useState } from 'react';
 
 // YouTube-Video erst auf Klick: Bis dahin ein eigenes Vorschaubild von dieser Seite, keine Verbindung zu YouTube.
 // Danach youtube-nocookie.com (erweiterter Datenschutzmodus), siehe Datenschutzerklärung Punkt 7.
-// A video that is not on YouTube yet (no id) shows its cover without a play button. The guides of the 1.0 release get
-// their ids when the videos go online together with the release.
+// A video that is not on YouTube yet (no id) shows its cover without a play button. The guides get their ids when
+// their videos go online. The tutorial is the same video as the guide /guides/design-3d-model-with-ai/.
 export const TUTORIAL = {
-  id: 'FJrgMl8ZGKI',
-  title: 'How to Use AI for CAD with Claude Code (Free & Open Source)',
-  url: 'https://www.youtube.com/watch?v=FJrgMl8ZGKI',
-  cover: '/images/tutorial-cover.jpg',
-  duration: 'PT8M48S',
-  uploadDate: '2026-11-04',
+  id: '9NlayaSF0Gc',
+  title: 'SOMA AI: Design 3D Parts Just by Describing Them (Free & Open Source CAD Tutorial)',
+  url: 'https://www.youtube.com/watch?v=9NlayaSF0Gc',
+  cover: '/images/guides/design-3d-model-with-ai/cover.webp',
 };
 
 export default function YouTubeVideo({ video = TUTORIAL }) {

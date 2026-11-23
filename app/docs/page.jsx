@@ -8,13 +8,13 @@ const REPO_URL = `https://github.com/${github.repo}`;
 
 // Anleitung der App, dieselbe wie unter Hilfe (F1) in SOMA. Inhalt aus dem neuesten Release (scripts/fetch-guide.mjs).
 export const metadata = {
-  title: 'User guide',
+  title: 'SOMA user guide: how to use the AI CAD app',
   description: 'How to use SOMA, the open-source AI CAD app: the window, the 3D viewer, measuring, section and exploded views, marking up for the agent, history, export to STL, 3MF and STEP, CadQuery scripts and settings.',
   alternates: { canonical: '/docs/' },
   openGraph: {
     type: 'article', url: '/docs/', siteName: 'SOMA', title: 'SOMA user guide',
-    description: 'How to design 3D models with SOMA and your coding agent.',
-    images: [{ url: '/images/trailer-cover.jpg', width: 1920, height: 1080, alt: 'SOMA, Solid Object Modeling with Agents' }],
+    description: 'How to design 3D models with SOMA AI or your own coding agent.',
+    images: [{ url: '/images/showcase-cover.jpg', width: 1280, height: 720, alt: 'SOMA, Solid Object Modeling with Agents' }],
   },
 };
 
@@ -29,7 +29,7 @@ export default function Docs() {
       <article className="docs-body">
         <h1>User guide</h1>
         <p className="docs-meta">For SOMA {GUIDE.tag}. The same guide is in the app under Help (F1), and your agent knows it too: just ask it how something works.</p>
-        <p>Prefer to watch? The video tutorial shows SOMA in nine minutes, from installing to an exported part.</p>
+        <p>Prefer to watch? The video tutorial shows SOMA and SOMA AI in seven minutes, from installing to an exported part.</p>
         <YouTubeVideo/>
         <div dangerouslySetInnerHTML={{ __html: GUIDE_HTML }}/>
         <p className="docs-meta">Something missing or wrong? <a href={`${REPO_URL}/issues/new/choose`}>Report it on GitHub</a>.</p>

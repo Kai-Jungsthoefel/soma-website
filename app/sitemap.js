@@ -13,6 +13,7 @@ export default function sitemap() {
     { url: `${SITE_URL}/download/`, lastModified: new Date(release), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/models/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/guides/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${SITE_URL}/community/`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     ...GUIDES.map(g => ({ url: `${SITE_URL}${g.path}`, lastModified: new Date(g.modified), changeFrequency: 'monthly', priority: 0.8 })),
     { url: `${SITE_URL}/docs/`, lastModified: new Date(guide.fetched_at), changeFrequency: 'weekly', priority: 0.7 },
   ];
