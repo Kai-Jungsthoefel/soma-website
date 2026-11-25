@@ -7,7 +7,7 @@
   "summary": "From installing SOMA to a finished, changeable 3D model, designed by describing it to SOMA AI in plain words.",
   "topic": "basics",
   "published": "2026-11-18",
-  "modified": "2026-11-23",
+  "modified": "2026-11-25",
   "about": [
     "Computer-aided design",
     "Artificial intelligence",
@@ -17,9 +17,9 @@
   ],
   "video": {
     "youtubeId": "9NlayaSF0Gc",
-    "title": "SOMA AI: Design 3D Parts Just by Describing Them (Free & Open Source CAD Tutorial)",
+    "title": "AI Does My CAD Now: Full SOMA Tutorial with the Built-in AI Agent",
     "duration": "PT7M26S",
-    "uploadDate": null,
+    "uploadDate": "2026-11-23T09:19:46+01:00",
     "cover": "/images/guides/design-3d-model-with-ai/cover.webp",
     "chapters": [
       { "time": "0:00", "label": "Intro" },

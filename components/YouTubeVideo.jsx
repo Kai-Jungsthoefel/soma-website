@@ -7,7 +7,7 @@ import { useState } from 'react';
 // their videos go online. The tutorial is the same video as the guide /guides/design-3d-model-with-ai/.
 export const TUTORIAL = {
   id: '9NlayaSF0Gc',
-  title: 'SOMA AI: Design 3D Parts Just by Describing Them (Free & Open Source CAD Tutorial)',
+  title: 'AI Does My CAD Now: Full SOMA Tutorial with the Built-in AI Agent',
   url: 'https://www.youtube.com/watch?v=9NlayaSF0Gc',
   cover: '/images/guides/design-3d-model-with-ai/cover.webp',
 };

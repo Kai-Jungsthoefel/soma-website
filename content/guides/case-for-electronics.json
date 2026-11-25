@@ -7,7 +7,7 @@
   "summary": "A smart speaker case designed by SOMA AI around the real board's STEP file and a speaker datasheet, checked with a section view and exported for printing.",
   "topic": "electronics",
   "published": "2026-11-18",
-  "modified": "2026-11-22",
+  "modified": "2026-11-25",
   "about": [
     "Electronics enclosure",
     "Artificial intelligence",
@@ -16,10 +16,10 @@
     "STEP file"
   ],
   "video": {
-    "youtubeId": null,
-    "title": "A 3D Printed Case for My Smart Speaker, Designed by AI (No CAD)",
+    "youtubeId": "p_qiT9QTGVE",
+    "title": "AI Designed a Case for My DIY Smart Speaker (No CAD Skills)",
     "duration": "PT6M0S",
-    "uploadDate": null,
+    "uploadDate": "2026-11-25T14:00:35+01:00",
     "cover": "/images/guides/case-for-electronics/cover.webp",
     "chapters": [
       {
