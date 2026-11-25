@@ -278,6 +278,13 @@ em { font-style: normal; color: var(--tx); }
 .notes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
 .notes h3 { font-size: 16px; }
 .notes p { margin-top: 6px; color: var(--tx2); font-size: 14px; }
+/* Launch video on the download page: text left, video right */
+.whats-new { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 40px; align-items: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }
+.whats-new h2 { font-size: 24px; }
+.whats-new p { margin-top: 12px; color: var(--tx2); }
+/* This cover has its title up to 63 % of the width: the play button sits on the robot arm */
+.whats-new .yt-play { left: 82%; }
+@media (max-width: 860px) { .whats-new { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 
 /* Häufige Fragen */
 .faq-wrap > * { max-width: 860px; }

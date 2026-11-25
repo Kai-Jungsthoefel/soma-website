@@ -1,5 +1,18 @@
 import { Footer, Header } from '../../components/SiteChrome';
 import DownloadExplorer from '../../components/DownloadExplorer';
+import YouTubeVideo from '../../components/YouTubeVideo';
+import github from '../../data/github.json';
+
+// Not from lib/github.js: that is a client module, its constants don't arrive here as values
+const CHANGELOG = `https://github.com/${github.repo}/blob/main/CHANGELOG.md`;
+
+// The launch video of 1.0 (1:26) with the cover it has on YouTube. No VideoObject for it: the video is not the main
+// content of this page. Replace or remove the section when the next version has news of its own.
+const LAUNCH = {
+  id: 'ml3cAH1c67Q',
+  title: 'SOMA 1.0 is here: AI-first CAD with SOMA AI built in',
+  cover: '/images/launch-cover.webp',
+};
 
 export const metadata = {
   title: 'Download SOMA: free AI CAD for Windows, macOS, Linux',
@@ -27,6 +40,14 @@ export default function Download() {
       <DownloadExplorer/>
       <section className="notes" aria-label="Notes">
         {notes.map(n => <div key={n.title}><h3>{n.title}</h3><p>{n.body}</p></div>)}
+      </section>
+      <section className="whats-new" aria-labelledby="whats-new-title">
+        <div>
+          <h2 id="whats-new-title">New in 1.0</h2>
+          <p>SOMA AI is now built in: a chat instead of a terminal, questions you answer with a click, and progress in plain words. Your own agents such as Claude Code and Codex still work, and large models build much faster.</p>
+          <p>The video shows it in a minute and a half. The full list is in the <a href={CHANGELOG}>changelog</a>.</p>
+        </div>
+        <YouTubeVideo video={LAUNCH}/>
       </section>
     </main>
     <Footer/>
