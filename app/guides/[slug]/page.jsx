@@ -31,6 +31,8 @@ export default async function VideoGuidePage({ params }) {
   const path = `/guides/${g.slug}/`;
   const words = transcript(g.slug);
   const watch = g.video.youtubeId ? `https://www.youtube.com/watch?v=${g.video.youtubeId}` : null;
+  // Length of the video in seconds: the last chapter ends there (Google asks for an end on every clip)
+  const total = secs(minutes(g.video.duration));
   const related = GUIDES.filter(x => x.path !== path && (x.topic === g.topic || x.topic === 'basics')).slice(0, 3);
 
   const extraData = [
@@ -60,10 +62,13 @@ export default async function VideoGuidePage({ params }) {
       duration: g.video.duration,
       ...(words.length && { transcript: words.join(' ') }),
       ...(g.video.chapters?.length && {
-        hasPart: g.video.chapters.map((c, i, all) => ({
-          '@type': 'Clip', name: c.label, startOffset: secs(c.time), url: `${watch}&t=${secs(c.time)}`,
-          ...(all[i + 1] && { endOffset: secs(all[i + 1].time) }),
-        })),
+        hasPart: g.video.chapters.map((c, i, all) => {
+          const end = all[i + 1] ? secs(all[i + 1].time) : total;
+          return {
+            '@type': 'Clip', name: c.label, startOffset: secs(c.time), url: `${watch}&t=${secs(c.time)}`,
+            ...(end > secs(c.time) && { endOffset: end }),
+          };
+        }),
       }),
     }] : []),
   ];
