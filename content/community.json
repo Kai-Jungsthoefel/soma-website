@@ -219,6 +219,32 @@
       ],
       "permission": "given",
       "permission_note": "Shared by a friend of the maintainer in a private chat (2026-10-17), OK to show it confirmed by the maintainer on 2026-11-18. Shown with first name only."
+    },
+    {
+      "id": "wing",
+      "title": "Wing with servo-driven control surfaces",
+      "maker": {
+        "name": "Ravi Chemudugunta"
+      },
+      "source": {
+        "label": "LinkedIn comment",
+        "url": "https://www.linkedin.com/posts/christianheining_soma-10-dropped-this-weekend-your-coding-share-7530528113093656576-1j4S/"
+      },
+      "topic": "Aircraft",
+      "summary": "A wing built on a NACA airfoil, with two control surfaces that servos move. The exploded view shows the wing, the control surfaces, a lower cover and the rods as separate parts.",
+      "quote": "A NACA based airfoil with articulating servos, I love the animation feature.",
+      "images": [
+        {
+          "src": "/images/community/wing/exploded.webp",
+          "alt": "Exploded view of the wing in SOMA: the wing, two orange control surfaces, a lower cover and rods"
+        },
+        {
+          "src": "/images/community/wing/assembled.webp",
+          "alt": "The assembled wing with two orange control surfaces"
+        }
+      ],
+      "permission": "given",
+      "permission_note": "Posted by the maker as a reply with two screenshots under a LinkedIn post about SOMA 1.0 (2026-11-24). OK to show it confirmed by the maintainer on 2026-11-25 (Ravi Chemudugunta)."
     }
   ]
 }
